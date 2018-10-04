@@ -1,0 +1,3 @@
+app_user:
+    resource: '../src/User/Controller/'
+    type:     annotation

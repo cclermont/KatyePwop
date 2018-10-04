@@ -1,0 +1,11 @@
+# Module service configuration file
+parameters:
+
+services:
+    App\User\:
+        resource: '../../*'
+        exclude: '../../{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+    
+    App\User\Controller\:
+        resource: '../../Controller'
+        tags: ['controller.service_arguments']

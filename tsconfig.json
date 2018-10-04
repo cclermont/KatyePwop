@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+      "sourceMap": true
+    },
+    "files": [
+        "/assets/ts/app.ts"
+    ],
+    "include": [
+        "/assets/ts/*"
+    ]
+}
