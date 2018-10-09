@@ -1,7 +1,3 @@
-# Import module doctrine config
-imports:
-    - {resource: '../../src/User/Resources/config/doctrine.yaml'}
-
 parameters:
     # Adds a fallback DATABASE_URL if the env var is not set.
     # This allows you to run cache:warmup even if your
@@ -24,10 +20,10 @@ doctrine:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
-        # mappings:
-        #     App\User:
-        #         is_bundle: false
-        #         type: annotation
-        #         dir: '%kernel.project_dir%/src/User/Entity'
-        #         prefix: 'App\User\Entity'
-        #         alias: App
+        mappings:
+            App:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Entity'
+                prefix: 'App\Entity'
+                alias: App

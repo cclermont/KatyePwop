@@ -1,2 +1,0 @@
-app_user_routes:
-    resource: '../src/User/Resources/config/routing.yaml'
