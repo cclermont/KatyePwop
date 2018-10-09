@@ -6,8 +6,8 @@
  */
 
 // any CSS you require will output into a single css file (app.css in this case)
-import '../scss/app.scss';
+import '../../scss/super_admin/app.scss';
 
-// Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
+// Jquery
 import $ from 'jquery';
 

@@ -17,9 +17,10 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if you JavaScript imports CSS.
      */
-    .createSharedEntry('app', './assets/ts/app.ts')
-    //.addEntry('page1', './assets/js/page1.js')
-    //.addEntry('page2', './assets/js/page2.js')
+    .createSharedEntry('app', './assets/js/app.js')
+    .addEntry('admin', './assets/js/admin/app.js')
+    .addEntry('frontend', './assets/js/frontend/app.js')
+    .addEntry('super_admin', './assets/js/super_admin/app.js')
 
     /*
      * FEATURE CONFIG
@@ -38,13 +39,13 @@ Encore
     .enableSassLoader()
 
     // uncomment if you use TypeScript
-    .enableTypeScriptLoader(function (typeScriptConfigOptions) {
-        typeScriptConfigOptions.transpileOnly = true;
-        typeScriptConfigOptions.configFile = './tsconfig.json';
-    })
+    // .enableTypeScriptLoader(function (typeScriptConfigOptions) {
+    //     typeScriptConfigOptions.transpileOnly = true;
+    //     typeScriptConfigOptions.configFile = './tsconfig.json';
+    // })
 
     // uncomment if you're having problems with a jQuery plugin
-    //.autoProvidejQuery()
+    .autoProvidejQuery()
 ;
 
 module.exports = Encore.getWebpackConfig();

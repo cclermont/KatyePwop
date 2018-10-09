@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@fortawesome/fontawesome-free@^5.4.0":
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.4.0.tgz#f3eea20ce4c216dc35e3c13f52f1caf9fc52d746"
+  integrity sha512-yOvY4vhouiTXMNHMlxdgjjC6rdmspQTFCMaRDcxzOK+LP9YfoIccXpOK9boyUgvA1U/pgzHlVZDHrWs6r3sRcA==
+
 "@symfony/webpack-encore@^0.20.0":
   version "0.20.1"
   resolved "https://registry.yarnpkg.com/@symfony/webpack-encore/-/webpack-encore-0.20.1.tgz#ab879839f31aef8d6706eef3803ad3e2fb271dc4"
@@ -4444,6 +4449,11 @@ pkg-up@^1.0.0:
   integrity sha1-Pgj7RhUlxEIWJKM7n35tCvWwWiY=
   dependencies:
     find-up "^1.0.0"
+
+popper.js@^1.14.4:
+  version "1.14.4"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.14.4.tgz#8eec1d8ff02a5a3a152dd43414a15c7b79fd69b6"
+  integrity sha1-juwdj/AqWjoVLdQ0FKFce3n9abY=
 
 portfinder@^1.0.9:
   version "1.0.17"

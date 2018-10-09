@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ 'site.title'|trans }}
+{% endblock title %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('build/frontend.css') }}" />
+{% endblock %}
+
+{% block body %}
+	
+	<div class="main-container">
+		
+		<!-- header content -->
+		{{ include('frontend/_header.html.twig') }}
+		<!-- /header content -->
+		
+		<!-- page content -->
+		<div class="center-container">
+			
+			{% block layout_container %}
+			{% endblock layout_container %}
+
+		</div>
+		<!-- /page content -->
+		
+		<!-- footer content -->
+		{{ include('frontend/_footer.html.twig') }}
+		<!-- /footer content -->
+	
+	</div>
+	
+{% endblock body %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('build/frontend.js') }}"></script>
+{% endblock %}
