@@ -1,3 +1,50 @@
-body {
-    background-color: lightgray;
+.main-container{
+
+    .center-container{
+        
+        .banner{
+
+            .hover{
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 3;
+                background-color: rgba($color: #8fba54, $alpha: .3);
+            }
+
+            .caption{
+                left: 0;
+                right: 0;
+                bottom: 0;
+                position: absolute;
+                margin-bottom: 50px;
+                
+                h2{
+                    font-size: 4em;
+                    padding: 0 10%;
+                    font-weight: 30;
+                }
+                p{
+                    padding: 0 10%;
+                    font-weight: normal;
+                }
+
+                .btn{
+                    padding: 5px 50px;
+                    @include border-radius(40px);
+                }
+            }
+
+            z-index: 1;
+            height: 400px;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-image: url("../images/banner_bg.jpg");
+        }
+    }
 }
