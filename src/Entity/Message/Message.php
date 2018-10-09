@@ -2,6 +2,10 @@
 
 namespace App\Entity\Message;
 
+use App\Entity\Location\Location;
+use App\Entity\User\User;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -33,9 +37,55 @@ class Message
     private $status;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $broadcasted;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $created;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="message", orphanRemoval=true, cascade={"persist", "remove"})
+     */
+    private $images;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Video", mappedBy="message", orphanRemoval=true, cascade={"persist", "remove"})
+     */
+    private $videos;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Location\Location")
+     */
+    private $place;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User\User")
+     */
+    private $sender;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Institution\Institution")
+     *
+     * @ORM\JoinTable(name="message_message_institution_join",
+     *      joinColumns={@ORM\JoinColumn(name="message_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="institution_id", referencedColumnName="id", unique=true)})
+     *
+     * @ORM\OrderBy({"created" = "ASC"})
+     */
+    private $receivers;
+
+
+    public function __construct()
+    {
+        $this->broadcasted = false;
+        $this->images = new ArrayCollection();
+        $this->videos = new ArrayCollection();
+        $this->receivers = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -86,6 +136,118 @@ class Message
     public function setCreated(\DateTimeInterface $created): self
     {
         $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Image[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setMessage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->contains($image)) {
+            $this->images->removeElement($image);
+            // set the owning side to null (unless already changed)
+            if ($image->getMessage() === $this) {
+                $image->setMessage(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Video[]
+     */
+    public function getVideos(): Collection
+    {
+        return $this->videos;
+    }
+
+    public function addVideo(Video $video): self
+    {
+        if (!$this->videos->contains($video)) {
+            $this->videos[] = $video;
+            $video->setMessage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVideo(Video $video): self
+    {
+        if ($this->videos->contains($video)) {
+            $this->videos->removeElement($video);
+            // set the owning side to null (unless already changed)
+            if ($video->getMessage() === $this) {
+                $video->setMessage(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getPlace(): ?Location
+    {
+        return $this->place;
+    }
+
+    public function setPlace(?Location $place): self
+    {
+        $this->place = $place;
+
+        return $this;
+    }
+
+    public function getSender(): ?User
+    {
+        return $this->sender;
+    }
+
+    public function setSender(?User $sender): self
+    {
+        $this->sender = $sender;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getReceivers(): Collection
+    {
+        return $this->receivers;
+    }
+
+    public function addReceiver(User $receiver): self
+    {
+        if (!$this->receivers->contains($receiver)) {
+            $this->receivers[] = $receiver;
+        }
+
+        return $this;
+    }
+
+    public function removeReceiver(User $receiver): self
+    {
+        if ($this->receivers->contains($receiver)) {
+            $this->receivers->removeElement($receiver);
+        }
 
         return $this;
     }

@@ -23,6 +23,12 @@ class Video extends Media
      * @ORM\Column(type="integer")
      */
     private $length;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Message", inversedBy="videos")
+     */
+    private $message;
+
 
     public function getId(): ?int
     {
@@ -37,6 +43,18 @@ class Video extends Media
     public function setLength(int $length): self
     {
         $this->length = $length;
+
+        return $this;
+    }
+
+    public function getMessage(): ?Message
+    {
+        return $this->message;
+    }
+
+    public function setMessage(?Message $message): self
+    {
+        $this->message = $message;
 
         return $this;
     }

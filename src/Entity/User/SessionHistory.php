@@ -51,6 +51,25 @@ class SessionHistory
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $closed;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     */
+    private $user;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Location\Location")
+     */
+    private $place;
+
+    /**
+     * Constants
+     */
+    const APP_CONTEXT     = 'app';
+    const TABLET_CONTEXT  = 'tablet';
+    const MOBILE_CONTEXT  = 'mobile';
+    const BROWSER_CONTEXT = 'browser';
+
 
     public function getId(): ?int
     {
