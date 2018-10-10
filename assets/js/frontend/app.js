@@ -13,3 +13,16 @@ import $ from 'jquery';
 
 // bootstrap
 import 'bootstrap';
+
+
+// App codes
+
+$(function(){
+
+	// Anchor navs
+	$("#header .nav").on('click', '.nav-link', function(e) {
+		e.preventDefault();
+		$('html, body').animate({scrollTop: $($(this).attr('href')).offset().top}, 700);
+	});
+
+});

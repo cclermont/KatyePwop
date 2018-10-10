@@ -22,6 +22,9 @@ Encore
     .addEntry('frontend', './assets/js/frontend/app.js')
     .addEntry('super_admin', './assets/js/super_admin/app.js')
 
+    // Add loaders
+    // .addLoader({ test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff" })
+    // .addLoader({ test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" })
     /*
      * FEATURE CONFIG
      *

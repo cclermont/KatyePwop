@@ -6,7 +6,8 @@
 
 {% block layout_container %}
     
-    <div class="banner">
+    {# Banner #}
+    <section id="banner" class="banner">
         <div class="hover">
             <div class="caption text-center">
                 <div class="container">
@@ -17,13 +18,216 @@
                         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                         consequat.
                     </p>
-                    <a href="#" class="btn btn-outline-success text-white">{{  "See more"|trans }}</a>
+                    <a href="#" class="btn btn-outline-success text-white rounded-40">{{  "Voir plus"|trans }}</a>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="container">
-        
-    </div>
+    {# About #}
+    <section id="about" class="mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg">
+                    <p class="text-center">
+                        <img src="images/about.png" alt="..." class="border-0 img-thumbnail">
+                    </p>
+                </div>
+                <div class="col-lg text-center text-lg-right">
+                    <h3 class="h3 mt-4 text-uppercase text-orange">{{  "A Propos"|trans }}</h3>
+                    <h2 class="display-3">Lorem ipsum</h2>
+                    <p class="lead">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat.
+                    </p>
+                    <a href="#" class="btn btn-success btn-lg rounded-40">{{  "Voir plus"|trans }}</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# Team #}
+    <section id="team" class="mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg d-lg-none">
+                    <p class="text-center">
+                        <img src="images/team.png" alt="..." class="border-0 img-thumbnail">
+                    </p>
+                </div>
+                <div class="col-lg text-center text-lg-left">
+                    <h3 class="h3 mt-4 text-uppercase text-orange">{{  "L'equipe"|trans }}</h3>
+                    <h2 class="display-3">Lorem ipsum</h2>
+                    <p class="lead">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat.
+                    </p>
+                    <a href="#" class="btn btn-success btn-lg rounded-40">{{  "Voir plus"|trans }}</a>
+                </div>
+                <div class="col-lg d-none d-lg-block">
+                    <p class="text-center">
+                        <img src="images/team.png" alt="..." class="border-0 img-thumbnail">
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# Partners #}
+    <section id="partners" class="mt-5 bg-light-2 py-5">
+        <div class="container">
+            <h2 class="display-5 mt-5 pb-3 text-center mb-5 text-uppercase">{{ "Nos partenaires"|trans }}</h2>
+            <div class="row mb-5">
+                <div class="col-12 col-lg mb-3 mb-lg-0">
+                    <div class="card border-0">
+                        <img class="card-img-top" src="images/card_1.png" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Lorem ipsum</h5>
+                            <p class="card-text text-muted">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                            </p>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg mb-3 mb-lg-0">
+                    <div class="card border-0">
+                        <img class="card-img-top" src="images/card_2.png" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Lorem ipsum</h5>
+                            <p class="card-text text-muted">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                            </p>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg mb-3 mb-lg-0">
+                    <div class="card border-0">
+                        <img class="card-img-top" src="images/card_3.png" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Lorem ipsum</h5>
+                            <p class="card-text text-muted">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                            </p>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg mb-3 mb-lg-0">
+                    <div class="card border-0">
+                        <img class="card-img-top" src="images/card_4.png" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Lorem ipsum</h5>
+                            <p class="card-text text-muted">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                            </p>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# Newsletter #}
+    <section id="newsletter" class="py-5 newletter">
+        <div class="container mt-5">
+            <h2 class="display-5 text-white mt-5 text-center mb-3 text-uppercase">{{ "Newsletter"|trans }}</h2>
+            <div class="row">
+                <div class="col col-lg-8 offset-lg-2">
+                    <p class="text-white text-center mx-lg-5">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                    </p>
+                </div>
+            </div>
+            <form class="mb-5 mt-3 form-xl">
+                <div class="form-row">
+                    <div class="col-12 col-lg-7 offset-lg-2">
+                        <input type="email" class="form-control form-control-lg" placeholder="{{ "Entrez votre email..."|trans }}">
+                    </div>
+                    <div class="col-12 col-lg-1 text-center text-lg-left mt-4 mt-lg-0">
+                        <button type="submit" class="btn btn-primary btn-lg">{{ "S'abonner"|trans }}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    {# Mobile version #}
+    <section id="mobile" class="mt-5 bg-white py-5">
+        <div class="container">
+            <h2 class="display-5 mt-5 pb-3 text-center mb-5 text-uppercase">{{ "Version Mobile"|trans }}</h2>
+            <div class="row mb-5">
+                <div class="col-12 col-lg mb-3 mb-lg-0">
+                    <div class="card border-0 bg-light-2">
+                        <img class="card-img-top border" src="images/mobile_1.png" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Smartphone et tablet</h5>
+                            <p class="card-text text-muted">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                            </p>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg mb-3 mb-lg-0">
+                    <div class="card border-0 bg-light-2">
+                        <img class="card-img-top border" src="images/mobile_2.png" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Disponible sur Android</h5>
+                            <p class="card-text text-muted">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                            </p>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg">
+                    <div class="card border-0 bg-light-2">
+                        <img class="card-img-top border" src="images/mobile_3.png" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Disponible sur iOS</h5>
+                            <p class="card-text text-muted">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                            </p>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# Contact #}
+    <section id="contact" class="mt-5 bg-light-2 py-5">
+        <div class="container">
+            <h2 class="display-5 mt-5 pb-3 text-center mb-5 text-uppercase">{{ "Contactez nous"|trans }}</h2>
+            <form action="#" method="post" class="mb-5">
+                <div class="form-row">
+                    <div class="col-12 col-lg-5 offset-lg-1">
+                        <input type="text" class="form-control form-control-lg mb-3" placeholder="{{ "Entrez votre nom..."|trans }}">
+                    </div>
+                    <div class="col-12 col-lg-5">
+                        <input type="text" class="form-control form-control-lg mb-3" placeholder="{{ "Entrez votre prénom..."|trans }}">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-12 col-lg-5 offset-lg-1">
+                        <input type="email" class="form-control form-control-lg mb-3" placeholder="{{ "Entrez votre email..."|trans }}">
+                    </div>
+                    <div class="col-12 col-lg-5">
+                        <input type="phone" class="form-control form-control-lg mb-3" placeholder="{{ "Entrez votre téléphone..."|trans }}">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-12 col-lg-10 offset-lg-1">
+                        <textarea name=""class="form-control form-control-lg" rows="4" placeholder="{{ "Entrez votre message..."|trans }}"></textarea>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-12 col-lg-10 offset-lg-1 text-center">
+                        <button type="submit" class="btn btn-success btn-lg mt-4 rounded-40">{{ "Envoyer"|trans }}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
 {% endblock %}

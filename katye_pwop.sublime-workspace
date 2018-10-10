@@ -1,0 +1,1358 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"hy",
+				"hydrate"
+			],
+			[
+				"getPa",
+				"getPages"
+			],
+			[
+				"prin",
+				"print_r"
+			],
+			[
+				"dele",
+				"deleted"
+			],
+			[
+				"re",
+				"request"
+			],
+			[
+				"Re",
+				"Response"
+			],
+			[
+				"res",
+				"response"
+			],
+			[
+				"array",
+				"array"
+			],
+			[
+				"json",
+				"json_encode"
+			],
+			[
+				"mb",
+				"mb-5 \tBootstrap 4 Class"
+			],
+			[
+				"query",
+				"searchQuery"
+			],
+			[
+				"ent",
+				"entity"
+			],
+			[
+				"h",
+				"highlight"
+			],
+			[
+				"en",
+				"entity"
+			],
+			[
+				"btn-l",
+				"btn-lg \tBootstrap 4 Class"
+			],
+			[
+				"of",
+				"offset-lg-6 \tBootstrap 4 Class"
+			],
+			[
+				"mt",
+				"mt-5 \tBootstrap 4 Class"
+			],
+			[
+				"max",
+				"max-height"
+			],
+			[
+				"add",
+				"addHighlight"
+			],
+			[
+				"meth",
+				"method_exists"
+			],
+			[
+				"con",
+				"content"
+			],
+			[
+				"d",
+				"d-table \tBootstrap 4 Class"
+			],
+			[
+				"strto",
+				"strtolower"
+			],
+			[
+				"key",
+				"keywords"
+			],
+			[
+				"REFE",
+				"SEARCH_TYPE_REFERENCE"
+			],
+			[
+				"p",
+				"p-1 \tBootstrap 4 Class"
+			],
+			[
+				"btn",
+				"btn-warning \tBootstrap 4 Class"
+			],
+			[
+				"badg",
+				"badge-danger \tBootstrap 4 Class"
+			],
+			[
+				"enti",
+				"entities"
+			],
+			[
+				"Boo",
+				"BoolQuery"
+			],
+			[
+				"getSen",
+				"getSentenceWithinItemQuery"
+			],
+			[
+				"SEARCH_TYPE_SE",
+				"SEARCH_TYPE_SENTENCE_WITHIN_ITEM"
+			],
+			[
+				"getOrx",
+				"getNotXWithinItemQuery"
+			],
+			[
+				"SEARCH_TYPE_NO",
+				"SEARCH_TYPE_NOT_X_WITHIN_ITEM"
+			],
+			[
+				"getAnd",
+				"getAndXWithinItemQuery"
+			],
+			[
+				"SEARCH_TYPE_AN",
+				"SEARCH_TYPE_AND_X_WITHIN_ITEM"
+			],
+			[
+				"getOr",
+				"getOrXWithinItemQuery"
+			],
+			[
+				"SEARCH_TYPE_W",
+				"SEARCH_TYPE_OR_X_WITHIN_ITEM"
+			],
+			[
+				"SE",
+				"SEARCH_TYPE_AND_X"
+			],
+			[
+				"SEARCH",
+				"SEARCH_TYPE_REFERENCE"
+			],
+			[
+				"SEARCH_",
+				"SEARCH_TYPE_SENTENCE"
+			],
+			[
+				"ANDX_",
+				"SEARCH_TYPE_AND_X"
+			],
+			[
+				"Bo",
+				"BoolQuery"
+			],
+			[
+				"Ter",
+				"Terms"
+			],
+			[
+				"exp",
+				"explode"
+			],
+			[
+				"preg",
+				"preg_match"
+			],
+			[
+				"strip",
+				"strip_tags"
+			],
+			[
+				"de",
+				"default_search"
+			],
+			[
+				"def",
+				"default"
+			],
+			[
+				"bo",
+				"boolean"
+			],
+			[
+				"sec",
+				"sections"
+			],
+			[
+				"page",
+				"pages"
+			],
+			[
+				"pl",
+				"pl-2 \tBootstrap 4 Class"
+			],
+			[
+				"pl-",
+				"p-lg-2 \tBootstrap 4 Class"
+			],
+			[
+				"text",
+				"text-primary \tBootstrap 4 Class"
+			],
+			[
+				"my-",
+				"my-4 \tBootstrap 4 Class"
+			],
+			[
+				"w-",
+				"w-100 \tBootstrap 4 Class"
+			],
+			[
+				"w",
+				"w-100 \tBootstrap 4 Class"
+			],
+			[
+				"img",
+				"card-img-overlay \tBootstrap 4 Class"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"ret",
+				"return"
+			],
+			[
+				"bt",
+				"btn-lg \tBootstrap 4 Class"
+			],
+			[
+				"form-control-l",
+				"form-control-lg \tBootstrap 4 Class"
+			],
+			[
+				"form",
+				"form-group \tBootstrap 4 Class"
+			],
+			[
+				"mr-",
+				"mr-md-2 \tBootstrap 4 Class"
+			],
+			[
+				"mr",
+				"mr-2 \tBootstrap 4 Class"
+			],
+			[
+				"hidden-sm",
+				"hidden-sm-up \tBootstrap 4 Class"
+			],
+			[
+				"hi",
+				"hidden-md-down \tBootstrap 4 Class"
+			],
+			[
+				"pa",
+				"pattern"
+			],
+			[
+				"btn-s",
+				"btn-sm \tBootstrap 4 Class"
+			],
+			[
+				"btn-ou",
+				"btn-outline-success \tBootstrap 4 Class"
+			],
+			[
+				"dorp",
+				"dropdown-menu \tBootstrap 4 Class"
+			],
+			[
+				"drop",
+				"dropdown-toggle \tBootstrap 4 Class"
+			],
+			[
+				"ali",
+				"align-middle \tBootstrap 4 Class"
+			],
+			[
+				"ml",
+				"ml-3 \tBootstrap 4 Class"
+			],
+			[
+				"med",
+				"media-body \tBootstrap 4 Class"
+			],
+			[
+				"d-",
+				"d-block \tBootstrap 4 Class"
+			],
+			[
+				"for",
+				"foreach\tforeach …"
+			],
+			[
+				"m",
+				"margin-right"
+			],
+			[
+				"inlin",
+				"inline-block"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"ma",
+				"margin"
+			],
+			[
+				"bad",
+				"badge-default \tBootstrap 4 Class"
+			],
+			[
+				"mt-md",
+				"mt-md-0 \tBootstrap 4 Class"
+			],
+			[
+				"lis",
+				"list-inline-item \tBootstrap 4 Class"
+			],
+			[
+				"list-in",
+				"list-inline-item \tBootstrap 4 Class"
+			],
+			[
+				"ba",
+				"badge-primary \tBootstrap 4 Class"
+			],
+			[
+				"pt",
+				"pt-5 \tBootstrap 4 Class"
+			],
+			[
+				"border",
+				"border-width"
+			],
+			[
+				"pb",
+				"pb-5 \tBootstrap 4 Class"
+			],
+			[
+				"h-",
+				"h-25 \tBootstrap 4 Class"
+			],
+			[
+				"btno",
+				"btn-outline-success \tBootstrap 4 Class"
+			],
+			[
+				"offset-md",
+				"offset-md-2 \tBootstrap 4 Class"
+			],
+			[
+				"font-",
+				"font-weight-bold \tBootstrap 4 Class"
+			],
+			[
+				"fon",
+				"font-weight-normal \tBootstrap 4 Class"
+			],
+			[
+				"py",
+				"py-5 \tBootstrap 4 Class"
+			],
+			[
+				"bg",
+				"bg-success \tBootstrap 4 Class"
+			],
+			[
+				"input-group",
+				"input-group-lg \tBootstrap 4 Class"
+			],
+			[
+				"list",
+				"list-unstyled \tBootstrap 4 Class"
+			],
+			[
+				"btn-su",
+				"btn-success \tBootstrap 4 Class"
+			],
+			[
+				"hidden-",
+				"hidden-lg-up \tBootstrap 4 Class"
+			],
+			[
+				"d-in",
+				"d-inline-block \tBootstrap 4 Class"
+			],
+			[
+				"hidden",
+				"hidden-md-down \tBootstrap 4 Class"
+			],
+			[
+				"my",
+				"my-4 \tBootstrap 4 Class"
+			],
+			[
+				"txt",
+				"text-decoration"
+			],
+			[
+				"hid",
+				"hidden-md-down \tBootstrap 4 Class"
+			],
+			[
+				"mr-md",
+				"mr-md-5 \tBootstrap 4 Class"
+			],
+			[
+				"justify-content-md",
+				"justify-content-md-start \tBootstrap 4 Class"
+			],
+			[
+				"justify-con",
+				"justify-content-center \tBootstrap 4 Class"
+			],
+			[
+				"text-md",
+				"text-md-left \tBootstrap 4 Class"
+			],
+			[
+				"mb-md",
+				"mb-md-0 \tBootstrap 4 Class"
+			],
+			[
+				"flo",
+				"float-right \tBootstrap 4 Class"
+			],
+			[
+				"px",
+				"px-2 \tBootstrap 4 Class"
+			],
+			[
+				"roun",
+				"rounded-0 \tBootstrap 4 Class"
+			],
+			[
+				"no",
+				"no-gutters \tBootstrap 4 Class"
+			],
+			[
+				"pr",
+				"pr-5 \tBootstrap 4 Class"
+			],
+			[
+				"c",
+				"class\tAttr"
+			],
+			[
+				"bol",
+				"font-weight-bold \tBootstrap 4 Class"
+			],
+			[
+				"text-da",
+				"text-gray-dark \tBootstrap 4 Class"
+			],
+			[
+				"text-w",
+				"text-white \tBootstrap 4 Class"
+			],
+			[
+				"arr",
+				"array"
+			],
+			[
+				"th",
+				"this"
+			],
+			[
+				"book",
+				"bookmarks"
+			],
+			[
+				"note",
+				"noteManager"
+			],
+			[
+				"fo",
+				"foreach\tforeach …"
+			],
+			[
+				"lo",
+				"logout\tmethod"
+			],
+			[
+				"Acton",
+				"ActionSheetController\talias"
+			],
+			[
+				"get",
+				"getCurrentLanguage\tmethod"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "Package Control: ",
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: List Packages",
+				"Package Control: List Packages"
+			],
+			[
+				"twig",
+				"HTML: Wrap Selection With Tag"
+			],
+			[
+				"install package",
+				"Package Control: Install Package"
+			],
+			[
+				"install pa",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 444.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) ",
+			" import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop"
+	],
+	"file_history":
+	[
+		"/Applications/MAMP/htdocs/symfony/davidian/src/UserBundle/Entity/User.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/app/config/parameters.yml",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/CommonBundle/Entity/AbstractImage.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/web/static/css/frontend/sass/app/_main_layout.scss",
+		"/Applications/MAMP/htdocs/symfony/davidian/web/static/css/frontend/sass/app/_aside_left.scss",
+		"/Applications/MAMP/htdocs/symfony/davidian/web/static/css/frontend/sass/app/_body_index.scss",
+		"/Applications/MAMP/htdocs/symfony/davidian/web/static/css/frontend/sass/app/_mixins.scss",
+		"/Applications/MAMP/htdocs/symfony/davidian/app/Resources/views/frontend/layout.html.twig",
+		"/Applications/MAMP/htdocs/symfony/davidian/app/Resources/views/frontend/base.html.twig",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/UserBundle/Entity/SessionHistory.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/EventBundle/Entity/Event.php",
+		"/Users/evens/Library/Application Support/Sublime Text 3/Packages/User/Package Control.sublime-settings",
+		"/Users/evens/Library/Application Support/Sublime Text 3/Packages/Package Control/Package Control.sublime-settings",
+		"/Applications/MAMP/htdocs/symfony/davidian/app/Resources/views/frontend/footer.html.twig",
+		"/Applications/MAMP/htdocs/symfony/davidian/app/Resources/views/frontend/header.html.twig",
+		"/Applications/MAMP/htdocs/symfony4/symfony-demo/symfony.lock",
+		"/Applications/MAMP/htdocs/symfony4/symfony-demo/public/build/css/app.css",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Resources/config/routing/api/routing.yml",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Resources/config/routing/api/book_category.yml",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Resources/config/routing/api/book_page.yml",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Resources/config/routing/api/document_version.yml",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Resources/config/routing/api/book_section.yml",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/StudyCenterBundle/Controller/Api/StudyCenterController.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Controller/Api/DocumentVersionController.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Controller/Api/BookPageController.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Controller/Api/BookSectionController.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Entity/BookSection.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/SearchBundle/Form/Model/SearchQuery.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/Request.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/SearchBundle/Controller/Api/SearchController.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/app/config/fos_config.yml",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Entity/Book.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Controller/Api/BookController.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Controller/Api/BookCategoryController.php",
+		"/Applications/MAMP/htdocs/symfony4/BasicAppTest/config/packages/security.yaml",
+		"/Users/evens/XCodeProjects/SR Writings/.gitignore",
+		"/Applications/MAMP/htdocs/symfony/prod.log",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/CommonBundle/Service/AbstractElementManager.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/StudyCenterBundle/Entity/Note.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/StudyCenterBundle/Service/NoteManager.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/EventBundle/Resources/views/Event/frontend/list.html.twig",
+		"/Applications/MAMP/htdocs/symfony/ThreeAngelsLast/app/config/parameters.yml",
+		"/Applications/MAMP/htdocs/symfony/ThreeAngels/app/config/parameters.yml",
+		"/Applications/MAMP/htdocs/symfony/threeAngelsHerald/app/config/parameters.yml",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Entity/Media.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/UserBundle/Resources/config/services.yml",
+		"/Applications/MAMP/htdocs/symfony/davidian/app/config/config.yml",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Controller/Backend/BookPageController.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Controller/Backend/BookController.php",
+		"/Applications/MAMP/htdocs/symfony/noowow/src/IrtWeb/MessageBundle/Entity/Message.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Entity/BookPage.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Entity/BookCategory.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/FeedBundle/Entity/Article.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/FeedBundle/Form/Type/ArticleType.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/CommonBundle/Form/Type/AbstractArticleType.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/FeedBundle/Resources/views/Article/backend/new_form.html.twig",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/FeedBundle/Resources/views/Article/backend/edit_form.html.twig",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/FeedBundle/Resources/views/Article/backend/show_data.html.twig",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/FeedBundle/Form/Type/ArticleImageType.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/UserBundle/Resources/config/routing/api/routing.yml",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/CommonBundle/Entity/AbstractArticle.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/FeedBundle/Controller/Backend/ArticleController.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/composer.json",
+		"/Applications/MAMP/htdocs/symfony/davidian/vendor/symfony/symfony/README.md",
+		"/Applications/MAMP/htdocs/symfony/davidian/vendor/symfony/symfony/UPGRADE-4.0.md",
+		"/Applications/MAMP/htdocs/symfony/davidian/vendor/symfony/symfony/UPGRADE-3.2.md",
+		"/Applications/MAMP/htdocs/symfony/davidian/vendor/symfony/symfony/composer.json",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Form/Type/BookCategoryType.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Form/Type/BookType.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Resources/views/Book/backend/show_data.html.twig",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Resources/views/Book/backend/new_form.html.twig",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Resources/config/routing/api/book.yml",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Service/BookManager.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/CommonBundle/Entity/AbstractElement.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Resources/views/BookPage/backend/list.html.twig",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Resources/views/BookPage/backend/list_item.html.twig",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/NewsLetterBundle/Resources/views/Subscriber/frontend/home_render.html.twig",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Resources/config/routing/backend/book_page.yml",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Resources/config/routing/backend/routing.yml",
+		"/Applications/MAMP/htdocs/symfony/davidian/web/static/css/frontend/sass/app/_components.scss",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/CommonBundle/Controller/Api/AbstractElementController.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/CommonBundle/Controller/Api/ListElementControllerTrait.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/StudyCenterBundle/Entity/Folder.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/StudyCenterBundle/Entity/Highlight.php",
+		"/Applications/MAMP/htdocs/ionic2/srwritings/sr_writings.sublime-project",
+		"/Applications/MAMP/htdocs/ionic2/srwritings/src/app/core/model/element.interface.ts",
+		"/Applications/MAMP/htdocs/ionic2/srwritings/src/app/document/entity/document.version.ts",
+		"/Applications/MAMP/htdocs/ionic2/srwritings/src/app/core/entity/abstract.element.ts",
+		"/Applications/MAMP/htdocs/data.json",
+		"/Applications/MAMP/htdocs/ionic2/srwritings/src/app/core/entity/abstract.image.ts",
+		"/Applications/MAMP/htdocs/ionic2/srwritings/src/app/core/entity/abstract.file.ts",
+		"/Applications/MAMP/htdocs/ionic2/srwritings/config.xml",
+		"/Applications/MAMP/htdocs/ionic2/rod/config.xml",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/UserBundle/Controller/Backend/UserController.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/UserBundle/Controller/Api/RegistrationController.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/UserBundle/Form/Type/ChangePasswordFormType.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/vendor/friendsofsymfony/user-bundle/Form/Type/ChangePasswordFormType.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/UserBundle/Resources/config/routing/api/change_password.yml",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/UserBundle/Controller/Api/ChangePasswordController.php",
+		"/Users/evens/Documents/Applications_docs/M_clermont/katye_pwop/Katye Pwop/Katye Pwop/Assets.xcassets/AppIcon.appiconset/Contents.json",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/FeedBundle/Entity/ArticleCover.php",
+		"/Users/evens/Downloads/strings_en.xml",
+		"/Applications/MAMP/htdocs/symfony/davidian/app/config/security.yml",
+		"/Applications/MAMP/htdocs/symfony/davidian/web/static/css/frontend/sass/app/_body.scss",
+		"/Applications/MAMP/htdocs/symfony/davidian/web/static/files/documents_fr.json",
+		"/Applications/MAMP/htdocs/symfony/davidian/web/static/files/documents_en.json",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/StudyCenterBundle/Entity/Bookmark.php",
+		"/Users/evens/Documents/Applications_docs/M_clermont/katye_pwop/Katye Pwop/Podfile",
+		"/Applications/MAMP/htdocs/symfony/davidian/app/AppKernel.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/CommonBundle/Entity/AbstractCategory.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Resources/views/BookCategory/backend/edit_form.html.twig",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Resources/views/Book/backend/edit_form.html.twig",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Resources/views/BookCategory/backend/new_form.html.twig",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Resources/views/BookCategory/backend/show_data.html.twig",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Form/Type/BookSectionType.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/CommonBundle/Repository/AbstractElementRepository.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Repository/BookPageRepository.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/CommonBundle/Controller/Api/ShowElementControllerTrait.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/vendor/wamania/zip-streamed-response-bundle/Wamania/ZipStreamedResponseBundle/Response/ZipStreamedResponse.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/vendor/wamania/zip-streamed-response-bundle/Wamania/ZipStreamedResponseBundle/Response/ZipStreamer/ZipStreamer.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/StreamedResponse.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/Response.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/vendor/wamania/zip-streamed-response-bundle/Wamania/ZipStreamedResponseBundle/Response/ZipStreamer/ZipStreamerFile.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/vendor/wamania/zip-streamed-response-bundle/Wamania/ZipStreamedResponseBundle/Response/ZipStreamer/ZipStreamerBaseFile.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/File/File.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/src/NotificationBundle/Controller/Manage/NotificationController.php",
+		"/Applications/MAMP/htdocs/symfony/davidian/vendor/doctrine/collections/lib/Doctrine/Common/Collections/ArrayCollection.php",
+		"/Users/evens/Documents/Applications_docs/GADSDA/davidian_web/davidian_today.sql"
+	],
+	"find":
+	{
+		"height": 25.0
+	},
+	"find_in_files":
+	{
+		"height": 101.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": true,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 37.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.CSS Extended Completions":
+	{
+		"height": 0.0
+	},
+	"output.doc":
+	{
+		"height": 0.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "katye_pwop.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"request",
+				"vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/Request.php"
+			],
+			[
+				"changepasswordformtype",
+				"vendor/friendsofsymfony/user-bundle/Form/Type/ChangePasswordFormType.php"
+			],
+			[
+				"abstractcategory",
+				"src/CommonBundle/Entity/AbstractCategory.php"
+			],
+			[
+				"symfony/component/httpfoundation/request",
+				"vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/Request.php"
+			],
+			[
+				"symfony/bundle/frameworkbundle/controller/controller",
+				"vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Controller/Controller.php"
+			],
+			[
+				"pagerfant",
+				"vendor/pagerfanta/pagerfanta/src/Pagerfanta/Pagerfanta.php"
+			],
+			[
+				"pagerfanta",
+				"vendor/pagerfanta/pagerfanta/src/Pagerfanta/Pagerfanta.php"
+			],
+			[
+				"send_activation_email",
+				"src/UserBundle/Resources/views/User/backend/send_activation_email.txt.twig"
+			],
+			[
+				"send_email_layout",
+				"src/CommonBundle/Resources/views/Element/common/send_email_layout.html.twig"
+			],
+			[
+				"uniqueentity",
+				"vendor/symfony/symfony/src/Symfony/Bridge/Doctrine/Validator/Constraints/UniqueEntity.php"
+			],
+			[
+				"hybridresult",
+				"vendor/friendsofsymfony/elastica-bundle/HybridResult.php"
+			],
+			[
+				"boolquery",
+				"vendor/ruflin/elastica/lib/Elastica/Query/BoolQuery.php"
+			],
+			[
+				"elastica/query",
+				"vendor/ruflin/elastica/lib/Elastica/Rescore/Query.php"
+			],
+			[
+				"elastica/query/match",
+				"vendor/ruflin/elastica/lib/Elastica/Query/Match.php"
+			],
+			[
+				"listelementcontrollertrait",
+				"src/CommonBundle/Controller/Frontend/ListElementControllerTrait.php"
+			],
+			[
+				"showelementcontrollertrait",
+				"src/CommonBundle/Controller/Api/ShowElementControllerTrait.php"
+			],
+			[
+				"array",
+				"vendor/doctrine/collections/lib/Doctrine/Common/Collections/ArrayCollection.php"
+			],
+			[
+				"bazingageocoder",
+				"vendor/willdurand/geocoder-bundle/Bazinga/Bundle/GeocoderBundle/BazingaGeocoderBundle.php"
+			],
+			[
+				"regis",
+				"src/UserBundle/Controller/Api/RegistrationController.php"
+			],
+			[
+				"config",
+				"app/config/config.yml"
+			],
+			[
+				"oauth",
+				"vendor/friendsofsymfony/oauth-server-bundle/Event/OAuthEvent.php"
+			],
+			[
+				"registrat",
+				"src/UserBundle/Controller/Api/RegistrationController.php"
+			],
+			[
+				"user.php",
+				"src/UserBundle/Entity/User.php"
+			],
+			[
+				"oau",
+				"vendor/friendsofsymfony/oauth-server-bundle/Event/OAuthEvent.php"
+			],
+			[
+				"registra",
+				"vendor/friendsofsymfony/user-bundle/Controller/RegistrationController.php"
+			],
+			[
+				"abstra",
+				"src/CommonBundle/Form/Type/AbstractElementFormType.php"
+			],
+			[
+				"containerinterface",
+				"vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/ContainerInterface.php"
+			],
+			[
+				"login",
+				"vendor/friendsofsymfony/user-bundle/Resources/views/Security/login.html.twig"
+			],
+			[
+				"request.html",
+				"vendor/friendsofsymfony/user-bundle/Resources/views/Resetting/request.html.twig"
+			],
+			[
+				"login.html.twig",
+				"vendor/friendsofsymfony/user-bundle/Resources/views/Security/login.html.twig"
+			],
+			[
+				"unique",
+				"vendor/symfony/symfony/src/Symfony/Bridge/Doctrine/Validator/Constraints/UniqueEntity.php"
+			],
+			[
+				"usermanager",
+				"vendor/friendsofsymfony/user-bundle/Model/UserManagerInterface.php"
+			],
+			[
+				"layout",
+				"app/Resources/views/backend/layout.html.twig"
+			],
+			[
+				"header.sc",
+				"web/static/css/backend/sass/app/header.scss"
+			],
+			[
+				"app.sc",
+				"web/static/css/backend/sass/app.scss"
+			],
+			[
+				"layout.css",
+				"web/static/css/backend/layout.css"
+			],
+			[
+				"resettingcontroller",
+				"vendor/friendsofsymfony/user-bundle/Controller/ResettingController.php"
+			],
+			[
+				"changepasswordcontroller",
+				"vendor/friendsofsymfony/user-bundle/Controller/ChangePasswordController.php"
+			],
+			[
+				"elementvo",
+				"src/CommonBundle/Security/Voter/ElementVoter.php"
+			],
+			[
+				"authorizationchecker",
+				"vendor/symfony/symfony/src/Symfony/Component/Security/Core/Authorization/AuthorizationCheckerInterface.php"
+			],
+			[
+				"authenticationevent",
+				"vendor/symfony/symfony/src/Symfony/Component/Security/Core/Event/AuthenticationEvent.php"
+			],
+			[
+				"authenticationsuccesshandlerinterface",
+				"vendor/symfony/symfony/src/Symfony/Component/Security/Http/Authentication/AuthenticationSuccessHandlerInterface.php"
+			],
+			[
+				"user",
+				"src/UserBundle/Entity/User.php"
+			],
+			[
+				"accessdecisionmanagerinterface",
+				"vendor/symfony/symfony/src/Symfony/Component/Security/Core/Authorization/AccessDecisionManagerInterface.php"
+			],
+			[
+				"usermanagerint",
+				"vendor/friendsofsymfony/user-bundle/Model/UserManagerInterface.php"
+			],
+			[
+				"abstractelementformtype",
+				"src/CommonBundle/Form/Type/AbstractElementFormType.php"
+			],
+			[
+				"registrationformtype",
+				"vendor/friendsofsymfony/user-bundle/Form/Type/RegistrationFormType.php"
+			],
+			[
+				"equatableinterface",
+				"vendor/symfony/symfony/src/Symfony/Component/Security/Core/User/EquatableInterface.php"
+			],
+			[
+				"advanceduserinterface",
+				"vendor/symfony/symfony/src/Symfony/Component/Security/Core/User/AdvancedUserInterface.php"
+			],
+			[
+				"user.ph",
+				"src/UserBundle/Entity/User.php"
+			],
+			[
+				"fosusermanager",
+				"vendor/friendsofsymfony/user-bundle/Doctrine/UserManager.php"
+			],
+			[
+				"event",
+				"src/EventBundle/Entity/Event.php"
+			],
+			[
+				"layout.js",
+				"web/static/js/frontend/layout.js"
+			],
+			[
+				"elementcont",
+				"src/CommonBundle/Controller/Api/ElementController.php"
+			],
+			[
+				"element",
+				"src/CommonBundle/Service/ElementManager.php"
+			],
+			[
+				"elementcontr",
+				"src/CommonBundle/Controller/Api/ElementController.php"
+			],
+			[
+				"eleme",
+				"src/CommonBundle/Service/ElementManager.php"
+			],
+			[
+				"elementcon",
+				"src/CommonBundle/Controller/Api/ElementController.php"
+			],
+			[
+				"searchitem",
+				"src/SearchBundle/EventListener/SearchItemListener.php"
+			],
+			[
+				"article",
+				"src/CommonBundle/Entity/Article.php"
+			],
+			[
+				"userin",
+				"vendor/friendsofsymfony/user-bundle/Model/UserInterface.php"
+			],
+			[
+				"addre",
+				"src/CommonBundle/Entity/Address.php"
+			],
+			[
+				"userman",
+				"src/UserBundle/Service/UserManager.php"
+			],
+			[
+				"new_app",
+				"src/CommonBundle/Resources/views/Mailer/backend/new_application.html.twig"
+			],
+			[
+				"appli",
+				"src/ApplicationBundle/Service/ApplicationManager.php"
+			],
+			[
+				"layou",
+				"web/static/js/frontend/layout.js"
+			],
+			[
+				"elementc",
+				"src/CommonBundle/Controller/Backend/ElementController.php"
+			],
+			[
+				"application",
+				"src/ApplicationBundle/Service/ApplicationManager.php"
+			],
+			[
+				"peoplet",
+				"src/CommonBundle/Form/PeopleType.php"
+			],
+			[
+				"people",
+				"src/CommonBundle/Entity/People.php"
+			],
+			[
+				"loca",
+				"src/EventBundle/Entity/Location.php"
+			],
+			[
+				"poeple",
+				"src/CommonBundle/Entity/People.php"
+			],
+			[
+				"form",
+				"app/Resources/views/theme/form_frontend.html.twig"
+			],
+			[
+				"lay",
+				"web/static/css/frontend/layout.css"
+			],
+			[
+				"confi",
+				"app/config/config.yml"
+			],
+			[
+				"app",
+				"app/AppKernel.php"
+			],
+			[
+				"common_index",
+				"src/CommonBundle/Resources/views/Element/frontend/common_index.html.twig"
+			],
+			[
+				"category",
+				"src/CommonBundle/Entity/Category.php"
+			],
+			[
+				"footer",
+				"app/Resources/views/frontend/footer.html.twig"
+			],
+			[
+				"ker",
+				"app/AppKernel.php"
+			],
+			[
+				"bookcate",
+				"src/DocumentBundle/Controller/Backend/BookCategoryController.php"
+			],
+			[
+				"image_view",
+				"src/CommonBundle/Resources/views/Image/backend/image_viewer.html.twig"
+			],
+			[
+				"page",
+				"src/DocumentBundle/Entity/Page.php"
+			],
+			[
+				"elementman",
+				"src/CommonBundle/Service/ElementManager.php"
+			],
+			[
+				"elementmana",
+				"src/CommonBundle/Service/ElementManager.php"
+			],
+			[
+				"elemen",
+				"src/CommonBundle/Service/ElementManager.php"
+			],
+			[
+				"elementconte",
+				"src/CommonBundle/Controller/Api/ElementController.php"
+			],
+			[
+				"arraycoll",
+				"vendor/doctrine/collections/lib/Doctrine/Common/Collections/ArrayCollection.php"
+			],
+			[
+				"expose",
+				"vendor/jms/serializer/src/JMS/Serializer/Annotation/Expose.php"
+			],
+			[
+				"bookcategoryman",
+				"src/DocumentBundle/Service/BookCategoryManager.php"
+			],
+			[
+				"documentman",
+				"src/ApplicationBundle/Service/DocumentManager.php"
+			],
+			[
+				"exclusionpolicy",
+				"vendor/jms/serializer/src/JMS/Serializer/Annotation/ExclusionPolicy.php"
+			],
+			[
+				"pgae",
+				"src/DocumentBundle/Entity/Page.php"
+			],
+			[
+				"common_inde",
+				"src/CommonBundle/Resources/views/Element/frontend/common_index.html.twig"
+			],
+			[
+				"common_lis",
+				"src/CommonBundle/Resources/views/Element/frontend/common_list.html.twig"
+			],
+			[
+				"common_in",
+				"src/CommonBundle/Resources/views/Element/frontend/common_index.html.twig"
+			],
+			[
+				"common_list",
+				"src/CommonBundle/Resources/views/Element/frontend/common_list.html.twig"
+			],
+			[
+				"chart",
+				"src/DocumentBundle/Entity/Chart.php"
+			],
+			[
+				"video",
+				"src/DocumentBundle/Entity/Video.php"
+			],
+			[
+				"book",
+				"src/DocumentBundle/Entity/Book.php"
+			],
+			[
+				"audio",
+				"src/DocumentBundle/Entity/Audio.php"
+			],
+			[
+				"article.php",
+				"src/NewsBundle/Entity/Article.php"
+			],
+			[
+				"common_em",
+				"src/CommonBundle/Resources/views/Element/frontend/common_empty_display.html.twig"
+			],
+			[
+				"common_ind",
+				"src/CommonBundle/Resources/views/Element/frontend/common_index.html.twig"
+			],
+			[
+				"articletype",
+				"src/CommonBundle/Form/ArticleType.php"
+			],
+			[
+				"abstractfilety",
+				"src/CommonBundle/Form/AbstractFileType.php"
+			],
+			[
+				"message",
+				"app/Resources/translations/messages.en.yml"
+			],
+			[
+				"homecon",
+				"src/HomeBundle/Controller/Frontend/HomeController.php"
+			],
+			[
+				"twig",
+				"src/CommonBundle/Service/TwigSwiftMailer.php"
+			],
+			[
+				"subscriber",
+				"src/NewsBundle/Form/SubscriberType.php"
+			],
+			[
+				"codes",
+				"vendor/friendsofsymfony/rest-bundle/FOS/RestBundle/Util/Codes.php"
+			],
+			[
+				"app.php",
+				"web/app.php"
+			],
+			[
+				"request.php",
+				"vendor/symfony/symfony/src/Symfony/Component/BrowserKit/Request.php"
+			],
+			[
+				"searchman",
+				"src/SearchBundle/Service/SearchManager.php"
+			],
+			[
+				"category.y",
+				"src/CardBundle/Resources/config/routing/backend/category.yml"
+			],
+			[
+				"account",
+				"src/WalletBundle/Entity/Account.php"
+			],
+			[
+				"para",
+				"app/config/parameters.yml"
+			],
+			[
+				"categorymana",
+				"src/CardBundle/Service/CategoryManager.php"
+			],
+			[
+				"categorycontr",
+				"src/CardBundle/Controller/Backend/CategoryController.php"
+			],
+			[
+				"messages",
+				"app/Resources/translations/messages.en.yml"
+			],
+			[
+				"securi",
+				"app/config/security.yml"
+			],
+			[
+				"person",
+				"src/CommonBundle/Entity/Person.php"
+			],
+			[
+				"option",
+				"src/CommonBundle/Form/Option.php"
+			],
+			[
+				"layout.",
+				"web/static/css/frontend/layout.css"
+			],
+			[
+				"override",
+				"vendor/friendsofsymfony/user-bundle/Resources/doc/overriding_templates.rst"
+			],
+			[
+				"layout_m",
+				"src/CommonBundle/Resources/views/Account/frontend/layout_menu.html.twig"
+			],
+			[
+				"layout_",
+				"src/CommonBundle/Resources/views/Account/frontend/layout_menu.html.twig"
+			],
+			[
+				"layout_menu",
+				"src/CommonBundle/Resources/views/Account/frontend/layout_menu.html.twig"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 955.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 236.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

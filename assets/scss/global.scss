@@ -2,7 +2,11 @@
 @import "~bootstrap/scss/bootstrap";
 
 // Import fs
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+@import "~@fortawesome/fontawesome-free/scss/regular";
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
+
 
 @mixin border-radius ($params) {
     -webkit-border-radius: $params;
@@ -69,3 +73,22 @@
           @content;
         }
   }
+
+.text-orange{
+  color: #de643a;
+}
+.rounded-40{
+  padding: 5px 50px;
+  @include border-radius(40px);
+}
+.bg-light-2{
+  background-color: #f4f4f4;
+}
+.form-xl{
+  input{
+    height: 65px;
+  }
+  .btn{
+    padding: 0.95rem 1rem;
+  }
+}
