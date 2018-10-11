@@ -1,20 +1,57 @@
-{% extends 'base.html.twig' %}
+{% extends 'frontend/user/layout.html.twig' %}
 
-{% block title %}Hello {{ controller_name }}!{% endblock %}
+{% block title %}
+	{{ parent() }} - {{ "S'authentifier"|trans }}
+{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% block layout_container %}
+	<h3 class="h2 font-weight-bold mb-5 mt-5 mt-lg-0">{{ "Member Login"|trans }}</h3>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+	{% if error %}
+		<div class="small help-block text-danger mb-4 mt-0">
+			<p class="m-0">
+				<span class="fa fa-exclamation-triangle mr-1"></span>
+				{{ error.messageKey|trans(error.messageData, 'security') }}
+			</p>
+		</div>
+	{% endif %}
+	
+	<form action="{{ path("frontend_user_security_check") }}" method="post">
+		<div class="form-row">
+			<div class="col">
+				<input type="text" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" class="form-control rounded-40"
+				 placeholder="{{ "Votre mot email ou nom utilisateur..."|trans }}" />
+			</div>
+		</div>
+		<div class="form-row mt-2">
+			<div class="col">
+				<input type="password" id="password" name="_password" required="required" autocomplete="current-password" class="form-control rounded-40"
+				 placeholder="{{ "Votre mot de passe..."|trans }}" />
+			</div>
+		</div>
+		<div class="form-row mt-2">
+			<div class="col">
+				<div class="form-check text-left pl-4">
+					<input class="form-check-input" type="checkbox" 
+							id="remember_me" name="_remember_me" value="on" />
+					<label class="form-check-label small text-muted" for="remember_me">
+						{{ 'Se souvenir de moi'|trans }}
+					</label>
+				</div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'src/Controller/Frontend/User/SecurityController.php'|file_link(0) }}">src/Controller/Frontend/User/SecurityController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'templates/frontend/user/security/index.html.twig'|file_link(0) }}">templates/frontend/user/security/index.html.twig</a></code></li>
-    </ul>
-</div>
+			</div>
+		</div>
+		<div class="form-row mt-4">
+			<div class="col">
+				<input type="submit" class="btn btn-block btn-success rounded-40" 
+				id="_submit" name="_submit" value="{{ "S'authentifier"|trans }}" />
+			</div>
+		</div>
+		{% if csrf_token %}
+	        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+	    {% endif %}
+	</form>
+	<p class="m-0 mt-4">
+		<a href="{{ path("frontend_user_resetting_request") }}" class="text-muted small">{{ "Mot de passe oublié?"|trans }}</a>
+	</p>
 {% endblock %}

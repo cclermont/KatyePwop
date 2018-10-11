@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-2">
-                <a href="#" class="d-block text-center brand">
+                <a href="#header" class="d-block text-center brand">
                     <img src="images/brand.png" class="d-inline-block" alt="brand">
                 </a>
             </div>
@@ -23,7 +23,7 @@
                 <nav>
                     <ul class="nav justify-content-lg-end justify-content-center">
                         <li class="nav-item active">
-                            <a class="nav-link text-success" href="#home">
+                            <a class="nav-link text-success" href="#header">
                                 {{ "Home"|trans|upper }} <span class="sr-only">(current)</span>
                             </a>
                         </li>
@@ -40,7 +40,9 @@
                             <a class="nav-link text-dark" href="#contact">{{ "Contact us"|trans|upper }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="#login">{{ "Login"|trans|upper }}</a>
+                            <a class="nav-link text-dark" href="{{ path("frontend_user_security_login") }}">
+                                {{ "Login"|trans|upper }}
+                            </a>
                         </li>
                     </ul>
                 </nav>

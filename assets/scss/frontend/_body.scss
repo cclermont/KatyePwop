@@ -22,16 +22,6 @@
                 overflow: hidden;
                 position: absolute;
                 margin-bottom: 50px;
-                
-                h2{
-                    font-size: 4em;
-                    padding: 0 10%;
-                    font-weight: 30;
-                }
-                p{
-                    padding: 0 10%;
-                    font-weight: normal;
-                }
             }
 
             z-index: 1;
@@ -50,6 +40,34 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-image: url("../images/newsletter_bg.png");
+        }
+    }
+}
+
+.connexion-page{
+
+    background-color: #f2f2f2;
+
+    .connexion-wrapper{
+        .wrapper{
+
+            margin-top: 15%;
+            padding-top: 70px;
+            padding-bottom: 60px;
+            @include border-radius(10px);
+            @include box-shadow(0px 0px 7px rgba(0, 0, 0, 0.1));
+
+            .form-control{
+                background-color: #ddd;
+                font-size: .8em;
+            }
+
+            .brand{
+
+                img{
+                    width: 120px;
+                }
+            }
         }
     }
 }

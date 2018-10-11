@@ -1,0 +1,19 @@
+{% extends 'frontend/user/layout.html.twig' %}
+
+{% block title %}
+	{{ parent() }} - {{ "Verifier votre email"|trans }}
+{% endblock %}
+
+{% block layout_container %}
+	<h3 class="h2 font-weight-bold mb-4 mt-5 mt-lg-0">{{ "Verifier votre email"|trans|title }}</h3>
+
+	<div class="alert alert-success small">
+		<p>
+			{{ "Verifier votre email puis cliquer sur le lien de restauration afin de pouvoir restaurer votre mot de passe" }}
+		</p>
+	</div>
+
+	<p class="m-0 mt-4">
+		<a href="{{ path("frontend_user_security_login") }}" class="text-muted small">{{ "Se connecter"|trans }}</a>
+	</p>
+{% endblock %}

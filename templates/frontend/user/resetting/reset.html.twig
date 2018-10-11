@@ -1,0 +1,49 @@
+{% extends 'frontend/user/layout.html.twig' %}
+
+{% block title %}
+	{{ parent() }} - {{ "Restauration"|trans }}
+{% endblock %}
+
+{% block layout_container %}
+	<h3 class="h2 font-weight-bold mb-5 mt-5 mt-lg-0">{{ "Restaurer mot de passe"|trans|title }}</h3>
+
+	<div>
+		{{ form_errors(form) }}
+		{{ form_errors(form.plainPassword.first) }}
+		{{ form_errors(form.plainPassword.second) }}
+	</div>
+	
+	{{ form_start(form) }}
+		<div class="form-row">
+			<div class="col">
+				{{ form_widget(form.plainPassword.first, { 
+		    			attr: {
+		    				class: "rounded-40",
+		    				placeholder: "Ajouter un mot de passe..."
+		    			}
+		    		}) 
+		    	}}
+			</div>
+		</div>
+		<div class="form-row mt-2">
+			<div class="col">
+				{{ form_widget(form.plainPassword.second, { 
+		    			attr: {
+		    				class: "rounded-40",
+		    				placeholder: "Confirmer votre mot de passe..."
+		    			}
+		    		}) 
+		    	}}
+			</div>
+		</div>
+		<div class="form-row mt-4">
+			<div class="col">
+				<input type="submit" class="btn btn-block btn-success rounded-40" 
+				id="_submit" name="_submit" value="{{ "Restaurer"|trans }}" />
+			</div>
+		</div>
+	{{ form_end(form) }}
+	<p class="m-0 mt-4">
+		<a href="{{ path("frontend_user_security_login") }}" class="text-muted small">{{ "Se connecter"|trans }}</a>
+	</p>
+{% endblock %}

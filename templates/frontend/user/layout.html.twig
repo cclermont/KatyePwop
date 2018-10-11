@@ -1,0 +1,32 @@
+{% extends 'frontend/layout.html.twig' %}
+
+{% block title %}
+	{{ parent() }}
+{% endblock %}
+
+{% block body_class %}connexion-page{% endblock body_class %}
+
+{% block body %}
+	<div class="connexion-wrapper">
+
+		<div class="container">
+			<div class="row">
+				<div class="col col-lg-8 offset-lg-2">
+					<div class="wrapper border px-5 px-lg-0 mb-5 bg-white">
+						<div class="row">
+							<div class="d-flex align-items-center col-12 col-lg-4 offset-lg-1">
+								<a href="{{ path("frontend_home_home") }}" class="d-block brand m-auto">
+									<img src="{{ asset("images/brand.png") }}" class="d-inline-block mr-lg-4" alt="brand">
+								</a>
+							</div>
+							<div class="col-12 col-lg-5 text-center">
+								{% block layout_container %}{% endblock layout_container %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+{% endblock %}

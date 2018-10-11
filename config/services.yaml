@@ -28,5 +28,15 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
+    # Frontend user controllers
+    App\Controller\Frontend\User\ResettingController:
+        public: true
+        bind:
+            $mailer: "@fos_user.mailer"
+            $retryTtl: "%fos_user.resetting.retry_ttl%"
+            $userManager: "@fos_user.user_manager"
+            $formFactory: "@fos_user.resetting.form.factory"
+            $tokenGenerator: "@fos_user.util.token_generator"
+
     # # add more service definitions when explicit configuration is needed
     # # please note that last definitions always *replace* previous ones

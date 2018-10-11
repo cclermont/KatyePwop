@@ -1,0 +1,36 @@
+{% extends 'frontend/user/layout.html.twig' %}
+
+{% block title %}
+	{{ parent() }} - {{ "Restaurer mot de passe"|trans }}
+{% endblock %}
+
+{% block layout_container %}
+	<h3 class="h2 font-weight-bold mb-5 mt-5 mt-lg-0">{{ "Demande Restauration"|trans|title }}</h3>
+
+	{% set errors = app.flashes('error') %}
+
+	{% if errors|length > 0 %}
+		<div class="small help-block text-danger mb-4 mt-0">
+			{% for message in errors %}
+				<p class="m-0"><span class="fa fa-exclamation-triangle mr-1"></span>{{ message }}</p>
+			{% endfor %}
+		</div>
+	{% endif %}
+
+	<form action="{{ path("frontend_user_resetting_send_email") }}" method="post">
+		<div class="form-row">
+			<div class="col">
+				<input type="text" id="username" name="username" required="required" autocomplete="username" class="form-control rounded-40" placeholder="{{ "Votre mot email ou nom utilisateur..."|trans }}" />
+			</div>
+		</div>
+		<div class="form-row mt-4">
+			<div class="col">
+				<input type="submit" class="btn btn-block btn-success rounded-40" 
+				id="_submit" name="_submit" value="{{ "Envoyer"|trans }}" />
+			</div>
+		</div>
+	</form>
+	<p class="m-0 mt-4">
+		<a href="{{ path("frontend_user_security_login") }}" class="text-muted small">{{ "Se connecter"|trans }}</a>
+	</p>
+{% endblock %}
