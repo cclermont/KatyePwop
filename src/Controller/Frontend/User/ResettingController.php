@@ -190,7 +190,14 @@ class ResettingController extends AbstractController
             $this->userManager->updateUser($user);
 
             if (null === $response = $event->getResponse()) {
-                $url = $this->generateUrl('fos_user_profile_show');
+            	if ($user->isAdmin()) {
+                	$url = $this->generateUrl('admin_dashboard');
+            	} else if ($user->isSuperAdmin()) {
+                	$url = $this->generateUrl('super_admin_dashboard');
+            	} else {
+                	$url = $this->generateUrl('frontend_home_home');
+            	}
+            	
                 $response = new RedirectResponse($url);
             }
 

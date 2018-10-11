@@ -38,5 +38,9 @@ services:
             $formFactory: "@fos_user.resetting.form.factory"
             $tokenGenerator: "@fos_user.util.token_generator"
 
-    # # add more service definitions when explicit configuration is needed
-    # # please note that last definitions always *replace* previous ones
+
+    #### Login success handler ##########
+    App\Handler\User\LoginSuccessHandler:
+        bind: 
+            $router: "@router"
+            $authorizationChecker: "@security.authorization_checker"
