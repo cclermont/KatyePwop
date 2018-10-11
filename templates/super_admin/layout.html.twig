@@ -10,26 +10,41 @@
     <link rel="stylesheet" href="{{ asset('build/super_admin.css') }}" />
 {% endblock %}
 
+{# Body tag class name #}
+{% block body_class %}super-admin{% endblock body_class %}
+
 {% block body %}
 	
-	<div class="main-container">
+	<div class="container-fluid">
 		
-		<!-- header content -->
-		{{ include('super_admin/_header.html.twig') }}
-		<!-- /header content -->
-		
-		<!-- page content -->
-		<div class="center-container">
-			
-			{% block layout_container %}
-			{% endblock layout_container %}
+		<div class="row">
+
+			<div class="col-3 col-lg-2">
+				<!-- Aside menu content -->
+				{{ include('super_admin/_aside_menu.html.twig', {currentModule: currentModule}) }}
+				<!-- /Aside menu content -->
+			</div>
+
+			<div class="col bg-white px-5 py-4" style="min-height:600px;">
+
+				<!-- header content -->
+				<header id="header" class="header mt-3">
+    				{% block layout_header %}{% endblock %}
+				</header>
+				<!-- /header content -->
+				
+				<!-- page content -->
+				<div class="center-container">
+					{% block layout_container %}{% endblock %}
+				</div>
+				<!-- /page content -->
+				
+				<!-- footer content -->
+				{{ include('super_admin/_footer.html.twig') }}
+				<!-- /footer content -->
+			</div>
 
 		</div>
-		<!-- /page content -->
-		
-		<!-- footer content -->
-		{{ include('super_admin/_footer.html.twig') }}
-		<!-- /footer content -->
 	
 	</div>
 	

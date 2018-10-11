@@ -1,0 +1,51 @@
+<div class="aside-menu mt-3">
+	<ul class="list-unstyled">
+	    <li>
+	    	<a href="" class="btn btn-block border-0 btn-light text-center text-lg-left pl-2 pl-lg-1">
+	    		<img class="mr-lg-3 rounded" src="{{ asset("images/avatar.png") }}" width="40px" alt="Generic placeholder image">
+				<span class="h6 d-none d-lg-inline">{{ app.user.username|title }}</span>
+	    	</a>
+	    </li>
+	    <li class="mt-2">
+	    	<a href="#" class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left 
+	    	{% if currentModule is defined and currentModule == "dashboard" %}selected{% endif %}">
+	    		<i class="fas fa-tachometer-alt mr-3 fa-fw"></i>
+	    		<span class="small d-none d-lg-inline">{{ "Dashboard"|trans }}</span>
+	    	</a>
+	    </li>
+	    <li class="mt-1">
+	    	<a href="#" class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left 
+	    	{% if currentModule is defined and currentModule == "user" %}selected{% endif %}">
+	    		<i class="fas fa-users mr-3 fa-fw"></i>
+	    		<span class="small d-none d-lg-inline">{{ "Utilisateur"|trans }}</span>
+	    	</a>
+	    </li>
+	    <li class="mt-1"> 
+	    	<a href="#" class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left {% if currentModule is defined and currentModule == "institution" %}selected{% endif %}">
+	    		<i class="fas fa-university mr-lg-3 fa-fw"></i>
+	    		<span class="small d-none d-lg-inline">{{ "Institution"|trans }}</span>
+	    	</a>
+	    </li>
+	    <li class="mt-1">
+	    	<a href="#" class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
+	    	{% if currentModule is defined and currentModule == "message" %}selected{% endif %}">
+	    		<i class="fas fa-envelope mr-3 fa-fw"></i>
+	    		<span class="small d-none d-lg-inline">{{ "Message"|trans }}</span>
+	    	</a>
+	    </li>
+	    <li class="mt-1">
+	    	<a href="#" class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
+	    	{% if currentModule is defined and currentModule == "location" %}selected{% endif %}">
+	    		<i class="fas fa-map-marker-alt mr-3 fa-fw"></i>
+	    		<span class="small d-none d-lg-inline">{{ "Location"|trans }}</span>
+	    	</a>
+	    </li>
+	    <li class="mt-1">
+	    	<a href="#" class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
+	    	{% if currentModule is defined and currentModule == "flotte" %}selected{% endif %}">
+	    		<i class="fas fa-truck mr-3 fa-fw"></i>
+	    		<span class="small d-none d-lg-inline">{{ "Flotte"|trans }}</span>
+	    	</a>
+	    </li>
+	</ul>
+</div>

@@ -1,0 +1,48 @@
+.super-admin{
+
+	background-color: #F4F5F7;
+
+	.aside-menu{
+
+		.h6{
+			color: #42526E;
+		}
+
+		a{
+			color: #42526E;
+			background-color: transparent;
+			&:hover, 
+			&.selected{
+				background-color: #EAECEF;
+			}
+			&.selected{
+				color: #0052CC;
+			}
+		}
+	}
+
+	.calendar-graph-legend{
+
+		ul{
+			li.item{
+				width: 10px;
+				height: 10px;
+				&:nth-child(2){
+					background-color: #eee;
+				}
+				&:nth-child(3){
+					background-color: #c6e48b;
+				}
+				&:nth-child(4){
+					background-color: #7bc96f;
+				}
+				&:nth-child(5){
+					background-color: #239a3b;
+				}
+				&:nth-child(6){
+					background-color: #196127;
+				}
+			}
+		}
+	}
+}

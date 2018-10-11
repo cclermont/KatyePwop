@@ -1140,6 +1140,11 @@ cache-base@^1.0.1:
     union-value "^1.0.0"
     unset-value "^1.0.0"
 
+calendar-graph@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/calendar-graph/-/calendar-graph-1.0.0.tgz#6c113b36ca99a12569bc301da2d96e8de83bdd66"
+  integrity sha512-TUKBJ8uN6Q0ZV8piQFKYNeQlNbUpf4Lie4LhmExav4Jj20vma4NXOrb9QDE6tCOH1+ohyr7RQHDwHqsJmcPdwA==
+
 camelcase-keys@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/camelcase-keys/-/camelcase-keys-2.1.0.tgz#308beeaffdf28119051efa1d932213c91b8f92e7"
