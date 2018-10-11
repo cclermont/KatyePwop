@@ -40,12 +40,12 @@ class LoginSuccessHandler implements AuthenticationSuccessHandlerInterface
         $providerKey = $token->getProviderKey();
         $targetPath = $this->getTargetPath($request->getSession(), $providerKey);
 
-        if ($this->authorizationChecker->isGranted(User::ROLE_ADMIN) || 
+        if ($this->authorizationChecker->isGranted(User::ROLE_SUPER_ADMIN)) { // Super admin
+            $url = $this->router->generate('super_admin_dashboard');
+        } else if ($this->authorizationChecker->isGranted(User::ROLE_ADMIN) || 
             $this->authorizationChecker->isGranted(User::ROLE_OPERATOR)) { // Admin, Operator
             $url = $this->router->generate('admin_dashboard');
-        } else if ($this->authorizationChecker->isGranted(User::ROLE_SUPER_ADMIN)) { // Super admin
-            $url = $this->router->generate('super_admin_dashboard');
-		} else { // User
+        } else { // User
             $url = $this->router->generate('frontend_home_home');
         }
         

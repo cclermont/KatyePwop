@@ -7,72 +7,7 @@
 @import "~@fortawesome/fontawesome-free/scss/regular";
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
 
-
-@mixin border-radius ($params) {
-    -webkit-border-radius: $params;
-       -moz-border-radius: $params;
-        -ms-border-radius: $params;
-         -o-border-radius: $params;
-            border-radius: $params;
-  }
-  
-  @mixin box-shadow ($params) {
-    -webkit-box-shadow: $params;
-       -moz-box-shadow: $params;
-        -ms-box-shadow: $params;
-         -o-box-shadow: $params;
-            box-shadow: $params;
-  }
-  
-  @mixin animation ($params) {
-      -webkit-animation: $params;
-         -moz-animation: $params;
-          -ms-animation: $params;
-           -o-animation: $params;
-                animation: $params;
-  }
-  
-  @mixin transition ($params) {
-      -webkit-transition: $params;
-         -moz-transition: $params;
-          -ms-transition: $params;
-           -o-transition: $params;
-                transition: $params;
-  }
-  
-  @mixin transform ($params) {
-      -webkit-transform: $params;
-         -moz-transform: $params;
-          -ms-transform: $params;
-           -o-transform: $params;
-                transform: $params;
-  }
-  
-  @mixin keyframes($name) {
-    @-webkit-keyframes #{$name} { @content; }
-       @-moz-keyframes #{$name} { @content; }
-        @-ms-keyframes #{$name} { @content; }
-            @keyframes #{$name} { @content; } 
-  }
-  
-  @mixin parallax () {
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-attachment: fixed;
-  }
-  
-  @mixin mq-tablet {
-        @media (min-width: #{$mq-tablet-width}) {
-          @content;
-        }
-  }
-  
-  @mixin mq-desktop {
-        @media (min-width: #{$mq-desktop-width}) {
-          @content;
-        }
-  }
+@import 'mixins';
 
 .text-orange{
   color: #de643a;

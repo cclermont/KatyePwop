@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ 'site.title'|trans }} - 
+	{{ 'site.super_admin'|trans }}
+{% endblock title %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('build/super_admin.css') }}" />
+{% endblock %}
+
+{% block body %}
+	
+	<div class="main-container">
+		
+		<!-- header content -->
+		{{ include('super_admin/_header.html.twig') }}
+		<!-- /header content -->
+		
+		<!-- page content -->
+		<div class="center-container">
+			
+			{% block layout_container %}
+			{% endblock layout_container %}
+
+		</div>
+		<!-- /page content -->
+		
+		<!-- footer content -->
+		{{ include('super_admin/_footer.html.twig') }}
+		<!-- /footer content -->
+	
+	</div>
+	
+{% endblock body %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('build/super_admin.js') }}"></script>
+{% endblock %}

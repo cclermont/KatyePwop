@@ -1,0 +1,13 @@
+# Fos oauth bundle
+fos_oauth_server:
+    db_driver: orm
+    client_class:        App\Entity\Oauth\Client
+    auth_code_class:     App\Entity\Oauth\AuthCode
+    access_token_class:  App\Entity\Oauth\AccessToken
+    refresh_token_class: App\Entity\Oauth\RefreshToken
+    service:
+        user_provider: fos_user.user_provider.username_email
+        options:
+            token_type: Bearer
+            supported_scopes: api user
+            access_token_lifetime: 3600

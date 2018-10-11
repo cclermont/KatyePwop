@@ -5,7 +5,7 @@ security:
     role_hierarchy:
         ROLE_OPERATOR:    [ROLE_USER, ROLE_ROAD_AGENT]
         ROLE_ADMIN:       ROLE_OPERATOR
-        ROLE_SUPER_ADMIN: ROLE_ADMIN
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
     
     providers:
         fos_userbundle:
@@ -15,6 +15,22 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+
+
+        # FOS Oauth firewalls
+        # Oauth token
+        oauth_token:
+            pattern:  ^/oauth/v2/token
+            security: false
+
+        # Api firewall
+        api:
+            pattern:   ^/([a-z]+)/api
+            fos_oauth: true
+            stateless: true
+            anonymous: false
+
+        # Main
         main:
             pattern: ^/
             form_login:
