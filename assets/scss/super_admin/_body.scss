@@ -4,19 +4,36 @@
 
 	.aside-menu{
 
+		.bottom-helper{
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 1;
+			position: fixed;
+			margin-right: -60px!important;
+
+			.wrapper{
+				z-index: 10;
+				position: relative;
+				background-color: #2c3e50;
+			}
+		}
+
 		.h6{
 			color: #42526E;
 		}
 
-		a{
-			color: #42526E;
-			background-color: transparent;
-			&:hover, 
-			&.selected{
-				background-color: #EAECEF;
-			}
-			&.selected{
-				color: #0052CC;
+		li{
+			a{
+				color: #42526E;
+				background-color: transparent;
+				&:hover, 
+				&.selected{
+					background-color: #EAECEF;
+				}
+				&.selected{
+					color: #0052CC;
+				}
 			}
 		}
 	}

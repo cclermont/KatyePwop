@@ -6,7 +6,7 @@
 {# Title #}
 {% block title %}
     {{ parent() }} - 
-    {{ "Liste des utilisateurs"|trans }}
+    {{ "Liste utilisateurs"|trans }}
 {% endblock title %}
 
 {# Heading #}
@@ -19,9 +19,9 @@
     </nav>
 
     <div class="d-flex align-items-center">
-		<h1 class="h2 text-light-black">{{ "Liste des utilisateurs"|trans|title }}</h1>
+		<h1 class="h2 text-light-black">{{ "Liste utilisateurs"|trans|title }}</h1>
 		<div class="ml-auto">
-			<a href="" class="btn btn-success">
+			<a href="{{ path("super_admin_user_new") }}" class="btn btn-success">
 				<i class="fa fa-plus mr-2"></i>{{ "Nouveau utilisateur"|trans|title }}
 			</a>
 		</div>
@@ -113,7 +113,7 @@
 							<td class="align-middle">{{ item.role|title }}</td>
 							<td class="align-middle">Today</td>
 							<td width="20%" class="text-right align-middle">
-								<a href="" class="btn btn-info btn-sm">
+								<a href="{{ path("super_admin_user_show", {id: 1}) }}" class="btn btn-info btn-sm">
 									<small class="fas fa-eye mr-1"></small>
 									<span>{{ "Voir"|trans }}</span>
 								</a>

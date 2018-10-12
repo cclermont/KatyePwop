@@ -25,25 +25,26 @@
 				<!-- /Aside menu content -->
 			</div>
 
-			<div class="col bg-white px-5 py-4" style="min-height:600px;">
+			{% block layout_body_container %}
+				<div class="col bg-white px-5 py-4" style="min-height:600px;">
 
-				<!-- header content -->
-				<header id="header" class="header mt-2">
-    				{% block layout_header %}{% endblock %}
-				</header>
-				<!-- /header content -->
-				
-				<!-- page content -->
-				<div class="center-container">
-					{% block layout_container %}{% endblock %}
+					<!-- header content -->
+					<header id="header" class="header mt-2">
+	    				{% block layout_header %}{% endblock %}
+					</header>
+					<!-- /header content -->
+					
+					<!-- page content -->
+					<div class="center-container">
+						{% block layout_container %}{% endblock %}
+					</div>
+					<!-- /page content -->
+					
+					<!-- footer content -->
+					{{ include('super_admin/_footer.html.twig') }}
+					<!-- /footer content -->
 				</div>
-				<!-- /page content -->
-				
-				<!-- footer content -->
-				{{ include('super_admin/_footer.html.twig') }}
-				<!-- /footer content -->
-			</div>
-
+			{% endblock %}
 		</div>
 	
 	</div>

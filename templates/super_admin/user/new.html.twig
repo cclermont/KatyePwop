@@ -1,0 +1,77 @@
+{% extends 'super_admin/layout.html.twig' %}
+
+{# Set vars #}
+{% set currentModule = "user" %}
+
+{# Title #}
+{% block title %}
+    {{ parent() }} - 
+    {{ "Nouveau utilisateur"|trans }}
+{% endblock title %}
+
+{# Heading #}
+{% block layout_header %}
+<div class="row mt-3">
+	<div class="col col-lg-6 offset-lg-3">
+	    <nav aria-label="breadcrumb">
+	        <ol class="breadcrumb bg-transparent small mb-2 p-0">
+	            <li class="breadcrumb-item active" aria-current="page">{{ app.user.username|title }}</li>
+	            <li class="breadcrumb-item active" aria-current="page">{{ "Utilisateur"|trans }}</li>
+	            <li class="breadcrumb-item active" aria-current="page">{{ "Nouveau"|trans }}</li>
+	        </ol>
+	    </nav>
+
+	    <div class="d-flex align-items-center">
+			<h1 class="h2 text-light-black">{{ "Nouveau utilisateur"|trans|title }}</h1>
+	    </div>
+	</div>
+</div>
+{% endblock %}
+
+{# Body #}
+{% block layout_container %}
+	<div class="row mt-3">
+		<div class="col col-lg-6 offset-lg-3">
+			<div class="mb-5 pb-5">
+				<form>
+					<p class="text-danger small"><i class="fa fa-exclamation-triangle mr-2"></i>An error has occured...</p>
+			  		<div class="form-group">
+			    		<label for="exampleInputEmail1">Username</label>
+			    		<input type="email" class="form-control border-light-lg" 
+			    				id="exampleInputEmail1" aria-describedby="emailHelp" 
+			    				placeholder="Enter username...">
+			    		<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+			  		</div>
+			  		<div class="form-group">
+			    		<label for="exampleInputEmail1">Email address</label>
+			    		<input type="email" class="form-control border-light-lg" 
+			    		id="exampleInputEmail1" aria-describedby="emailHelp" 
+			    				placeholder="Enter email...">
+			    		<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+			  		</div>
+			  		<div class="form-group">
+					    <label for="exampleFormControlSelect1">Example select</label>
+					    <select class="form-control border-light-lg" id="exampleFormControlSelect1">
+					      	<option>1</option>
+					      	<option>2</option>
+					      	<option>3</option>
+					      	<option>4</option>
+					      	<option>5</option>
+					    </select>
+			    		<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+				  	</div>
+			  		<div class="form-check">
+			    		<input type="checkbox" class="form-check-input" id="enabled">
+			    		<label class="form-check-label" for="enabled">Active</label>
+			  		</div>
+			  		<div class="d-flex mt-4">
+			  			<button type="submit" class="btn btn-dark mr-3">{{ "Creer"|trans }}</button>
+			  			<a href="{{ path("super_admin_user") }}" class="btn btn-light">
+			  				{{ "Annuler"|trans }}
+			  			</a>
+			  		</div>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}
