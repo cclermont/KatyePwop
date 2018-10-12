@@ -1,0 +1,28 @@
+<div class="modal fade" id="confirmationModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body px-4 pt-4">
+                <h4>{{ 'Etes vous sur(e) de bien vouloir effacer cet element?'|trans }}</h4>
+                <p class="lead small">
+                	{{ 'Cette action est irrevesible. Donc! Cet element sera effacé de manière permanente'|trans }}
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="btnNo" data-dismiss="modal">
+                    <i class="fa fa-ban mr-2" aria-hidden="true"></i> {{ 'Annuler'|trans }}
+                </button>
+                <button type="button" class="btn btn-danger" id="btnYes" data-dismiss="modal">
+                    <i class="fa fa-trash-alt mr-2" aria-hidden="true"></i> {{ 'Effacer'|trans }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form action="{{ link }}" method="post" data-confirmation="true" id="delete-form">
+    <input type="hidden" name="token" value="{{ csrf_token('delete') }}" />
+    <button type="submit" class="btn btn-block btn-danger mb-3 text-left">
+        <i class="fa fa-fw fa-trash-alt mr-2"></i>
+		<span>{{ "Effacer"|trans }}</span>
+    </button>
+</form>

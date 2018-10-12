@@ -1,0 +1,79 @@
+<div class="row mt-3">
+	<div class="col col-lg-8 offset-lg-2">
+		<div>
+			{{ form_start(form) }}
+				{{ form_errors(form) }}
+	  			<div class="row">
+	  				<div class="col">
+			  			{{ form_row(form.fullname, {label: "Nom complet", 
+			  				help: "Veuillez indiquer le nom complet en question.", 
+			  				attr: {class: "border-light-lg", placeholder: "Entrer le nom complet"}}) }}
+	  				</div>
+	  			</div>
+	  			<div class="row">
+	  				<div class="col-12 col-lg">
+	  					{{ form_row(form.street, {label: "Quartier", 
+			  				help: "Veuillez indiquer le quartier en question.", 
+			  				attr: {class: "border-light-lg", placeholder: "Entrer le quartier"}}) }}
+	  				</div>
+	  				<div class="col-12 col-lg">
+			  			{{ form_row(form.region, {label: "Region", 
+			  				help: "Veuillez indiquer la region en question.", 
+			  				attr: {class: "border-light-lg", placeholder: "Entrer la region"}}) }}
+	  				</div>
+	  			</div>
+	  			<div class="row">
+	  				<div class="col-12 col-lg">
+			  			{{ form_row(form.city, {label: "Ville", 
+			  				help: "Veuillez indiquer la ville en question.", 
+			  				attr: {class: "border-light-lg", placeholder: "Entrer la ville"}}) }}
+	  				</div>
+	  				<div class="col-12 col-lg">
+			  			{{ form_row(form.state, {label: "Departement", 
+			  				help: "Veuillez indiquer le departement en question.", 
+			  				attr: {class: "border-light-lg", placeholder: "Entrer le departement"}}) }}
+	  				</div>
+	  			</div>
+	  			<div class="row">
+	  				<div class="col">
+			  			{{ form_row(form.country, {label: "Pays", 
+			  				help: "Veuillez indiquer le pays en question.", 
+			  				attr: {class: "border-light-lg", placeholder: "Entrer le pays"}}) }}
+	  				</div>
+	  			</div>
+	  			<div class="row">
+	  				<div class="col-12 col-lg">
+			  			{{ form_row(form.latitude, {label: "Latitude", 
+			  				help: "Veuillez indiquer la latitude en question.", 
+			  				attr: {class: "border-light-lg", placeholder: "Entrer la latitude"}}) }}
+	  				</div>
+	  				<div class="col-12 col-lg">
+			  			{{ form_row(form.longitude, {label: "Longitude", 
+			  				help: "Veuillez indiquer la longitude en question.", 
+			  				attr: {class: "border-light-lg", placeholder: "Entrer la longitude"}}) }} 
+	  				</div>
+	  			</div> 		
+		  		<div class="row mt-4">
+		  			{% if form.saveAndCreateNew is defined %}
+		  				<div class="col-12 col-lg">
+		  					<button type="submit" class="btn btn-block btn-dark mb-3">{{ "Creer"|trans }}</button>
+		  				</div>
+		  				<div class="col-12 col-lg">
+			  				{{ form_widget(form.saveAndCreateNew, 
+			  					{label: "Créer et nouveau", attr: {class: "btn-block btn btn-secondary mb-3"}}) }}
+		  				</div>
+		  			{% else %}
+		  				<div class="col-12 col-lg">
+		  					<button type="submit" class="btn btn-block btn-dark mb-3">{{ "Modifier"|trans }}</button>
+		  				</div>
+		  			{% endif %}
+		  			<div class="col-12 col-lg">
+		  				<a href="{{ path("super_admin_location") }}" class="btn btn-block btn-light mb-3">
+		  					{{ "Annuler"|trans }}
+		  				</a>
+		  			</div>
+		  		</div>
+			{{ form_end(form) }}
+		</div>
+	</div>
+</div>

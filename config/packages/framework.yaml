@@ -17,6 +17,9 @@ framework:
     #fragments: true
     php_errors:
         log: true
+    
+    # Validation
+    validation: { enable_annotations: true }
 
     cache:
         # Put the unique name of your app here: the prefix seed

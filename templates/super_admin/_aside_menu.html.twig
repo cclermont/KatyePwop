@@ -10,14 +10,14 @@
 	    	<a href="{{ path("super_admin_dashboard") }}" 
 	    	class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left 
 	    	{% if currentModule is defined and currentModule == "dashboard" %}selected{% endif %}">
-	    		<i class="fas fa-tachometer-alt mr-3 fa-fw"></i>
+	    		<i class="fas fa-tachometer-alt mr-lg-3 fa-fw"></i>
 	    		<span class="small d-none d-lg-inline">{{ "Dashboard"|trans }}</span>
 	    	</a>
 	    </li>
 	    <li class="mt-1">
 	    	<a href="{{ path("super_admin_user") }}" class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left 
 	    	{% if currentModule is defined and currentModule == "user" %}selected{% endif %}">
-	    		<i class="fas fa-users mr-3 fa-fw"></i>
+	    		<i class="fas fa-users mr-lg-3 fa-fw"></i>
 	    		<span class="small d-none d-lg-inline">{{ "Utilisateur"|trans }}</span>
 	    	</a>
 	    </li>
@@ -30,21 +30,22 @@
 	    <li class="mt-1">
 	    	<a href="{{ path("super_admin_user") }}" class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
 	    	{% if currentModule is defined and currentModule == "message" %}selected{% endif %}">
-	    		<i class="fas fa-envelope mr-3 fa-fw"></i>
+	    		<i class="fas fa-envelope mr-lg-3 fa-fw"></i>
 	    		<span class="small d-none d-lg-inline">{{ "Message"|trans }}</span>
 	    	</a>
 	    </li>
 	    <li class="mt-1">
-	    	<a href="{{ path("super_admin_user") }}" class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
+	    	<a href="{{ path("super_admin_location") }}" 
+	    		class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
 	    	{% if currentModule is defined and currentModule == "location" %}selected{% endif %}">
-	    		<i class="fas fa-map-marker-alt mr-3 fa-fw"></i>
+	    		<i class="fas fa-map-marker-alt mr-lg-3 fa-fw"></i>
 	    		<span class="small d-none d-lg-inline">{{ "Location"|trans }}</span>
 	    	</a>
 	    </li>
 	    <li class="mt-1">
 	    	<a href="{{ path("super_admin_user") }}" class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
 	    	{% if currentModule is defined and currentModule == "flotte" %}selected{% endif %}">
-	    		<i class="fas fa-truck mr-3 fa-fw"></i>
+	    		<i class="fas fa-truck mr-lg-3 fa-fw"></i>
 	    		<span class="small d-none d-lg-inline">{{ "Flotte"|trans }}</span>
 	    	</a>
 	    </li>
@@ -52,22 +53,14 @@
 
 	<div class="bottom-helper">
 		<div class="row p-0">
-			<div class="col-3 col-lg-2 p-0">
+			<div class="col-2 col-lg-2 p-0">
 				<div class="wrapper">
 					<div class="row mx-lg-0">
 						<div class="col-12 col-lg px-lg-0 w-25 ml-lg-2">
-							<a href="" class="btn btn-block btn-dark border-0 py-2 rounded-0" title="{{ "Voir profil"|trans }}">
-								<i class="far fa-user-circle fa-lg"></i>
-							</a>
-						</div>
-						<div class="col-12 col-lg px-lg-0 w-25">
-							<a href="" class="btn btn-block btn-dark border-0 py-2 rounded-0" title="{{ "Changer mot de passe"|trans }}">
-								<i class="fas fa-unlock-alt"></i>
-							</a>
-						</div>
-						<div class="col-12 col-lg px-lg-0 w-25">
-							<div class="dropup">
-							  	<a href="" class="btn btn-block btn-dark border-0 py-2 rounded-0 dropdown-toggle" title="{{ "Changer la langue"|trans }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<div class="dropup" data-toggle="tooltip" data-placement="top" 
+								title="{{ "Changer la langue"|trans }}">
+							  	<a href="" class="btn btn-block btn-dark border-0 py-2 rounded-0 dropdown-toggle" 
+							  		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									<i class="fas fa-globe"></i>
 								</a>
 							  	<div class="dropdown-menu">
@@ -79,7 +72,21 @@
 							</div>
 						</div>
 						<div class="col-12 col-lg px-lg-0 w-25">
-							<a href="" class="btn btn-block btn-dark border-0 py-2 rounded-0" title="{{ "Se deconnecter"|trans }}">
+							<a href="" class="btn btn-block btn-dark border-0 py-2 rounded-0" 
+								title="{{ "Voir profil"|trans }}" data-toggle="tooltip" data-placement="top">
+								<i class="far fa-user-circle fa-lg"></i>
+							</a>
+						</div>
+						<div class="col-12 col-lg px-lg-0 w-25">
+							<a href="" class="btn btn-block btn-dark border-0 py-2 rounded-0" 
+								title="{{ "Changer mot de passe"|trans }}" data-toggle="tooltip" data-placement="top">
+								<i class="fas fa-unlock-alt"></i>
+							</a>
+						</div>
+						<div class="col-12 col-lg px-lg-0 w-25">
+							<a href="{{ path("frontend_user_security_logout") }}" 
+								class="btn btn-block btn-dark border-0 py-2 rounded-0" 
+								title="{{ "Se deconnecter"|trans }}" data-toggle="tooltip" data-placement="top">
 								<i class="fas fa-sign-out-alt fa-lg"></i>
 							</a>
 						</div>
