@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/super/admin/user", name="super_admin_user")
+     * @Route("/user", name="super_admin_user")
      */
     public function index()
     {

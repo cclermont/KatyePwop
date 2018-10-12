@@ -35,3 +35,53 @@
 .text-light-black{
   color: #172B4D;
 }
+.border-light-lg{
+  font-size: .8em;
+  border-width: 2px;
+  border-color: #DFE1E6;
+}
+.custum-table{
+  
+  border-width: 0;
+  thead{
+    tr{
+      th{
+        color: #5E6C84;
+        font-size: 0.9em;
+        border-top: 0 none transparent;
+      }
+    }
+  }
+  tbody{
+    tr{
+      th, td{
+        color: #444;
+        font-size: 0.9em;
+        background-color: #f8f8fa;
+        border-bottom: 5px solid #fff;
+
+        &:first-child{
+          @include border-radius(10px 0 0 10px);
+        }
+        &:last-child{
+          @include border-radius(0 10px 10px 0);
+        }
+      }
+      &:hover{
+        th, td{
+          background-color: #f4f4f6;
+        }
+      }
+      &:first-child{
+        th, td{
+          border-top: 5px solid #fff;
+        }
+      }
+    }
+  }
+}
+.btn-dark{
+  color: #fff;
+  border-color: #2c3e50;
+  background-color: #2c3e50;
+}
