@@ -1,0 +1,59 @@
+liip_imagine:
+   # valid drivers options include "gd" or "gmagick" or "imagick"
+   # driver: "gd"
+    resolvers:
+        default:
+            web_path: ~
+                # cache_prefix: "uploads/images/cache"
+
+   # define your filter sets under this option
+    filter_sets:
+        cache: ~
+        widen_32:
+            filters:
+                relative_resize: { widen: 32 }
+        thumb_32x32:
+            filters:
+                thumbnail: { size: [32, 32], mode: outbound }
+        widen_64:
+            filters:
+                relative_resize: { widen: 64 }
+        thumb_64x64:
+            filters:
+                thumbnail: { size: [64, 64], mode: outbound }
+        widen_128:
+            filters:
+                relative_resize: { widen: 128 }
+        thumb_128x128:
+            filters:
+                thumbnail: { size: [128, 128], mode: outbound }
+        widen_256:
+            filters:
+                relative_resize: { widen: 256 }
+        thumb_256x256:
+            filters:
+                thumbnail: { size: [256, 256], mode: outbound }
+        widen_512:
+            filters:
+                relative_resize: { widen: 512 }
+        heighten_512:
+            filters:
+                relative_resize: { heighten: 512 }
+        thumb_512x512:
+            filters:
+                thumbnail: { size: [512, 512], mode: outbound }
+        widen_1024:
+            filters:
+                relative_resize: { widen: 1024 }
+        heighten_1024:
+            filters:
+                relative_resize: { heighten: 1024 }
+        thumb_1024x1024:
+            filters:
+                thumbnail: { size: [1024, 1024], mode: outbound }
+        widen_2048:
+            filters:
+                relative_resize: { widen: 2048 }
+        thumb_2048x2048:
+            filters:
+                thumbnail: { size: [2048, 2048], mode: outbound }

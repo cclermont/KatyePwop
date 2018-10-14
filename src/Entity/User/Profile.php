@@ -28,21 +28,27 @@ class Profile
     private $lastname;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $birthdate;
-
-    /**
      * @ORM\Column(type="string", length=16)
      */
     private $gender;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $birthdate;
     
     /**
-     * @ORM\OneToOne(targetEntity="Image")
+     * @ORM\OneToOne(targetEntity="Image", cascade={"persist", "remove"})
      */
     private $image;
 
+    /**
+     * Constants
+    */
+    const GENDER_MALE = "male";
+    const GENDER_FEMALE = "female";
 
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -72,6 +78,18 @@ class Profile
         return $this;
     }
 
+    public function getGender(): ?string
+    {
+        return $this->gender;
+    }
+
+    public function setGender(string $gender): self
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
     public function getBirthdate(): ?\DateTimeInterface
     {
         return $this->birthdate;
@@ -84,15 +102,16 @@ class Profile
         return $this;
     }
 
-    public function getGender(): ?string
+    public function getImage(): ?Image
     {
-        return $this->gender;
+        return $this->image;
     }
 
-    public function setGender(string $gender): self
+    public function setImage(?Image $image): self
     {
-        $this->gender = $gender;
+        $this->image = $image;
 
         return $this;
     }
+    
 }

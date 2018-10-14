@@ -8,6 +8,7 @@
         "friendsofsymfony/oauth-server-bundle": "dev-master",
         "friendsofsymfony/rest-bundle": "^2.4",
         "friendsofsymfony/user-bundle": "~2.0",
+        "liip/imagine-bundle": "^2.1",
         "nelmio/api-doc-bundle": "^3.3",
         "nelmio/cors-bundle": "^1.5",
         "sensio/framework-extra-bundle": "^5.2",
@@ -29,6 +30,7 @@
         "symfony/web-link": "*",
         "symfony/webpack-encore-pack": "^1.0",
         "symfony/yaml": "*",
+        "vich/uploader-bundle": "^1.8",
         "white-october/pagerfanta-bundle": "^1.2"
     },
     "require-dev": {

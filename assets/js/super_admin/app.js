@@ -17,6 +17,9 @@ import toastr from 'toastr';
 // Import Chart js
 import Chart from 'chart.js';
 
+// Import jquery image preview
+import '../../../node_modules/jquery.upload.preview.psk/assets/js/jquery.uploadPreview';
+
 // Import calendar graph
 import { SVGGraph, CanvasGraph, StrGraph } from 'calendar-graph';
 import { rectColor, today, oneYearAgo, diffDays, formatDate } from '../../../node_modules/calendar-graph/src/utils';
@@ -104,7 +107,7 @@ $(() => {
 
 		var data = {
 			    datasets: [{
-			        data: [10, 20, 30],
+			        data: $('[data-type="pie-chart"]').data("values"),
 			        backgroundColor: [
 			            '#ff6384',
 			            '#36a2eb',
@@ -114,11 +117,7 @@ $(() => {
 			    }],
 
 			    // These labels appear in the legend and in the tooltips when hovering different arcs
-			    labels: [
-			        'Red',
-			        'Yellow',
-			        'Blue'
-			    ]
+			    labels: $('[data-type="pie-chart"]').data("labels")
 			};
 
 		new Chart($('[data-type="pie-chart"]'),{
@@ -131,6 +130,17 @@ $(() => {
 		    		position: 'right'
 		    	}
 		    }
+		});
+	}
+
+	// Display img preview when choosen a file
+	if ($('[data-type="profile-pic-container"]').length > 0) {
+		$.uploadPreview({
+		    input_field: '[data-type="upload-btn"] input',
+		    preview_box: '[data-type="profile-pic"]',
+		    label_field: '[data-type="upload-btn"] span',
+		    label_default: $('[data-type="upload-btn"]').data("label-default"),
+		    label_selected: $('[data-type="upload-btn"]').data("label-selected")
 		});
 	}
 

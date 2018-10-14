@@ -1,22 +1,29 @@
 <?php
 
-namespace App\Controller\SuperAdmin;
+namespace App\Controller\SuperAdmin\Dashboard;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
+use App\Service\User\UserManager;
 use App\Service\Location\LocationManager;
 
+/**
+ * DashboardController 
+ *
+ */ 
 class DashboardController extends AbstractController
 {
     /**
     * Entity managers
     */
-    private $locationEm;
+    private $userManager;
+    private $locationManager;
 
-    public function __construct(LocationManager $locationEm)
+    public function __construct(UserManager $userManager, LocationManager $locationManager)
     {
-        $this->locationEm = $locationEm;
+        $this->userManager = $userManager;
+        $this->locationManager = $locationManager;
     }
 
     /**
@@ -26,7 +33,8 @@ class DashboardController extends AbstractController
     public function index()
     {
         return $this->render('super_admin/dashboard/index.html.twig', [
-            "location_count" => $this->locationEm->count(),
+            "user_count" => $this->userManager->count(),
+            "location_count" => $this->locationManager->count(),
         ]);
     }
 }

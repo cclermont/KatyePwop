@@ -33,13 +33,13 @@
                             <i class="fa fa-users fa-4x text-primary"></i>
                         </div>
                         <div class="col text-center text-lg-right mt-3 mt-lg-0">
-                            <span class="h3 d-block">123</span>
+                            <span class="h3 d-block">{{ user_count }}</span>
                             <small class="d-block text-muted">{{ "Utilisateurs"|trans }}</small>
                         </div>
                     </div>
                 </div>
                 <div class="bg-light border rounded-bottom">
-                    <a href="" class="btn btn-link btn-block text-primary btn-light text-left">
+                    <a href="{{ path("super_admin_user") }}" class="btn btn-link btn-block text-primary btn-light text-left">
                         <i class="far fa-arrow-alt-circle-right float-right mt-1"></i>
                         <span class="small">{{ "Voir plus"|trans }}</span>
                     </a>
@@ -115,7 +115,7 @@
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </p>
                 <div>
-                    <div class="border p-4">
+                    <div class="border py-4 px-3">
                         <div data-type="calendar-graph"></div>
                         <div class="calendar-graph-legend">
                             <ul class="list-unstyled d-flex mb-0 mr-4 align-items-center justify-content-end">
@@ -138,7 +138,10 @@
                     {{ "Repartition des utilisateurs"|trans }}
                 </p>
                 <div class="border p-3">
-                    <canvas data-type="pie-chart"></canvas>
+                    <canvas data-type="pie-chart" 
+                            data-values="{{ [56, 23, 10, 90]|json_encode }}" 
+                            data-labels="{{ ["Super admin", "Admin", "Institution", "Particulier"]|json_encode }}">
+                    </canvas>
                 </div>
             </div>
         </div>

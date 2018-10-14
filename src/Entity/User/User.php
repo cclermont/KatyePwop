@@ -24,7 +24,7 @@ class User extends BaseUser
     private $blocked;
     
     /**
-     * @ORM\OneToOne(targetEntity="Profile")
+     * @ORM\OneToOne(targetEntity="Profile", cascade={"persist", "remove"})
      */
     private $profile;
 
@@ -77,5 +77,17 @@ class User extends BaseUser
     public function isSuperAdmin(): ?bool
     {
         return $this->hasRole(self::ROLE_SUPER_ADMIN);
+    }
+
+    public function getProfile(): ?Profile
+    {
+        return $this->profile;
+    }
+
+    public function setProfile(?Profile $profile): self
+    {
+        $this->profile = $profile;
+
+        return $this;
     }
 }

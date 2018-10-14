@@ -2,7 +2,14 @@
 	<ul class="list-unstyled">
 	    <li>
 	    	<a href="" class="btn btn-block border-0 btn-light text-center text-lg-left pl-2 pl-lg-1">
-	    		<img class="mr-lg-3 rounded" src="{{ asset("images/avatar.png") }}" width="40px" alt="Generic placeholder image">
+	    		{% if app.user.profile is defined and app.user.profile.image is defined %}
+	    			<img src="{{ vich_uploader_asset(app.user.profile.image, 'file') | imagine_filter('thumb_64x64') }}" 
+								alt="{{ "Photo de profil"|trans }}" width="40px" class="mr-lg-3 rounded">
+	    		{% else %}
+	    		    <img src="{{ asset("images/avatar.png") | imagine_filter('thumb_64x64') }}" 
+	    		    	alt="{{ "Photo de profil"|trans }}">
+	    		{% endif %}
+	    		
 				<span class="h6 d-none d-lg-inline">{{ app.user.username|title }}</span>
 	    	</a>
 	    </li>
@@ -72,8 +79,9 @@
 							</div>
 						</div>
 						<div class="col-12 col-lg px-lg-0 w-25">
-							<a href="" class="btn btn-block btn-dark border-0 py-2 rounded-0" 
-								title="{{ "Voir profil"|trans }}" data-toggle="tooltip" data-placement="top">
+							<a href="{{ path("super_admin_user_profile_edit") }}" 
+								class="btn btn-block btn-dark border-0 py-2 rounded-0" 
+								title="{{ "Modifier profil"|trans }}" data-toggle="tooltip" data-placement="top">
 								<i class="far fa-user-circle fa-lg"></i>
 							</a>
 						</div>

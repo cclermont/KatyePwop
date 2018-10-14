@@ -3,60 +3,52 @@
 namespace App\Entity\Core;
 
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Entity\File as EmbeddedFile;
+
+use App\Traits\Core\Entity\CreatedModifiedTrait;
 
 /**
  * @ORM\MappedSuperclass
+ * @ORM\HasLifecycleCallbacks()
  */
 abstract class Media
 {
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Embedded(class="Vich\UploaderBundle\Entity\File")
+     *
+     * @var EmbeddedFile
      */
-    private $path;
+    protected $info;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $description;
+    protected $description;
 
     /**
-     * @ORM\Column(type="string", length=8)
+     * Use Created modified trait
      */
-    private $format;
+    use CreatedModifiedTrait;
 
-    /**
-     * @ORM\Column(type="string", length=128)
-     */
-    private $mimeType;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $size;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $created;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $modified;
+    public function __construct()
+    {
+        $this->info = new EmbeddedFile();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getPath(): ?string
+    public function getInfo(): EmbeddedFile
     {
-        return $this->path;
+        return $this->info;
     }
 
-    public function setPath(string $path): self
+    public function setInfo(EmbeddedFile $info): self
     {
-        $this->path = $path;
+        $this->info = $info;
 
         return $this;
     }
@@ -69,66 +61,6 @@ abstract class Media
     public function setDescription(?string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getFormat(): ?string
-    {
-        return $this->format;
-    }
-
-    public function setFormat(string $format): self
-    {
-        $this->format = $format;
-
-        return $this;
-    }
-
-    public function getMimeType(): ?string
-    {
-        return $this->mimeType;
-    }
-
-    public function setMimeType(string $mimeType): self
-    {
-        $this->mimeType = $mimeType;
-
-        return $this;
-    }
-
-    public function getSize(): ?int
-    {
-        return $this->size;
-    }
-
-    public function setSize(int $size): self
-    {
-        $this->size = $size;
-
-        return $this;
-    }
-
-    public function getCreated(): ?\DateTimeInterface
-    {
-        return $this->created;
-    }
-
-    public function setCreated(\DateTimeInterface $created): self
-    {
-        $this->created = $created;
-
-        return $this;
-    }
-
-    public function getModified(): ?\DateTimeInterface
-    {
-        return $this->modified;
-    }
-
-    public function setModified(\DateTimeInterface $modified): self
-    {
-        $this->modified = $modified;
 
         return $this;
     }

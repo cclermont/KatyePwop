@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\SuperAdmin;
+namespace App\Controller\SuperAdmin\User;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
