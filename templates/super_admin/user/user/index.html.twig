@@ -3,26 +3,56 @@
 {# Set vars #}
 {% set currentModule = "user" %}
 
+{# Flash messages #}
+{% set notifMsg = "" %}
+{% set notifType = "" %}
+{% for type, messages in app.flashes %}
+    {% for message in messages %}
+		{% set notifMsg = message %}
+		{% set notifType = type %}
+    {% endfor %}
+{% endfor %}
+
+{# Sort value #}
+{% set sortValue = "default"|trans %}
+{% for key, item in sort %}
+    {% set sortValue = key %}
+{% endfor %}
+
+{# Set routes #}
+{% set routes = {
+	index: 'super_admin_user',
+	new: 'super_admin_user_new',
+	edit: 'super_admin_user_edit',
+	show: 'super_admin_user_show',
+	delete: 'super_admin_user_delete'
+} %}
+
 {# Title #}
 {% block title %}
     {{ parent() }} - 
-    {{ "Liste utilisateurs"|trans }}
+    {{ "Lister utilisateurs"|trans }}
 {% endblock title %}
 
 {# Heading #}
 {% block layout_header %}
-    <nav aria-label="breadcrumb">
+
+	{# Site map #}
+    <nav aria-label="breadcrumb" data-notify="{{ notifMsg }}" data-notify-type="{{ notifType }}">
         <ol class="breadcrumb bg-transparent small mb-2 p-0">
             <li class="breadcrumb-item active" aria-current="page">{{ app.user.username|title }}</li>
             <li class="breadcrumb-item active" aria-current="page">{{ "Utilisateur"|trans }}</li>
         </ol>
     </nav>
 
-    <div class="d-flex align-items-center">
-		<h1 class="h2 text-light-black">{{ "Liste utilisateurs"|trans|title }}</h1>
-		<div class="ml-auto">
-			<a href="{{ path("super_admin_user_new") }}" class="btn btn-danger">
-				<i class="fa fa-plus mr-2"></i>{{ "Nouveau utilisateur"|trans|title }}
+    {# Page header #}
+    <div class="row d-flex align-items-center">
+    	<div class="col-12 col-lg mb-3 mb-lg-0">
+			<h1 class="h2 text-light-black">{{ "Lister utilisateurs"|trans|title }}</h1>
+    	</div>
+		<div class="col-12 col-lg text-lg-right">
+			<a href="{{ path(routes.new) }}" class="btn btn-danger">
+				<i class="fa fa-plus mr-2"></i>{{ "Nouvel utilisateur"|trans|title }}
 			</a>
 		</div>
     </div>
@@ -31,129 +61,145 @@
 {# Body #}
 {% block layout_container %}
 
-	<div class="row mt-4">
+	{# Page title #}
+	<section class="row mt-4 mb-3">
 		<div class="col">
 			
-			<p class="lead small text-muted mb-3">{{ "La liste de utilisateurs"|trans }}</p>
+			<p class="lead small text-muted mb-4">{{ "La liste de utilisateurs"|trans }}</p>
 			
-			<div class="d-flex align-items-center mb-4">
-				<div class="dropdown show">
-				  	<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownSort" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				  		{# <i class="fas fa-sort mr-2"></i> #}
-				  		<i class="fas fa-sort-alpha-up mr-2"></i>
-				    	<small class="mr-2">{{ "Ordonner par (Username)"|trans }}</small>
-				  	</a>
+			{# Sort #}
+			<div class="row mb-4">
+				<div class="col-12 col-lg-3 mb-3 mb-lg-0">
+					<div class="dropdown show">
+					  	<a class="btn btn-secondary dropdown-toggle" href="#" role="button" 
+					  		id="dropdownSort" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					  		{# <i class="fas fa-sort mr-2"></i> #}
+					  		<i class="fas fa-sort-alpha-up mr-2"></i>
+					    	<small class="mr-2">{{ "Ordonner par (%val%)"|trans({"%val%": sortValue}) }}</small>
+					  	</a>
 
-				  	<div class="dropdown-menu" aria-labelledby="dropdownSort">
-				    	<a class="dropdown-item" href="#"><small>{{ "Username(ASC)"|trans }}</small></a>
-				    	<a class="dropdown-item" href="#"><small>{{ "Username(DESC)"|trans }}</small></a>
-				    	<a class="dropdown-item" href="#"><small>{{ "Email(ASC)"|trans }}</small></a>
-				    	<a class="dropdown-item" href="#"><small>{{ "Email(DESC)"|trans }}</small></a>
-				  	</div>
+					  	<div class="dropdown-menu" aria-labelledby="dropdownSort">
+					  		{% for item in [
+		  							{title: "Defaut"|trans, param: {}},
+		  							{title: "Username (ASC)"|trans, param: {username: 'ASC'}},
+		  							{title: "Username (DESC)"|trans, param: {username: 'DESC'}},
+		  							{title: "Email (ASC)"|trans, param: {email: 'ASC'}},
+		  							{title: "Email (DESC)"|trans, param: {email: 'DESC'}},
+		  						]
+		  					%}
+						    	<a class="dropdown-item" 
+						    		href="{{ path(routes.index, {page: page, limit: limit, sort: item.param}) }}">
+						    		<small>{{ item.title }}</small>
+						    	</a>
+					  		{% endfor %}
+					  	</div>
+					</div>
 				</div>
 
-				<div class="input-group ml-3 w-25">
-				 	<div class="input-group-prepend">
-				    	<span class="input-group-text bg-transparent border-light-lg border-right-0" id="basic-addon1">
-				    		<i class="fas fa-filter"></i>
-				    	</span>
-				  	</div>
-				  	<input type="search" class="form-control border-light-lg border-left-0"
-						placeholder="{{ "Filter les utilisateurs"|trans }}">
+				{# Filter input #}
+				<div class="col-12 col-lg-4 mb-3 mb-lg-0">
+					<div class="input-group">
+					 	<div class="input-group-prepend">
+					    	<span class="input-group-text bg-transparent border-light-lg border-right-0" id="basic-addon1">
+					    		<i class="fas fa-filter"></i>
+					    	</span>
+					  	</div>
+					  	<input id="contentFilterInput" type="search" class="form-control border-light-lg border-left-0"
+							placeholder="{{ "Filter les locations"|trans }}...">
+					</div>
 				</div>
 
-				<div class="dropdown show ml-auto">
-				  	<a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownCount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				  		<i class="fas fa-list-ol mr-2"></i>
-				    	<small class="mr-2">{{ "Afficher par (50)"|trans }}</small>
-				  	</a>
+				{# Limit #}
+				<div class="col-12 col-lg-3 d-lg-flex offset-lg-2">
+					<div class="dropdown show ml-lg-auto">
+					  	<a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownCount" 
+					  		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					  		<i class="fas fa-list-ol mr-2"></i>
+					    	<small class="mr-2">{{ "Afficher par (%count%)"|trans({'%count%': limit}) }}</small>
+					  	</a>
 
-				  	<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownCount">
-				    	<a class="dropdown-item" href="#"><small>{{ "Afficher par (50)"|trans }}</small></a>
-				    	<a class="dropdown-item" href="#"><small>{{ "Afficher par (100)"|trans }}</small></a>
-				    	<a class="dropdown-item" href="#"><small>{{ "Afficher par (500)"|trans }}</small></a>
-				    	<a class="dropdown-item" href="#"><small>{{ "Afficher par (1000)"|trans }}</small></a>
-				  	</div>
+					  	<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownCount">
+					  		{% for item in [50, 100, 500, 1000] %}
+					  		    <a class="dropdown-item {% if item == limit %}active{% endif %}" 
+					  		    	href="{{ path(routes.index, {page: page, limit: item}) }}">
+					  		    	<small>{{ "Afficher par (%count%)"|trans({'%count%': item}) }}</small>
+					  		    </a>
+					  		{% endfor %}
+					  	</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</section>
 
-	<div class="row">
+	{# Page body #}
+	<section class="row">
 		<div class="col">
-			<table class="table custum-table">
-				<thead>
-					<tr>
-						<th scope="col" width="10px">#</th>
-						<th scope="col">{{ "Username"|trans }}</th>
-						<th scope="col">{{ "Email"|trans }}</th>
-						<th scope="col">{{ "Role"|trans }}</th>
-						<th scope="col"><i class="fas fa-calendar-alt mr-2"></i>{{ "Created"|trans }}</th>
-						<th scope="col" width="20%" class="text-center">
-							<i class="fas fa-cogs mr-2"></i>{{ "Actions"|trans }}
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for item in [
-						{username: "John", email: "vensy@gmail.com", role: "Admin"},
-						{username: "Vensy", email: "John@gmail.com", role: "Admin"},
-						{username: "Titha", email: "Titha@gmail.com", role: "Admin"},
-						{username: "Titho", email: "Titho@gmail.com", role: "Super Admin"},
-						{username: "John", email: "vensy@gmail.com", role: "Admin"},
-						{username: "Vensy", email: "John@gmail.com", role: "Admin"},
-						{username: "Titha", email: "Titha@gmail.com", role: "Admin"},
-						{username: "Titho", email: "Titho@gmail.com", role: "Super Admin"},
-						{username: "Lorem ipsum", email: "lorem@gmail.com", role: "Admin"}
-						] %}
+			<div class="table-responsive">
+				<table id="contentList" class="table custum-table">
+					<thead>
 						<tr>
-							<th class="align-middle" scope="row" width="10px">{{ loop.index }}00</th>
-							<td class="align-middle">{{ item.username|title }}</td>
-							<td class="align-middle">{{ item.email|title }}</td>
-							<td class="align-middle">{{ item.role|title }}</td>
-							<td class="align-middle">Today</td>
-							<td width="20%" class="text-right align-middle">
-								<a href="{{ path("super_admin_user_show", {id: 1}) }}" class="btn btn-info btn-sm">
-									<i class="far fa-eye mr-1"></i>
-									<span>{{ "Voir"|trans }}</span>
-								</a>
-								<a href="" class="btn btn-dark btn-sm">
-									<i class="fas fa-edit mr-1"></i>
-									<span>{{ "Modifier"|trans }}</span>
-								</a>
-							</td>
+							<th scope="col" width="10px">#</th>
+							<th scope="col">{{ "Username"|trans }}</th>
+							<th scope="col">{{ "Email"|trans }}</th>
+							<th scope="col">{{ "Roles"|trans }}</th>
+							<th scope="col"><i class="fas fa-calendar-alt mr-2"></i>{{ "Created"|trans }}</th>
+							<th scope="col" width="20%" class="text-center">
+								<i class="fas fa-cogs mr-2"></i>{{ "Actions"|trans }}
+							</th>
 						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
+					</thead>
+					{% if entities|length > 0 %}
+						<tbody>
+							{% for entity in entities %}
+								<tr data-keys="{{ entity.username|lower }} {{ entity.email|lower }} 
+									{{ entity.roles|join(', ')|lower }}">
+									<th class="align-middle" scope="row" width="10px">{{ loop.index }}</th>
+									<td class="align-middle">{{ entity.username|title }}</td>
+									<td class="align-middle">{{ entity.email|title }}</td>
+									<td class="align-middle">{{ entity.roles|join(', ')|title }}</td>
+									<td class="align-middle">{{ entity.created|date }}</td>
+									<td width="20%" class="text-right align-middle">
+										<a href="{{ path(routes.show, {id: entity.id}) }}" 
+											class="btn btn-info btn-sm mb-1 mb-lg-0">
+											<i class="far fa-eye mr-1"></i><span>{{ "Voir"|trans }}</span>
+										</a>
+										<a href="{{ path(routes.edit, {id: entity.id}) }}" 
+											class="btn btn-dark btn-sm">
+											<i class="fas fa-edit mr-1"></i><span>{{ "Modifier"|trans }}</span>
+										</a>
+									</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					{% endif %}
+				</table>
+			</div>
+			<p id="emptyMsg" class="mt-5 small lead text-center text-muted {% if entities|length > 0 %}d-none{% endif %}">
+				{{ "Aucun element à afficher..."|trans }}
+			</p>			
 		</div>
-	</div>
+	</section>
 
-	<div class="row mt-5">
-		<div class="col d-flex align-items-center">
-			<small class="badge badge-dark py-2 px-3 small">Affichage de 1 à 50 de 100</small>
+	{# Page footer #}
+	<section class="row mt-5">
+		<div class="col d-flex align-items-center mb-3 mb-lg-0 page-counter">
+			{% if entities.nbResults > 0 %}
+				<small class="badge badge-dark py-2 px-3 small">
+					{{ 'Affichage de %from% à %to% de %all%'|trans({'%from%':((page-1)*limit)+1, '%to%':((page-1)*limit) + 
+						entities.currentPageResults|length, '%all%':entities.nbResults}) }}
+				</small>
+			{% endif %}
 		</div>
 		<div class="col">
-			<nav aria-label="Pagination" class="d-flex justify-content-end">
-			  	<ul class="pagination m-0">
-				    <li class="page-item">
-				      	<a class="page-link" href="#" aria-label="Previous">
-				        	<span aria-hidden="true">&laquo;</span>
-				        	<span class="sr-only">Previous</span>
-				      	</a>
-				    </li>
-				    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-				    <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
-				    <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
-				    <li class="page-item">
-				      	<a class="page-link" href="#" aria-label="Next">
-				        	<span aria-hidden="true">&raquo;</span>
-				        	<span class="sr-only">Next</span>
-				      	</a>
-				    </li>
-			  	</ul>
+			<nav aria-label="Pagination" class="d-flex justify-content-lg-end">
+			  	{{ pagerfanta(entities, 'twitter_bootstrap4', {
+			  			'next_message' : 'Suivant'|trans,
+						'prev_message': 'Precedent'|trans,
+			  		}) 
+				}}
 			</nav>
 		</div>
-	</div>
+	</section>
 
 {% endblock %}

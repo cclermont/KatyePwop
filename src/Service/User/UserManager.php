@@ -19,15 +19,15 @@ class UserManager extends AbstractManager
     /**
      * Properties
      */
-    protected $doctrineEM;
+    protected $fosUserManager;
     
     /**
      * Construct
      */
-    public function __construct(EntityManagerInterface $doctrineEM, UserManagerInterface $em)
+    public function __construct(EntityManagerInterface $em, UserManagerInterface $fosUserManager)
     {
         $this->em = $em;
-        $this->doctrineEM = $doctrineEM;
+        $this->fosUserManager = $fosUserManager;
     }
     
     /**
@@ -35,21 +35,35 @@ class UserManager extends AbstractManager
      */
     public function update($entity){
         
-        $this->em->updateUser($entity);
+        $this->fosUserManager->updateUser($entity);
     }
 
     /**
      * Get repository
      */
     public function getRepository(): EntityRepository{
-        return $this->doctrineEM->getRepository(User::class);
+        return $this->em->getRepository(User::class);
+    }
+
+    /**
+     * Count user by role
+     */
+    public function countByRole($role) {
+        return $this->getRepository()->countByRole($role);
+    }
+
+    /**
+     * Find user by role
+     */
+    public function findByRole($role) {
+        return $this->getRepository()->findByRole($role);
     }
     
     /**
      * Create entity
      */
     public function createEntity(){
-        return new User();
+        return $this->fosUserManager->createUser();
     }
     
     /**

@@ -18,7 +18,7 @@
 {# Title #}
 {% block title %}
     {{ parent() }} - 
-    {{ "Nouvel utilisateur"|trans }}
+    {{ "Modifier utilisateur"|trans }}
 {% endblock title %}
 
 {# Heading #}
@@ -29,12 +29,12 @@
 	        <ol class="breadcrumb bg-transparent small mb-2 p-0">
 	            <li class="breadcrumb-item active" aria-current="page">{{ app.user.username|title }}</li>
 	            <li class="breadcrumb-item active" aria-current="page">{{ "Utilisateur"|trans }}</li>
-	            <li class="breadcrumb-item active" aria-current="page">{{ "Nouveau"|trans }}</li>
+	            <li class="breadcrumb-item active" aria-current="page">{{ "Modifier"|trans }}</li>
 	        </ol>
 	    </nav>
 
 	    <div class="d-flex align-items-center">
-			<h1 class="h2 text-light-black">{{ "Nouvel utilisateur"|trans|title }}</h1>
+			<h1 class="h2 text-light-black">{{ "Modifier utilisateur"|trans|title }}</h1>
 	    </div>
 	</div>
 </div>

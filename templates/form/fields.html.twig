@@ -24,3 +24,12 @@
         </span>
     </div>
 {% endblock %}
+
+{% block pretty_checkbox_widget %}
+    <div class="pretty p-default">
+        {{ form_widget(form) }}
+        <div class="state">
+            {{ form_label(form) }}
+        </div>
+    </div>
+{% endblock pretty_checkbox_widget %}

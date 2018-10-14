@@ -1,13 +1,14 @@
 <div class="aside-menu mt-3">
 	<ul class="list-unstyled">
 	    <li>
-	    	<a href="" class="btn btn-block border-0 btn-light text-center text-lg-left pl-2 pl-lg-1">
+	    	<a href="{{ path("super_admin_user_show", {id: app.user.id}) }}" 
+	    		class="btn btn-block border-0 btn-light text-center text-lg-left pl-2 pl-lg-1">
 	    		{% if app.user.profile is defined and app.user.profile.image is defined %}
 	    			<img src="{{ vich_uploader_asset(app.user.profile.image, 'file') | imagine_filter('thumb_64x64') }}" 
 								alt="{{ "Photo de profil"|trans }}" width="40px" class="mr-lg-3 rounded">
 	    		{% else %}
 	    		    <img src="{{ asset("images/avatar.png") | imagine_filter('thumb_64x64') }}" 
-	    		    	alt="{{ "Photo de profil"|trans }}">
+	    		    	alt="{{ "Photo de profil"|trans }}" class="mr-lg-3 rounded">
 	    		{% endif %}
 	    		
 				<span class="h6 d-none d-lg-inline">{{ app.user.username|title }}</span>
@@ -86,7 +87,8 @@
 							</a>
 						</div>
 						<div class="col-12 col-lg px-lg-0 w-25">
-							<a href="" class="btn btn-block btn-dark border-0 py-2 rounded-0" 
+							<a href="{{ path("super_admin_user_change_password") }}" 
+								class="btn btn-block btn-dark border-0 py-2 rounded-0" 
 								title="{{ "Changer mot de passe"|trans }}" data-toggle="tooltip" data-placement="top">
 								<i class="fas fa-unlock-alt"></i>
 							</a>

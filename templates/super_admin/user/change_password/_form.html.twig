@@ -1,0 +1,38 @@
+{# Set routes #}
+{% set routes = {
+	show: 'super_admin_user_show'
+} %}
+
+<div class="row mt-3">
+	<div class="col col-lg-6 offset-lg-3">
+			<p class="lead small text-muted mb-3">
+				{{ "Utiliser ce formulaire pour changer votre mot de passe"|trans }}
+			</p>
+		<div>
+			{{ form_start(form) }}
+				{{ form_errors(form) }}
+
+	  			{{ form_row(form.current_password, {label: "Mot de passe", 
+	  				help: "Veuillez indiquer votre actuel mot de passe.", 
+	  				attr: {class: "border-light-lg", placeholder: "Entrer votre mot de passe"}}) }}
+	  			{{ form_row(form.plainPassword.first, {label: "Nouveau mot de passe", 
+	  				help: "Veuillez indiquer votre nouveau mot de passe.", 
+	  				attr: {class: "border-light-lg", placeholder: "Entrer votre nouveau mot de passe"}}) }}
+	  			{{ form_row(form.plainPassword.second, {label: "Confirmer mot de passe", 
+	  				help: "Veuillez confirmer votre nouveau mot de passe.", 
+	  				attr: {class: "border-light-lg", placeholder: "Confirmer votre nouveau mot de passe"}}) }}
+
+		  		<div class="row mt-4">
+		  			<div class="col-12 col-lg">
+	  					<button type="submit" class="btn btn-block btn-dark mb-3">{{ "Changer"|trans }}</button>
+	  				</div>
+		  			<div class="col-12 col-lg">
+		  				<a href="{{ path(routes.show, {id: app.user.id}) }}" class="btn btn-block btn-light mb-3">
+		  					{{ "Annuler"|trans }}
+		  				</a>
+		  			</div>
+		  		</div>
+			{{ form_end(form) }}
+		</div>
+	</div>
+</div>

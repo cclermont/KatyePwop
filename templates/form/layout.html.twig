@@ -5,7 +5,7 @@
 {% block form_errors -%}
     {% if errors|length > 0 -%}
         {% if form is not rootform %}<span class="help-block text-danger small mb-4 mt-0">{% else %}<div class="small alert alert-danger mb-4 mt-0">{% endif %}
-        <ul class="list-unstyled">
+        <ul class="list-unstyled mb-0">
         {%- for error in errors -%}
             {# use font-awesome icon library #}
             <li><span class="fa fa-exclamation-triangle mr-1"></span>{{ error.message }}</li>

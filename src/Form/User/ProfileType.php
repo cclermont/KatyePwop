@@ -17,6 +17,7 @@ class ProfileType extends AbstractType
             ->add('lastname')
             ->add('birthdate')
             ->add('gender', ChoiceType:: class, [
+                'placeholder' => 'Choisissez un sexe',
                 'choices' => [
                     'Male' => Profile::GENDER_MALE,
                     'Female' => Profile::GENDER_FEMALE,

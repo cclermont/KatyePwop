@@ -1,3 +1,8 @@
+{# Set routes #}
+{% set routes = {
+	index: 'super_admin_location'
+} %}
+
 <div class="row mt-3">
 	<div class="col col-lg-8 offset-lg-2">
 			<p class="lead small text-muted mb-3">
@@ -71,7 +76,7 @@
 		  				</div>
 		  			{% endif %}
 		  			<div class="col-12 col-lg">
-		  				<a href="{{ path("super_admin_location") }}" class="btn btn-block btn-light mb-3">
+		  				<a href="{{ path(routes.index) }}" class="btn btn-block btn-light mb-3">
 		  					{{ "Annuler"|trans }}
 		  				</a>
 		  			</div>

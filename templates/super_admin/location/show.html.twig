@@ -14,6 +14,14 @@
     {% endfor %}
 {% endfor %}
 
+{# Set routes #}
+{% set routes = {
+	index: 'super_admin_location',
+	new: 'super_admin_location_new',
+	edit: 'super_admin_location_edit',
+	show: 'super_admin_location_show',
+	delete: 'super_admin_location_delete'
+} %}
 
 {# Title #}
 {% block title %}

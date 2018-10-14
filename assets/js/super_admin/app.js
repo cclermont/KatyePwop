@@ -52,7 +52,7 @@ $(() => {
 					.stop()
 					.hide('fast', () => { toggleEmptyMsg() })
 					.each((i, item) => {
-						if ($(item).data("keys").indexOf($(this).val().toLowerCase()) > 0) {
+						if ($(item).data("keys").indexOf($(this).val().toLowerCase()) > -1) {
 							$(item).stop().show('fast', () => { toggleEmptyMsg() });
 						}
 					});

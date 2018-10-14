@@ -5,7 +5,10 @@ namespace App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 
+use App\Traits\Core\Entity\CreatedModifiedTrait;
+
 /**
+ * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="user_user")
  * @ORM\Entity(repositoryClass="App\Repository\User\UserRepository")
  */
@@ -17,16 +20,16 @@ class User extends BaseUser
      * @ORM\Column(type="integer")
      */
     protected $id;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $blocked;
     
     /**
      * @ORM\OneToOne(targetEntity="Profile", cascade={"persist", "remove"})
      */
     private $profile;
+
+    /**
+     * Use Created modified trait
+     */
+    use CreatedModifiedTrait;
 
     /**
      * Constants
@@ -44,24 +47,12 @@ class User extends BaseUser
     {
         parent::__construct();
 
-        $this->blocked = false;
+        $this->enabled = true;
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getBlocked(): ?bool
-    {
-        return $this->blocked;
-    }
-
-    public function setBlocked(bool $blocked): self
-    {
-        $this->blocked = $blocked;
-
-        return $this;
     }
 
     public function isUser(): ?bool
@@ -89,5 +80,16 @@ class User extends BaseUser
         $this->profile = $profile;
 
         return $this;
+    }
+
+    static public function getRolesList(): Array
+    {
+        return [
+            self:: ROLE_USER,
+            self:: ROLE_ADMIN,
+            self:: ROLE_OPERATOR,
+            self:: ROLE_ROAD_AGENT,
+            self:: ROLE_SUPER_ADMIN,
+        ];
     }
 }

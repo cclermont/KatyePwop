@@ -3,7 +3,6 @@
 namespace App\Repository\Location;
 
 use Symfony\Bridge\Doctrine\RegistryInterface;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 use App\Entity\Location\Location;
 use App\Repository\Core\AbstractRepository;

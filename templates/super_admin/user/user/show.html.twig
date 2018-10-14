@@ -3,6 +3,28 @@
 {# Set vars #}
 {% set currentModule = "user" %}
 
+{# Flash messages #}
+{% set notifMsg = "" %}
+{% set notifType = "" %}
+
+{% for type, messages in app.flashes %}
+    {% for message in messages %}
+		{% set notifMsg = message %}
+		{% set notifType = type %}
+    {% endfor %}
+{% endfor %}
+
+{# Set routes #}
+{% set routes = {
+	index: 'super_admin_user',
+	new: 'super_admin_user_new',
+	edit: 'super_admin_user_edit',
+	show: 'super_admin_user_show',
+	delete: 'super_admin_user_delete',
+	profile_edit: 'super_admin_user_profile_edit',
+	change_password: 'super_admin_user_change_password'
+} %}
+
 {# Title #}
 {% block title %}
     {{ parent() }} - 
@@ -12,7 +34,7 @@
 {# Heading #}
 {% block layout_body_container %}
 
-	<div class="col bg-white px-5 py-4">
+	<div class="col bg-white px-5 py-4" data-notify="{{ notifMsg }}" data-notify-type="{{ notifType }}">
 
 		{# Header #}
 
@@ -48,38 +70,30 @@
 				<div class="row mb-4">
 					<div class="col">
 						<h5 class="h6 text-dark-gray">{{ "Username"|title }}</h5>
-						<span class="d-block text-gray-dark">{{ "Admin" }}</span>
+						<span class="d-block text-gray-dark">{{ entity.username|title|default("N/A") }}</span>
 					</div>
 					<div class="col">
 						<h5 class="h6 text-dark-gray">{{ "Email"|title }}</h5>
-						<span class="d-block text-gray-dark">{{ "Admin@yahoo.fr" }}</span>
+						<span class="d-block text-gray-dark">{{ entity.email|title|default("N/A") }}</span>
 					</div>
 					<div class="col">
-						<h5 class="h6 text-dark-gray">{{ "Role"|title }}</h5>
-						<span class="d-block text-gray-dark">{{ "Super Admin" }}</span>
+						<h5 class="h6 text-dark-gray">{{ "Roles"|title }}</h5>
+						<span class="d-block text-gray-dark">{{ entity.roles|join(', ')|default("N/A") }}</span>
 					</div>
 				</div>
 				<div class="row mb-4">
 					<div class="col">
 						<h5 class="h6 text-dark-gray">{{ "Active"|title }}</h5>
-						<span class="d-block text-gray-dark">{{ "Admin@yahoo.fr" }}</span>
-					</div>
-					<div class="col">
-						<h5 class="h6 text-dark-gray">{{ "Bloqué"|title }}</h5>
-						<span class="d-block text-gray-dark">{{ "Super Admin" }}</span>
+						<span class="d-block text-gray-dark">
+							{% if entity.enabled %}{{ "Oui"|trans }}{% else %}{{ "Non"|trans }}{% endif %}
+						</span>
 					</div>
 					<div class="col">
 						<h5 class="h6 text-dark-gray">{{ "Dernière connexion"|title }}</h5>
 						<span class="d-block text-gray-dark">{{ "Super Admin" }}</span>
 					</div>
-				</div>
-				<div class="row">
 					<div class="col">
-						<h5 class="h6 text-dark-gray">{{ "Role"|title }}</h5>
-						<span class="d-block text-gray-dark">{{ "Super Admin" }}</span>
 					</div>
-					<div class="col"></div>
-					<div class="col"></div>
 				</div>
 			</div>
 
@@ -93,38 +107,54 @@
 			<hr class="my-2">
 			<div id="collapse2" class="collapse show mt-4">
 				<div class="row mb-4">
-					<div class="col-12 col-lg-4">
-						<p><img src="{{ asset("images/card_3.png") }}" alt="..." class="img-thumbnail"></p>
+					<div class="col-12 col-lg-3">
+						<p class="mb-1">
+							{% if entity.profile is defined and entity.profile.image is defined %}
+				    			<img src="{{ vich_uploader_asset(entity.profile.image, 'file') 
+				    				| imagine_filter('thumb_256x256') }}"
+				    				alt="{{ "Photo de profil"|trans }}" class="img-thumbnail">
+				    		{% else %}
+				    		    <img src="{{ asset("images/avatar.jpg") | imagine_filter('thumb_256x256') }}" 
+				    		    	alt="{{ "Photo de profil"|trans }}" class="img-thumbnail">
+				    		{% endif %}
+						</p>
+						<p class="lead small text-center font-italic text-muted">{{ "Photo de profil..."|trans }}</p>
 					</div>
-					<div class="col-12 col-lg-8">
+					<div class="col-12 col-lg-8 offset-lg-1">
 						<div class="row mb-4">
 							<div class="col">
 								<h5 class="h6 text-dark-gray">{{ "Nom"|title }}</h5>
-								<span class="d-block text-gray-dark">{{ "Admin@yahoo.fr" }}</span>
+								<span class="d-block text-gray-dark">{{ entity.profile.firstname|default("N/A") }}</span>
 							</div>
 							<div class="col">
 								<h5 class="h6 text-dark-gray">{{ "Prénom"|title }}</h5>
-								<span class="d-block text-gray-dark">{{ "Super Admin" }}</span>
+								<span class="d-block text-gray-dark">{{ entity.profile.lastname|default("N/A") }}</span>
 							</div>
 						</div>
 						<div class="row mb-4">
 							<div class="col">
 								<h5 class="h6 text-dark-gray">{{ "Date de naissance"|title }}</h5>
-								<span class="d-block text-gray-dark">{{ "Admin@yahoo.fr" }}</span>
+								<span class="d-block text-gray-dark">
+									{% if entity.profile.birthdate is defined %}
+										{{ entity.profile.birthdate|date }}
+									{% else %}
+									    {{ "N/A" }}
+									{% endif %}
+								</span>
 							</div>
 							<div class="col">
-								<h5 class="h6 text-dark-gray">{{ "Genre"|title }}</h5>
-								<span class="d-block text-gray-dark">{{ "Super Admin" }}</span>
+								<h5 class="h6 text-dark-gray">{{ "Sexe"|title }}</h5>
+								<span class="d-block text-gray-dark">{{ entity.profile.gender|default("N/A") }}</span>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col">
 								<h5 class="h6 text-dark-gray">{{ "Téléphone"|title }}</h5>
-								<span class="d-block text-gray-dark">{{ "Admin@yahoo.fr" }}</span>
+								<span class="d-block text-gray-dark">{{ "N/A" }}</span>
 							</div>
 							<div class="col">
-								<h5 class="h6 text-dark-gray">{{ "Role"|title }}</h5>
-								<span class="d-block text-gray-dark">{{ "Super Admin" }}</span>
+								<h5 class="h6 text-dark-gray">{{ "Adresse"|title }}</h5>
+								<span class="d-block text-gray-dark">{{ "N/A" }}</span>
 							</div>
 						</div>
 					</div>
@@ -148,14 +178,44 @@
 			</a>
 			<hr class="my-0">
 			<div class="body p-3">
-				<a href="" class="btn btn-block btn-dark mb-3 text-left">
-					<i class="fa fa-edit fa-fw mr-2"></i>
-					<span>{{ "Modifier"|trans }}</span>
+
+				{% if app.user.id == entity.id %}
+					{# Changer password #}
+					<a href="{{ path(routes.change_password) }}" 
+						class="btn btn-block btn-secondary mb-3 text-left">
+						<i class="fas fa-user fa-fw mr-2"></i>
+						<span>{{ "Changer mot de passe"|trans }}</span>
+					</a>
+				{% endif %}
+
+				{% if app.user.id == entity.id %}
+					{# Edit profile #}
+					<a href="{{ path(routes.profile_edit) }}" 
+						class="btn btn-block btn-dark mb-3 text-left">
+						<i class="fas fa-user fa-fw mr-2"></i>
+						<span>{{ "Modifier mon profil"|trans }}</span>
+					</a>
+				{% endif %}
+
+				{# List button #}
+				<a href="{{ path(routes.index) }}" 
+					class="btn btn-block btn-info mb-3 text-left">
+					<i class="fas fa-list-ol fa-fw mr-2"></i>
+					<span>{{ "Aller à liste"|trans }}</span>
 				</a>
-				<a href="" class="btn btn-block btn-danger mb-3 text-left">
-					<i class="fa fa-fw fa-trash-alt mr-2"></i>
-					<span>{{ "Effacer"|trans }}</span>
-				</a>
+
+				{% if is_granted('ROLE_ADMIN') %}
+					{# Update button #}
+					<a href="{{ path(routes.edit, {id: entity.id}) }}" 
+						class="btn btn-block btn-success mb-3 text-left">
+						<i class="fa fa-edit fa-fw mr-2"></i>
+						<span>{{ "Modifier"|trans }}</span>
+					</a>
+
+					{# Delete button #}
+					{{ include('form/_delete_form.html.twig', 
+						{link: path(routes.delete, {id: entity.id})}, with_context = false) }}
+				{% endif %}
 			</div>
 		</div>
 
@@ -170,13 +230,13 @@
 				<div class="row mb-3">
 					<div class="col col-lg-6">
 						<span class="d-block text-dark-gray small font-weight-bold">{{ "Créé"|trans }}</span>
-						<span class="d-block text-gray-dark small">Today at 12:00 AM</span>
+						<span class="d-block text-gray-dark small">{{ entity.created|date }}</span>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col col-lg-6">
 						<span class="d-block text-dark-gray small font-weight-bold">{{ "Modifié"|trans }}</span>
-						<span class="d-block text-gray-dark small">Today at 12:00 AM</span>
+						<span class="d-block text-gray-dark small">{{ entity.modified|date }}</span>
 					</div>
 				</div>
 			</div>
