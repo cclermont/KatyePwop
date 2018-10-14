@@ -52,13 +52,14 @@
                             <i class="fa fa-university fa-4x text-info"></i>
                         </div>
                         <div class="col text-center text-lg-right mt-3 mt-lg-0">
-                            <span class="h3 d-block">100</span>
+                            <span class="h3 d-block">{{ institution_count }}</span>
                             <small class="d-block text-muted">{{ "Institutions"|trans }}</small>
                         </div>
                     </div>
                 </div>
                 <div class="bg-light border rounded-bottom">
-                    <a href="" class="btn btn-link btn-block text-info btn-light text-left">
+                    <a href="{{ path("super_admin_institution_institution") }}" 
+                        class="btn btn-link btn-block text-info btn-light text-left">
                         <i class="far fa-arrow-alt-circle-right float-right mt-1"></i>
                         <span class="small">{{ "Voir plus"|trans }}</span>
                     </a>

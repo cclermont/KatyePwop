@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 use App\Service\Core\AbstractManager;
 use App\Entity\Institution\Institution;
-use App\Form\App\Institution\InstitutionType;
+use App\Form\Institution\InstitutionType;
 
 
 class InstitutionManager extends AbstractManager
@@ -55,17 +55,17 @@ class InstitutionManager extends AbstractManager
         
         switch ($type) {
             case 'api':
-                return 'api_institution';
+                return 'api_institution_institution';
             break;
             case 'admin':
-                return 'admin_institution';
+                return 'admin_institution_institution';
             break;
             case 'default':
             case 'super_admin':
-                return 'super_admin_institution';
+                return 'super_admin_institution_institution';
             break;
             case 'frontend':
-                return 'frontend_institution';
+                return 'frontend_institution_institution';
             break;
         }
     }

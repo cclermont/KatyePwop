@@ -8,6 +8,13 @@ vich_uploader:
             namer: vich_uploader.namer_uniqid
             uri_prefix:         /uploads/images/profile
             upload_destination: '%kernel.project_dir%/public/uploads/images/profile'
+        institution_brand:
+            inject_on_load: true
+            delete_on_remove: true
+            delete_on_update: true
+            namer: vich_uploader.namer_uniqid
+            uri_prefix:         /uploads/images/institution
+            upload_destination: '%kernel.project_dir%/public/uploads/images/institution'
         message_image:
             inject_on_load: true
             delete_on_remove: true

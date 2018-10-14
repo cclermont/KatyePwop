@@ -1,0 +1,207 @@
+{% extends 'super_admin/layout.html.twig' %}
+
+{# Set vars #}
+{% set currentModule = "institution" %}
+
+{# Flash messages #}
+{% set notifMsg = "" %}
+{% set notifType = "" %}
+{% for type, messages in app.flashes %}
+    {% for message in messages %}
+		{% set notifMsg = message %}
+		{% set notifType = type %}
+    {% endfor %}
+{% endfor %}
+
+{# Sort value #}
+{% set sortValue = "default"|trans %}
+{% for key, item in sort %}
+    {% set sortValue = key %}
+{% endfor %}
+
+{# Set routes #}
+{% set routes = {
+	index: 'super_admin_institution_institution',
+	new: 'super_admin_institution_institution_new',
+	edit: 'super_admin_institution_institution_edit',
+	show: 'super_admin_institution_institution_show',
+	delete: 'super_admin_institution_institution_delete'
+} %}
+
+{# Title #}
+{% block title %}
+    {{ parent() }} - 
+    {{ "Lister institutions"|trans }}
+{% endblock title %}
+
+{# Heading #}
+{% block layout_header %}
+
+	{# Site map #}
+    <nav aria-label="breadcrumb" data-notify="{{ notifMsg }}" data-notify-type="{{ notifType }}">
+        <ol class="breadcrumb bg-transparent small mb-2 p-0">
+            <li class="breadcrumb-item active" aria-current="page">{{ app.user.username|title }}</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ "Institution"|trans }}</li>
+        </ol>
+    </nav>
+
+    {# Page header #}
+    <div class="row d-flex align-items-center">
+    	<div class="col-12 col-lg mb-3 mb-lg-0">
+			<h1 class="h2 text-light-black">{{ "Lister institutions"|trans|title }}</h1>
+    	</div>
+		<div class="col-12 col-lg text-lg-right">
+			<a href="{{ path(routes.new) }}" class="btn btn-danger">
+				<i class="fa fa-plus mr-2"></i>{{ "Nouvelle institution"|trans|title }}
+			</a>
+		</div>
+    </div>
+{% endblock %}
+
+{# Body #}
+{% block layout_container %}
+
+	{# Page title #}
+	<section class="row mt-4 mb-3">
+		<div class="col">
+			
+			<p class="lead small text-muted mb-4">{{ "La liste d'institutions"|trans }}</p>
+			
+			{# Sort #}
+			<div class="row mb-4">
+				<div class="col-12 col-lg-3 mb-3 mb-lg-0">
+					<div class="dropdown show">
+					  	<a class="btn btn-secondary dropdown-toggle" href="#" role="button" 
+					  		id="dropdownSort" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					  		{# <i class="fas fa-sort mr-2"></i> #}
+					  		<i class="fas fa-sort-alpha-up mr-2"></i>
+					    	<small class="mr-2">{{ "Ordonner par (%val%)"|trans({"%val%": sortValue}) }}</small>
+					  	</a>
+
+					  	<div class="dropdown-menu" aria-labelledby="dropdownSort">
+					  		{% for item in [
+		  							{title: "Defaut"|trans, param: {}},
+		  							{title: "Nom (ASC)"|trans, param: {name: 'ASC'}},
+		  							{title: "Nom (DESC)"|trans, param: {name: 'DESC'}},
+		  							{title: "Type (ASC)"|trans, param: {type: 'ASC'}},
+		  							{title: "Type (DESC)"|trans, param: {type: 'DESC'}}
+		  						]
+		  					%}
+						    	<a class="dropdown-item" 
+						    		href="{{ path(routes.index, {page: page, limit: limit, sort: item.param}) }}">
+						    		<small>{{ item.title }}</small>
+						    	</a>
+					  		{% endfor %}
+					  	</div>
+					</div>
+				</div>
+
+				{# Filter input #}
+				<div class="col-12 col-lg-4 mb-3 mb-lg-0">
+					<div class="input-group">
+					 	<div class="input-group-prepend">
+					    	<span class="input-group-text bg-transparent border-light-lg border-right-0" id="basic-addon1">
+					    		<i class="fas fa-filter"></i>
+					    	</span>
+					  	</div>
+					  	<input id="contentFilterInput" type="search" class="form-control border-light-lg border-left-0"
+							placeholder="{{ "Filter les institutions"|trans }}...">
+					</div>
+				</div>
+
+				{# Limit #}
+				<div class="col-12 col-lg-3 d-lg-flex offset-lg-2">
+					<div class="dropdown show ml-lg-auto">
+					  	<a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownCount" 
+					  		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					  		<i class="fas fa-list-ol mr-2"></i>
+					    	<small class="mr-2">{{ "Afficher par (%count%)"|trans({'%count%': limit}) }}</small>
+					  	</a>
+
+					  	<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownCount">
+					  		{% for item in [50, 100, 500, 1000] %}
+					  		    <a class="dropdown-item {% if item == limit %}active{% endif %}" 
+					  		    	href="{{ path(routes.index, {page: page, limit: item}) }}">
+					  		    	<small>{{ "Afficher par (%count%)"|trans({'%count%': item}) }}</small>
+					  		    </a>
+					  		{% endfor %}
+					  	</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	{# Page body #}
+	<section class="row">
+		<div class="col">
+			<div class="table-responsive">
+				<table id="contentList" class="table custum-table">
+					<thead>
+						<tr>
+							<th scope="col" width="10px">#</th>
+							<th scope="col">{{ "Nom"|trans }}</th>
+							<th scope="col">{{ "Type"|trans }}</th>
+							<th scope="col">{{ "Location"|trans }}</th>
+							<th scope="col">{{ "Admin"|trans }}</th>
+							<th scope="col"><i class="fas fa-calendar-alt mr-2"></i>{{ "Créé"|trans }}</th>
+							<th scope="col" width="20%" class="text-center">
+								<i class="fas fa-cogs mr-2"></i>{{ "Actions"|trans }}
+							</th>
+						</tr>
+					</thead>
+					{% if entities|length > 0 %}
+						<tbody>
+							{% for entity in entities %}
+								<tr data-keys="{{ entity.name|lower }} {{ entity.type|lower }} 
+												{{ entity.place.fullname|lower }} {{ entity.admin.username|lower }}">
+									<th class="align-middle" scope="row" width="10px">{{ loop.index }}</th>
+									<td class="align-middle">{{ entity.name|title }}</td>
+									<td class="align-middle">{{ entity.typeName|title }}</td>
+									<td class="align-middle">{{ entity.place.fullname|title }}</td>
+									<td class="align-middle">{{ entity.admin.username|title }}</td>
+									<td class="align-middle">{{ entity.created|date }}</td>
+									<td width="20%" class="text-right align-middle">
+										<a href="{{ path(routes.show, {id: entity.id}) }}" 
+											class="btn btn-info btn-sm mb-1 mb-lg-0">
+											<i class="far fa-eye mr-1"></i><span>{{ "Voir"|trans }}</span>
+										</a>
+										<a href="{{ path(routes.edit, {id: entity.id}) }}" 
+											class="btn btn-dark btn-sm">
+											<i class="fas fa-edit mr-1"></i><span>{{ "Modifier"|trans }}</span>
+										</a>
+									</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					{% endif %}
+				</table>
+			</div>
+			<p id="emptyMsg" class="mt-5 small lead text-center text-muted {% if entities|length > 0 %}d-none{% endif %}">
+				{{ "Aucun element à afficher..."|trans }}
+			</p>			
+		</div>
+	</section>
+
+	{# Page footer #}
+	<section class="row mt-5">
+		<div class="col d-flex align-items-center mb-3 mb-lg-0 page-counter">
+			{% if entities.nbResults > 0 %}
+				<small class="badge badge-dark py-2 px-3 small">
+					{{ 'Affichage de %from% à %to% de %all%'|trans({'%from%':((page-1)*limit)+1, '%to%':((page-1)*limit) + 
+						entities.currentPageResults|length, '%all%':entities.nbResults}) }}
+				</small>
+			{% endif %}
+		</div>
+		<div class="col">
+			<nav aria-label="Pagination" class="d-flex justify-content-lg-end">
+			  	{{ pagerfanta(entities, 'twitter_bootstrap4', {
+			  			'next_message' : 'Suivant'|trans,
+						'prev_message': 'Precedent'|trans,
+			  		}) 
+				}}
+			</nav>
+		</div>
+	</section>
+
+{% endblock %}

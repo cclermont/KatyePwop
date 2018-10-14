@@ -2,9 +2,17 @@
 
 namespace App\Entity\Institution;
 
+use App\Entity\Location\Location;
+use App\Entity\User\User;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+use App\Traits\Core\Entity\CreatedModifiedTrait;
 
 /**
+ * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="institution_institution")
  * @ORM\Entity(repositoryClass="App\Repository\Institution\InstitutionRepository")
  */
@@ -38,7 +46,7 @@ class Institution
     private $place;
     
     /**
-     * @ORM\OneToOne(targetEntity="Image")
+     * @ORM\OneToOne(targetEntity="Image", cascade={"persist", "remove"})
      */
     private $brand;
     
@@ -59,10 +67,21 @@ class Institution
     private $members;
 
     /**
+     * Use Created modified trait
+     */
+    use CreatedModifiedTrait;
+
+    /**
      * Constants
     */
-    const TYPE_PUBLIC = 0;
-    const TYPE_PRIVATE = 1;
+    const TYPE_PRIVATE = 0;
+    const TYPE_GOVERNMENTAL = 1;
+
+
+    public function __construct()
+    {
+        $this->members = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -80,5 +99,101 @@ class Institution
         $this->name = $name;
 
         return $this;
+    }
+
+    public function getType(): ?int
+    {
+        return $this->type;
+    }
+
+    public function setType(int $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getEnabled(): ?bool
+    {
+        return $this->enabled;
+    }
+
+    public function setEnabled(bool $enabled): self
+    {
+        $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    public function getPlace(): ?Location
+    {
+        return $this->place;
+    }
+
+    public function setPlace(?Location $place): self
+    {
+        $this->place = $place;
+
+        return $this;
+    }
+
+    public function getBrand(): ?Image
+    {
+        return $this->brand;
+    }
+
+    public function setBrand(?Image $brand): self
+    {
+        $this->brand = $brand;
+
+        return $this;
+    }
+
+    public function getAdmin(): ?User
+    {
+        return $this->admin;
+    }
+
+    public function setAdmin(?User $admin): self
+    {
+        $this->admin = $admin;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getMembers(): Collection
+    {
+        return $this->members;
+    }
+
+    public function addMember(User $member): self
+    {
+        if (!$this->members->contains($member)) {
+            $this->members[] = $member;
+        }
+
+        return $this;
+    }
+
+    public function removeMember(User $member): self
+    {
+        if ($this->members->contains($member)) {
+            $this->members->removeElement($member);
+        }
+
+        return $this;
+    }
+
+    public function getTypeName()
+    {
+        switch ($this->type) {
+            case self::TYPE_PRIVATE:
+                return 'Privée';
+            default:
+                return 'Gouvernementale';
+        }
     }
 }

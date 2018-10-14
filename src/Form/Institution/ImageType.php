@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Form\User;
+namespace App\Form\Institution;
 
-use App\Entity\User\Image;
+use App\Entity\Institution\Image;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
