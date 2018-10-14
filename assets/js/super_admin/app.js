@@ -14,6 +14,9 @@ import $ from 'jquery';
 // Toasttr
 import toastr from 'toastr';
 
+// Import Chart js
+import Chart from 'chart.js';
+
 // Import calendar graph
 import { SVGGraph, CanvasGraph, StrGraph } from 'calendar-graph';
 import { rectColor, today, oneYearAgo, diffDays, formatDate } from '../../../node_modules/calendar-graph/src/utils';
@@ -93,6 +96,41 @@ $(() => {
 			$(e.target).tooltip({title: text, trigger: "manual"}).tooltip("show");
 		}, (e) => {
 			$(e.target).tooltip("hide");
+		});
+	}
+
+	// Add Pie chart to dashboard
+	if ($('[data-type="pie-chart"]').length > 0) {
+
+		var data = {
+			    datasets: [{
+			        data: [10, 20, 30],
+			        backgroundColor: [
+			            '#ff6384',
+			            '#36a2eb',
+			            '#cc65fe',
+			            '#ffce56'
+			        ]
+			    }],
+
+			    // These labels appear in the legend and in the tooltips when hovering different arcs
+			    labels: [
+			        'Red',
+			        'Yellow',
+			        'Blue'
+			    ]
+			};
+
+		new Chart($('[data-type="pie-chart"]'),{
+		    type: 'pie',
+		    data: data,
+		    options: {
+		    	cutoutPercentage: 20,
+		    	legend: {
+		    		display: true,
+		    		position: 'right'
+		    	}
+		    }
 		});
 	}
 

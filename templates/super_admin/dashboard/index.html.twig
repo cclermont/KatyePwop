@@ -90,13 +90,14 @@
                             <i class="fa fa-map-marker-alt fa-4x text-warning"></i>
                         </div>
                         <div class="col text-center text-lg-right mt-3 mt-lg-0">
-                            <span class="h3 d-block">1293</span>
+                            <span class="h3 d-block">{{ location_count }}</span>
                             <small class="d-block text-muted">{{ "Locations"|trans }}</small>
                         </div>
                     </div>
                 </div>
                 <div class="bg-light border rounded-bottom">
-                    <a href="" class="btn btn-link text-warning btn-block btn-light text-left">
+                    <a href="{{ path("super_admin_location") }}" 
+                        class="btn btn-link text-warning btn-block btn-light text-left">
                         <i class="far fa-arrow-alt-circle-right float-right mt-1"></i>
                         <span class="small">{{ "Voir plus"|trans }}</span>
                     </a>
@@ -108,7 +109,7 @@
     {# Calendar graph for messages #}
     <section class="calendar-graph mt-5 pt-4">
         <div class="row">
-            <div class="col col-lg-9">
+            <div class="col-12 col-lg-9">
                 <h4 class="display-5 text-dark-gray">{{ "Flux des messages"|trans }}</h4>
                 <p class="lead small text-muted">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -129,6 +130,15 @@
                         </div>
                     </div>
                     <div id="tooltip"></div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3">
+                <h4 class="display-5 text-dark-gray">{{ "Utilisateurs"|trans }}</h4>
+                <p class="lead small text-muted">
+                    {{ "Repartition des utilisateurs"|trans }}
+                </p>
+                <div class="border p-3">
+                    <canvas data-type="pie-chart"></canvas>
                 </div>
             </div>
         </div>

@@ -8,12 +8,10 @@
 			left: 0;
 			right: 0;
 			bottom: 0;
-			z-index: 1;
 			position: fixed;
 			margin-right: -60px!important;
-
+			
 			.wrapper{
-				z-index: 10;
 				position: relative;
 				background-color: #2c3e50;
 			}
