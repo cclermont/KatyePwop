@@ -154,11 +154,11 @@
 						<tbody>
 							{% for entity in entities %}
 								<tr data-keys="{{ entity.name|lower }} {{ entity.type|lower }} 
-												{{ entity.place.fullname|lower }} {{ entity.admin.username|lower }}">
+												{{ entity.location.fullname|lower }} {{ entity.admin.username|lower }}">
 									<th class="align-middle" scope="row" width="10px">{{ loop.index }}</th>
 									<td class="align-middle">{{ entity.name|title }}</td>
 									<td class="align-middle">{{ entity.typeName|title }}</td>
-									<td class="align-middle">{{ entity.place.fullname|title }}</td>
+									<td class="align-middle">{{ entity.location.fullname|title }}</td>
 									<td class="align-middle">{{ entity.admin.username|title }}</td>
 									<td class="align-middle">{{ entity.created|date }}</td>
 									<td width="20%" class="text-right align-middle">

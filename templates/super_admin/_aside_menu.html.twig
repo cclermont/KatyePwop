@@ -3,12 +3,12 @@
 	    <li>
 	    	<a href="{{ path("super_admin_user_show", {id: app.user.id}) }}" 
 	    		class="btn btn-block border-0 btn-light text-center text-lg-left pl-2 pl-lg-1">
-	    		{% if app.user.profile is defined and app.user.profile.image is defined %}
+	    		{% if app.user.profile is not null and app.user.profile.hasImage %}
 	    			<img src="{{ vich_uploader_asset(app.user.profile.image, 'file') | imagine_filter('thumb_64x64') }}" 
 								alt="{{ "Photo de profil"|trans }}" width="40px" class="mr-lg-3 rounded">
 	    		{% else %}
 	    		    <img src="{{ asset("images/avatar.png") | imagine_filter('thumb_64x64') }}" 
-	    		    	alt="{{ "Photo de profil"|trans }}" class="mr-lg-3 rounded">
+	    		    	alt="{{ "Photo de profil"|trans }}" width="40px" class="mr-lg-3 rounded">
 	    		{% endif %}
 	    		
 				<span class="h6 d-none d-lg-inline">{{ app.user.username|title }}</span>

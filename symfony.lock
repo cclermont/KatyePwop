@@ -1,4 +1,7 @@
 {
+    "beberlei/doctrineextensions": {
+        "version": "v1.1.5"
+    },
     "behat/transliterator": {
         "version": "v1.2.0"
     },
@@ -124,6 +127,9 @@
             "version": "1.8",
             "ref": "523b4b0cfb88dc8637cb56e427e6be7718bdce32"
         }
+    },
+    "luxifer/doctrine-functions": {
+        "version": "1.6.0"
     },
     "monolog/monolog": {
         "version": "1.23.0"

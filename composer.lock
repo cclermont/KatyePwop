@@ -4,8 +4,62 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "699762f5e5b73a00a5f8a7f0953a5fd1",
+    "content-hash": "fdeca3243ae01627cbbbd2b3acdb2f0f",
     "packages": [
+        {
+            "name": "beberlei/DoctrineExtensions",
+            "version": "v1.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/beberlei/DoctrineExtensions.git",
+                "reference": "469f65355b034b21c9c755e2d46ff2c06164567b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/beberlei/DoctrineExtensions/zipball/469f65355b034b21c9c755e2d46ff2c06164567b",
+                "reference": "469f65355b034b21c9c755e2d46ff2c06164567b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "doctrine/orm": "^2.5",
+                "friendsofphp/php-cs-fixer": "^2.2.19",
+                "nesbot/carbon": "*",
+                "phpunit/phpunit": "^4.5",
+                "symfony/yaml": "^2.6",
+                "zf1/zend-date": "^1.12",
+                "zf1/zend-registry": "^1.12"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DoctrineExtensions\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Steve Lacey",
+                    "email": "steve@stevelacey.net"
+                }
+            ],
+            "description": "A set of extensions to Doctrine 2 that add support for additional query functions available in MySQL and Oracle.",
+            "keywords": [
+                "database",
+                "doctrine",
+                "orm"
+            ],
+            "time": "2018-09-26T16:18:17+00:00"
+        },
         {
             "name": "behat/transliterator",
             "version": "v1.2.0",
@@ -1939,6 +1993,53 @@
                 "transformation"
             ],
             "time": "2018-07-10T12:53:54+00:00"
+        },
+        {
+            "name": "luxifer/doctrine-functions",
+            "version": "1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/luxifer/doctrine-functions.git",
+                "reference": "e1c0bb1a5cb002d9fc82d8b32a5da28c02d34c6c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/luxifer/doctrine-functions/zipball/e1c0bb1a5cb002d9fc82d8b32a5da28c02d34c6c",
+                "reference": "e1c0bb1a5cb002d9fc82d8b32a5da28c02d34c6c",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/orm": ">=2.2.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Luxifer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Florent Viel",
+                    "email": "luxifer666@gmail.com",
+                    "homepage": "http://blog.luxifer.fr",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Doctrine DQL Functions for Mysql",
+            "homepage": "http://luxifer.github.io/doctrine-functions/",
+            "keywords": [
+                "database",
+                "dql",
+                "mysql"
+            ],
+            "time": "2017-12-21T14:04:35+00:00"
         },
         {
             "name": "monolog/monolog",

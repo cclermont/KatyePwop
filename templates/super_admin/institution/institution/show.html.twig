@@ -68,8 +68,8 @@
 				<div class="row mb-4">
 					<div class="col-12 col-lg-3">
 						<p class="mb-1">
-							{% if entity.brand is not empty %}
-				    			<img src="{{ vich_uploader_asset(entity.brand, 'file') 
+							{% if entity.hasImage %}
+				    			<img src="{{ vich_uploader_asset(entity.image, 'file') 
 				    				| imagine_filter('thumb_256x256') }}"
 				    				alt="{{ "Logo"|trans }}" class="img-thumbnail">
 				    		{% else %}
@@ -97,7 +97,7 @@
 							</div>
 							<div class="col">
 								<h5 class="h6 text-dark-gray">{{ "Location"|title }}</h5>
-								<span class="d-block text-gray-dark">{{ entity.place.fullname|default("N/A") }}</span>
+								<span class="d-block text-gray-dark">{{ entity.location.fullname|default("N/A") }}</span>
 							</div>
 						</div>
 						<div class="row">

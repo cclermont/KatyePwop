@@ -118,7 +118,7 @@
                 </p>
                 <div>
                     <div class="border py-4 px-3">
-                        <div data-type="calendar-graph"></div>
+                        <div data-type="calendar-graph" data-values="{{ message_graph|json_encode }}"></div>
                         <div class="calendar-graph-legend">
                             <ul class="list-unstyled d-flex mb-0 mr-4 align-items-center justify-content-end">
                                 <li class="small align-top mr-3"><small class="text-muted">{{ "Min" }}</small></li>
@@ -142,7 +142,7 @@
                 <div class="border p-3">
                     <canvas data-type="pie-chart" 
                             data-values="{{ user_role_count|json_encode }}" 
-                            data-labels="{{ ["Super admin", "Admin", "Institution", "Particulier"]|json_encode }}">
+                            data-labels="{{ ["Super admin", "Admin", "Operateur", "Particulier"]|json_encode }}">
                     </canvas>
                 </div>
             </div>

@@ -26,11 +26,13 @@ class Institution
     private $id;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(type="integer")
      */
     private $type;
@@ -41,24 +43,26 @@ class Institution
     private $enabled;
     
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Location\Location")
+     * @Assert\NotBlank()
+     * @ORM\ManyToOne(targetEntity="App\Entity\Location\Location")
      */
-    private $place;
+    private $location;
     
     /**
      * @ORM\OneToOne(targetEntity="Image", cascade={"persist", "remove"})
      */
-    private $brand;
+    private $image;
     
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User\User")
+     * @Assert\NotBlank()
+     * @ORM\OneToOne(targetEntity="App\Entity\User\User")
      */
     private $admin;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\User\User")
      *
-     * @ORM\JoinTable(name="institution_institution_user_join",
+     * @ORM\JoinTable(name="institution_institution_user_join", 
      *      joinColumns={@ORM\JoinColumn(name="institution_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id", unique=true)})
      *
@@ -125,28 +129,33 @@ class Institution
         return $this;
     }
 
-    public function getPlace(): ?Location
+    public function getLocation(): ?Location
     {
-        return $this->place;
+        return $this->location;
     }
 
-    public function setPlace(?Location $place): self
+    public function setLocation(?Location $location): self
     {
-        $this->place = $place;
+        $this->location = $location;
 
         return $this;
     }
 
-    public function getBrand(): ?Image
+    public function getImage(): ?Image
     {
-        return $this->brand;
+        return $this->image;
     }
 
-    public function setBrand(?Image $brand): self
+    public function setImage(?Image $image): self
     {
-        $this->brand = $brand;
+        $this->image = $image;
 
         return $this;
+    }
+
+    public function hasImage(): bool
+    {
+        return null != $this->image && !$this->image->isEmpty();
     }
 
     public function getAdmin(): ?User
@@ -185,6 +194,35 @@ class Institution
         }
 
         return $this;
+    }
+
+    public function hasMember(User $member): bool
+    {
+        return $this->members->contains($member);
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getAdministrators(): Collection
+    {
+        return $this->members->filter(function($item){ return $item->hasRole(User::ROLE_ADMIN); });
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getOperators(): Collection
+    {
+        return $this->members->filter(function($item){ return $item->hasRole(User::ROLE_OPERATOR); });
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getRoadAgents(): Collection
+    {
+        return $this->members->filter(function($item){ return $item->hasRole(User::ROLE_ROAD_AGENT); });
     }
 
     public function getTypeName()

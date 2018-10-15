@@ -109,7 +109,7 @@
 				<div class="row mb-4">
 					<div class="col-12 col-lg-3">
 						<p class="mb-1">
-							{% if entity.profile is defined and entity.profile.image is defined %}
+							{% if entity.profile is not null and entity.profile.hasImage %}
 				    			<img src="{{ vich_uploader_asset(entity.profile.image, 'file') 
 				    				| imagine_filter('thumb_256x256') }}"
 				    				alt="{{ "Photo de profil"|trans }}" class="img-thumbnail">
@@ -150,11 +150,13 @@
 						<div class="row">
 							<div class="col">
 								<h5 class="h6 text-dark-gray">{{ "Téléphone"|title }}</h5>
-								<span class="d-block text-gray-dark">{{ "N/A" }}</span>
+								<span class="d-block text-gray-dark">{{ entity.profile.phone|default("N/A") }}</span>
 							</div>
 							<div class="col">
 								<h5 class="h6 text-dark-gray">{{ "Adresse"|title }}</h5>
-								<span class="d-block text-gray-dark">{{ "N/A" }}</span>
+								<span class="d-block text-gray-dark">
+									{{ entity.profile.location|default("N/A") }}
+								</span>
 							</div>
 						</div>
 					</div>

@@ -4,19 +4,21 @@ namespace App\Form\User;
 
 use App\Entity\User\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class UserType extends AbstractType
 {
-    private $user;
+    private $security;
 
-    public function __construct(TokenStorageInterface $tokenStorage)
+    public function __construct(Security $security)
     {
-        $this->user = $tokenStorage->getToken()->getUser();
+        $this->security = $security;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -42,16 +44,17 @@ class UserType extends AbstractType
 
     private function getRolesChoices(): Array
     {
-        if ($this->user->isSuperAdmin()) {
+        if ($this->security->isGranted(User::ROLE_SUPER_ADMIN)) {
            return [
-                'Admin' => User::ROLE_ADMIN,
                 'Super admin' => User::ROLE_SUPER_ADMIN,
+                'Admin' => User::ROLE_ADMIN,
                 'Operateur' => User::ROLE_OPERATOR,
                 'Agent voirie' => User::ROLE_ROAD_AGENT,
                 'Particulier' => User::ROLE_USER,
             ];
-        } else if ($this->user->hasRole(User::ROLE_ADMIN)) {
+        } else if ($this->security->isGranted(User::ROLE_ADMIN)) {
            return [
+                'Admin' => User::ROLE_ADMIN,
                 'Operateur' => User::ROLE_OPERATOR,
                 'Agent voirie' => User::ROLE_ROAD_AGENT,
             ];

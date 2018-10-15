@@ -77,13 +77,7 @@ $(() => {
 	// Calendar graph config
 	if ($('[data-type="calendar-graph"]').length > 0) {
 		
-		const data = [
-		  { date: '2018-01-01', count: 16 },
-		  { date: '2018-03-03', count: 34 },
-		  { date: '2018-03-04', count: 54 },
-		  { date: '2018-05-06', count: 200 },
-		  // ...and so on
-		];
+		const data = $('[data-type="calendar-graph"]').data('values');
 
 		new SVGGraph('[data-type="calendar-graph"]', data, {
 		  	startDate: oneYearAgo(),
@@ -95,7 +89,7 @@ $(() => {
 
 		// Add tooltip
 		$('[data-type="calendar-graph"] .cg-day').hover((e) => {
-			var text = `${$(e.target).attr("data-count")} contributions on ${$(e.target).attr("data-date")}`;
+			var text = `${$(e.target).attr("data-count")} messages le ${$(e.target).attr("data-date")}`;
 			$(e.target).tooltip({title: text, trigger: "manual"}).tooltip("show");
 		}, (e) => {
 			$(e.target).tooltip("hide");

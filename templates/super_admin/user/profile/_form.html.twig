@@ -14,8 +14,13 @@
 	  			<div class="row">
 	  				<div class="col-12 col-lg-3" data-type="profile-pic-container">
 						<p class="text-center">
-							<img src="{{ vich_uploader_asset(entity.image, 'file') | imagine_filter('thumb_512x512') }}" 
-								alt="{{ "Photo de profil"|trans }}" class="img-thumbnail" data-type="profile-pic">
+							{% if entity.hasImage %}
+								<img src="{{ vich_uploader_asset(entity.image, 'file') | imagine_filter('thumb_512x512') }}" 
+									alt="{{ "Photo de profil"|trans }}" class="img-thumbnail" data-type="profile-pic">
+							{% else %}
+				    		    <img src="{{ asset("images/avatar.jpg") | imagine_filter('thumb_512x512') }}" 
+				    		    	alt="{{ "Photo de profil"|trans }}" class="img-thumbnail" data-type="profile-pic">
+				    		{% endif %}
 						</p>
 						<span class="btn btn-block btn-sm btn-primary mt-2 btn-upload" data-type="upload-btn"
 								data-label-default="{{ "Ajouter une photo"|trans }}" 
@@ -47,6 +52,15 @@
 					  			{{ form_row(form.gender, {label: "Sexe", 
 					  				help: "Veuillez indiquer votre gender correctement", 
 					  				attr: {class: "border-light-lg", placeholder: "Entrer votre sexe"}}) }}
+			  				</div>
+			  			</div>
+			  			<div class="row">
+			  				<div class="col-12 col-lg">
+					  			{{ form_row(form.phone, {label: "Téléphone", 
+					  				help: "Veuillez indiquer votre numero de téléphone correctement", 
+					  				attr: {class: "border-light-lg", placeholder: "Entrer votre téléphone"}}) }}
+			  				</div>
+			  				<div class="col-12 col-lg">
 			  				</div>
 			  			</div>
 				  		<div class="row mt-4">

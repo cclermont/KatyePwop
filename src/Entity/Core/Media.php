@@ -64,4 +64,9 @@ abstract class Media
 
         return $this;
     }
+
+    public function isEmpty(): bool
+    {
+        return null == $this->info->getName();
+    }
 }

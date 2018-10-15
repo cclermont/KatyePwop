@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ 'site.title'|trans }} - 
+	{{ 'site.manage'|trans }}
+{% endblock title %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('build/admin.css') }}" />
+{% endblock %}
+
+{# Body tag class name #}
+{% block body_class %}admin{% endblock body_class %}
+
+{% block body %}
+	
+	<div class="container-fluid">
+		
+		<div class="row">
+
+			<div class="col-3 col-lg-2">
+				<!-- Aside menu content -->
+				{{ include('admin/_aside_menu.html.twig', {currentModule: currentModule}) }}
+				<!-- /Aside menu content -->
+			</div>
+
+			{% block layout_body_container %}
+				<div class="col-9 col-lg-10 bg-white px-5 py-4" style="min-height:600px;">
+
+					<!-- header content -->
+					<header id="header" class="header mt-2">
+	    				{% block layout_header %}{% endblock %}
+					</header>
+					<!-- /header content -->
+					
+					<!-- page content -->
+					<div class="center-container">
+						{% block layout_container %}{% endblock %}
+					</div>
+					<!-- /page content -->
+					
+					<!-- footer content -->
+					{{ include('admin/_footer.html.twig') }}
+					<!-- /footer content -->
+				</div>
+			{% endblock %}
+		</div>
+	
+	</div>
+	
+{% endblock body %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('build/admin.js') }}"></script>
+{% endblock %}

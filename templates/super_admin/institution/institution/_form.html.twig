@@ -14,8 +14,8 @@
 	  			<div class="row">
 	  				<div class="col-12 col-lg-3" data-type="profile-pic-container">
 						<p class="text-center">
-							{% if entity.brand is not empty %}
-								<img src="{{ vich_uploader_asset(entity.brand, 'file') | imagine_filter('thumb_512x512') }}" 
+							{% if entity.hasImage %}
+								<img src="{{ vich_uploader_asset(entity.image, 'file') | imagine_filter('thumb_512x512') }}" 
 									alt="{{ "Logo"|trans }}" class="img-thumbnail" data-type="profile-pic">
 							{% else %}
 								<img src="{{ asset("images/logo.png") | imagine_filter('thumb_512x512') }}" 
@@ -26,7 +26,7 @@
 								data-label-default="{{ "Ajouter un logo"|trans }}" 
 								data-label-selected="{{ "Changer le logo"|trans }}">
 							<span>{{ "Ajouter un logo"|trans }}</span>
-							{{ form_widget(form.brand.file) }}
+							{{ form_widget(form.image.file) }}
 						</span>
 	  				</div>
 	  				<div class="col-12 col-lg">
@@ -49,7 +49,7 @@
 					  				attr: {class: "border-light-lg"}}) }}
 			  				</div>
 			  				<div class="col-12 col-lg">
-					  			{{ form_row(form.place, {label: "Location", 
+					  			{{ form_row(form.location, {label: "Location", 
 					  				help: "Veuillez indiquer la localisation de l'institution", 
 					  				attr: {class: "border-light-lg"}}) }}
 			  				</div>

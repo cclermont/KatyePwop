@@ -48,15 +48,43 @@ class DashboardController extends AbstractController
             "message_count" => $this->messageManager->count(),
             "location_count" => $this->locationManager->count(),
             "institution_count" => $this->institutionManager->count(),
+            "message_graph" => $this->convertGraphArrayKeys($this->messageManager->findAllGraph($this->getDatePattern())),
 
             "user_role_count" => [
                 $this->userManager->countByRole(User::ROLE_SUPER_ADMIN),
                 $this->userManager->countByRole(User::ROLE_ADMIN),
                 $this->userManager->countByRole(User::ROLE_OPERATOR),
                 // $this->userManager->countByRole(User::ROLE_ROAD_AGENT),
-                $this->userManager->countByRole(User::ROLE_USER),
+                $this->userManager->countByRole(User::ROLE_USER_SIMPLE),
             ],
 
         ]);
+    }
+
+    private function getDatePattern()
+    {
+        $to = new \DateTime();
+        $from = (new \DateTime())->sub(new \DateInterval('P1Y'));
+
+        return ['date_from' => $from->format('Y-m-d'), 'date_to' => $to->format('Y-m-d')];
+    }
+
+    public function convertGraphArrayKeys(array $items): array
+    {
+        $response = [];
+
+        foreach ($items as $item) {
+            $elem = [];
+            foreach ($item as $key => $value) {
+                if ($key == 'stat_date') {
+                    $elem['date'] = $value;
+                } else if ($key == 'stat_count') {
+                    $elem['count'] = $value;
+                }
+            }
+            $response[] = $elem;
+        }
+
+        return $response;
     }
 }

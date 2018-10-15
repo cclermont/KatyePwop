@@ -38,6 +38,7 @@ class User extends BaseUser
     const ROLE_ADMIN = "ROLE_ADMIN";
     const ROLE_OPERATOR = "ROLE_OPERATOR";
     const ROLE_ROAD_AGENT = "ROLE_ROAD_AGENT";
+    const ROLE_USER_SIMPLE = "ROLE_USER_SIMPLE";
     const ROLE_SUPER_ADMIN = "ROLE_SUPER_ADMIN";
 
     /**
@@ -48,6 +49,7 @@ class User extends BaseUser
         parent::__construct();
 
         $this->enabled = true;
+        $this->profile = new Profile();
     }
 
     public function getId(): ?int
@@ -55,9 +57,9 @@ class User extends BaseUser
         return $this->id;
     }
 
-    public function isUser(): ?bool
+    public function isSimpleUser(): ?bool
     {
-        return $this->hasRole(self::ROLE_USER);
+        return $this->hasRole(self::ROLE_USER_SIMPLE);
     }
 
     public function isAdmin(): ?bool
@@ -82,14 +84,21 @@ class User extends BaseUser
         return $this;
     }
 
+    public function getFormLabel(): string
+    {
+        $roles = implode(', ', $this->roles);
+        return ucfirst("{$this->username} ({$roles})");
+    }
+
     static public function getRolesList(): Array
     {
         return [
-            self:: ROLE_USER,
-            self:: ROLE_ADMIN,
-            self:: ROLE_OPERATOR,
-            self:: ROLE_ROAD_AGENT,
-            self:: ROLE_SUPER_ADMIN,
+            self::ROLE_USER,
+            self::ROLE_ADMIN,
+            self::ROLE_OPERATOR,
+            self::ROLE_ROAD_AGENT,
+            self::ROLE_USER_SIMPLE,
+            self::ROLE_SUPER_ADMIN,
         ];
     }
 }

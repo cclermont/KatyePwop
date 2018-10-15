@@ -1,20 +1,152 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/layout.html.twig' %}
 
-{% block title %}Hello {{ controller_name }}!{% endblock %}
+{# Set vars #}
+{% set currentModule = "dashboard" %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{# Title #}
+{% block title %}
+    {{ parent() }}
+{% endblock title %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+{# Heading #}
+{% block layout_header %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb bg-transparent small mb-2 p-0">
+            <li class="breadcrumb-item active" aria-current="page">{{ app.user.username|title }}</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ "Dashboard"|trans }}</li>
+        </ol>
+    </nav>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'src/Controller/Admin/DashboardController.php'|file_link(0) }}">src/Controller/Admin/DashboardController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'templates/admin/dashboard/index.html.twig'|file_link(0) }}">templates/admin/dashboard/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <h1 class="h2 text-light-black">{{ "Tableau de bord"|trans }}</h1>
+{% endblock %}
+
+{# Body #}
+{% block layout_container %}
+    
+    {# Info card #}
+    <section class="info-card my-4">
+        <div class="row">
+            <div class="col-12 col-lg mb-3 mb-lg-0">
+                <div class="border border-bottom-0 rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-lg-4 text-center text-lg-left">
+                            <i class="fa fa-users fa-4x text-primary"></i>
+                        </div>
+                        <div class="col text-center text-lg-right mt-3 mt-lg-0">
+                            <span class="h3 d-block">{{ user_admin_count }}</span>
+                            <small class="d-block text-muted">{{ "Administrateurs"|trans }}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-light border rounded-bottom">
+                    <a href="{{ path("admin_user", {role: 'admin'}) }}" 
+                        class="btn btn-link btn-block text-primary btn-light text-left">
+                        <i class="far fa-arrow-alt-circle-right float-right mt-1"></i>
+                        <span class="small">{{ "Voir plus"|trans }}</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-12 col-lg mb-3 mb-lg-0">
+                <div class="border border-bottom-0 rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-lg-4 text-center text-lg-left">
+                            <i class="fa fa-users fa-4x text-dark"></i>
+                        </div>
+                        <div class="col text-center text-lg-right mt-3 mt-lg-0">
+                            <span class="h3 d-block">{{ user_operator_count }}</span>
+                            <small class="d-block text-muted">{{ "Operateurs"|trans }}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-light border rounded-bottom">
+                    <a href="{{ path("admin_user", {role: 'operator'}) }}" 
+                        class="btn btn-link btn-block text-info btn-light text-left">
+                        <i class="far fa-arrow-alt-circle-right float-right mt-1"></i>
+                        <span class="small">{{ "Voir plus"|trans }}</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-12 col-lg mb-3 mb-lg-0">
+                <div class="border border-bottom-0 rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-lg-4 text-center text-lg-left">
+                            <i class="fa fa-users fa-4x text-secondary"></i>
+                        </div>
+                        <div class="col text-center text-lg-right mt-3 mt-lg-0">
+                            <span class="h3 d-block">{{ user_road_agent_count }}</span>
+                            <small class="d-block text-muted">{{ "Agent voirie"|trans }}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-light border rounded-bottom">
+                    <a href="{{ path("admin_user", {role: 'agent'}) }}" 
+                        class="btn btn-link text-danger btn-block btn-light text-left">
+                        <i class="far fa-arrow-alt-circle-right float-right mt-1"></i>
+                        <span class="small">{{ "Voir plus"|trans }}</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-12 col-lg mb-3 mb-lg-0">
+                <div class="border border-bottom-0 rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-lg-4 text-center text-lg-left">
+                            <i class="fa fa-envelope fa-4x text-danger"></i>
+                        </div>
+                        <div class="col text-center text-lg-right mt-3 mt-lg-0">
+                            <span class="h3 d-block">{{ message_sent_count }}</span>
+                            <small class="d-block text-muted">{{ "Messages envoyés"|trans }}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-light border rounded-bottom">
+                    <a href="{{ path("admin_message_message", {type: 'sent'}) }}" 
+                        class="btn btn-link text-danger btn-block btn-light text-left">
+                        <i class="far fa-arrow-alt-circle-right float-right mt-1"></i>
+                        <span class="small">{{ "Voir plus"|trans }}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# Calendar graph for messages #}
+    <section class="calendar-graph mt-5 pt-4">
+        <div class="row">
+            <div class="col-12 col-lg-9">
+                <h4 class="display-5 text-dark-gray">{{ "Flux des messages"|trans }}</h4>
+                <p class="lead small text-muted">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+                <div>
+                    <div class="border py-4 px-3">
+                        <div data-type="calendar-graph" data-values="{{ message_received_graph|json_encode }}" ></div>
+                        <div class="calendar-graph-legend">
+                            <ul class="list-unstyled d-flex mb-0 mr-4 align-items-center justify-content-end">
+                                <li class="small align-top mr-3"><small class="text-muted">{{ "Min" }}</small></li>
+                                <li class="item mr-2"></li>
+                                <li class="item mr-2"></li>
+                                <li class="item mr-2"></li>
+                                <li class="item mr-2"></li>
+                                <li class="item mr-3"></li>
+                                <li class="small align-top"><small class="text-muted">{{ "Max" }}</small></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="tooltip"></div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3">
+                <h4 class="display-5 text-dark-gray">{{ "Utilisateurs"|trans }}</h4>
+                <p class="lead small text-muted">
+                    {{ "Repartition des utilisateurs"|trans }}
+                </p>
+                <div class="border p-3">
+                    <canvas data-type="pie-chart" 
+                            data-values="{{ user_role_count|json_encode }}" 
+                            data-labels="{{ ["Admin", "Operateur", "Agent voirie"]|json_encode }}">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}

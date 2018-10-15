@@ -1,0 +1,240 @@
+{% extends 'admin/layout.html.twig' %}
+
+{# Set vars #}
+{% set currentModule = "message" %}
+
+{# Flash messages #}
+{% set notifMsg = "" %}
+{% set notifType = "" %}
+{% for type, messages in app.flashes %}
+    {% for message in messages %}
+		{% set notifMsg = message %}
+		{% set notifType = type %}
+    {% endfor %}
+{% endfor %}
+
+{# Sort value #}
+{% set sortValue = "default"|trans %}
+{% for key, item in sort %}
+    {% set sortValue = key %}
+{% endfor %}
+
+{# Set routes #}
+{% set routes = {
+	index: 'admin_message_message',
+	new: 'admin_message_message_new',
+	edit: 'admin_message_message_edit',
+	show: 'admin_message_message_show',
+	delete: 'admin_message_message_delete'
+} %}
+
+{# Title #}
+{% block title %}
+    {{ parent() }} - 
+    {{ "Lister messages"|trans }}
+{% endblock title %}
+
+{# Heading #}
+{% block layout_header %}
+
+	{# Site map #}
+    <nav aria-label="breadcrumb" data-notify="{{ notifMsg }}" data-notify-type="{{ notifType }}">
+        <ol class="breadcrumb bg-transparent small mb-2 p-0">
+            <li class="breadcrumb-item active" aria-current="page">{{ app.user.username|title }}</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ "Message"|trans }}</li>
+        </ol>
+    </nav>
+
+    {# Page header #}
+    <div class="row d-flex align-items-center">
+    	<div class="col-12 col-lg mb-3 mb-lg-0">
+			<h1 class="h2 text-light-black">{{ "Lister messages"|trans|title }}</h1>
+    	</div>
+		<div class="col-12 col-lg text-lg-right">
+			<a href="{{ path(routes.new) }}" class="btn btn-danger">
+				<i class="fa fa-plus mr-2"></i>{{ "Nouveau message"|trans|title }}
+			</a>
+		</div>
+    </div>
+{% endblock %}
+
+{# Body #}
+{% block layout_container %}
+
+	{# Page title #}
+	<section class="row mt-4 mb-3">
+		<div class="col">
+			
+			<p class="lead small text-muted mb-4">{{ "La liste de messages"|trans }}</p>
+			
+			{# Sort #}
+			<div class="row mb-4">
+				<div class="col-12 col-lg-2 mb-3 mb-lg-0">
+					<div class="dropdown show mr-lg-3">
+					  	<a class="btn btn-secondary dropdown-toggle" href="#" role="button" 
+					  		id="dropdownSort" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					  		<i class="fas fa-sort-alpha-up mr-2"></i>
+					    	<small class="mr-2">{{ "Ordonner par (%val%)"|trans({"%val%": sortValue}) }}</small>
+					  	</a>
+
+					  	<div class="dropdown-menu" aria-labelledby="dropdownSort">
+					  		{% for item in [
+		  							{title: "Defaut"|trans, param: {}},
+		  							{title: "Titre (ASC)"|trans, param: {title: 'ASC'}},
+		  							{title: "Titre (DESC)"|trans, param: {title: 'DESC'}}
+		  						]
+		  					%}
+						    	<a class="dropdown-item" 
+						    		href="{{ path(routes.index, {page: page, limit: limit, sort: item.param}) }}">
+						    		<small>{{ item.title }}</small>
+						    	</a>
+					  		{% endfor %}
+					  	</div>
+					</div>
+				</div>
+
+
+				{# Filter input #}
+				<div class="col-12 col-lg-4 mb-3 mb-lg-0">
+					<div class="input-group ml-lg-5">
+					 	<div class="input-group-prepend">
+					    	<span class="input-group-text bg-transparent border-light-lg border-right-0" id="basic-addon1">
+					    		<i class="fas fa-filter"></i>
+					    	</span>
+					  	</div>
+					  	<input id="contentFilterInput" type="search" class="form-control border-light-lg border-left-0"
+							placeholder="{{ "Filter les messages"|trans }}...">
+					</div>
+				</div>
+
+				{# Page type filter #}
+				<div class="col-12 col-lg-2 mb-3 mb-lg-0 d-lg-flex offset-lg-1">
+					<div class="dropdown show ml-lg-auto">
+					  	<a class="btn btn-info dropdown-toggle" href="#" role="button" 
+					  		id="dropdownFilter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					  		<i class="fas fa-filter mr-2"></i>
+					  		{% if type == 'sent' %}
+					    		<small class="mr-2">{{ "Messages envoyés" }}</small>
+					  		{% else %}
+					    	<small class="mr-2">{{ "Messages reçus" }}</small>
+					  		{% endif %}
+					  	</a>
+
+					  	<div class="dropdown-menu" aria-labelledby="dropdownFilter">
+					  		{% for item in [
+		  							{title: "Messages reçus"|trans, type: 'received'},
+		  							{title: "Messages envoyés"|trans, type: 'sent'}
+		  						]
+		  					%}
+						    	<a class="dropdown-item {% if type == item.type %}active{% endif %}" 
+						    		href="{{ path(routes.index, {page: page, limit: limit, type: item.type}) }}">
+						    		<small>{{ item.title }}</small>
+						    	</a>
+					  		{% endfor %}
+					  	</div>
+					</div>
+				</div>
+
+				{# Limit #}
+				<div class="col-12 col-lg-3 d-lg-flex">
+					<div class="dropdown show ml-lg-auto">
+					  	<a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownCount" 
+					  		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					  		<i class="fas fa-list-ol mr-2"></i>
+					    	<small class="mr-2">{{ "Afficher par (%count%)"|trans({'%count%': limit}) }}</small>
+					  	</a>
+
+					  	<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownCount">
+					  		{% for item in [50, 100, 500, 1000] %}
+					  		    <a class="dropdown-item {% if item == limit %}active{% endif %}" 
+					  		    	href="{{ path(routes.index, {page: page, limit: item}) }}">
+					  		    	<small>{{ "Afficher par (%count%)"|trans({'%count%': item}) }}</small>
+					  		    </a>
+					  		{% endfor %}
+					  	</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	{# Page body #}
+	<section class="row">
+		<div class="col">
+			<div class="table-responsive">
+				<table id="contentList" class="table custum-table">
+					<thead>
+						<tr>
+							<th scope="col" width="10px">#</th>
+							<th scope="col">{{ "Title"|trans }}</th>
+							<th scope="col">{{ "contenu"|trans }}</th>
+							<th scope="col">{{ "Media"|trans }}</th>
+							<th scope="col">{{ "Type"|trans }}</th>
+							<th scope="col"><i class="fas fa-calendar-alt mr-2"></i>{{ "Créé"|trans }}</th>
+							<th scope="col" width="20%" class="text-center">
+								<i class="fas fa-cogs mr-2"></i>{{ "Actions"|trans }}
+							</th>
+						</tr>
+					</thead>
+					{% if entities|length > 0 %}
+						<tbody>
+							{% for entity in entities %}
+								<tr data-keys="{{ entity.title|lower }} {{ entity.content|lower }}">
+									<th class="align-middle" scope="row" width="10px">{{ loop.index }}</th>
+									<td class="align-middle">{{ entity.title|title }}</td>
+									<td class="align-middle">{{ entity.content|slice(0, 50)|title }}...</td>
+									<td class="align-middle">
+										{% if entity.images.count > 0 or entity.videos.count > 0 %}
+											{{ "Oui"|trans }}
+										{% else %}
+										    {{ "Non"|trans }}
+										{% endif %}
+									</td>
+									<td class="align-middle">
+										{% if entity.broadcasted %}{{ "Envoyé"|trans }}{% else %}{{ "Reçu"|trans }}{% endif %}
+									</td>
+									<td class="align-middle">{{ entity.created|date }}</td>
+									<td width="20%" class="text-right align-middle">
+										<a href="{{ path(routes.show, {id: entity.id}) }}" 
+											class="btn btn-info btn-sm mb-1 mb-lg-0">
+											<i class="far fa-eye mr-1"></i><span>{{ "Voir"|trans }}</span>
+										</a>
+										<a href="{{ path(routes.edit, {id: entity.id}) }}" 
+											class="btn btn-dark btn-sm">
+											<i class="fas fa-edit mr-1"></i><span>{{ "Modifier"|trans }}</span>
+										</a>
+									</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					{% endif %}
+				</table>
+			</div>
+			<p id="emptyMsg" class="mt-5 small lead text-center text-muted {% if entities|length > 0 %}d-none{% endif %}">
+				{{ "Aucun element à afficher..."|trans }}
+			</p>			
+		</div>
+	</section>
+
+	{# Page footer #}
+	<section class="row mt-5">
+		<div class="col d-flex align-items-center mb-3 mb-lg-0 page-counter">
+			{% if entities.nbResults > 0 %}
+				<small class="badge badge-dark py-2 px-3 small">
+					{{ 'Affichage de %from% à %to% de %all%'|trans({'%from%':((page-1)*limit)+1, '%to%':((page-1)*limit) + 
+						entities.currentPageResults|length, '%all%':entities.nbResults}) }}
+				</small>
+			{% endif %}
+		</div>
+		<div class="col">
+			<nav aria-label="Pagination" class="d-flex justify-content-lg-end">
+			  	{{ pagerfanta(entities, 'twitter_bootstrap4', {
+			  			'next_message' : 'Suivant'|trans,
+						'prev_message': 'Precedent'|trans,
+			  		}) 
+				}}
+			</nav>
+		</div>
+	</section>
+
+{% endblock %}

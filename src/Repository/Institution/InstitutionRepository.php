@@ -4,6 +4,7 @@ namespace App\Repository\Institution;
 
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
+use App\Entity\User\User;
 use App\Entity\Institution\Institution;
 use App\Repository\Core\AbstractRepository;
 /**
@@ -26,5 +27,24 @@ class InstitutionRepository extends AbstractRepository
      */
     protected function addParentToAndXPattern($qb, $andX, $parent){
         return $andX;
+    }
+    
+    /**
+     * Same institution
+     */
+    public function findByUser(User $user): ?Institution {
+        
+        $qb = $this->createQueryBuilder('e');
+
+           $qb
+            ->addSelect('a')
+            ->addSelect('m')
+            ->innerJoin('e.admin', 'a')
+            ->innerJoin('e.members', 'm')
+            ->where(':member MEMBER OF e.members')
+            ->setParameter('member', $user)
+        ;
+
+        return $qb->getQuery()->getOneOrNullResult();
     }
 }

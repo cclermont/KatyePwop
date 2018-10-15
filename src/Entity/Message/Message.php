@@ -32,6 +32,7 @@ class Message
     private $title;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(type="text")
      */
     private $content;
@@ -57,14 +58,21 @@ class Message
     private $videos;
     
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Location\Location")
+     * @Assert\NotBlank()
+     * @ORM\ManyToOne(targetEntity="App\Entity\Location\Location")
      */
-    private $place;
+    private $location;
     
     /**
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="App\Entity\User\User")
      */
     private $sender;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Institution\Institution")
+     */
+    private $senderInstitution;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Institution\Institution")
@@ -196,14 +204,14 @@ class Message
         return $this;
     }
 
-    public function getPlace(): ?Location
+    public function getLocation(): ?Location
     {
-        return $this->place;
+        return $this->location;
     }
 
-    public function setPlace(?Location $place): self
+    public function setLocation(?Location $location): self
     {
-        $this->place = $place;
+        $this->location = $location;
 
         return $this;
     }
@@ -254,6 +262,18 @@ class Message
     public function setBroadcasted(bool $broadcasted): self
     {
         $this->broadcasted = $broadcasted;
+
+        return $this;
+    }
+
+    public function getSenderInstitution(): ?Institution
+    {
+        return $this->senderInstitution;
+    }
+
+    public function setSenderInstitution(?Institution $senderInstitution): self
+    {
+        $this->senderInstitution = $senderInstitution;
 
         return $this;
     }

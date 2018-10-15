@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 
+use App\Entity\User\User;
 use App\Service\Core\AbstractManager;
 use App\Entity\Institution\Institution;
 use App\Form\Institution\InstitutionType;
@@ -20,6 +21,58 @@ class InstitutionManager extends AbstractManager
      */
     public function getRepository(): EntityRepository{
         return $this->em->getRepository(Institution::class);
+    }
+    
+    /**
+     * In same institution
+     */
+    public function inSameInstitution(User $user, User $member): bool {
+        if ($entity = $this->findByUser($user)) {
+            return $entity->hasMember($member);
+        }
+
+        return false;
+    }
+    
+    /**
+     * Find institution by user
+     */
+    public function findByUser(User $user): ?Institution {
+        return $this->getRepository()->findByUser($user);
+    }
+    
+    /**
+     * Get members id
+     */
+    public function getMembersId(User $user): Array {
+        
+        $ids = array();
+
+        if ($entity = $this->findByUser($user)) {
+            foreach ($entity->getMembers() as $item) {
+                $ids[] = $item->getId();
+            }
+        }
+
+        return $ids;
+    }
+    
+    /**
+     * Get admins id
+     */
+    public function getAdminsId(User $user): Array {
+        
+        $ids = array();
+
+        if ($entity = $this->findByUser($user)) {
+            foreach ($entity->getMembers() as $item) {
+                if ($item->hasRole(User::ROLE_ADMIN)) {
+                    $ids[] = $item->getId();
+                }
+            }
+        }
+
+        return $ids;
     }
     
     /**

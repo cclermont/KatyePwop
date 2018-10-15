@@ -45,6 +45,13 @@ services:
             $userManager: "@fos_user.user_manager"
             $formFactory: "@fos_user.change_password.form.factory"
 
+    # Admin change password controller
+    App\Controller\Admin\User\ChangePasswordController:
+        public: true
+        bind:
+            $userManager: "@fos_user.user_manager"
+            $formFactory: "@fos_user.change_password.form.factory"
+
 
     #### Login success handler ##########
     App\Handler\User\LoginSuccessHandler:

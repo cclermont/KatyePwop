@@ -2,6 +2,7 @@
 
 namespace App\Entity\User;
 
+use App\Entity\Location\Location;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,17 +19,17 @@ class Profile
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string", length=128, nullable=true)
      */
     private $firstname;
 
     /**
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string", length=128, nullable=true)
      */
     private $lastname;
 
     /**
-     * @ORM\Column(type="string", length=16)
+     * @ORM\Column(type="string", length=16, nullable=true)
      */
     private $gender;
 
@@ -36,11 +37,21 @@ class Profile
      * @ORM\Column(type="date", nullable=true)
      */
     private $birthdate;
+
+    /**
+     * @ORM\Column(type="string", length=32, nullable=true)
+     */
+    private $phone;
     
     /**
      * @ORM\OneToOne(targetEntity="Image", cascade={"persist", "remove"})
      */
     private $image;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Location\Location")
+     */
+    private $location;
 
     /**
      * Constants
@@ -110,6 +121,35 @@ class Profile
     public function setImage(?Image $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function hasImage(): bool
+    {
+        return null != $this->image && !$this->image->isEmpty();
+    }
+
+    public function getLocation(): ?Location
+    {
+        return $this->location;
+    }
+
+    public function setLocation(?Location $location): self
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?string $phone): self
+    {
+        $this->phone = $phone;
 
         return $this;
     }

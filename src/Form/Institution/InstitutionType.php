@@ -16,42 +16,74 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class InstitutionType extends AbstractType
 {
+    
+    /**
+     * Conts
+     */ 
+    const ADMIN_CONTEXT = 'admin';
+    const SUPER_ADMIN_CONTEXT = 'super_admin';
+
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $admins = $options['admins'];
+        $context = $options['context'];
+        $members = $options['members'];
+
         $builder
             ->add('name')
-            ->add('enabled')
-            ->add('brand', ImageType::class)
+            ->add('enabled', null, [
+                'disabled' => self::ADMIN_CONTEXT == $context,
+            ])
+            ->add('image', ImageType::class)
             ->add('type', ChoiceType:: class, [
                 'placeholder' => 'Choisissez un type',
+                'disabled' => self::ADMIN_CONTEXT == $context,
                 'choices' => [
                     'Privée' => Institution::TYPE_PRIVATE,
                     'Gouvernementale' => Institution::TYPE_GOVERNMENTAL,
                 ],
             ])
-            ->add('place', EntityType::class, [
+            ->add('location', EntityType::class, [
                 'class' => Location::class,
                 'choice_label' => 'fullname',
                 'placeholder' => 'Choisissez un lieu',
+                'disabled' => self::ADMIN_CONTEXT == $context,
                 'query_builder' => function (LocationRepository $er) {
                     return $er->createQueryBuilder('u')->orderBy('u.fullname', 'ASC');
                 },
             ])
             ->add('admin', EntityType::class, [
                 'class' => User::class,
-                'choice_label' => 'username',
+                'choice_label' => 'formLabel',
                 'placeholder' => 'Choisissez un administrateur',
-                'query_builder' => function (UserRepository $er) {
-                    return $er->createQueryBuilder('u')->orderBy('u.username', 'ASC');
+                'query_builder' => function (UserRepository $er) use ($admins){
+                    
+                    $qb = $er->createQueryBuilder('u');
+
+                    if (count($admins) > 0) {
+                        $qb->where($qb->expr()->in('u.id', $admins));
+                    }
+                    
+                    return $qb->orderBy('u.username', 'ASC');
                 },
             ])
             ->add('members', EntityType::class, [
                 'multiple' => true,
                 'class' => User::class,
-                'choice_label' => 'username',
+                'required' => false,
+                'choice_label' => 'formLabel',
                 'placeholder' => 'Choisissez les membres',
-                'query_builder' => function (UserRepository $er) {
-                    return $er->createQueryBuilder('u')->orderBy('u.username', 'ASC');
+                'disabled' => self::ADMIN_CONTEXT == $context,
+                'query_builder' => function (UserRepository $er) use ($members){
+                    
+                    $qb = $er->createQueryBuilder('u');
+
+                    if (count($members) > 0) {
+                        $qb->where($qb->expr()->in('u.id', $members));
+                    }
+                    
+                    return $qb->orderBy('u.username', 'ASC');
                 },
             ])
         ;
@@ -60,7 +92,10 @@ class InstitutionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
+            'admins' => [],
+            'members' => [],
             'data_class' => Institution::class,
+            'context' => self::SUPER_ADMIN_CONTEXT,
         ]);
     }
 }

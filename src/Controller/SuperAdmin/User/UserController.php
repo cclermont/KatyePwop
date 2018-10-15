@@ -70,7 +70,7 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             
             // Set default password
-            $entity->setPassword(md5(rand()));
+            $entity->setPlainPassword(md5(rand()));
             
             // Create entity
             $this->em->update($entity);

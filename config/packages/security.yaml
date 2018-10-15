@@ -3,8 +3,9 @@ security:
         FOS\UserBundle\Model\UserInterface: bcrypt
 
     role_hierarchy:
-        ROLE_OPERATOR:    [ROLE_USER, ROLE_ROAD_AGENT]
-        ROLE_ADMIN:       ROLE_OPERATOR
+        ROLE_ROAD_AGENT:  [ROLE_USER, ROLE_USER_SIMPLE]
+        ROLE_OPERATOR:    [ROLE_ROAD_AGENT]
+        ROLE_ADMIN:       [ROLE_OPERATOR]
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
     
     providers:

@@ -70,6 +70,16 @@ class InstitutionController extends AbstractController
         // Test isSubmitted()
         if ($form->isSubmitted() && $form->isValid()) {
             
+            // Add Admin to members and
+            if($admin = $entity->getAdmin() && !$entity->getMembers()->contains($admin)){
+                $entity->addMember($admin);
+            }
+
+            // Set location for all members
+            foreach ($entity->getMembers() as $member) {
+                $member->getProfile()->setLocation($entity->getLocation());
+            }
+
             // Create entity
             $this->em->create($entity);
 
@@ -113,6 +123,11 @@ class InstitutionController extends AbstractController
         // Test isSubmitted()
         if ($form->isSubmitted() && $form->isValid()) {
             
+            // Add Admin to members
+            if($entity->getAdmin() && !$entity->getMembers()->contains($entity->getAdmin())){
+                $entity->addMember($entity->getAdmin());
+            }
+
             // Create entity
             $this->em->update($entity);
 
