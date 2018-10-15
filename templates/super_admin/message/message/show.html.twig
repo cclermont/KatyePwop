@@ -1,0 +1,204 @@
+{% extends 'super_admin/layout.html.twig' %}
+
+{# Set vars #}
+{% set currentModule = "message" %}
+
+{# Flash messages #}
+{% set notifMsg = "" %}
+{% set notifType = "" %}
+
+{% for type, messages in app.flashes %}
+    {% for message in messages %}
+		{% set notifMsg = message %}
+		{% set notifType = type %}
+    {% endfor %}
+{% endfor %}
+
+{# Set routes #}
+{% set routes = {
+	index: 'super_admin_message_message',
+	new: 'super_admin_message_message_new',
+	edit: 'super_admin_message_message_edit',
+	show: 'super_admin_message_message_show',
+	delete: 'super_admin_message_message_delete'
+} %}
+
+{# Title #}
+{% block title %}
+    {{ parent() }} - 
+    {{ "Afficher message"|trans }}
+{% endblock title %}
+
+{# Heading #}
+{% block layout_body_container %}
+
+	<div class="col bg-white px-5 py-4" data-notify="{{ notifMsg }}" data-notify-type="{{ notifType }}">
+
+		{# Header #}
+
+		<header id="header" class="header mt-2">
+		    <nav aria-label="breadcrumb">
+		        <ol class="breadcrumb bg-transparent small mb-2 p-0">
+		            <li class="breadcrumb-item active" aria-current="page">{{ app.user.username|title }}</li>
+		            <li class="breadcrumb-item active" aria-current="page">{{ "Message"|trans }}</li>
+		            <li class="breadcrumb-item active" aria-current="page">{{ "Afficher"|trans }}</li>
+		        </ol>
+		    </nav>
+
+		    <div class="d-flex align-items-center">
+				<h1 class="h2 text-light-black">{{ "Afficher message"|trans|title }}</h1>
+		    </div>
+		</header>
+		
+
+		{# Body #}
+		<div class="center-container mt-3 mb-5">
+			
+			<p class="lead small text-muted mb-4">{{ "Fiche detaillée d'un message"|trans }}</p>
+
+			<div class="d-flex align-items-center">
+				<h2 class="display-5 mb-0 text-dark-gray">{{ "Info basique"|trans }}</h2>
+				<a data-toggle="collapse" href="#collapse1" role="button" aria-expanded="true" 
+					aria-controls="collapse1" class="btn btn-link text-gray-dark ml-auto text-danger">
+					<i class="fas fa-fw fa-sort"></i>
+				</a>
+			</div>
+			<hr class="my-2">
+			<div id="collapse1" class="collapse show mt-4">
+				<div class="row mb-4">
+					<div class="col">
+						<div class="row mb-4">
+							<div class="col">
+								<h5 class="h6 text-dark-gray">{{ "Titre"|title }}</h5>
+								<span class="d-block text-gray-dark">{{ entity.title|default("N/A") }}</span>
+							</div>
+							<div class="col">
+								<h5 class="h6 text-dark-gray">{{ "Type"|title }}</h5>
+								<span class="d-block text-gray-dark">
+									{% if entity.broadcasted %}{{ "Envoyé"|trans }}{% else %}{{ "Reçu"|trans }}{% endif %}
+								</span>
+							</div>
+							<div class="col">
+								<h5 class="h6 text-dark-gray">{{ "Expediteur"|title }}</h5>
+								<span class="d-block text-gray-dark">{{ entity.sender|default("N/A") }}</span>
+							</div>
+						</div>
+						<div class="row mb-4">
+							<div class="col">
+								<h5 class="h6 text-dark-gray">{{ "Contenu"|title }}</h5>
+								<p class="d-block text-gray-dark">{{ entity.content }}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			{% if entity.images.count > 0 or entity.videos.count > 0 %}
+				<div class="d-flex align-items-center">
+					<h2 class="display-5 mb-0 text-dark-gray">{{ "Medias"|trans }}</h2>
+					<a data-toggle="collapse" href="#collapse1" role="button" aria-expanded="true" 
+						aria-controls="collapse1" class="btn btn-link text-gray-dark ml-auto text-danger">
+						<i class="fas fa-fw fa-sort"></i>
+					</a>
+				</div>
+				<hr class="my-2">
+				<div id="collapse1" class="collapse show mt-4">
+					<div class="row mb-4">
+						<div class="col">
+							<div class="row mb-4">
+								<div class="col">
+									<h5 class="h6 text-dark-gray">{{ "Images"|title }}</h5>
+									<ul class="list-unstyled d-flex">
+										{% for item in entity.images %}
+										    <li>
+										    	<a href="#" class="d-block">
+										    		<img src="{{ vich_uploader_asset(item, 'file') 
+										    			| imagine_filter('thumb_64x64') }}" alt="...">
+										    	</a>
+										    </li>
+										{% endfor %}
+									</ul>
+								</div>
+							</div>
+							<div class="row mb-4">
+								<div class="col">
+									<h5 class="h6 text-dark-gray">{{ "Videos"|title }}</h5>
+									<ul class="list-unstyled d-flex">
+										{% for item in entity.videos %}
+										    <li>
+										    	<img src="{{ "" }}" alt="...">
+										    </li>
+										{% endfor %}
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endif %}
+		</div>
+
+		{# Footer #}
+		{{ include('super_admin/_footer.html.twig') }}
+	</div>
+
+	{# Right Aside #}
+	<div class="col offset-3 col-lg-3 offset-lg-0">
+
+		<div class="mt-2 bg-white rounded">
+			<a href="#" class="btn text-dark btn-block btn-link d-flex align-items-center">
+				<i class="fas fa-fw fa-lg fa-cogs mr-2"></i>
+				<span>{{ "Actions"|trans }}</span>
+				{# <i class="fas fa-caret-down ml-auto"></i> #}
+			</a>
+			<hr class="my-0">
+			<div class="body p-3">
+				{# List button #}
+				<a href="{{ path(routes.index) }}" 
+					class="btn btn-block btn-info mb-3 text-left">
+					<i class="fas fa-list-ol fa-fw mr-2"></i>
+					<span>{{ "Aller à liste"|trans }}</span>
+				</a>
+
+				{% if app.user.id == entity.sender.id|default(0) %}
+					{# Update button #}
+					<a href="{{ path(routes.edit, {id: entity.id}) }}" 
+						class="btn btn-block btn-dark mb-3 text-left">
+						<i class="fa fa-edit fa-fw mr-2"></i>
+						<span>{{ "Modifier"|trans }}</span>
+					</a>
+				{% endif %}
+
+				{% if is_granted("ROLE_SUPER_ADMIN") %}
+					{# Delete button #}
+					{{ include('form/_delete_form.html.twig', 
+						{link: path(routes.delete, {id: entity.id})}, with_context = false) }}
+				{% endif %}
+			</div>
+		</div>
+
+		<div class="mt-3 mb-4 bg-white rounded">
+			<a href="#" class="btn text-dark btn-block btn-link d-flex align-items-center">
+				<i class="fas fa-fw fa-lg fa-info-circle mr-2"></i>
+				<span>{{ "Informations"|trans }}</span>
+				{# <i class="fas fa-caret-down ml-auto"></i> #}
+			</a>
+			<hr class="my-0">
+			<div class="body p-3">
+				<div class="row mb-3">
+					<div class="col col-lg-6">
+						<span class="d-block text-dark-gray small font-weight-bold">{{ "Créé"|trans }}</span>
+						<span class="d-block text-gray-dark small">{{ entity.created|date }}</span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col col-lg-6">
+						<span class="d-block text-dark-gray small font-weight-bold">{{ "Modifié"|trans }}</span>
+						<span class="d-block text-gray-dark small">{{ entity.modified|date }}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+{% endblock %}

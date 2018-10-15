@@ -72,13 +72,14 @@
                             <i class="fa fa-envelope fa-4x text-danger"></i>
                         </div>
                         <div class="col text-center text-lg-right mt-3 mt-lg-0">
-                            <span class="h3 d-block">345</span>
+                            <span class="h3 d-block">{{ message_count }}</span>
                             <small class="d-block text-muted">{{ "Messages"|trans }}</small>
                         </div>
                     </div>
                 </div>
                 <div class="bg-light border rounded-bottom">
-                    <a href="" class="btn btn-link text-danger btn-block btn-light text-left">
+                    <a href="{{ path("super_admin_message_message") }}" 
+                        class="btn btn-link text-danger btn-block btn-light text-left">
                         <i class="far fa-arrow-alt-circle-right float-right mt-1"></i>
                         <span class="small">{{ "Voir plus"|trans }}</span>
                     </a>

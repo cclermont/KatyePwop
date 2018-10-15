@@ -2,13 +2,18 @@
 
 namespace App\Entity\Message;
 
-use App\Entity\Location\Location;
-use App\Entity\User\User;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Institution\Institution;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+
+use App\Entity\User\User;
+use App\Entity\Location\Location;
+use App\Traits\Core\Entity\CreatedModifiedTrait;
 
 /**
+ * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="message_message")
  * @ORM\Entity(repositoryClass="App\Repository\Message\MessageRepository")
  */
@@ -40,11 +45,6 @@ class Message
      * @ORM\Column(type="boolean")
      */
     private $broadcasted;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $created;
     
     /**
      * @ORM\OneToMany(targetEntity="Image", mappedBy="message", orphanRemoval=true, cascade={"persist", "remove"})
@@ -77,9 +77,15 @@ class Message
      */
     private $receivers;
 
+    /**
+     * Use Created modified trait
+     */
+    use CreatedModifiedTrait;
+
 
     public function __construct()
     {
+        $this->status = "";
         $this->broadcasted = false;
         $this->images = new ArrayCollection();
         $this->videos = new ArrayCollection();
@@ -124,18 +130,6 @@ class Message
     public function setStatus(int $status): self
     {
         $this->status = $status;
-
-        return $this;
-    }
-
-    public function getCreated(): ?\DateTimeInterface
-    {
-        return $this->created;
-    }
-
-    public function setCreated(\DateTimeInterface $created): self
-    {
-        $this->created = $created;
 
         return $this;
     }
@@ -248,6 +242,18 @@ class Message
         if ($this->receivers->contains($receiver)) {
             $this->receivers->removeElement($receiver);
         }
+
+        return $this;
+    }
+
+    public function getBroadcasted(): ?bool
+    {
+        return $this->broadcasted;
+    }
+
+    public function setBroadcasted(bool $broadcasted): self
+    {
+        $this->broadcasted = $broadcasted;
 
         return $this;
     }

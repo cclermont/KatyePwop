@@ -37,7 +37,8 @@
 	    	</a>
 	    </li>
 	    <li class="mt-1">
-	    	<a href="{{ path("super_admin_user") }}" class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
+	    	<a href="{{ path("super_admin_message_message") }}" 
+	    		class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
 	    	{% if currentModule is defined and currentModule == "message" %}selected{% endif %}">
 	    		<i class="fas fa-envelope mr-lg-3 fa-fw"></i>
 	    		<span class="small d-none d-lg-inline">{{ "Message"|trans }}</span>

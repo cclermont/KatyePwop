@@ -2,13 +2,13 @@
 
 namespace App\Entity\Institution;
 
-use App\Entity\Location\Location;
-use App\Entity\User\User;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
+use App\Entity\User\User;
+use App\Entity\Location\Location;
 use App\Traits\Core\Entity\CreatedModifiedTrait;
 
 /**
