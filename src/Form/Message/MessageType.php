@@ -16,6 +16,12 @@ use App\Repository\User\UserRepository;
 class MessageType extends AbstractType
 {
     private $user;
+    /**
+     * Conts
+     */ 
+    const API_CONTEXT = 'api';
+    const ADMIN_CONTEXT = 'admin';
+    const SUPER_ADMIN_CONTEXT = 'super_admin';
 
     public function __construct(TokenStorageInterface $tokenStorage)
     {
@@ -24,11 +30,14 @@ class MessageType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $context = $options['context'];
+
         $builder
             ->add('title')
             ->add('content')
             ->add('receivers', EntityType::class, [
                 'multiple' => true,
+                'required' => false,
                 'class' => User::class,
                 'choice_label' => 'username',
                 'placeholder' => 'Choisissez les recepteurs',
@@ -38,15 +47,18 @@ class MessageType extends AbstractType
             ])
             ->add('images', CollectionType::class, [
                 'allow_add' => true,
+                'required' => false,
                 'entry_type' => ImageType::class,
             ])
             ->add('videos', CollectionType::class, [
                 'allow_add' => true,
+                'required' => false,
                 'entry_type' => VideoType::class,
             ])
         ;
 
-        if ($this->user->isSuperAdmin() || $this->user->isAdmin()) {
+        // if ($this->user->isSuperAdmin() || $this->user->isAdmin()) {
+        if (self::API_CONTEXT != $context) {
             $builder
                 ->remove('receivers')
                 ->remove('images')
@@ -59,6 +71,7 @@ class MessageType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Message::class,
+            'context' => self::SUPER_ADMIN_CONTEXT,
         ]);
     }
 }

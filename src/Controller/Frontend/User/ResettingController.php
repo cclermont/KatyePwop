@@ -18,6 +18,11 @@ use FOS\UserBundle\Event\GetResponseNullableUserEvent;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+ * ResettingController 
+ *
+ * @Route("/{_locale<%app_locales%>?%locale%}")
+ */ 
 class ResettingController extends AbstractController
 {
   	/**

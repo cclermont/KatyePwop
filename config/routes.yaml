@@ -1,2 +1,6 @@
 # fos_user:
 #     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+# FOS oauth token
+fos_oauth_server_token:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"

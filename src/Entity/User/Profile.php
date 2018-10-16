@@ -10,6 +10,7 @@ use App\Traits\Core\Entity\CreatedModifiedTrait;
 
 /**
  * @JMS\ExclusionPolicy("all")
+ * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="user_profile")
  * @ORM\Entity(repositoryClass="App\Repository\User\ProfileRepository")
  */

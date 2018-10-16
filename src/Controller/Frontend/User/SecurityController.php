@@ -25,8 +25,8 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/login", name="fos_user_security_login", methods={"GET","POST"})
-     * @Route("/login", name="frontend_user_security_login", methods={"GET","POST"})
+     * @Route("/{_locale<%app_locales%>?%locale%}/login", name="fos_user_security_login", methods={"GET","POST"})
+     * @Route("/{_locale<%app_locales%>?%locale%}/login", name="frontend_user_security_login", methods={"GET","POST"})
      */
     public function index(Request $request)
     {

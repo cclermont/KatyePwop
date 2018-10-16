@@ -47,7 +47,7 @@ trait CreatedModifiedTrait
      */
     public function getCreatedTimestamp(): int
     {
-        return !$this->created ? 0 : $this->created->getTimestamp() * 1000;
+        return null == $this->created ? 0 : $this->created->getTimestamp() * 1000;
     }
 
     public function getModified(): ?\DateTimeInterface

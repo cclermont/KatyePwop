@@ -39,6 +39,16 @@ services:
             $formFactory: "@fos_user.resetting.form.factory"
             $tokenGenerator: "@fos_user.util.token_generator"
 
+    # Api user controllers
+    App\Controller\Api\User\ResettingController:
+        public: true
+        bind:
+            $mailer: "@fos_user.mailer"
+            $retryTtl: "%fos_user.resetting.retry_ttl%"
+            $userManager: "@fos_user.user_manager"
+            $formFactory: "@fos_user.resetting.form.factory"
+            $tokenGenerator: "@fos_user.util.token_generator"
+
     # Super Admin change password controller
     App\Controller\SuperAdmin\User\ChangePasswordController:
         public: true
@@ -52,6 +62,20 @@ services:
         bind:
             $userManager: "@fos_user.user_manager"
             $formFactory: "@fos_user.change_password.form.factory"
+
+    # Api change password controller
+    App\Controller\Api\User\ChangePasswordController:
+        public: true
+        bind:
+            $userManager: "@fos_user.user_manager"
+            $formFactory: "@fos_user.change_password.form.factory"
+
+    # Api registration controller
+    App\Controller\Api\User\RegistrationController:
+        public: true
+        bind:
+            $userManager: "@fos_user.user_manager"
+            $formFactory: "@fos_user.registration.form.factory"
 
 
     #### Login success handler ##########

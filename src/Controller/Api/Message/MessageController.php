@@ -13,6 +13,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 use App\Entity\Message\Message;
+use App\Form\Message\MessageType;
 use App\Service\Message\MessageManager;
 use App\Controller\Api\ControllerResponseDataTrait;
 
@@ -37,6 +38,8 @@ class MessageController extends FOSRestController
     use ControllerResponseDataTrait;
 
     /**
+     * collection get
+     * @Security("has_role('ROLE_USER_SIMPLE')")
      * @Route("/", name="api_message_message", defaults={"_format": "json"}, methods={"GET"})
      */
     public function cget(Request $request): View
@@ -44,11 +47,16 @@ class MessageController extends FOSRestController
         // Sort and pattern
         $page     = $request->query->get('page', 1);
         $limit    = $request->query->get('limit', 50);
-        $pattern  = $request->query->get('pattern', array());
-        $sort     = $request->query->get('sort', array('created' => 'DESC'));
+        $pattern  = $request->query->get('pattern', []);
+        $type     = $request->query->get('type', 'received');
+        $sort     = $request->query->get('sort', ['created' => 'DESC']);
 
-        // Get entities
-        $entities = $this->em->findAndPaginate($pattern, $sort, $page, $limit);
+        if ('sent' == $type) { // Get entities
+            $pattern['sender'] = $this->getUser();
+            $entities = $this->em->findAndPaginate($pattern, $sort, $page, $limit);
+        } else { // Get entities
+            $entities = $this->em->findReceivedByUser($this->getUser(), $sort, $page, $limit);
+        }
         
         // Get response data
         $resData = $this->getResponseData();
@@ -67,5 +75,78 @@ class MessageController extends FOSRestController
         
         // Render view
         return $view->setContext($context);
+    }
+
+    /**
+     * Single get
+     * @Security("has_role('ROLE_USER_SIMPLE')")
+     * @Route("/{id<\d+>}", name="api_message_message_show", defaults={"_format": "json"}, methods={"GET"})
+     */
+    public function sget(Request $request, $id)
+    {
+        // Find entity by id
+        $entity = $this->em->find($id);
+        
+        // Test if entity was found
+        if (!$entity) {
+            throw $this->createNotFoundException("No entity found for id($id)");
+        }
+
+        // Get response data
+        $resData = $this->getResponseData();
+
+        // Add form to response data
+        $resData->set('total', 1);
+        $resData->set('data', $entity);
+
+        // Set serialization context
+        $context = (new Context())->addGroup('show');
+
+        //Create view
+        $view = $this->view($resData, Response::HTTP_OK);
+        
+        // Render view
+        return $view->setContext($context);
+    }
+    
+    /**
+     * @Security("has_role('ROLE_USER_SIMPLE')")
+     * @Route("/", name="api_message_message_new", defaults={"_format": "json"}, methods={"POST"})
+     */
+    public function new(Request $request)
+    {
+        // Create entity
+        $entity = $this->em->createEntity();
+
+        // Add sender
+        $entity->setBroadcasted(false)
+                ->setSender($this->getUser())
+                ->setLocation($this->getUser()->getProfile()->getLocation());
+
+        // Create form
+        $form = $this->createForm($this->em->getFormType(), $entity, ['context' => MessageType::API_CONTEXT]);
+
+        // Handle request
+        $form->handleRequest($request);
+
+        // Get response data
+        $resData = $this->getResponseData();
+        
+        // If submitted and valided
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            // Create entity
+            $this->em->create($entity);
+
+            // Return view
+            return $this->view($resData, Response::HTTP_NO_CONTENT);
+        }
+
+        // Add form to response data
+        $resData->set('form', $form);
+        $resData->set('error', true);
+
+        // Return view
+        return $this->view($resData, Response::HTTP_BAD_REQUEST);
     }
 }

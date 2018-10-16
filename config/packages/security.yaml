@@ -29,7 +29,7 @@ security:
             pattern:   ^/([a-z]+)/api
             fos_oauth: true
             stateless: true
-            anonymous: true
+            anonymous: false
 
         # Main
         main:
@@ -59,3 +59,4 @@ security:
         # - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/([a-z]+)/manage, role: ROLE_OPERATOR }
         - { path: ^/([a-z]+)/admin, role: ROLE_SUPER_ADMIN }
+        - { path: ^/([a-z]+)/api, roles: [ IS_AUTHENTICATED_FULLY ] }

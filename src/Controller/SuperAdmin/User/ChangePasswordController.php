@@ -20,7 +20,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 /**
  * UserController 
  *
- * @Route("/user/change/password")
+ * @Route("/user/change-password")
  */ 
 class ChangePasswordController extends AbstractController
 {
