@@ -1,18 +1,31 @@
 admin_controllers:
     resource: '../../src/Controller/SuperAdmin'
     type:     annotation
-    prefix: /admin
+    prefix: /{_locale}/admin
+    defaults : { _locale: '%locale%' }
+    requirements:
+        _locale: '%app_locales%'
 
 manage_controllers:
     resource: '../../src/Controller/Admin'
     type:     annotation
-    prefix: /manage
+    prefix: /{_locale}/manage
+    defaults : { _locale: '%locale%' }
+    requirements:
+        _locale: '%app_locales%'
 
 frontend_controllers:
     resource: '../../src/Controller/Frontend'
     type:     annotation
+    prefix: /{_locale}
+    defaults : { _locale: '%locale%' }
+    requirements:
+        _locale: '%app_locales%'
 
 api_controller:
     resource: ../../src/Controller/Api/
     type: annotation
-    prefix: /api
+    prefix: /{_locale}/api/{version}
+    defaults : { _locale: '%locale%', version: v1, _format: json }
+    requirements:
+        _locale: '%app_locales%'

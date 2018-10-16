@@ -3,12 +3,14 @@
 namespace App\Entity\Core;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 use Vich\UploaderBundle\Entity\File as EmbeddedFile;
 
 use App\Traits\Core\Entity\CreatedModifiedTrait;
 
 /**
  * @ORM\MappedSuperclass
+ * @JMS\ExclusionPolicy("all")
  * @ORM\HasLifecycleCallbacks()
  */
 abstract class Media
@@ -69,4 +71,29 @@ abstract class Media
     {
         return null == $this->info->getName();
     }
+    
+    /**
+     * Get Relative Filename
+     *
+     * @return String 
+     *
+     * @JMS\Expose
+     * @JMS\VirtualProperty
+     * @JMS\Groups({"show"})
+     * @JMS\SerializedName("path")
+     */
+    public function getRelativePath(): string
+    {
+        
+        $item = "{$this->getRelativeDir()}/{$this->info->getName()}";
+        
+        return ( file_exists($item) ) ? $item : "";
+    }
+    
+    /**
+     * Get Relative Directory
+     *
+     * @return String 
+     */
+    abstract public function getRelativeDir(): string;
 }

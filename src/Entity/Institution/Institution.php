@@ -3,6 +3,7 @@
 namespace App\Entity\Institution;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -12,6 +13,7 @@ use App\Entity\Location\Location;
 use App\Traits\Core\Entity\CreatedModifiedTrait;
 
 /**
+ * @JMS\ExclusionPolicy("all")
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="institution_institution")
  * @ORM\Entity(repositoryClass="App\Repository\Institution\InstitutionRepository")
@@ -22,12 +24,18 @@ class Institution
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"list", "show"})
      */
     private $id;
 
     /**
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"list", "show"})
      */
     private $name;
 

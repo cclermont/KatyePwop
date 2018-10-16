@@ -3,11 +3,14 @@
 namespace App\Entity\User;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\Validator\Constraints as Assert;
 
 use App\Traits\Core\Entity\CreatedModifiedTrait;
 
 /**
+ * @JMS\ExclusionPolicy("all")
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="user_user")
  * @ORM\Entity(repositoryClass="App\Repository\User\UserRepository")
@@ -18,11 +21,47 @@ class User extends BaseUser
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"show"})
      */
     protected $id;
+
+    /**
+     * @var string
+     * 
+     * @Assert\Regex(pattern="/\s+/", match=false, message="user.username.invalid.space")
+     * @Assert\Regex(pattern="/^[^a-zA-z]/", match=false, message="user.username.invalid.number")
+     * @Assert\Regex(pattern="/[\# \! \^ \$ \( \) \[ \] \{ \} \? \+ \* \. \\ \/ \|]/", match=false, message="user.username.invalid.special_characters")
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"show"})
+     */
+    protected $username;
+
+    /**
+     * @var string
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"show"})
+     */
+    protected $email;
+
+    /**
+     * @var string
+     * 
+     * @Assert\Regex(pattern="/(\W|\w){6,}/", match=true, message="user.password.secure.length")
+     * @Assert\Regex(pattern="/[A-Z]+/", match=true, message="user.password.secure.capitalize")
+     * @Assert\Regex(pattern="/[0-9]+/", match=true, message="user.password.secure.number")
+     */
+    protected $plainPassword;
     
     /**
      * @ORM\OneToOne(targetEntity="Profile", cascade={"persist", "remove"})
+     *
+     * @JMS\Expose
+     * @JMS\MaxDepth(3)
+     * @JMS\Groups({"show"})
      */
     private $profile;
 

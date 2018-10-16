@@ -2,10 +2,14 @@
 
 namespace App\Entity\User;
 
-use App\Entity\Location\Location;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
+
+use App\Entity\Location\Location;
+use App\Traits\Core\Entity\CreatedModifiedTrait;
 
 /**
+ * @JMS\ExclusionPolicy("all")
  * @ORM\Table(name="user_profile")
  * @ORM\Entity(repositoryClass="App\Repository\User\ProfileRepository")
  */
@@ -15,21 +19,33 @@ class Profile
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"show"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=128, nullable=true)
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"show"})
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=128, nullable=true)
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"show"})
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=16, nullable=true)
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"show"})
      */
     private $gender;
 
@@ -40,18 +56,32 @@ class Profile
 
     /**
      * @ORM\Column(type="string", length=32, nullable=true)
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"show"})
      */
     private $phone;
     
     /**
      * @ORM\OneToOne(targetEntity="Image", cascade={"persist", "remove"})
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"show"})
      */
     private $image;
     
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Location\Location")
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"show"})
      */
     private $location;
+
+    /**
+     * Use Created modified trait
+     */
+    use CreatedModifiedTrait;
 
     /**
      * Constants

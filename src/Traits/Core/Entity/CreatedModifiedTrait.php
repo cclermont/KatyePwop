@@ -2,9 +2,12 @@
 
 namespace App\Traits\Core\Entity;
 
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * CreatedModifiedTrait
+ *
+ * @JMS\ExclusionPolicy("all")
  */
 trait CreatedModifiedTrait
 {
@@ -30,6 +33,21 @@ trait CreatedModifiedTrait
         $this->created = $created;
 
         return $this;
+    }
+
+    /**
+     * Get CreatedTimestamp
+     *
+     * @return \integer
+     *
+     * @JMS\Expose
+     * @JMS\VirtualProperty
+     * @JMS\Groups({"list", "show"})
+     * @JMS\SerializedName("created")
+     */
+    public function getCreatedTimestamp(): int
+    {
+        return !$this->created ? 0 : $this->created->getTimestamp() * 1000;
     }
 
     public function getModified(): ?\DateTimeInterface

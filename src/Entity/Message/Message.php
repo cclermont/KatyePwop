@@ -2,17 +2,19 @@
 
 namespace App\Entity\Message;
 
-use App\Entity\Institution\Institution;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 use App\Entity\User\User;
 use App\Entity\Location\Location;
+use App\Entity\Institution\Institution;
 use App\Traits\Core\Entity\CreatedModifiedTrait;
 
 /**
+ * @JMS\ExclusionPolicy("all")
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="message_message")
  * @ORM\Entity(repositoryClass="App\Repository\Message\MessageRepository")
@@ -23,54 +25,86 @@ class Message
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"list", "show"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"list", "show"})
      */
     private $title;
 
     /**
      * @Assert\NotBlank()
      * @ORM\Column(type="text")
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"list", "show"})
      */
     private $content;
 
     /**
      * @ORM\Column(type="integer")
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"show"})
      */
     private $status;
 
     /**
      * @ORM\Column(type="boolean")
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"show"})
      */
     private $broadcasted;
     
     /**
      * @ORM\OneToMany(targetEntity="Image", mappedBy="message", orphanRemoval=true, cascade={"persist", "remove"})
+     *
+     * @JMS\Expose
+     * @JMS\MaxDepth(3)
+     * @JMS\Groups({"show"})
      */
     private $images;
     
     /**
      * @ORM\OneToMany(targetEntity="Video", mappedBy="message", orphanRemoval=true, cascade={"persist", "remove"})
+     *
+     * @JMS\Expose
+     * @JMS\MaxDepth(3)
+     * @JMS\Groups({"show"})
      */
     private $videos;
     
     /**
      * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="App\Entity\Location\Location")
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"show"})
      */
     private $location;
     
     /**
      * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="App\Entity\User\User")
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"show"})
      */
     private $sender;
     
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Institution\Institution")
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"list", "show"})
      */
     private $senderInstitution;
 

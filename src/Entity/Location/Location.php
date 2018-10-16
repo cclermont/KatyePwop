@@ -3,11 +3,13 @@
 namespace App\Entity\Location;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 use Symfony\Component\Validator\Constraints as Assert;
 
 use App\Traits\Core\Entity\CreatedModifiedTrait;
 
 /**
+ * @JMS\ExclusionPolicy("all")
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="location_location")
  * @ORM\Entity(repositoryClass="App\Repository\Location\LocationRepository")
@@ -18,12 +20,18 @@ class Location
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"list", "show"})
      */
     private $id;
 
     /**
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"list", "show"})
      */
     private $fullname;
 

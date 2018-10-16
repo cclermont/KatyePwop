@@ -87,4 +87,14 @@ class Video extends Media
     {
         return $this->file;
     }
+    
+    /**
+     * Get Relative Directory
+     *
+     * @return String 
+     */
+    public function getRelativeDir(): string
+    {
+        return '/uploads/videos/message';
+    }
 }
