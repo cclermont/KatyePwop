@@ -16,6 +16,7 @@ use App\Repository\User\UserRepository;
 class MessageType extends AbstractType
 {
     private $user;
+    
     /**
      * Conts
      */ 

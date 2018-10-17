@@ -6,13 +6,13 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 use App\Entity\User\User;
 use App\Entity\Location\Location;
 use App\Entity\Institution\Institution;
 use App\Repository\User\UserRepository;
 use App\Repository\Location\LocationRepository;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class InstitutionType extends AbstractType
 {

@@ -31,7 +31,6 @@ class ResettingController extends FOSRestController
     * Properties
     */
     private $eventDispatcher;
-    private $formFactory;
     private $userManager;
     private $tokenGenerator;
     private $mailer;
@@ -43,20 +42,17 @@ class ResettingController extends FOSRestController
 
     /**
      * @param EventDispatcherInterface $eventDispatcher
-     * @param FactoryInterface         $formFactory
      * @param UserManagerInterface     $userManager
      * @param TokenGeneratorInterface  $tokenGenerator
      * @param MailerInterface          $mailer
      * @param int                      $retryTtl
      */
     public function __construct(EventDispatcherInterface $eventDispatcher, 
-                                FactoryInterface $formFactory, 
                                 UserManagerInterface $userManager, 
                                 TokenGeneratorInterface $tokenGenerator, 
                                 MailerInterface $mailer, $retryTtl)
     {
         $this->eventDispatcher = $eventDispatcher;
-        $this->formFactory = $formFactory;
         $this->userManager = $userManager;
         $this->tokenGenerator = $tokenGenerator;
         $this->mailer = $mailer;
@@ -105,7 +101,6 @@ class ResettingController extends FOSRestController
         }
 
         // Add form to response data
-        $resData->set('form', $form);
         $resData->set('error', true);
 
         // Return view

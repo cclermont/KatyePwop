@@ -14,7 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use FOS\RestBundle\Controller\FOSRestController;
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Event\FilterUserResponseEvent;
-use FOS\UserBundle\Form\Factory\FactoryInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -22,6 +21,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 
 use App\Entity\User\User;
+use App\Form\User\RegistrationFormType;
 use App\Controller\Api\ControllerResponseDataTrait;
 
 /**
@@ -32,14 +32,12 @@ use App\Controller\Api\ControllerResponseDataTrait;
 class RegistrationController extends FOSRestController
 {
     private $eventDispatcher;
-    private $formFactory;
     private $userManager;
     private $tokenStorage;
 
-    public function __construct(EventDispatcherInterface $eventDispatcher, FactoryInterface $formFactory, UserManagerInterface $userManager, TokenStorageInterface $tokenStorage)
+    public function __construct(EventDispatcherInterface $eventDispatcher, UserManagerInterface $userManager, TokenStorageInterface $tokenStorage)
     {
         $this->eventDispatcher = $eventDispatcher;
-        $this->formFactory = $formFactory;
         $this->userManager = $userManager;
         $this->tokenStorage = $tokenStorage;
     }
@@ -53,14 +51,13 @@ class RegistrationController extends FOSRestController
     public function register(Request $request)
     {
         $user = $this->userManager->createUser();
+
         $user->setEnabled(true)
             ->addRole(User::ROLE_USER_SIMPLE);
 
-        $event = new GetResponseUserEvent($user, $request);
-        $this->eventDispatcher->dispatch(FOSUserEvents::REGISTRATION_INITIALIZE, $event);
+        $this->eventDispatcher->dispatch(FOSUserEvents::REGISTRATION_INITIALIZE, new GetResponseUserEvent($user, $request));
 
-        $form = $this->formFactory->createForm();
-        $form->setData($user);
+        $form = $this->createForm(RegistrationFormType::class, $user, ['method' => 'POST']);
 
         $form->handleRequest($request);
 
@@ -70,8 +67,8 @@ class RegistrationController extends FOSRestController
         if ($form->isSubmitted()) {
             
             if ($form->isValid()) {
-                $event = new FormEvent($form, $request);
-                $this->eventDispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
+
+                $this->eventDispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, new FormEvent($form, $request));
 
                 $this->userManager->updateUser($user);
 
@@ -82,8 +79,7 @@ class RegistrationController extends FOSRestController
                 return $this->view($resData, Response::HTTP_NO_CONTENT);
             }
 
-            $event = new FormEvent($form, $request);
-            $this->eventDispatcher->dispatch(FOSUserEvents::REGISTRATION_FAILURE, $event);
+            $this->eventDispatcher->dispatch(FOSUserEvents::REGISTRATION_FAILURE, new FormEvent($form, $request));
         }
 
         // Add form to response data

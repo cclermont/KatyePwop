@@ -19,6 +19,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
+use App\Form\User\ChangePasswordFormType;
 use App\Controller\Api\ControllerResponseDataTrait;
 
 /**
@@ -31,16 +32,13 @@ class ChangePasswordController extends FOSRestController
     /**
      * Properties
      */
-    private $formFactory;
     private $userManager;
     private $eventDispatcher;
 
-    public function __construct(FactoryInterface $formFactory, 
-                                UserManagerInterface $userManager,
+    public function __construct(UserManagerInterface $userManager,
                                 EventDispatcherInterface $eventDispatcher)
     {
         $this->userManager = $userManager;
-        $this->formFactory = $formFactory;
         $this->eventDispatcher = $eventDispatcher;
     }
 
@@ -49,7 +47,7 @@ class ChangePasswordController extends FOSRestController
 
     /**
      * @Security("has_role('ROLE_USER_SIMPLE')")
-     * @Route("/", name="api_user_change_password", defaults={"_format": "json"}, methods={"POST"})
+     * @Route("/", name="api_user_change_password", defaults={"_format": "json"}, methods={"PUT"})
      */
     public function changePassword(Request $request): View
     {
@@ -59,11 +57,9 @@ class ChangePasswordController extends FOSRestController
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
-        $event = new GetResponseUserEvent($user, $request);
-        $this->eventDispatcher->dispatch(FOSUserEvents::CHANGE_PASSWORD_INITIALIZE, $event);
+        $this->eventDispatcher->dispatch(FOSUserEvents::CHANGE_PASSWORD_INITIALIZE, new GetResponseUserEvent($user, $request));
 
-        $form = $this->formFactory->createForm();
-        $form->setData($user);
+        $form = $this->createForm(ChangePasswordFormType::class, $user, ['method' => 'PUT']);
 
         $form->handleRequest($request);
 
@@ -73,8 +69,7 @@ class ChangePasswordController extends FOSRestController
         // If submitted and valided
         if ($form->isSubmitted() && $form->isValid())
         {
-            $event = new FormEvent($form, $request);
-            $this->eventDispatcher->dispatch(FOSUserEvents::CHANGE_PASSWORD_SUCCESS, $event);
+            $this->eventDispatcher->dispatch(FOSUserEvents::CHANGE_PASSWORD_SUCCESS, new FormEvent($form, $request));
 
             $this->userManager->updateUser($user);
 

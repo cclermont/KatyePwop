@@ -87,6 +87,8 @@ class Profile
     /**
      * Constants
     */
+    const MIN_YEAR_OLD = 6;
+    const MAX_YEAR_OLD = 120;
     const GENDER_MALE = "male";
     const GENDER_FEMALE = "female";
 

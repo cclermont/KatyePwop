@@ -12,6 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+use App\Form\User\ProfileType;
 use App\Service\User\UserManager;
 use App\Controller\Api\ControllerResponseDataTrait;
 
@@ -73,11 +74,12 @@ class ProfileController extends FOSRestController
      */
     public function edit(Request $request)
     {
-        // Create entity
-        $entity = $this->getUser()->getProfile();
+        // Get user profile
+        $user = $this->getUser();
+        $entity = $user->getProfile();
 
         // Create form
-        $form = $this->createForm($this->em->getFormType(), $entity, ['context' => MessageType::API_CONTEXT]);
+        $form = $this->createForm(ProfileType::class, $entity, ['context' => ProfileType::API_CONTEXT, 'method' => 'PUT']);
 
         // Handle request
         $form->handleRequest($request);
@@ -88,8 +90,11 @@ class ProfileController extends FOSRestController
         // If submitted and valided
         if ($form->isSubmitted() && $form->isValid())
         {
-            // Create entity
-            $this->em->update($entity);
+            // Set profile to user
+            $user->setProfile($entity);
+
+            // Update entity
+            $this->em->update($user);
 
             // Return view
             return $this->view($resData, Response::HTTP_NO_CONTENT);

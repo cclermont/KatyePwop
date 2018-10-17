@@ -17,6 +17,8 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
+use App\Form\User\ChangePasswordFormType;
+
 /**
  * UserController 
  *
@@ -59,7 +61,7 @@ class ChangePasswordController extends AbstractController
             return $event->getResponse();
         }
 
-        $form = $this->formFactory->createForm();
+        $form = $this->createForm(ChangePasswordFormType::class, $user);
         $form->setData($user);
 
         $form->handleRequest($request);
