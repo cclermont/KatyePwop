@@ -146,6 +146,21 @@ class Profile
         return $this;
     }
 
+    /**
+     * Get birthdateTimestamp
+     *
+     * @return \integer
+     *
+     * @JMS\Expose
+     * @JMS\VirtualProperty
+     * @JMS\Groups({"list", "show"})
+     * @JMS\SerializedName("birthdate")
+     */
+    public function getBirthdateTimestamp(): int
+    {
+        return null == $this->birthdate ? 0 : $this->birthdate->getTimestamp() * 1000;
+    }
+
     public function getImage(): ?Image
     {
         return $this->image;
