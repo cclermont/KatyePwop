@@ -23,7 +23,7 @@ class User extends BaseUser
      * @ORM\Column(type="integer")
      *
      * @JMS\Expose
-     * @JMS\Groups({"show"})
+     * @JMS\Groups({"list", "show"})
      */
     protected $id;
 
@@ -35,7 +35,7 @@ class User extends BaseUser
      * @Assert\Regex(pattern="/[\# \! \^ \$ \( \) \[ \] \{ \} \? \+ \* \. \\ \/ \|]/", match=false, message="user.username.invalid.special_characters")
      *
      * @JMS\Expose
-     * @JMS\Groups({"show"})
+     * @JMS\Groups({"list", "show"})
      */
     protected $username;
 
@@ -121,6 +121,21 @@ class User extends BaseUser
         $this->profile = $profile;
 
         return $this;
+    }
+
+    /**
+     * Get birthdateTimestamp
+     *
+     * @return \integer
+     *
+     * @JMS\Expose
+     * @JMS\VirtualProperty
+     * @JMS\Groups({"show"})
+     * @JMS\SerializedName("lastLogin")
+     */
+    public function getLastLoginTimestamp(): int
+    {
+        return null == $this->lastLogin ? 0 : $this->lastLogin->getTimestamp() * 1000;
     }
 
     public function getFormLabel(): string

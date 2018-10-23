@@ -135,6 +135,9 @@ class MessageController extends FOSRestController
         // If submitted and valided
         if ($form->isSubmitted() && $form->isValid())
         {
+            // Get videos
+            $videos = $entity->getVideos();
+            
             // Create entity
             $this->em->create($entity);
 
@@ -148,5 +151,30 @@ class MessageController extends FOSRestController
 
         // Return view
         return $this->view($resData, Response::HTTP_BAD_REQUEST);
+    }
+
+    /**
+     * Single get
+     * @Security("has_role('ROLE_USER_SIMPLE')")
+     * @Route("/count", name="api_message_message_count", defaults={"_format": "json"}, methods={"GET"})
+     */
+    public function countMsg(Request $request)
+    {
+        // Get response data
+        $resData = $this->getResponseData();
+
+        // Get message count
+        $sent = $this->em->countSentByUser($this->getUser());
+        $received = $this->em->countReceivedByUser($this->getUser());
+
+        // Add form to response data
+        $resData->set('total', 2);
+        $resData->set('data', ['received' => $received, 'sent' => $sent]);
+
+        //Create view
+        $view = $this->view($resData, Response::HTTP_OK);
+        
+        // Render view
+        return $view;
     }
 }

@@ -27,6 +27,13 @@ class MessageManager extends AbstractManager
     /**
      * Count sent by user
      */
+    public function countSentByUser(User $sender) {
+        return $this->findAndPaginate(['sender' => $sender], [], 1, 10)->getNbResults();
+    }
+    
+    /**
+     * Count sent by institution
+     */
     public function countSentByInstitution(Institution $sender) {
         return $this->findAndPaginate(['senderInstitution' => $sender], [], 1, 10)->getNbResults();
     }

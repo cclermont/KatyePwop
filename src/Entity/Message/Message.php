@@ -87,7 +87,7 @@ class Message
      * @ORM\ManyToOne(targetEntity="App\Entity\Location\Location")
      *
      * @JMS\Expose
-     * @JMS\Groups({"show"})
+     * @JMS\Groups({"list", "show"})
      */
     private $location;
     
@@ -96,7 +96,7 @@ class Message
      * @ORM\ManyToOne(targetEntity="App\Entity\User\User")
      *
      * @JMS\Expose
-     * @JMS\Groups({"show"})
+     * @JMS\Groups({"list", "show"})
      */
     private $sender;
     
@@ -105,6 +105,7 @@ class Message
      *
      * @JMS\Expose
      * @JMS\Groups({"list", "show"})
+     * @JMS\SerializedName("senderInstitution")
      */
     private $senderInstitution;
 

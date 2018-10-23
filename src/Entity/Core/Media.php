@@ -85,9 +85,7 @@ abstract class Media
     public function getRelativePath(): string
     {
         
-        $item = "{$this->getRelativeDir()}/{$this->info->getName()}";
-        
-        return ( file_exists($item) ) ? $item : "";
+        return "{$this->getRelativeDir()}/{$this->info->getName()}";
     }
     
     /**

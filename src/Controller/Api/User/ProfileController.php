@@ -86,7 +86,7 @@ class ProfileController extends FOSRestController
      *
      * @SWG\Tag(name="Profile")
      * @NelmioSecurity(name="Bearer")
-     * @SWG\Put(
+     * @SWG\Post(
      *     summary="Edit",
      *     operationId="edit",
      *     description="Edit the profile of the authenticated user",
@@ -105,7 +105,7 @@ class ProfileController extends FOSRestController
      * )
      *
      * @Security("has_role('ROLE_USER_SIMPLE')")
-     * @Route("/", name="api_user_profile_edit", defaults={"_format": "json"}, methods={"PUT"})
+     * @Route("/", name="api_user_profile_edit", defaults={"_format": "json"}, methods={"POST"})
      */
     public function edit(Request $request)
     {
@@ -114,7 +114,7 @@ class ProfileController extends FOSRestController
         $entity = $user->getProfile();
 
         // Create form
-        $form = $this->createForm(ProfileType::class, $entity, ['context' => ProfileType::API_CONTEXT, 'method' => 'PUT']);
+        $form = $this->createForm(ProfileType::class, $entity, ['context' => ProfileType::API_CONTEXT, 'method' => 'POST']);
 
         // Handle request
         $form->handleRequest($request);
@@ -131,8 +131,18 @@ class ProfileController extends FOSRestController
             // Update entity
             $this->em->update($user);
 
-            // Return view
-            return $this->view($resData, Response::HTTP_NO_CONTENT);
+            // Add form to response data
+            $resData->set('total', 1);
+            $resData->set('data', $user);
+
+            // Set serialization context
+            $context = (new Context())->addGroup('show');
+
+            //Create view
+            $view = $this->view($resData, Response::HTTP_OK);
+            
+            // Render view
+            return $view->setContext($context);
         }
 
         // Add form to response data

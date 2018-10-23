@@ -49,11 +49,13 @@ class MessageType extends AbstractType
             ->add('images', CollectionType::class, [
                 'allow_add' => true,
                 'required' => false,
+                'by_reference' => false,
                 'entry_type' => ImageType::class,
             ])
             ->add('videos', CollectionType::class, [
                 'allow_add' => true,
                 'required' => false,
+                'by_reference' => false,
                 'entry_type' => VideoType::class,
             ])
         ;
