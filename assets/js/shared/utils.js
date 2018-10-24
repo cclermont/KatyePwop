@@ -1,19 +1,3 @@
-/*
- * Welcome to your app's main JavaScript file!
- *
- * We recommend including the built version of this JavaScript file
- * (and its CSS file) in your base layout (base.html.twig).
- */
-
-// any CSS you require will output into a single css file (app.css in this case)
-import '../scss/global.scss';
-
-// Jquery
-import $ from 'jquery';
-
-// bootstrap
-import 'bootstrap';
-
 export const DAY = 24 * 3600 * 1000;
 
 export function diffDays(a, b) {
@@ -54,12 +38,12 @@ export function rectColor(v) {
 }
 
 export function pad(n) {
-  return n > 9 ? `${n}` : `0${n}`;
+  return n > 9 ? n : n;
 }
 
 export function formatDate(dt) {
   const y = dt.getFullYear();
   const m = dt.getMonth() + 1;
   const d = dt.getDate();
-  return `${y}-${pad(m)}-${pad(d)}`;
+  return y + "-" + pad(m) + "-" + pad(d);
 }

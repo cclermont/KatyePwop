@@ -17,12 +17,18 @@ import toastr from 'toastr';
 // Import Chart js
 import Chart from 'chart.js';
 
+// Import Ekko light box
+import 'ekko-lightbox'
+
+// Import video js
+import Videojs from '../../../node_modules/video.js/dist/video.min'
+
 // Import jquery image preview
 import '../../../node_modules/jquery.upload.preview.psk/assets/js/jquery.uploadPreview';
 
 // Import calendar graph
 import { SVGGraph, CanvasGraph, StrGraph } from 'calendar-graph';
-import { rectColor, today, oneYearAgo, diffDays, formatDate } from '../../../node_modules/calendar-graph/src/utils';
+import { rectColor, today, oneYearAgo, diffDays, formatDate } from '../shared/utils';
 
 
 $(() => {
@@ -41,6 +47,26 @@ $(() => {
 			break;
 		}
 	}
+
+	// Lightbox image gallery
+	$(document).on('click', '[data-toggle="lightbox"]', function(event) {
+        event.preventDefault();
+        $(this).ekkoLightbox();
+    });
+
+    // Modal and video player
+    $('#videoModal').on('shown.bs.modal', function (e) {
+    	var player = Videojs('video-player');
+		player.ready(() => {
+			 player.play();
+		});
+	});
+	$('#videoModal').on('hide.bs.modal', function (e) {
+		var player = Videojs('video-player');
+		player.ready(() => {
+			 player.pause();
+		});
+	});
 
 	// Filter table list
 	// Display content that match
@@ -89,7 +115,7 @@ $(() => {
 
 		// Add tooltip
 		$('[data-type="calendar-graph"] .cg-day').hover((e) => {
-			var text = `${$(e.target).attr("data-count")} messages le ${$(e.target).attr("data-date")}`;
+			var text = $(e.target).attr("data-count") + " messages le " + $(e.target).attr("data-date");
 			$(e.target).tooltip({title: text, trigger: "manual"}).tooltip("show");
 		}, (e) => {
 			$(e.target).tooltip("hide");
