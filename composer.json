@@ -15,6 +15,7 @@
         "nelmio/api-doc-bundle": "^3.3",
         "nelmio/cors-bundle": "^1.5",
         "sensio/framework-extra-bundle": "^5.2",
+        "symfony/apache-pack": "^1.0",
         "symfony/asset": "*",
         "symfony/console": "*",
         "symfony/expression-language": "*",
