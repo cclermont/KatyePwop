@@ -1,7 +1,7 @@
-{% extends 'super_admin/layout.html.twig' %}
+{% extends 'admin/layout.html.twig' %}
 
 {# Set vars #}
-{% set currentModule = "institution" %}
+{% set currentModule = "location" %}
 
 {# Flash messages #}
 {% set notifMsg = "" %}
@@ -21,17 +21,17 @@
 
 {# Set routes #}
 {% set routes = {
-	index: 'super_admin_institution_institution',
-	new: 'super_admin_institution_institution_new',
-	edit: 'super_admin_institution_institution_edit',
-	show: 'super_admin_institution_institution_show',
-	delete: 'super_admin_institution_institution_delete'
+	index: 'admin_location',
+	new: 'admin_location_new',
+	edit: 'admin_location_edit',
+	show: 'admin_location_show',
+	delete: 'admin_location_delete'
 } %}
 
 {# Title #}
 {% block title %}
     {{ parent() }} - 
-    {{ "Lister institutions"|trans }}
+    {{ "Lister locations"|trans }}
 {% endblock title %}
 
 {# Heading #}
@@ -41,18 +41,18 @@
     <nav aria-label="breadcrumb" data-notify="{{ notifMsg }}" data-notify-type="{{ notifType }}">
         <ol class="breadcrumb bg-transparent small mb-2 p-0">
             <li class="breadcrumb-item active" aria-current="page">{{ app.user.username|title }}</li>
-            <li class="breadcrumb-item active" aria-current="page">{{ "Institution"|trans }}</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ "Location"|trans }}</li>
         </ol>
     </nav>
 
     {# Page header #}
     <div class="row d-flex align-items-center">
     	<div class="col-12 col-lg mb-3 mb-lg-0">
-			<h1 class="h2 text-light-black">{{ "Lister institutions"|trans|title }}</h1>
+			<h1 class="h2 text-light-black">{{ "Lister locations"|trans|title }}</h1>
     	</div>
 		<div class="col-12 col-lg text-lg-right">
 			<a href="{{ path(routes.new) }}" class="btn btn-danger">
-				<i class="fa fa-plus mr-2"></i>{{ "Nouvelle institution"|trans|title }}
+				<i class="fa fa-plus mr-2"></i>{{ "Nouvelle location"|trans|title }}
 			</a>
 		</div>
     </div>
@@ -65,7 +65,7 @@
 	<section class="row mt-4 mb-3">
 		<div class="col">
 			
-			<p class="lead small text-muted mb-4">{{ "La liste d'institutions"|trans }}</p>
+			<p class="lead small text-muted mb-4">{{ "La liste de locations"|trans }}</p>
 			
 			{# Sort #}
 			<div class="row mb-4">
@@ -81,10 +81,12 @@
 					  	<div class="dropdown-menu" aria-labelledby="dropdownSort">
 					  		{% for item in [
 		  							{title: "Defaut"|trans, param: {}},
-		  							{title: "Nom (ASC)"|trans, param: {name: 'ASC'}},
-		  							{title: "Nom (DESC)"|trans, param: {name: 'DESC'}},
-		  							{title: "Type (ASC)"|trans, param: {type: 'ASC'}},
-		  							{title: "Type (DESC)"|trans, param: {type: 'DESC'}}
+		  							{title: "Quartier (ASC)"|trans, param: {street: 'ASC'}},
+		  							{title: "Quartier (DESC)"|trans, param: {street: 'DESC'}},
+		  							{title: "Region (ASC)"|trans, param: {region: 'ASC'}},
+		  							{title: "Region (DESC)"|trans, param: {region: 'DESC'}},
+		  							{title: "Ville (ASC)"|trans, param: {city: 'ASC'}},
+		  							{title: "Ville (DESC)"|trans, param: {city: 'DESC'}}
 		  						]
 		  					%}
 						    	<a class="dropdown-item" 
@@ -105,7 +107,7 @@
 					    	</span>
 					  	</div>
 					  	<input id="contentFilterInput" type="search" class="form-control border-light-lg border-left-0"
-							placeholder="{{ "Filter les institutions"|trans }}...">
+							placeholder="{{ "Filter les locations"|trans }}...">
 					</div>
 				</div>
 
@@ -140,10 +142,11 @@
 					<thead>
 						<tr>
 							<th scope="col" width="10px">#</th>
-							<th scope="col">{{ "Nom"|trans }}</th>
-							<th scope="col">{{ "Type"|trans }}</th>
-							<th scope="col">{{ "Admin"|trans }}</th>
-							<th scope="col"><i class="fas fa-calendar-alt mr-2"></i>{{ "Créé"|trans }}</th>
+							<th scope="col">{{ "Quartier"|trans }}</th>
+							<th scope="col">{{ "Commune"|trans }}</th>
+							<th scope="col">{{ "Ville"|trans }}</th>
+							<th scope="col">{{ "Departement"|trans }}</th>
+							<th scope="col"><i class="fas fa-calendar-alt mr-2"></i>{{ "Created"|trans }}</th>
 							<th scope="col" width="20%" class="text-center">
 								<i class="fas fa-cogs mr-2"></i>{{ "Actions"|trans }}
 							</th>
@@ -152,12 +155,13 @@
 					{% if entities|length > 0 %}
 						<tbody>
 							{% for entity in entities %}
-								<tr data-keys="{{ entity.name|lower }} {{ entity.type|lower }} 
-												{{ entity.admin.username|lower }}">
+								<tr data-keys="{{ entity.street|lower }} {{ entity.region|lower }} 
+												{{ entity.city|lower }} {{ entity.state|lower }}">
 									<th class="align-middle" scope="row" width="10px">{{ loop.index }}</th>
-									<td class="align-middle">{{ entity.name|title }}</td>
-									<td class="align-middle">{{ entity.typeName|title }}</td>
-									<td class="align-middle">{{ entity.admin.username|title }}</td>
+									<td class="align-middle">{{ entity.street|title }}</td>
+									<td class="align-middle">{{ entity.region|title }}</td>
+									<td class="align-middle">{{ entity.city|title }}</td>
+									<td class="align-middle">{{ entity.state|title }}</td>
 									<td class="align-middle">{{ entity.created|date }}</td>
 									<td width="20%" class="text-right align-middle">
 										<a href="{{ path(routes.show, {id: entity.id}) }}" 

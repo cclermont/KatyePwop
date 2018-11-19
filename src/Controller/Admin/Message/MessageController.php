@@ -79,11 +79,10 @@ class MessageController extends AbstractController
         // Add sender
         $entity->setSender($this->getUser())
                 ->setBroadcasted(true)
-                ->setSenderInstitution($institution)
-                ->setLocation($institution->getLocation());
+                ->setSenderInstitution($institution);
 
         // Create form
-        $form = $this->createForm($this->em->getFormType(), $entity)
+        $form = $this->createForm($this->em->getFormType(), $entity, ['institution' => $institution])
             		->add('saveAndCreateNew', SubmitType::class);
 
         // Handle request
@@ -131,7 +130,7 @@ class MessageController extends AbstractController
     public function edit(Request $request, Message $entity): Response
     {
         // Create form
-        $form = $this->createForm($this->em->getFormType(), $entity);
+        $form = $this->createForm($this->em->getFormType(), $entity, ['institution' => $institution]);
 
         // Handle request
         $form->handleRequest($request);

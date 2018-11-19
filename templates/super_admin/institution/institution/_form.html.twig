@@ -44,26 +44,43 @@
 			  			</div>
 			  			<div class="row">
 			  				<div class="col-12 col-lg">
-					  			{{ form_row(form.admin, {label: "Administrateur", 
-					  				help: "Veuillez indiquer l'administrateur de l'institution", 
-					  				attr: {class: "border-light-lg"}}) }}
-			  				</div>
-			  				<div class="col-12 col-lg">
-					  			{{ form_row(form.location, {label: "Location", 
-					  				help: "Veuillez indiquer la localisation de l'institution", 
-					  				attr: {class: "border-light-lg"}}) }}
-			  				</div>
-			  			</div>
-			  			<div class="row">
-			  				<div class="col-12 col-lg">
-					  			{{ form_row(form.members, {label: "Membres", 
-					  				help: "Veuillez indiquer les membres de l'institution", 
-					  				attr: {class: "border-light-lg"}}) }}
+								{{ form_row(form.allLocationAccess, {label: "Toutes locations", 
+									help: "Veuillez indiquer si l'institution a accès aux locations de l'application", 
+									label_attr: {class: 'checkbox-custom'}}) }}
 			  				</div>
 			  				<div class="col-12 col-lg">
 								{{ form_row(form.enabled, {label: "Active", 
 									help: "Veuillez indiquer si l'institution est active ou pas.", 
 									label_attr: {class: 'checkbox-custom'}}) }}
+			  				</div>
+			  			</div>
+			  			<div class="row mt-4">
+			  				<div class="col-12 col-lg">
+			  					<h4 class="h4">Administrateur</h4>
+			  				</div>
+			  			</div>
+			  			<div class="row">
+			  				<div class="col-12 col-lg">
+			  					{{ form_row(form.admin.username, {label: "Nom utilisateur", 
+					  				help: "Veuillez indiquer votre nom utilisateur.", 
+					  				attr: {class: "border-light-lg", placeholder: "Entrer le nom utilisateur"}}) }}
+					  		</div>
+			  				<div class="col-12 col-lg">
+					  			{{ form_row(form.admin.email, {label: "Email", 
+					  				help: "Veuillez indiquer votre email.", 
+					  				attr: {class: "border-light-lg", placeholder: "Entrer l'email"}}) }}
+			  				</div>
+			  			</div>
+			  			<div class="row">
+			  				<div class="col-12 col-lg">
+			  					{{ form_row(form.admin.roles, {label: "Roles", 
+					  				help: "Veuillez indiquer les roles.", 
+					  				attr: {class: "border-light-lg", placeholder: "Entrer le role"}}) }}
+			  				</div>
+			  				<div class="col-12 col-lg">
+					  			{{ form_row(form.admin.enabled, {label: "Active", 
+					  				help: "Veuillez indiquer si l'utilisateur est actif ou pas.", 
+					  				label_attr: {class: 'checkbox-custom'}}) }}
 			  				</div>
 			  			</div>
 

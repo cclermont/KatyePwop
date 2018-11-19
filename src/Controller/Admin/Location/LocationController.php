@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin\User;
+namespace App\Controller\Admin\Location;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,16 +10,16 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-use App\Entity\User\User;
-use App\Service\User\UserManager;
+use App\Entity\Location\Location;
+use App\Service\Location\LocationManager;
 use App\Service\Institution\InstitutionManager;
 
 /**
- * UserController 
+ * LocationController 
  *
- * @Route("/user")
+ * @Route("/location")
  */ 
-class UserController extends AbstractController
+class LocationController extends AbstractController
 {
     /**
     * Entity manager
@@ -27,29 +27,34 @@ class UserController extends AbstractController
     private $em;
     private $institutionManager;
 
-    public function __construct(UserManager $entityManager, InstitutionManager $institutionManager)
+    public function __construct(LocationManager $entityManager, InstitutionManager $institutionManager)
     {
         $this->em = $entityManager;
         $this->institutionManager = $institutionManager;
     }
 
+
     /**
-     * @Route("/{page<\d+>?1}/{limit<\d+>?50}", name="admin_user", methods={"GET"})
+     * @Route("/{page<\d+>?1}/{limit<\d+>?50}", name="admin_location", methods={"GET"})
      */
     public function index(Request $request, $page = 1, $limit = 50): Response
     {
         // Sort and pattern
         $pattern = $request->query->get('pattern', array());
-        $sort    = $request->query->get('sort', array('created' => 'DESC'));
+        $sort 	 = $request->query->get('sort', array('created' => 'DESC'));
 
-        // Get for institution
-        $pattern['id'] = $this->institutionManager->getMembersId($this->getUser());
-        
+        // Get institution
+        $institution = $this->institutionManager->findByUser($this->getUser());
+
+        if (!$institution->getAllLocationAccess()) {
+            $pattern['institution'] = $institution;
+        }
+
         // Get entities
         $entities = $this->em->findAndPaginate($pattern, $sort, $page, $limit);
 
         // Render view
-        return $this->render("{$this->em->getBaseTemplateName('admin')}/user/index.html.twig", [
+        return $this->render("{$this->em->getBaseTemplateName('admin')}/index.html.twig", [
             'sort' => $sort,
             'page' => $page,
             'limit' => $limit,
@@ -58,38 +63,29 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="admin_user_new", methods={"GET", "POST"})
-     *
-     * @IsGranted("ROLE_ADMIN", message="Vous ne pouvez pas ajouter d'utilisateur")
+     * @Route("/new", name="admin_location_new", methods={"GET", "POST"})
      */
     public function new(Request $request): Response
-    {   
-        // Create entity
+    {	
+        // Get institution
+        $institution = $this->institutionManager->findByUser($this->getUser());
+
+    	// Create entity
         $entity = $this->em->createEntity();
+        $entity->setInstitution($institution);
 
         // Create form
         $form = $this->createForm($this->em->getFormType(), $entity)
-                    ->add('saveAndCreateNew', SubmitType::class);
+            		->add('saveAndCreateNew', SubmitType::class);
 
         // Handle request
         $form->handleRequest($request);
 
         // Test isSubmitted()
         if ($form->isSubmitted() && $form->isValid()) {
-
-            // Get institution
-            $institution = $this->institutionManager->findByUser($this->getUser());
-
-            // Set default password and location
-            $entity->setPlainPassword(md5(rand()));
-            // $entity->getProfile()->setLocation($institution->getLocation());
             
             // Create entity
-            $this->em->update($entity);
-            
-            // Add to institution
-            $institution->addMember($entity);
-            $this->institutionManager->update($institution);
+            $this->em->create($entity);
 
             // Flash messages are used to notify the user about the result
             $this->addFlash('success', 'Element ajouté avec succès');
@@ -101,30 +97,26 @@ class UserController extends AbstractController
             return $this->redirectToRoute("{$this->em->getBaseRouteName('admin')}_show", ["id" => $entity->getId()]);
         }
 
-        return $this->render("{$this->em->getBaseTemplateName('admin')}/user/new.html.twig", [
+        return $this->render("{$this->em->getBaseTemplateName('admin')}/new.html.twig", [
             'entity' => $entity,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/{id<\d+>}/show", name="admin_user_show", methods={"GET"})
-     *
-     * @IsGranted("show", subject="entity", message="Vous ne pouvez pas voir cet utilisateur")
+     * @Route("/{id<\d+>}/show", name="admin_location_show", methods={"GET"})
      */
-    public function show(Request $request, User $entity): Response
+    public function show(Request $request, Location $entity): Response
     {
-        return $this->render("{$this->em->getBaseTemplateName('admin')}/user/show.html.twig", [
+        return $this->render("{$this->em->getBaseTemplateName('admin')}/show.html.twig", [
             'entity' => $entity,
         ]);
     }
 
     /**
-     * @Route("/{id<\d+>}/edit", name="admin_user_edit", methods={"GET", "POST"})
-     *
-     * @IsGranted("edit", subject="entity", message="Vous ne pouvez pas editer cet utilisateur")
+     * @Route("/{id<\d+>}/edit", name="admin_location_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, User $entity): Response
+    public function edit(Request $request, Location $entity): Response
     {
         // Create form
         $form = $this->createForm($this->em->getFormType(), $entity);
@@ -143,22 +135,19 @@ class UserController extends AbstractController
             return $this->redirectToRoute("{$this->em->getBaseRouteName('admin')}_edit", ['id' => $entity->getId()]);
         }
 
-        return $this->render("{$this->em->getBaseTemplateName('admin')}/user/edit.html.twig", [
+        return $this->render("{$this->em->getBaseTemplateName('admin')}/edit.html.twig", [
             'entity' => $entity,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/{id<\d+>}/delete", name="admin_user_delete", methods={"POST"})
-     *
-     * @IsGranted("delete", subject="entity", message="Vous ne pouvez pas effacer cet utilisateur")
+     * @Route("/{id<\d+>}/delete", name="admin_location_delete", methods={"POST"})
      */
-    public function delete(Request $request, User $entity): Response
+    public function delete(Request $request, Location $entity): Response
     {
         // Test if come from delete form
         if (!$this->isCsrfTokenValid('delete', $request->request->get('token'))) {
-            $this->addFlash('error', 'Vous ne pouvez pas effacé cet element');
             return $this->redirectToRoute($this->em->getBaseRouteName('admin'));
         }
 

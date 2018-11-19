@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 use App\Entity\User\User;
+use App\Form\User\UserType;
 use App\Entity\Location\Location;
 use App\Entity\Institution\Institution;
 use App\Repository\User\UserRepository;
@@ -35,6 +36,9 @@ class InstitutionType extends AbstractType
             ->add('enabled', null, [
                 'disabled' => self::ADMIN_CONTEXT == $context,
             ])
+            ->add('allLocationAccess', null, [
+                'disabled' => self::ADMIN_CONTEXT == $context,
+            ])
             ->add('image', ImageType::class)
             ->add('type', ChoiceType:: class, [
                 'placeholder' => 'Choisissez un type',
@@ -44,48 +48,7 @@ class InstitutionType extends AbstractType
                     'Gouvernementale' => Institution::TYPE_GOVERNMENTAL,
                 ],
             ])
-            ->add('location', EntityType::class, [
-                'class' => Location::class,
-                'choice_label' => 'fullname',
-                'placeholder' => 'Choisissez un lieu',
-                'disabled' => self::ADMIN_CONTEXT == $context,
-                'query_builder' => function (LocationRepository $er) {
-                    return $er->createQueryBuilder('u')->orderBy('u.fullname', 'ASC');
-                },
-            ])
-            ->add('admin', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'formLabel',
-                'placeholder' => 'Choisissez un administrateur',
-                'query_builder' => function (UserRepository $er) use ($admins){
-                    
-                    $qb = $er->createQueryBuilder('u');
-
-                    if (count($admins) > 0) {
-                        $qb->where($qb->expr()->in('u.id', $admins));
-                    }
-                    
-                    return $qb->orderBy('u.username', 'ASC');
-                },
-            ])
-            ->add('members', EntityType::class, [
-                'multiple' => true,
-                'class' => User::class,
-                'required' => false,
-                'choice_label' => 'formLabel',
-                'placeholder' => 'Choisissez les membres',
-                'disabled' => self::ADMIN_CONTEXT == $context,
-                'query_builder' => function (UserRepository $er) use ($members){
-                    
-                    $qb = $er->createQueryBuilder('u');
-
-                    if (count($members) > 0) {
-                        $qb->where($qb->expr()->in('u.id', $members));
-                    }
-                    
-                    return $qb->orderBy('u.username', 'ASC');
-                },
-            ])
+            ->add('admin', UserType::class, [])
         ;
     }
 

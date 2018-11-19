@@ -2,6 +2,7 @@
 
 namespace App\Entity\Location;
 
+use App\Entity\Institution\Institution;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -71,6 +72,11 @@ class Location
      * @ORM\Column(type="string", length=32, nullable=true)
      */
     private $longitude;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Institution\Institution", inversedBy="locations")
+     */
+    private $institution;
 
     /**
      * Use Created modified trait
@@ -182,5 +188,17 @@ class Location
     public function __toString(): ?string
     {
         return $this->fullname;
+    }
+
+    public function getInstitution(): ?Institution
+    {
+        return $this->institution;
+    }
+
+    public function setInstitution(?Institution $institution): self
+    {
+        $this->institution = $institution;
+
+        return $this;
     }
 }

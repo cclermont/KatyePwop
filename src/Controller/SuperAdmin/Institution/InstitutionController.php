@@ -71,13 +71,12 @@ class InstitutionController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             
             // Add Admin to members and
-            if($admin = $entity->getAdmin() && !$entity->getMembers()->contains($admin)){
+            $admin = $entity->getAdmin();
+            
+            if(null != $admin && !$entity->getMembers()->contains($admin)){
+                // Set default password
+                $admin->setPlainPassword(md5(rand()));
                 $entity->addMember($admin);
-            }
-
-            // Set location for all members
-            foreach ($entity->getMembers() as $member) {
-                $member->getProfile()->setLocation($entity->getLocation());
             }
 
             // Create entity

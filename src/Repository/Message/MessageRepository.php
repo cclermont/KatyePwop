@@ -43,7 +43,7 @@ class MessageRepository extends AbstractRepository
         $qb->where($qb->expr()->isNull('e.id'));
 
         if ($user->getProfile() && $location = $user->getProfile()->getLocation()) {
-            $qb->where($qb->expr()->eq('e.location', ':location'))
+            $qb->where(':location MEMBER OF e.locations')
                 ->andWhere($qb->expr()->eq('e.broadcasted', 1))
                 ->setParameter('location', $location);
         }
@@ -76,9 +76,9 @@ class MessageRepository extends AbstractRepository
         
         $orX = $qb->expr()->orX(':receiver MEMBER OF e.receivers');
 
-        if ($location = $receiver->getLocation()) {
-            $orX->add($qb->expr()->eq('e.location', ':location'));
-            $qb->setParameter('location', $location);
+        foreach ($receiver->getLocations() as $key => $item) {
+            $orX->add(":location_$key MEMBER OF e.locations");
+            $qb->setParameter("location_$key", $item);
         }
 
         $qb->where($orX)
@@ -116,9 +116,9 @@ class MessageRepository extends AbstractRepository
         
         $orX = $qb->expr()->orX(':receiver MEMBER OF e.receivers');
 
-        if ($location = $receiver->getLocation()) {
-            $orX->add($qb->expr()->eq('e.location', ':location'));
-            $qb->setParameter('location', $location);
+        foreach ($receiver->getLocations() as $key => $item) {
+            $orX->add(":location_$key MEMBER OF e.locations");
+            $qb->setParameter("location_$key", $item);
         }
 
         // Build query

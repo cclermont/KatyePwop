@@ -45,6 +45,14 @@
 	    	</a>
 	    </li>
 	    <li class="mt-1">
+	    	<a href="{{ path("admin_location") }}" 
+	    		class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
+	    	{% if currentModule is defined and currentModule == "location" %}selected{% endif %}">
+	    		<i class="fas fa-map-marker-alt mr-lg-3 fa-fw"></i>
+	    		<span class="small d-none d-lg-inline">{{ "Location"|trans }}</span>
+	    	</a>
+	    </li>
+	    <li class="mt-1">
 	    	<a href="{{ path("admin_user") }}" class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
 	    	{% if currentModule is defined and currentModule == "flotte" %}selected{% endif %}">
 	    		<i class="fas fa-truck mr-lg-3 fa-fw"></i>

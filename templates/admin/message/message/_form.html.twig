@@ -18,6 +18,9 @@
 	  			{{ form_row(form.content, {label: "Contenu", 
 	  				help: "Veuillez indiquer un contenu pour votre message.", 
 	  				attr: {class: "border-light-lg", placeholder: "Entrer le contenu..."}}) }}
+	  			{{ form_row(form.locations, {label: "Locations", 
+	  				help: "Veuillez indiquer les locations pour votre message.", 
+	  				attr: {class: "border-light-lg", placeholder: "Entrer les locations..."}}) }}
 
 		  		<div class="row mt-4">
 		  			{% if form.saveAndCreateNew is defined %}

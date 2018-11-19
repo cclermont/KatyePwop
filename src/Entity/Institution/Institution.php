@@ -49,12 +49,20 @@ class Institution
      * @ORM\Column(type="boolean")
      */
     private $enabled;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $allLocationAccess;
     
     /**
-     * @Assert\NotBlank()
-     * @ORM\ManyToOne(targetEntity="App\Entity\Location\Location")
+     * @ORM\OneToMany(targetEntity="App\Entity\Location\Location", mappedBy="institution", orphanRemoval=true, cascade={"persist", "remove"})
+     *
+     * @JMS\Expose
+     * @JMS\MaxDepth(3)
+     * @JMS\Groups({"show"})
      */
-    private $location;
+    private $locations;
     
     /**
      * @ORM\OneToOne(targetEntity="Image", cascade={"persist", "remove"})
@@ -63,7 +71,7 @@ class Institution
     
     /**
      * @Assert\NotBlank()
-     * @ORM\OneToOne(targetEntity="App\Entity\User\User")
+     * @ORM\OneToOne(targetEntity="App\Entity\User\User", cascade={"persist", "remove"})
      */
     private $admin;
 
@@ -92,7 +100,10 @@ class Institution
 
     public function __construct()
     {
+        $this->enabled = false;
+        $this->allLocationAccess = false;
         $this->members = new ArrayCollection();
+        $this->locations = new ArrayCollection();
     }
 
 
@@ -137,14 +148,40 @@ class Institution
         return $this;
     }
 
-    public function getLocation(): ?Location
+    public function getAllLocationAccess(): ?bool
     {
-        return $this->location;
+        return $this->allLocationAccess;
     }
 
-    public function setLocation(?Location $location): self
+    public function setAllLocationAccess(bool $allLocationAccess): self
     {
-        $this->location = $location;
+        $this->allLocationAccess = $allLocationAccess;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Location[]
+     */
+    public function getLocations(): Collection
+    {
+        return $this->locations;
+    }
+
+    public function addLocation(Location $location): self
+    {
+        if (!$this->locations->contains($location)) {
+            $this->locations[] = $location;
+        }
+
+        return $this;
+    }
+
+    public function removeLocation(Location $location): self
+    {
+        if ($this->locations->contains($location)) {
+            $this->locations->removeElement($location);
+        }
 
         return $this;
     }

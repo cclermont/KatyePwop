@@ -96,8 +96,8 @@
 								<span class="d-block text-gray-dark">{{ entity.admin|default("N/A") }}</span>
 							</div>
 							<div class="col">
-								<h5 class="h6 text-dark-gray">{{ "Location"|title }}</h5>
-								<span class="d-block text-gray-dark">{{ entity.location.fullname|default("N/A") }}</span>
+								<h5 class="h6 text-dark-gray">{{ "Locations"|title }}</h5>
+								<span class="d-block text-gray-dark">{{ entity.locations|join(', ')|default("N/A") }}</span>
 							</div>
 						</div>
 						<div class="row">

@@ -83,13 +83,18 @@ class Message
     private $videos;
     
     /**
-     * @Assert\NotBlank()
-     * @ORM\ManyToOne(targetEntity="App\Entity\Location\Location")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Location\Location")
+     *
+     * @ORM\JoinTable(name="message_message_location_join", 
+     *      joinColumns={@ORM\JoinColumn(name="message_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="location_id", referencedColumnName="id", unique=true)})
+     *
+     * @ORM\OrderBy({"created" = "ASC"})
      *
      * @JMS\Expose
      * @JMS\Groups({"list", "show"})
      */
-    private $location;
+    private $locations;
     
     /**
      * @Assert\NotBlank()
@@ -133,6 +138,7 @@ class Message
         $this->images = new ArrayCollection();
         $this->videos = new ArrayCollection();
         $this->receivers = new ArrayCollection();
+        $this->locations = new ArrayCollection();
     }
 
 
@@ -239,18 +245,6 @@ class Message
         return $this;
     }
 
-    public function getLocation(): ?Location
-    {
-        return $this->location;
-    }
-
-    public function setLocation(?Location $location): self
-    {
-        $this->location = $location;
-
-        return $this;
-    }
-
     public function getSender(): ?User
     {
         return $this->sender;
@@ -309,6 +303,32 @@ class Message
     public function setSenderInstitution(?Institution $senderInstitution): self
     {
         $this->senderInstitution = $senderInstitution;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Location[]
+     */
+    public function getLocations(): Collection
+    {
+        return $this->locations;
+    }
+
+    public function addLocation(Location $location): self
+    {
+        if (!$this->locations->contains($location)) {
+            $this->locations[] = $location;
+        }
+
+        return $this;
+    }
+
+    public function removeLocation(Location $location): self
+    {
+        if ($this->locations->contains($location)) {
+            $this->locations->removeElement($location);
+        }
 
         return $this;
     }

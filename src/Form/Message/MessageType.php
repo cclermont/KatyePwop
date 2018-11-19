@@ -11,7 +11,9 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 use App\Entity\User\User;
 use App\Entity\Message\Message;
+use App\Entity\Location\Location;
 use App\Repository\User\UserRepository;
+use App\Repository\Location\LocationRepository;
 
 class MessageType extends AbstractType
 {
@@ -32,6 +34,7 @@ class MessageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $context = $options['context'];
+        $institution = $options['institution'];
 
         $builder
             ->add('title')
@@ -52,20 +55,48 @@ class MessageType extends AbstractType
                 'by_reference' => false,
                 'entry_type' => ImageType::class,
             ])
-            ->add('videos', CollectionType::class, [
-                'allow_add' => true,
-                'required' => false,
-                'by_reference' => false,
-                'entry_type' => VideoType::class,
-            ])
         ;
+
+        if (self::ADMIN_CONTEXT != $context && null != $institution) {
+            $builder
+                ->add('locations', EntityType::class, [
+                    'multiple' => true,
+                    'required' => false,
+                    'class' => Location::class,
+                    'choice_label' => 'fullname',
+                    'placeholder' => 'Choisissez les locations',
+                    'query_builder' => function (LocationRepository $er) use ($institution) {
+                        return $er->createQueryBuilder('u')
+                            ->innerJoin('u.institution', 'i')
+                            ->addSelect('i')
+                            ->where('i.id = :id')
+                            ->setParameter('id', $institution->getId())
+                            ->orderBy('u.fullname', 'ASC');
+                    },
+                ])
+            ;
+        }
+
+        if (self::SUPER_ADMIN_CONTEXT != $context) {
+            $builder
+                ->add('locations', EntityType::class, [
+                    'multiple' => true,
+                    'required' => false,
+                    'class' => Location::class,
+                    'choice_label' => 'fullname',
+                    'placeholder' => 'Choisissez les locations',
+                    'query_builder' => function (LocationRepository $er) {
+                        return $er->createQueryBuilder('u')->orderBy('u.fullname', 'ASC');
+                    },
+                ])
+            ;
+        }
 
         // if ($this->user->isSuperAdmin() || $this->user->isAdmin()) {
         if (self::API_CONTEXT != $context) {
             $builder
                 ->remove('receivers')
                 ->remove('images')
-                ->remove('videos')
             ;
         }
     }
@@ -75,6 +106,7 @@ class MessageType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Message::class,
             'context' => self::SUPER_ADMIN_CONTEXT,
+            'institution' => null,
         ]);
     }
 }

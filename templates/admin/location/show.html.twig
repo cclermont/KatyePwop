@@ -1,7 +1,7 @@
-{% extends 'super_admin/layout.html.twig' %}
+{% extends 'admin/layout.html.twig' %}
 
 {# Set vars #}
-{% set currentModule = "institution" %}
+{% set currentModule = "location" %}
 
 {# Flash messages #}
 {% set notifMsg = "" %}
@@ -16,17 +16,17 @@
 
 {# Set routes #}
 {% set routes = {
-	index: 'super_admin_institution_institution',
-	new: 'super_admin_institution_institution_new',
-	edit: 'super_admin_institution_institution_edit',
-	show: 'super_admin_institution_institution_show',
-	delete: 'super_admin_institution_institution_delete'
+	index: 'admin_location',
+	new: 'admin_location_new',
+	edit: 'admin_location_edit',
+	show: 'admin_location_show',
+	delete: 'admin_location_delete'
 } %}
 
 {# Title #}
 {% block title %}
     {{ parent() }} - 
-    {{ "Afficher institution"|trans }}
+    {{ "Afficher location"|trans }}
 {% endblock title %}
 
 {# Heading #}
@@ -40,13 +40,13 @@
 		    <nav aria-label="breadcrumb">
 		        <ol class="breadcrumb bg-transparent small mb-2 p-0">
 		            <li class="breadcrumb-item active" aria-current="page">{{ app.user.username|title }}</li>
-		            <li class="breadcrumb-item active" aria-current="page">{{ "Institution"|trans }}</li>
+		            <li class="breadcrumb-item active" aria-current="page">{{ "Location"|trans }}</li>
 		            <li class="breadcrumb-item active" aria-current="page">{{ "Afficher"|trans }}</li>
 		        </ol>
 		    </nav>
 
 		    <div class="d-flex align-items-center">
-				<h1 class="h2 text-light-black">{{ "Afficher institution"|trans|title }}</h1>
+				<h1 class="h2 text-light-black">{{ "Afficher location"|trans|title }}</h1>
 		    </div>
 		</header>
 		
@@ -54,7 +54,7 @@
 		{# Body #}
 		<div class="center-container mt-3 mb-5">
 			
-			<p class="lead small text-muted mb-4">{{ "Fiche detaillée d'une institution"|trans }}</p>
+			<p class="lead small text-muted mb-4">{{ "Fiche detaillée d'une location"|trans }}</p>
 
 			<div class="d-flex align-items-center">
 				<h2 class="display-5 mb-0 text-dark-gray">{{ "Info basique"|trans }}</h2>
@@ -66,70 +66,50 @@
 			<hr class="my-2">
 			<div id="collapse1" class="collapse show mt-4">
 				<div class="row mb-4">
-					<div class="col-12 col-lg-3">
-						<p class="mb-1">
-							{% if entity.hasImage %}
-				    			<img src="{{ vich_uploader_asset(entity.image, 'file') 
-				    				| imagine_filter('thumb_256x256') }}"
-				    				alt="{{ "Logo"|trans }}" class="img-thumbnail">
-				    		{% else %}
-				    		    <img src="{{ asset("images/logo.png") | imagine_filter('thumb_256x256') }}" 
-				    		    	alt="{{ "Photo de profil"|trans }}" class="img-thumbnail">
-				    		{% endif %}
-						</p>
-						<p class="lead small text-center font-italic text-muted">{{ "Logo de l'institution..."|trans }}</p>
+					<div class="col">
+						<h5 class="h6 text-dark-gray">{{ "Nom complet"|title }}</h5>
+						<span class="d-block text-gray-dark">{{ entity.fullname|title }}</span>
 					</div>
-					<div class="col-12 col-lg-8 offset-lg-1">
-						<div class="row mb-4">
-							<div class="col">
-								<h5 class="h6 text-dark-gray">{{ "Nom"|title }}</h5>
-								<span class="d-block text-gray-dark">{{ entity.name|default("N/A") }}</span>
-							</div>
-							<div class="col">
-								<h5 class="h6 text-dark-gray">{{ "Type"|title }}</h5>
-								<span class="d-block text-gray-dark">{{ entity.typeName }}</span>
-							</div>
-						</div>
-						<div class="row mb-4">
-							<div class="col">
-								<h5 class="h6 text-dark-gray">{{ "Admin"|title }}</h5>
-								<span class="d-block text-gray-dark">{{ entity.admin|default("N/A") }}</span>
-							</div>
-							<div class="col">
-								<h5 class="h6 text-dark-gray">{{ "Locations"|title }}</h5>
-								<span class="d-block text-gray-dark">{{ entity.locations|join(', ')|default("N/A") }}</span>
-							</div>
-						</div>
-						<div class="row mb-4">
-							<div class="col">
-								<h5 class="h6 text-dark-gray">{{ "Membres"|title }}</h5>
-								<span class="d-block text-gray-dark">{{ entity.members|join(', ')|default("N/A") }}</span>
-							</div>
-							<div class="col">
-								<h5 class="h6 text-dark-gray">{{ "Active"|title }}</h5>
-								<span class="d-block text-gray-dark">
-									{% if entity.enabled %}{{ "Oui"|trans }}{% else %}{{ "Non"|trans }}{% endif %}
-								</span>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col">
-								<h5 class="h6 text-dark-gray">{{ "Toutes locations"|title }}</h5>
-								<span class="d-block text-gray-dark">
-									{% if entity.allLocationAccess %}{{ "Oui"|trans }}{% else %}{{ "Non"|trans }}{% endif %}
-								</span>
-							</div>
-							<div class="col">
-							</div>
-						</div>
+					<div class="col">
+						<h5 class="h6 text-dark-gray">{{ "Quartier"|title }}</h5>
+						<span class="d-block text-gray-dark">{{ entity.street|title|default("N/A") }}</span>
 					</div>
+					<div class="col">
+						<h5 class="h6 text-dark-gray">{{ "Commune"|title }}</h5>
+						<span class="d-block text-gray-dark">{{ entity.region|title|default("N/A") }}</span>
+					</div>
+				</div>
+				<div class="row mb-4">
+					<div class="col">
+						<h5 class="h6 text-dark-gray">{{ "Ville"|title }}</h5>
+						<span class="d-block text-gray-dark">{{ entity.city|title|default("N/A") }}</span>
+					</div>
+					<div class="col">
+						<h5 class="h6 text-dark-gray">{{ "Departement"|title }}</h5>
+						<span class="d-block text-gray-dark">{{ entity.state|title|default("N/A") }}</span>
+					</div>
+					<div class="col">
+						<h5 class="h6 text-dark-gray">{{ "Pays"|title }}</h5>
+						<span class="d-block text-gray-dark">{{ entity.country|title|default("N/A") }}</span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<h5 class="h6 text-dark-gray">{{ "Latitude"|title }}</h5>
+						<span class="d-block text-gray-dark">{{ entity.latitude|title|default("N/A") }}</span>
+					</div>
+					<div class="col">
+						<h5 class="h6 text-dark-gray">{{ "Longitude"|title }}</h5>
+						<span class="d-block text-gray-dark">{{ entity.longitude|default("N/A") }}</span>
+					</div>
+					<div class="col"></div>
 				</div>
 			</div>
 
 		</div>
 
 		{# Footer #}
-		{{ include('super_admin/_footer.html.twig') }}
+		{{ include('admin/_footer.html.twig') }}
 	</div>
 
 	{# Right Aside #}

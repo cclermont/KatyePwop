@@ -88,6 +88,10 @@
 								<h5 class="h6 text-dark-gray">{{ "Contenu"|title }}</h5>
 								<p class="d-block text-gray-dark">{{ entity.content }}</p>
 							</div>
+							<div class="col">
+								<h5 class="h6 text-dark-gray">{{ "Locations"|title }}</h5>
+								<p class="d-block text-gray-dark">{{ entity.locations|join(', ')|default("N/A") }}</p>
+							</div>
 						</div>
 					</div>
 				</div>
