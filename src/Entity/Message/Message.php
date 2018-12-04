@@ -87,7 +87,7 @@ class Message
      *
      * @ORM\JoinTable(name="message_message_location_join", 
      *      joinColumns={@ORM\JoinColumn(name="message_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="location_id", referencedColumnName="id", unique=true)})
+     *      inverseJoinColumns={@ORM\JoinColumn(name="location_id", referencedColumnName="id", unique=false)})
      *
      * @ORM\OrderBy({"created" = "ASC"})
      *

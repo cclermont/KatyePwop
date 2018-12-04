@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"ent",
+				"entity"
+			],
+			[
+				"mb",
+				"mb-4 \tBootstrap 4 Class"
+			],
+			[
+				"ad",
+				"admin"
+			],
+			[
+				"all",
+				"allLocationAccess"
+			],
+			[
+				"mt",
+				"mt-4 \tBootstrap 4 Class"
+			],
+			[
+				"User",
+				"UserType"
+			],
+			[
 				"json",
 				"jQuery.parseJSON\tjQuery.parseJSON"
 			],
@@ -36,16 +60,8 @@
 				"offset-lg-1 \tBootstrap 4 Class"
 			],
 			[
-				"ad",
-				"admins"
-			],
-			[
 				"pa",
 				"pattern"
-			],
-			[
-				"ent",
-				"entityManager"
 			],
 			[
 				"var",
@@ -106,10 +122,6 @@
 			[
 				"mar",
 				"margin-right"
-			],
-			[
-				"mt",
-				"mt-2 \tBootstrap 4 Class"
 			],
 			[
 				"col",
@@ -222,10 +234,6 @@
 			[
 				"img",
 				"img-thumbnail \tBootstrap 4 Class"
-			],
-			[
-				"mb",
-				"mb-3 \tBootstrap 4 Class"
 			],
 			[
 				"fon",
@@ -506,180 +514,11 @@
 			[
 				"getPa",
 				"getPages"
-			],
-			[
-				"prin",
-				"print_r"
-			],
-			[
-				"dele",
-				"deleted"
 			]
 		]
 	},
 	"buffers":
 	[
-		{
-			"file": "src/Controller/Api/User/ProfileController.php",
-			"settings":
-			{
-				"buffer_size": 4962,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "config/packages/liip_imagine.yaml",
-			"settings":
-			{
-				"buffer_size": 1852,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/Controller/Frontend/User/SecurityController.php",
-			"settings":
-			{
-				"buffer_size": 3164,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/Form/User/ChangePasswordFormType.php",
-			"settings":
-			{
-				"buffer_size": 594,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/Controller/Api/User/RegistrationController.php",
-			"settings":
-			{
-				"buffer_size": 3079,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/Controller/Api/User/ResettingController.php",
-			"settings":
-			{
-				"buffer_size": 3757,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/Controller/Admin/Dashboard/DashboardController.php",
-			"settings":
-			{
-				"buffer_size": 2783,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/Controller/Api/Message/MessageController.php",
-			"settings":
-			{
-				"buffer_size": 5417,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "package com.compuconsult.katyepwop.message.activity;\n\nimport android.Manifest;\nimport android.content.Intent;\nimport android.content.pm.PackageManager;\nimport android.os.Environment;\nimport android.support.annotation.NonNull;\nimport android.support.v4.app.ActivityCompat;\nimport android.support.v4.content.ContextCompat;\nimport android.support.v7.app.AppCompatActivity;\nimport android.os.Bundle;\nimport android.support.v7.widget.AppCompatButton;\nimport android.support.v7.widget.DefaultItemAnimator;\nimport android.support.v7.widget.LinearLayoutManager;\nimport android.support.v7.widget.RecyclerView;\nimport android.support.v7.widget.SearchView;\nimport android.support.v7.widget.Toolbar;\nimport android.text.Editable;\nimport android.text.InputType;\nimport android.text.TextWatcher;\nimport android.util.Log;\nimport android.view.KeyEvent;\nimport android.view.Menu;\nimport android.view.MenuItem;\nimport android.view.View;\nimport android.widget.EditText;\nimport android.widget.Scroller;\nimport android.widget.TextView;\nimport android.widget.Toast;\n\nimport com.afollestad.materialdialogs.DialogAction;\nimport com.afollestad.materialdialogs.MaterialDialog;\nimport com.afollestad.materialdialogs.internal.MDButton;\nimport com.androidnetworking.AndroidNetworking;\nimport com.androidnetworking.common.Priority;\nimport com.androidnetworking.interfaces.UploadProgressListener;\nimport com.compuconsult.katyepwop.R;\nimport com.compuconsult.katyepwop.core.activity.SettingsActivity;\nimport com.compuconsult.katyepwop.core.exception.ObjectRequestException;\nimport com.compuconsult.katyepwop.core.interfaces.ObjectRequestListener;\nimport com.compuconsult.katyepwop.core.utils.ErrorHandler;\nimport com.compuconsult.katyepwop.location.entity.Location;\nimport com.compuconsult.katyepwop.message.adapter.MessageAdapter;\nimport com.compuconsult.katyepwop.message.entity.Message;\nimport com.compuconsult.katyepwop.message.service.MessageManager;\nimport com.compuconsult.katyepwop.user.activity.ProfileViewActivity;\nimport com.compuconsult.katyepwop.user.entity.User;\nimport com.compuconsult.katyepwop.user.service.UserManager;\nimport com.dinuscxj.refresh.RecyclerRefreshLayout;\nimport com.github.pwittchen.infinitescroll.library.InfiniteScrollListener;\n\nimport java.io.File;\nimport java.util.ArrayList;\nimport java.util.Hashtable;\nimport java.util.LinkedList;\nimport java.util.List;\n\nimport pl.aprilapps.easyphotopicker.DefaultCallback;\nimport pl.aprilapps.easyphotopicker.EasyImage;\nimport pl.tajchert.nammu.Nammu;\nimport pl.tajchert.nammu.PermissionCallback;\nimport pl.tajchert.nammu.PermissionListener;\n\npublic class MessageActivity extends AppCompatActivity {\n\n    int page;\n    String messageFilter;\n    List<Message> entities;\n    private boolean loading;\n    private View noContentView;\n    private boolean hasMoreData;\n    private MessageManager manager;\n    private UserManager userManager;\n    private MessageAdapter mAdapter;\n    private RecyclerView recyclerView;\n    private AppCompatButton tryAgainBtnView;\n    private RecyclerRefreshLayout refreshLayout;\n    private LinearLayoutManager mLinearLayoutManager;\n\n    public static final int MAX_ITEM_PER_REQUEST = 50;\n    private static final int REQUEST_PERMISSION_WRITE = 1001;\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        \n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_message);\n\n        // Toolbar\n        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);\n        setSupportActionBar(toolbar);\n        setTitle(R.string.app_name);\n\n        page = 1;\n        loading = false;\n        hasMoreData = true;\n        messageFilter = Message.TYPE_RECEIVED;\n        entities = new ArrayList<Message>();\n        manager = MessageManager.getInstance();\n        userManager = UserManager.getInstance();\n\n\n        // Get recyclerView, searchView and create new adapter\n        mAdapter = new MessageAdapter();\n        noContentView = (View) findViewById(R.id.no_content);\n        recyclerView = (RecyclerView) findViewById(R.id.recycle_view);\n        tryAgainBtnView = (AppCompatButton) findViewById(R.id.try_again);\n        refreshLayout = (RecyclerRefreshLayout) findViewById(R.id.refresh_layout);\n\n        // No content text\n        ((TextView) noContentView.findViewById(R.id.no_content_text_view)).setText(R.string.no_items_to_display);\n\n        // Set adapter properties\n        mAdapter = new MessageAdapter(this, entities, new MessageAdapter.MessageAdapterListener(){\n\n            @Override\n            public void onItemSelected(Message entity) {\n                Bundle data = new Bundle();\n                data.putLong(\"id\", entity.getId());\n                data.putLong(\"date\", entity.getCreated());\n                data.putString(\"sender\", entity.getSenderName());\n                data.putString(\"content\", entity.getContent());\n                data.putString(\"location\", entity.getLocationName());\n                Intent intent = new Intent(MessageActivity.this, MessageShowActivity.class);\n                intent.putExtras(data);\n                startActivity(intent);\n            }\n        });\n\n        // Set on click listener for try again\n        tryAgainBtnView.setOnClickListener(new View.OnClickListener() {\n            @Override\n            public void onClick(View v) {\n                loadData();\n            }\n        });\n\n        // Set item to recycler onView\n        mLinearLayoutManager = new LinearLayoutManager(this);\n        recyclerView.setLayoutManager(mLinearLayoutManager);\n        recyclerView.setItemAnimator(new DefaultItemAnimator());\n        recyclerView.setAdapter(mAdapter);\n\n        // add InfiniteScrollListener as OnScrollListener\n        recyclerView.addOnScrollListener(createInfiniteScrollListener());\n\n        // Load data\n        loadData();\n\n        // Init pull to refresh\n        pullToRefresh();\n    }\n\n    @Override\n    public boolean onCreateOptionsMenu(Menu menu) {\n        // Inflate the menu; this adds items to the action bar if it is present.\n        getMenuInflater().inflate(R.menu.toolbar_message, menu);\n        return true;\n    }\n\n    @Override\n    public boolean onOptionsItemSelected(MenuItem item) {\n\n        switch (item.getItemId()){\n            case R.id.message_action:\n                onNewMessageAction();\n                break;\n            case R.id.filter_action:\n                onFilterAction();\n                break;\n            case R.id.profile_action:\n                onProfileAction();\n                break;\n        }\n\n        return super.onOptionsItemSelected(item);\n    }\n\n    private void onProfileAction() {\n        startActivity(new Intent(this, ProfileViewActivity.class));\n    }\n\n    private void onFilterAction() {\n\n        List<String> items = new LinkedList<>();\n\n        items.add(getString(R.string.sent_messages));\n        items.add(getString(R.string.received_messages));\n\n        int index = messageFilter == Message.TYPE_SENT ? 0 : 1;\n\n        new MaterialDialog.Builder(this)\n                .title(R.string.message_filter)\n                .items(items)\n                .itemsCallbackSingleChoice(index, new MaterialDialog.ListCallbackSingleChoice() {\n                    @Override\n                    public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {\n\n                        if(getString(R.string.sent_messages).equals(text)){\n                            messageFilter = Message.TYPE_SENT;\n                        } else {\n                            messageFilter = Message.TYPE_RECEIVED;\n                        }\n\n                        loadData();\n\n                        return false;\n                    }\n                })\n                .alwaysCallSingleChoiceCallback()\n                .show();\n    }\n\n    private void onNewMessageAction() {\n        onSendMessage();\n    }\n\n    private void onCameraAction() {\n        if (Nammu.hasPermission(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE})){\n            EasyImage.openChooserWithGallery(this, getString(R.string.choose_an_image), 0);\n        } else {\n            Nammu.askForPermission(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, new PermissionCallback() {\n                @Override\n                public void permissionGranted() {\n                    EasyImage.openChooserWithGallery(MessageActivity.this, getString(R.string.choose_an_image), 0);\n                }\n\n                @Override\n                public void permissionRefused() {\n                    Toast.makeText(MessageActivity.this, R.string.must_grant_permissions, Toast.LENGTH_SHORT).show();\n                }\n            });\n        }\n    }\n\n    // Pull to refresh\n    private void pullToRefresh(){\n        refreshLayout.setOnRefreshListener(new RecyclerRefreshLayout.OnRefreshListener() {\n            @Override\n            public void onRefresh() {\n                loadData();\n                refreshLayout.setRefreshing(false);\n            }\n        });\n    }\n\n    // Load data\n    private void loadData() {\n\n        int page = 1, limit = MAX_ITEM_PER_REQUEST;\n\n        // Loader\n        loading = true;\n        final MaterialDialog loader = new MaterialDialog.Builder(this).title(R.string.please_wait).content(R.string.please_wait_message_loading).progress(true, 0).show();\n\n        manager.findBy(new Hashtable(), new Hashtable(), page, limit, null, new ObjectRequestListener() {\n            @Override\n            public void onResponse(Hashtable data) {\n\n                entities = (ArrayList<Message>) data.get(\"entities\");\n\n                if (entities.size() > 0){\n                    noContentView.setVisibility(View.GONE);\n                } else {\n                    noContentView.setVisibility(View.VISIBLE);\n                }\n\n                loading = false;\n                loader.dismiss();\n                hasMoreData = true;\n                mAdapter.setEntities(entities);\n            }\n\n            @Override\n            public void onError(ObjectRequestException error) {\n                loading = false;\n                loader.dismiss();\n                hasMoreData = true;\n                ErrorHandler.handle(MessageActivity.this, error);\n            }\n        });\n    }\n\n    // Infinite loading\n    private InfiniteScrollListener createInfiniteScrollListener() {\n\n        return new InfiniteScrollListener(MAX_ITEM_PER_REQUEST, mLinearLayoutManager) {\n\n            @Override public void onScrolledToEnd(final int firstVisibleItemPosition) {\n\n                if (!hasMoreData || loading) return; // Return if no more data\n\n                // Loader\n                loading = true;\n                final MaterialDialog loader = new MaterialDialog.Builder(MessageActivity.this).title(R.string.please_wait).content(R.string.please_wait_message_loading).progress(true, 0).show();\n\n                int limit = MAX_ITEM_PER_REQUEST;\n\n                manager.findBy(new Hashtable(), new Hashtable(), ++page, limit, null, new ObjectRequestListener() {\n                    @Override\n                    public void onResponse(Hashtable data) {\n\n                        long total = (long) data.get(\"total\");\n                        List<Message> newEntities = (ArrayList<Message>) data.get(\"entities\");\n\n                        if (newEntities.size() > 0){\n                            entities.addAll(newEntities);\n                        }\n\n                        if (total <= entities.size()){\n                            hasMoreData = false;\n                        } else {\n                            hasMoreData = true;\n                        }\n\n                        loading = false;\n                        loader.dismiss();\n                        mAdapter.setEntities(entities);\n                        refreshView(recyclerView, mAdapter, firstVisibleItemPosition);\n                    }\n\n                    @Override\n                    public void onError(ObjectRequestException error) {\n                        loading = false;\n                        loader.dismiss();\n                        if (404 == error.getCode()) hasMoreData = false;\n                        ErrorHandler.handle(MessageActivity.this, error);\n                    }\n                });\n            }\n        };\n    }\n\n    @Override\n    protected void onActivityResult(int requestCode, int resultCode, Intent data) {\n\n        super.onActivityResult(requestCode, resultCode, data);\n\n        EasyImage.handleActivityResult(requestCode, resultCode, data, this, new DefaultCallback() {\n            @Override\n            public void onImagePicked(File imageFile, EasyImage.ImageSource source, int type) {\n                onImageReturn(imageFile);\n            }\n        });\n    }\n\n    private void onImageReturn(final File imageFile) {\n\n        // Message dialog\n        final MaterialDialog dialog = new MaterialDialog.Builder(this)\n                .title(R.string.message)\n                .content(R.string.add_message)\n                .inputType(InputType.TYPE_CLASS_TEXT)\n                .positiveText(R.string.send)\n                .negativeText(R.string.cancel)\n                .negativeColorRes(R.color.red_500)\n                .input(getString(R.string.write_message), \"\", new MaterialDialog.InputCallback() {\n                    @Override\n                    public void onInput(MaterialDialog dialog, CharSequence input) {\n                        if (input.toString().length() > 1) {\n                            sendMultimediaMessage(input.toString(), imageFile);\n                        }\n                    }\n                }).show();\n\n\n        // Get views\n        final EditText inputView = dialog.getInputEditText();\n        final MDButton positiveBtn = dialog.getActionButton(DialogAction.POSITIVE);\n\n        if (null != inputView && null != positiveBtn) {\n\n            positiveBtn.setEnabled(false);\n\n            inputView.addTextChangedListener(new TextWatcher() {\n                @Override\n                public void beforeTextChanged(CharSequence s, int start, int count, int after) {\n\n                }\n\n                @Override\n                public void onTextChanged(CharSequence s, int start, int before, int count) {\n                    if (s.toString().length() > 1){\n                        positiveBtn.setEnabled(true);\n                    } else {\n                        positiveBtn.setEnabled(false);\n                    }\n                }\n\n                @Override\n                public void afterTextChanged(Editable s) {\n\n                }\n            });\n\n            inputView.setOnKeyListener(new View.OnKeyListener() {\n                @Override\n                public boolean onKey(View v, int keyCode, KeyEvent event) {\n                    if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)){\n                        String input = inputView.getText().toString();\n                        if (input.length() > 1) {\n                            sendMultimediaMessage(input, imageFile);\n                            dialog.dismiss();\n                        }\n                    }\n                    return false;\n                }\n            });\n        }\n    }\n\n    private void onSendMessage(){\n\n        // Message dialog\n        final MaterialDialog dialog = new MaterialDialog.Builder(this)\n                .title(R.string.message)\n                .content(R.string.add_message)\n                .inputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE)\n                .positiveText(R.string.send)\n                .negativeText(R.string.cancel)\n                .negativeColorRes(R.color.red_500)\n                .input(getString(R.string.write_message), \"\", new MaterialDialog.InputCallback() {\n                    @Override\n                    public void onInput(MaterialDialog dialog, CharSequence input) {\n                        if (input.toString().length() > 1) {\n                            sendMessage(input.toString());\n                        }\n                    }\n                }).show();\n\n        // Get views\n        final EditText inputView = dialog.getInputEditText();\n        final MDButton positiveBtn = dialog.getActionButton(DialogAction.POSITIVE);\n\n        if (null != inputView && null != positiveBtn) {\n\n            positiveBtn.setEnabled(false);\n\n            inputView.setMinLines(4);\n            inputView.setMaxLines(10);\n            inputView.setScroller(new Scroller(getApplicationContext()));\n            inputView.setHorizontallyScrolling(false);\n            inputView.setVerticalScrollBarEnabled(true);\n            inputView.setHorizontalScrollBarEnabled(false);\n\n            inputView.addTextChangedListener(new TextWatcher() {\n                @Override\n                public void beforeTextChanged(CharSequence s, int start, int count, int after) {\n\n                }\n\n                @Override\n                public void onTextChanged(CharSequence s, int start, int before, int count) {\n                    if (s.toString().length() > 1){\n                        positiveBtn.setEnabled(true);\n                    } else {\n                        positiveBtn.setEnabled(false);\n                    }\n                }\n\n                @Override\n                public void afterTextChanged(Editable s) {\n\n                }\n            });\n\n            inputView.setOnKeyListener(new View.OnKeyListener() {\n                @Override\n                public boolean onKey(View v, int keyCode, KeyEvent event) {\n                    if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)){\n                        String input = inputView.getText().toString();\n                        if (input.length() > 1) {\n                            sendMessage(input);\n                            dialog.dismiss();\n                        }\n                    }\n                    return false;\n                }\n            });\n        }\n    }\n\n    private void sendMessage(String input) {\n\n        // Progress bar\n        final MaterialDialog progressDialog = new MaterialDialog.Builder(this).title(R.string.please_wait).content(R.string.sending_please_wait).progress(true, 0).show();\n\n        // Create new message instance\n        long[] dest = {1, 2};\n        Hashtable params = new Hashtable();\n        User user = userManager.getCurrentUser();\n\n        params.put(\"contenu\", input);\n        params.put(\"destinataires\", dest);\n        params.put(\"idExpediteur\", null != user ? user.getId() : 0);\n\n//        manager.sendMessage(params, new ObjectRequestListener() {\n//            @Override\n//            public void onResponse(Hashtable data) {\n//\n//                progressDialog.dismiss();\n//\n//                new MaterialDialog.Builder(MessageActivity.this)\n//                        .title(R.string.message_sent_title)\n//                        .content(R.string.message_sent_desc)\n//                        .positiveText(R.string.ok)\n//                        .show();\n//            }\n//\n//            @Override\n//            public void onError(ObjectRequestException error) {\n//                progressDialog.dismiss();\n//                ErrorHandler.handle(MessageActivity.this, error);\n//            }\n//        });\n    }\n\n    private void sendMultimediaMessage(String input, File imageFile) {\n\n        // Progress bar\n        final MaterialDialog progressDialog = new MaterialDialog.Builder(MessageActivity.this)\n                .title(R.string.please_wait)\n                .content(R.string.preparing_sending)\n                .autoDismiss(false)\n                .progress(false, 100, false)\n                .show();\n\n        // Create new message instance\n        long[] dest = {1, 2};\n        Hashtable params = new Hashtable();\n        User user = userManager.getCurrentUser();\n\n        params.put(\"contenu\", input);\n        params.put(\"destinataires\", dest);\n        params.put(\"idExpediteur\", null != user ? user.getId() : 0);\n\n//        manager.sendMultimediaMessage(params, imageFile, new UploadProgressListener() {\n//            @Override\n//            public void onProgress(long bytesUploaded, long totalBytes) {\n//                progressDialog.setTitle(R.string.sending);\n//                progressDialog.setContent(R.string.sending_please_wait);\n//                progressDialog.setMaxProgress((int) totalBytes);\n//                progressDialog.setProgress((int) bytesUploaded);\n//            }\n//        }, new ObjectRequestListener() {\n//            @Override\n//            public void onResponse(Hashtable data) {\n//\n//                progressDialog.dismiss();\n//\n//                new MaterialDialog.Builder(MessageActivity.this)\n//                        .title(R.string.message_sent_title)\n//                        .content(R.string.message_sent_desc)\n//                        .positiveText(R.string.ok)\n//                        .show();\n//            }\n//\n//            @Override\n//            public void onError(ObjectRequestException error) {\n//                progressDialog.dismiss();\n//                ErrorHandler.handle(MessageActivity.this, error);\n//            }\n//        });\n    }\n}\n",
-			"settings":
-			{
-				"buffer_size": 21156,
-				"line_ending": "Unix",
-				"name": "package com.compuconsult.katyepwop.message.activit"
-			}
-		},
-		{
-			"file": "src/Controller/Api/User/ChangePasswordController.php",
-			"settings":
-			{
-				"buffer_size": 3035,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "templates/super_admin/message/message/show.html.twig",
-			"settings":
-			{
-				"buffer_size": 8876,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "templates/admin/message/message/show.html.twig",
-			"settings":
-			{
-				"buffer_size": 8842,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "assets/js/super_admin/app.js",
-			"settings":
-			{
-				"buffer_size": 5060,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "assets/js/admin/app.js",
-			"settings":
-			{
-				"buffer_size": 5054,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "assets/js/shared/utils.js",
-			"settings":
-			{
-				"buffer_size": 1011,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "database_dump.sql",
-			"settings":
-			{
-				"buffer_size": 19793,
-				"encoding": "UTF-8",
-				"line_ending": "Unix",
-				"name": "-- phpMyAdmin SQL Dump"
-			}
-		},
-		{
-			"file": "assets/js/app.js",
-			"settings":
-			{
-				"buffer_size": 1384,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "assets/scss/global.scss",
-			"settings":
-			{
-				"buffer_size": 2022,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -744,14 +583,73 @@
 	"expanded_folders":
 	[
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/node_modules",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Entity",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Entity/User",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Form"
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Form",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Form/Institution"
 	],
 	"file_history":
 	[
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Form/User/UserType.php",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Controller/Admin/Message/MessageController.php",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/admin/location/show.html.twig",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/admin/location/new.html.twig",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/admin/location/index.html.twig",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/admin/location/edit.html.twig",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/admin/location/_form.html.twig",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Controller/Admin/Location/LocationController.php",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Controller/Api/Message/MessageController.php",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Repository/Message/MessageRepository.php",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Form/Message/MessageType.php",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Form/Institution/InstitutionType.php",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Entity/Location/Location.php",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Entity/Institution/Institution.php",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Entity/Message/Message.php",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/admin/_aside_menu.html.twig",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/admin/message/message/show.html.twig",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/admin/message/message/_form.html.twig",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/admin/institution/institution/show.html.twig",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/super_admin/institution/institution/show.html.twig",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/super_admin/institution/institution/index.html.twig",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/super_admin/institution/institution/_form.html.twig",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Repository/Institution/InstitutionRepository.php",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/super_admin/_aside_menu.html.twig",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/admin/institution/institution/_form.html.twig",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Controller/Admin/User/UserController.php",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Entity/Message/Video.php",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Repository/User/UserRepository.php",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Entity/User/User.php",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Controller/SuperAdmin/User/UserController.php",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Controller/SuperAdmin/Institution/InstitutionController.php",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/super_admin/user/user/_form.html.twig",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Controller/Api/User/ProfileController.php",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/assets/scss/global.scss",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/assets/js/app.js",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/database_dump.sql",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/assets/js/shared/utils.js",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/assets/js/admin/app.js",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/assets/js/super_admin/app.js",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/super_admin/_footer.html.twig",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/admin/message/message/index.html.twig",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/form/_delete_form.html.twig",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/frontend/user/resetting/check_email.html.twig",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/super_admin/message/message/show.html.twig",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Controller/Api/User/ChangePasswordController.php",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Controller/Admin/Dashboard/DashboardController.php",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Controller/Api/User/ResettingController.php",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Controller/Api/User/RegistrationController.php",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Form/User/ChangePasswordFormType.php",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Controller/Frontend/User/SecurityController.php",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/config/packages/liip_imagine.yaml",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Entity/Message/Image.php",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/config/services.yaml",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/config/routes/dev/web_profiler.yaml",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/config/packages/framework.yaml",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Migrations/Version20181015193946.php",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Migrations/Version20181026154435.php",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Migrations/Version20181023023541.php",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Migrations/Version20181016153653.php",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Migrations/Version20181015205743.php",
+		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Migrations/Version20181119152057.php",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/node_modules/video.js/dist/video.js",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/node_modules/calendar-graph/src/utils.js",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/assets/js/frontend/app.js",
@@ -769,33 +667,23 @@
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/vendor/zircote/swagger-php/src/Annotations/AbstractAnnotation.php",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/vendor/symfony/http-foundation/Request.php",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Form/User/RegistrationFormType.php",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Form/Message/MessageType.php",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Entity/User/User.php",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Form/User/ProfileType.php",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Entity/Core/Media.php",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Entity/User/Image.php",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Entity/User/Profile.php",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Entity/Location/Location.php",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Entity/Message/Video.php",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Entity/Message/Message.php",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Controller/SuperAdmin/User/ProfileController.php",
 		"/Applications/MAMP/htdocs/symfony/davidian/src/CommonBundle/Entity/AbstractFile.php",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/vendor/friendsofsymfony/user-bundle/Model/User.php",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Traits/Core/Entity/CreatedModifiedTrait.php",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Entity/Message/Image.php",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Entity/Institution/Image.php",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/config/routes/annotations.yaml",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/config/packages/security.yaml",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/config/packages/nelmio_api_doc.yaml",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/config/routes/nelmio_api_doc.yaml",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/config/services.yaml",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Form/Institution/InstitutionType.php",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Form/User/UserType.php",
 		"/Applications/MAMP/htdocs/symfony/davidian/src/UserBundle/Form/Type/NewUserFormType.php",
 		"/Applications/MAMP/htdocs/symfony/davidian/src/UserBundle/Form/Type/EditUserFormType.php",
 		"/Applications/MAMP/htdocs/symfony/davidian/src/UserBundle/Form/Type/AbstractUserFormType.php",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/vendor/friendsofsymfony/user-bundle/Form/Type/RegistrationFormType.php",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Form/User/ChangePasswordFormType.php",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Form/User/ResettingFormType.php",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Entity/User/ChangePasswordFormType.php",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/vendor/symfony/framework-bundle/Controller/ControllerTrait.php",
@@ -807,19 +695,13 @@
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Entity/User/ChangePassword.php",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Controller/Admin/User/ProfileController.php",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/config/packages/fos_rest.yaml",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Controller/Api/Message/MessageController.php",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Controller/Frontend/Home/HomeController.php",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Controller/Frontend/User/ResettingController.php",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Controller/Frontend/User/SecurityController.php",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Controller/Api/Location/LocationController.php",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Controller/Api/Institution/InstitutionController.php",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/config/packages/fos_oauth_server.yaml",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/config/routes/liip_imagine.yaml",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/config/routes.yaml",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Controller/Admin/Dashboard/DashboardController.php",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/assets/scss/global.scss",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/assets/js/super_admin/app.js",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/assets/js/admin/app.js",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/vendor/symfony/http-foundation/Response.php",
 		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Entity/Book.php",
 		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Controller/Api/BookController.php",
@@ -829,57 +711,12 @@
 		"/Applications/MAMP/htdocs/symfony/davidian/src/UserBundle/Controller/Api/RegistrationController.php",
 		"/Applications/MAMP/htdocs/symfony/davidian/src/UserBundle/Controller/Api/ChangePasswordController.php",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/vendor/friendsofsymfony/user-bundle/Resources/config/registration.xml",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Controller/SuperAdmin/Institution/InstitutionController.php",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/vendor/friendsofsymfony/user-bundle/Controller/RegistrationController.php",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Controller/Api/User/ChangePasswordController.php",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Controller/Admin/Message/MessageController.php",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/vendor/friendsofsymfony/rest-bundle/Controller/FOSRestController.php",
 		"/Applications/MAMP/htdocs/symfony4/KatyePwop/vendor/friendsofsymfony/rest-bundle/Controller/ControllerTrait.php",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Entity/Institution/Institution.php",
 		"/Applications/MAMP/htdocs/symfony/davidian/src/CommonBundle/Entity/AbstractElement.php",
 		"/Applications/MAMP/htdocs/symfony/davidian/src/CommonBundle/Entity/AbstractImage.php",
-		"/Applications/MAMP/htdocs/symfony/davidian/src/UserBundle/Entity/User.php",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Controller/Api/ControllerResponseDataTrait.php",
-		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Resources/config/routing.yml",
-		"/Applications/MAMP/htdocs/symfony/davidian/app/config/routing.yml",
-		"/Applications/MAMP/htdocs/symfony/davidian/app/config/security.yml",
-		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Resources/config/routing/api/routing.yml",
-		"/Applications/MAMP/htdocs/symfony/davidian/src/DocumentBundle/Resources/config/routing/api/book.yml",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Repository/Message/MessageRepository.php",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Controller/SuperAdmin/Dashboard/DashboardController.php",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/admin/message/message/index.html.twig",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/admin/user/user/show.html.twig",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/vendor/doctrine/collections/lib/Doctrine/Common/Collections/ArrayCollection.php",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Controller/Admin/User/UserController.php",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Service/Institution/InstitutionManager.php",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Controller/SuperAdmin/User/UserController.php",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/admin/dashboard/index.html.twig",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/super_admin/dashboard/index.html.twig",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/admin/_aside_menu.html.twig",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/assets/scss/admin/_body.scss",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Controller/Admin/Institution/InstitutionController.php",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Repository/Institution/InstitutionRepository.php",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Security/Voter/MessageVoter.php",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Security/Voter/UserVoter.php",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/admin/institution/institution/_form.html.twig",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/admin/institution/institution/edit.html.twig",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/admin/institution/institution/show.html.twig",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/super_admin/institution/institution/_form.html.twig",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/super_admin/user/profile/_form.html.twig",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/admin/user/profile/_form.html.twig",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/super_admin/institution/institution/show.html.twig",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/super_admin/user/user/show.html.twig",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/super_admin/_aside_menu.html.twig",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/admin/layout.html.twig",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/admin/user/user/_form.html.twig",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/admin/message/message/_form.html.twig",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/super_admin/user/user/_form.html.twig",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/super_admin/message/message/_form.html.twig",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/super_admin/location/_form.html.twig",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/super_admin/institution/institution/index.html.twig",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/vendor/symfony/framework-bundle/Controller/AbstractController.php",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Security/Voter/InstitutionVoter.php",
-		"/Applications/MAMP/htdocs/symfony4/KatyePwop/config/packages/doctrine.yaml"
+		"/Applications/MAMP/htdocs/symfony/davidian/src/UserBundle/Entity/User.php"
 	],
 	"find":
 	{
@@ -890,6 +727,8 @@
 		"height": 101.0,
 		"where_history":
 		[
+			"/Applications/MAMP/htdocs/symfony4/KatyePwop/src/Controller/Admin/Location",
+			"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/admin/location",
 			"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/admin,/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/super_admin",
 			"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/",
 			"/Applications/MAMP/htdocs/symfony4/KatyePwop/templates/super_admin",
@@ -910,6 +749,14 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"Name()",
+			"allLocationAccess",
+			"super_admin",
+			"SuperAdmin",
+			"super_admin",
+			"getLocation",
+			"getLoca",
+			"loca",
 			"pause()",
 			"play()",
 			"pad",
@@ -1029,15 +876,7 @@
 			"create",
 			"getBaseRouteName()",
 			"getBaseTemplateName()",
-			"locationManager",
-			"institutionManager",
-			"super_admin",
-			"SuperAdmin",
-			"broadcasted",
-			"une message",
-			"Institution",
-			"institution",
-			"Institution"
+			"locationManager"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1045,6 +884,10 @@
 		"regex": false,
 		"replace_history":
 		[
+			"Name('admin')",
+			"admin",
+			"Admin",
+			"admin",
 			"message",
 			"Message",
 			"location",
@@ -1101,546 +944,8 @@
 	"groups":
 	[
 		{
-			"selected": 8,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "src/Controller/Api/User/ProfileController.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4962,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4460,
-								4460
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 11,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "config/packages/liip_imagine.yaml",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1852,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1361,
-								1371
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/YAML/YAML.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 252.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 10,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "src/Controller/Frontend/User/SecurityController.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3164,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1122,
-								1122
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 133.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 14,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "src/Form/User/ChangePasswordFormType.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 594,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								568,
-								583
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 16,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "src/Controller/Api/User/RegistrationController.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3079,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1977,
-								1977
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 847.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 17,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "src/Controller/Api/User/ResettingController.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3757,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								881,
-								890
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 923.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 15,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "src/Controller/Admin/Dashboard/DashboardController.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2783,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 373.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 13,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "src/Controller/Api/Message/MessageController.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5417,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4883,
-								4883
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2326.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 21156,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								21156,
-								21156
-							]
-						],
-						"settings":
-						{
-							"auto_name": "package com.compuconsult.katyepwop.message.activit",
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 8938.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "src/Controller/Api/User/ChangePasswordController.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3035,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2122,
-								2101
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 12,
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "templates/super_admin/message/message/show.html.twig",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8876,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5846,
-								5846
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2197.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 11,
-					"file": "templates/admin/message/message/show.html.twig",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8842,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5527,
-								5527
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2342.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 12,
-					"file": "assets/js/super_admin/app.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5060,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								868,
-								868
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 13,
-					"file": "assets/js/admin/app.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5054,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								864,
-								778
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 14,
-					"file": "assets/js/shared/utils.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1011,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1007,
-								1007
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 99.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 15,
-					"file": "database_dump.sql",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 19793,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								19793,
-								19793
-							]
-						],
-						"settings":
-						{
-							"auto_name": "-- phpMyAdmin SQL Dump",
-							"syntax": "Packages/SQL/SQL.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 4404.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 16,
-					"file": "assets/js/app.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1384,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1384,
-								1384
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 17,
-					"file": "assets/scss/global.scss",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2022,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								307,
-								307
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/SCSS/SCSS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				}
 			]
 		}
 	],

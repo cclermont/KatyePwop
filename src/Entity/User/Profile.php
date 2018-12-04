@@ -72,6 +72,12 @@ class Profile
     private $image;
     
     /**
+     * @ORM\OneToOne(targetEntity="Notification", cascade={"persist", "remove"})
+     *
+     */
+    private $notification;
+    
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Location\Location")
      *
      * @JMS\Expose
@@ -198,6 +204,18 @@ class Profile
     public function setPhone(?string $phone): self
     {
         $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function getNotification(): ?Notification
+    {
+        return $this->notification;
+    }
+
+    public function setNotification(?Notification $notification): self
+    {
+        $this->notification = $notification;
 
         return $this;
     }

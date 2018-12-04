@@ -80,3 +80,15 @@ services:
         bind: 
             $router: "@router"
             $authorizationChecker: "@security.authorization_checker"
+
+    # Admin message controller
+    App\Controller\Admin\Message\MessageController:
+        public: true
+        bind:
+            $fcmClient: "@redjan_ym_fcm.client"
+
+    # Form error normalizer
+    App\Normalizer\FormErrorNormalizer:
+        public: false
+        tags:
+            - { name: serializer.normalizer, priority: 1 }

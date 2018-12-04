@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin\Message;
 
+use RedjanYm\FCMBundle\FCMClient;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,11 +26,13 @@ class MessageController extends AbstractController
     * Entity manager
     */
     private $em;
+    private $fcmClient;
     private $institutionManager;
 
-    public function __construct(MessageManager $entityManager, InstitutionManager $institutionManager)
+    public function __construct(MessageManager $entityManager, InstitutionManager $institutionManager, FCMClient $fcmClient)
     {
         $this->em = $entityManager;
+        $this->fcmClient = $fcmClient;
         $this->institutionManager = $institutionManager;
     }
 
@@ -93,6 +96,9 @@ class MessageController extends AbstractController
 
             // Create entity
             $this->em->create($entity);
+
+            // Send topic notifications
+            $this->sendTopicNotifications($entity);
 
             // Flash messages are used to notify the user about the result
             $this->addFlash('success', 'Element ajouté avec succès');
@@ -170,5 +176,17 @@ class MessageController extends AbstractController
         $this->addFlash('success', 'Element effacé avec succès');
 
         return $this->redirectToRoute($this->em->getBaseRouteName('admin'));
+    }
+
+    /**
+     * Send topic notification
+     */
+    public function sendTopicNotifications(Message $message) {
+
+        foreach ($message->getLocations() as $location) {
+            $topic = strtolower(preg_replace('#\s+|\\-|,\s+#', '_', $location->getFullname()));
+            $notification = $this->fcmClient->createTopicNotification($message->getTitle(), $message->getContent(), $topic);
+            $this->fcmClient->sendNotification($notification);
+        }
     }
 }

@@ -23,4 +23,5 @@ return [
     Vich\UploaderBundle\VichUploaderBundle::class => ['all' => true],
     Liip\ImagineBundle\LiipImagineBundle::class => ['all' => true],
     JMS\SerializerBundle\JMSSerializerBundle::class => ['all' => true],
+    RedjanYm\FCMBundle\RedjanYmFCMBundle::class => ['all' => true],
 ];
