@@ -57,7 +57,7 @@ class MessageType extends AbstractType
             ])
         ;
 
-        if (self::ADMIN_CONTEXT != $context && null != $institution) {
+        if (self::ADMIN_CONTEXT == $context && null != $institution) {
             $builder
                 ->add('locations', EntityType::class, [
                     'multiple' => true,
@@ -77,7 +77,7 @@ class MessageType extends AbstractType
             ;
         }
 
-        if (self::SUPER_ADMIN_CONTEXT != $context) {
+        if (self::SUPER_ADMIN_CONTEXT == $context) {
             $builder
                 ->add('locations', EntityType::class, [
                     'multiple' => true,

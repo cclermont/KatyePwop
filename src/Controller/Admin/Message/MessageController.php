@@ -12,6 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 use App\Entity\Message\Message;
+use App\Form\Message\MessageType;
 use App\Service\Message\MessageManager;
 use App\Service\Institution\InstitutionManager;
 
@@ -85,7 +86,8 @@ class MessageController extends AbstractController
                 ->setSenderInstitution($institution);
 
         // Create form
-        $form = $this->createForm($this->em->getFormType(), $entity, ['institution' => $institution])
+        $form = $this->createForm($this->em->getFormType(), $entity, 
+            ['context' => MessageType::ADMIN_CONTEXT, 'institution' => $institution])
             		->add('saveAndCreateNew', SubmitType::class);
 
         // Handle request
@@ -136,7 +138,8 @@ class MessageController extends AbstractController
     public function edit(Request $request, Message $entity): Response
     {
         // Create form
-        $form = $this->createForm($this->em->getFormType(), $entity, ['institution' => $institution]);
+        $form = $this->createForm($this->em->getFormType(), $entity, 
+            ['context' => MessageType::ADMIN_CONTEXT, 'institution' => $institution]);
 
         // Handle request
         $form->handleRequest($request);

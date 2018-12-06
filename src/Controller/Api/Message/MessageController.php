@@ -121,7 +121,7 @@ class MessageController extends FOSRestController
         // Add sender
         $entity->setBroadcasted(false)
                 ->setSender($this->getUser())
-                ->addLocation($this->getUser()->getProfile()->getLocation());
+                ->getLocations()->add($this->getUser()->getProfile()->getLocation());
 
         // Create form
         $form = $this->createForm($this->em->getFormType(), $entity, ['context' => MessageType::API_CONTEXT]);
