@@ -87,6 +87,27 @@ services:
         bind:
             $fcmClient: "@redjan_ym_fcm.client"
 
+    # SuperAdmin institution controller
+    App\Controller\SuperAdmin\Institution\InstitutionController:
+        public: true
+        bind:
+            $mailer: "@fos_user.mailer.twig_swift"
+            $tokenGenerator: "@fos_user.util.token_generator"
+
+    # Admin User controller
+    App\Controller\Admin\User\UserController:
+        public: true
+        bind:
+            $mailer: "@fos_user.mailer.twig_swift"
+            $tokenGenerator: "@fos_user.util.token_generator"
+
+    # SuperAdmin User controller
+    App\Controller\SuperAdmin\User\UserController:
+        public: true
+        bind:
+            $mailer: "@fos_user.mailer.twig_swift"
+            $tokenGenerator: "@fos_user.util.token_generator"
+
     # Form error normalizer
     App\Normalizer\FormErrorNormalizer:
         public: false

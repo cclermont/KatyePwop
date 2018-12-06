@@ -2,14 +2,17 @@
 
 namespace App\Controller\SuperAdmin\Institution;
 
+use FOS\UserBundle\Mailer\TwigSwiftMailer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use FOS\UserBundle\Util\TokenGeneratorInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+use App\Service\User\UserManager;
 use App\Entity\Institution\Institution;
 use App\Service\Institution\InstitutionManager;
 
@@ -24,10 +27,17 @@ class InstitutionController extends AbstractController
     * Entity manager
     */
     private $em;
+    private $mailer;
+    private $userManager;
+    private $tokenGenerator;
 
-    public function __construct(InstitutionManager $entityManager)
+    public function __construct(InstitutionManager $entityManager, UserManager $userManager, TwigSwiftMailer $mailer,
+                TokenGeneratorInterface $tokenGenerator)
     {
+        $this->mailer = $mailer;
         $this->em = $entityManager;
+        $this->userManager = $userManager;
+        $this->tokenGenerator = $tokenGenerator;
     }
 
 
@@ -73,10 +83,23 @@ class InstitutionController extends AbstractController
             // Add Admin to members and
             $admin = $entity->getAdmin();
             
-            if(null != $admin && !$entity->getMembers()->contains($admin)){
-                // Set default password
-                $admin->setPlainPassword(md5(rand()));
-                $entity->addMember($admin);
+            if(null != $admin) {
+
+                if(!$entity->getMembers()->contains($admin)){
+                    // Set default password
+                    $admin->setPlainPassword(md5(rand()));
+                    $entity->addMember($admin);
+                }
+
+                // Set confirmation token
+                if (null === $admin->getConfirmationToken()) {
+                    $admin->setConfirmationToken($this->tokenGenerator->generateToken());
+                }
+
+                // Send password resetting email
+                $this->mailer->sendResettingEmailMessage($admin);
+                $admin->setPasswordRequestedAt(new \DateTime());
+                $this->userManager->update($admin);
             }
 
             // Create entity

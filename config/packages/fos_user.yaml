@@ -4,4 +4,4 @@ fos_user:
     user_class: App\Entity\User\User
     from_email:
         address: "info@compuconsult.ht"
-        sender_name: "CompuConsult"
+        sender_name: "Katye Pwop"

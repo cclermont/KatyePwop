@@ -2,9 +2,11 @@
 
 namespace App\Controller\SuperAdmin\User;
 
+use FOS\UserBundle\Mailer\TwigSwiftMailer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use FOS\UserBundle\Util\TokenGeneratorInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -24,10 +26,15 @@ class UserController extends AbstractController
     * Entity manager
     */
     private $em;
+    private $mailer;
+    private $tokenGenerator;
 
-    public function __construct(UserManager $entityManager)
+    public function __construct(UserManager $entityManager, TwigSwiftMailer $mailer,
+                TokenGeneratorInterface $tokenGenerator)
     {
+        $this->mailer = $mailer;
         $this->em = $entityManager;
+        $this->tokenGenerator = $tokenGenerator;
     }
 
     /**
@@ -71,6 +78,15 @@ class UserController extends AbstractController
             
             // Set default password
             $entity->setPlainPassword(md5(rand()));
+
+            // Set confirmation token
+            if (null === $entity->getConfirmationToken()) {
+                $entity->setConfirmationToken($this->tokenGenerator->generateToken());
+            }
+
+            // Send password resetting email
+            $this->mailer->sendResettingEmailMessage($entity);
+            $entity->setPasswordRequestedAt(new \DateTime());
             
             // Create entity
             $this->em->update($entity);
