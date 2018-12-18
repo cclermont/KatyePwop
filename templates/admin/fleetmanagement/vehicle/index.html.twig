@@ -1,0 +1,87 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% set currentModule = "user" %}
+{% set notifMsg = "" %}
+{% set notifType = "" %}
+
+{% set routes = {
+	index: 'admin_user',
+	new: 'admin_fleetmanagement_vehicle_new',
+	edit: 'admin_fleetmanagement_vehicle_edit',
+	show: 'admin_fleetmanagement_vehicle_show',
+	delete: 'admin_fleetmanagement_vehicle_delete'
+} %}
+
+
+{# Title #}
+{% block title %}
+    {{ parent() }} - 
+    {{ "Lister vehicules"|trans }}
+{% endblock title %}
+
+{# Heading #}
+{% block layout_header %}
+
+	{# Site map #}
+    <nav aria-label="breadcrumb" data-notify="{{ notifMsg }}" data-notify-type="{{ notifType }}">
+        <ol class="breadcrumb bg-transparent small mb-2 p-0">
+            <li class="breadcrumb-item active" aria-current="page">{{ app.user.username|title }}</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ "Utilisateur"|trans }}</li>
+        </ol>
+    </nav>
+
+    {# Page header #}
+    <div class="row d-flex align-items-center">
+    	<div class="col-12 col-lg mb-3 mb-lg-0">
+			<h1 class="h2 text-light-black">{{ "Lister vehicules"|trans|title }}</h1>
+    	</div>
+		<div class="col-12 col-lg text-lg-right">
+			<a href="{{ path(routes.new) }}" class="btn btn-danger">
+				<i class="fa fa-plus mr-2"></i>{{ "Nouveau vehicule"|trans|title }}
+			</a>
+		</div>
+    </div>
+{% endblock %}
+
+{% block layout_container %}
+
+    <table id="contentList" class="table custum-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Numero</th>
+                <th>Type</th>
+                <th>Make</th>
+                <th>Modele</th>
+                <th>Choffeur</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for vehicle in vehicles %}
+            <tr>
+                <td>{{ vehicle.id }}</td>
+                <td>{{ vehicle.regNo }}</td>
+                <td>{{ vehicle.category.name }}</td>
+                <td>{{ vehicle.make }}</td>
+                <td>{{ vehicle.model }}</td>
+                <td>{{ vehicle.assignedDriverId }}</td>
+                <td>
+                    <a href="{{ path(routes.show, {id: vehicle.id}) }}" 
+                        class="btn btn-info btn-sm mb-1 mb-lg-0">
+                        <i class="far fa-eye mr-1"></i><span>{{ "Voir"|trans }}</span>
+                    </a>
+                    <a href="{{ path(routes.edit, {id: vehicle.id}) }}" 
+                        class="btn btn-dark btn-sm">
+                        <i class="fas fa-edit mr-1"></i><span>{{ "Modifier"|trans }}</span>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,17 @@
+<div class="row mt-3">
+	<div class="col col-lg-6 offset-lg-3">
+        <p class="lead small text-muted mb-3">
+            {{ "Utiliser ce formulaire pour ajouter des locations"|trans }}
+        </p>
+		<div>
+            {{ form_start(form) }}
+                {{ form_errors(form) }}
+                {{ form_row(form.name, {
+                    label: "Libelle",
+	  				help: "Veuillez indiquer le libelle.", 
+	  				attr: {class: "border-light-lg", placeholder: "Entrer le libelle"}}) }}
+                <button class="btn">{{ button_label|default('Save') }}</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
