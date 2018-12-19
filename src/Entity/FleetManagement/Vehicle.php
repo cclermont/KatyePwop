@@ -2,6 +2,8 @@
 
 namespace App\Entity\FleetManagement;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -60,6 +62,16 @@ class Vehicle
      * @ORM\ManyToOne(targetEntity="App\Entity\FleetManagement\VehicleCategory", inversedBy="vehicles")
      */
     private $category;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\FleetManagement\Fuel", mappedBy="vehicle")
+     */
+    private $fuels;
+
+    public function __construct()
+    {
+        $this->fuels = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -170,6 +182,37 @@ class Vehicle
     public function setCategory(?VehicleCategory $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Fuel[]
+     */
+    public function getFuels(): Collection
+    {
+        return $this->fuels;
+    }
+
+    public function addFuel(Fuel $fuel): self
+    {
+        if (!$this->fuels->contains($fuel)) {
+            $this->fuels[] = $fuel;
+            $fuel->setVehicle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFuel(Fuel $fuel): self
+    {
+        if ($this->fuels->contains($fuel)) {
+            $this->fuels->removeElement($fuel);
+            // set the owning side to null (unless already changed)
+            if ($fuel->getVehicle() === $this) {
+                $fuel->setVehicle(null);
+            }
+        }
 
         return $this;
     }
