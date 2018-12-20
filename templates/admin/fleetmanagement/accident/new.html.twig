@@ -1,0 +1,43 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% set currentModule = "user" %}
+{% set notifMsg = "" %}
+{% set notifType = "" %}
+
+{% set routes = {
+	index: 'admin_user',
+	new: 'fleet_management_vehicle_new',
+	edit: 'admin_user_edit',
+	show: 'admin_user_show',
+	delete: 'admin_user_delete'
+} %}
+
+{# Title #}
+{% block title %}
+    {{ parent() }} - 
+    {{ "Lister vehicules"|trans }}
+{% endblock title %}
+
+{# Heading #}
+{% block layout_header %}
+<div class="row mt-3" data-notify="{{ notifMsg }}" data-notify-type="{{ notifType }}">
+	<div class="col col-lg-6 offset-lg-3">
+	    <nav aria-label="breadcrumb">
+	        <ol class="breadcrumb bg-transparent small mb-2 p-0">
+	            <li class="breadcrumb-item active" aria-current="page">{{ app.user.username|title }}</li>
+	            <li class="breadcrumb-item active" aria-current="page">{{ "Utilisateur"|trans }}</li>
+	            <li class="breadcrumb-item active" aria-current="page">{{ "Nouveau"|trans }}</li>
+	        </ol>
+	    </nav>
+
+	    <div class="d-flex align-items-center">
+			<h1 class="h2 text-light-black">{{ "Nouvel accident"|trans|title }}</h1>
+	    </div>
+	</div>
+</div>
+{% endblock %}
+{% block layout_container %}
+
+    {{ include('admin/fleetmanagement/accident/_form.html.twig') }}
+
+{% endblock %}

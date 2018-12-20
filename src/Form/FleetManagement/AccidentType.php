@@ -2,14 +2,14 @@
 
 namespace App\Form\FleetManagement;
 
-use App\Entity\FleetManagement\Fuel;
+use App\Entity\FleetManagement\Accident;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Repository\FleetManagement\VehicleRepository;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class FuelType extends AbstractType
+class AccidentType extends AbstractType
 {
     private $vehicleRepository;
     
@@ -18,16 +18,14 @@ class FuelType extends AbstractType
     {
         $this->vehicleRepository = $vehicleRepository;
     }
-
+    
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('pumped_at')
-            ->add('merter_reading')
-            ->add('qty_pumped')
-            ->add('price_per_gallon')
-            ->add('last_mileage')
-            ->add('driver_id')
+            ->add('details')
+            ->add('location')
+            ->add('deaths')
+            ->add('date')
             ->add('vehicle', ChoiceType::class, [
                 'choices'=>$this->vehicleRepository->findAll(),
                 'choice_label' => function($vehicle, $key, $value) {
@@ -37,13 +35,14 @@ class FuelType extends AbstractType
                     return $entity ? $entity->getId() : '';
                 },*/
             ])
+            ->add('driver_id')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Fuel::class,
+            'data_class' => Accident::class,
         ]);
     }
 }

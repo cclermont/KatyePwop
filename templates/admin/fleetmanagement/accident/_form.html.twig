@@ -1,0 +1,13 @@
+<div class="row mt-3">
+	<div class="col col-lg-6 offset-lg-3">
+        <p class="lead small text-muted mb-3">
+            {{ "Utiliser ce formulaire pour ajouter ..."|trans }}
+        </p>
+		<div>
+            {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <button class="btn">{{ button_label|default('Save') }}</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
