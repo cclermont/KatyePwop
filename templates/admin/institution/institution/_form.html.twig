@@ -44,26 +44,70 @@
 			  			</div>
 			  			<div class="row">
 			  				<div class="col-12 col-lg">
-					  			{{ form_row(form.admin, {label: "Administrateur", 
-					  				help: "Veuillez indiquer l'administrateur de l'institution", 
-					  				attr: {class: "border-light-lg"}}) }}
+					  			{{ form_row(form.phone, {label: "Téléphone", 
+					  				help: "Veuillez indiquer votre numero de téléphone", 
+					  				attr: {class: "border-light-lg", placeholder: "Entrer le numero de téléphone"}}) }}
 			  				</div>
 			  				<div class="col-12 col-lg">
-					  			{{ form_row(form.location, {label: "Location", 
-					  				help: "Veuillez indiquer la localisation de l'institution", 
-					  				attr: {class: "border-light-lg"}}) }}
+			  					{{ form_row(form.email, {label: "Email", 
+					  				help: "Veuillez indiquer votre email", 
+					  				attr: {class: "border-light-lg", placeholder: "Entrer l'email"}}) }}
 			  				</div>
 			  			</div>
 			  			<div class="row">
 			  				<div class="col-12 col-lg">
-					  			{{ form_row(form.members, {label: "Membres", 
-					  				help: "Veuillez indiquer les membres de l'institution", 
-					  				attr: {class: "border-light-lg"}}) }}
+					  			{{ form_row(form.website, {label: "Site internet", 
+					  				help: "Veuillez indiquer l'url de votre site internet", 
+					  				attr: {class: "border-light-lg", placeholder: "Entrer l'url"}}) }}
 			  				</div>
+			  				<div class="col-12 col-lg">
+			  					{{ form_row(form.slogan, {label: "Slogan", 
+					  				help: "Veuillez indiquer votre slogan", 
+					  				attr: {class: "border-light-lg", placeholder: "Entrer le slogan"}}) }}
+			  				</div>
+			  			</div>
+			  			<div class="row">
 			  				<div class="col-12 col-lg">
 								{{ form_row(form.enabled, {label: "Active", 
 									help: "Veuillez indiquer si l'institution est active ou pas.", 
 									label_attr: {class: 'checkbox-custom'}}) }}
+			  				</div>
+			  				<div class="col-12 col-lg">
+			  				</div>
+			  			</div>
+
+			  			<h3 class="mt-4">{{ "Maire" }}</h3>
+			  			<div class="row">
+			  				<div class="col-12 col-lg">
+					  			{{ form_row(form.mayor.firstname, {label: "Nom", 
+					  				help: "Veuillez indiquer le nom correctement", 
+					  				attr: {class: "border-light-lg", placeholder: "Entrer le nom"}}) }}
+			  				</div>
+			  				<div class="col-12 col-lg">
+					  			{{ form_row(form.mayor.lastname, {label: "Prénom", 
+					  				help: "Veuillez indiquer le prénom correctement", 
+					  				attr: {class: "border-light-lg", placeholder: "Entrer le prénom"}}) }}
+			  				</div>
+			  			</div>
+			  			<div class="row">
+			  				<div class="col-12 col-lg">
+					  			{{ form_row(form.mayor.email, {label: "Email", 
+					  				help: "Veuillez indiquer l'email correctement", 
+					  				attr: {class: "border-light-lg", placeholder: "Entrer l'email"}}) }}
+			  				</div>
+			  				<div class="col-12 col-lg">
+					  			{{ form_row(form.mayor.phone, {label: "Téléphone", 
+					  				help: "Veuillez indiquer le numéro de téléphone correctement", 
+					  				attr: {class: "border-light-lg", placeholder: "Entrer le numéro de téléphone"}}) }}
+			  				</div>
+			  			</div>
+			  			<div class="row">
+			  				<div class="col-12 col-lg">
+					  			{{ form_row(form.mayor.bio, {label: "Biographie", 
+					  				help: "Veuillez indiquer la biographie", 
+					  				attr: {class: "border-light-lg", placeholder: "Entrer la biographie"}}) }}
+			  				</div>
+			  				<div class="col-12 col-lg">
 			  				</div>
 			  			</div>
 

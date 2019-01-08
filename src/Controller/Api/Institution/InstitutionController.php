@@ -68,4 +68,36 @@ class InstitutionController extends FOSRestController
         // Render view
         return $view->setContext($context);
     }
+
+    /**
+     * Single get
+     * @Security("has_role('ROLE_USER_SIMPLE')")
+     * @Route("/{id<\d+>}", name="api_institution_institution_show", defaults={"_format": "json"}, methods={"GET"})
+     */
+    public function sget(Request $request, $id)
+    {
+        // Find entity by id
+        $entity = $this->em->find($id);
+        
+        // Test if entity was found
+        if (!$entity) {
+            throw $this->createNotFoundException("No entity found for id($id)");
+        }
+
+        // Get response data
+        $resData = $this->getResponseData();
+
+        // Add form to response data
+        $resData->set('total', 1);
+        $resData->set('data', $entity);
+
+        // Set serialization context
+        $context = (new Context())->addGroup('show');
+
+        //Create view
+        $view = $this->view($resData, Response::HTTP_OK);
+        
+        // Render view
+        return $view->setContext($context);
+    }
 }

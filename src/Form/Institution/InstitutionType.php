@@ -40,7 +40,7 @@ class InstitutionType extends AbstractType
                 'disabled' => self::ADMIN_CONTEXT == $context,
             ])
             ->add('image', ImageType::class)
-            ->add('type', ChoiceType:: class, [
+            ->add('type', ChoiceType::class, [
                 'placeholder' => 'Choisissez un type',
                 'disabled' => self::ADMIN_CONTEXT == $context,
                 'choices' => [
@@ -50,6 +50,18 @@ class InstitutionType extends AbstractType
             ])
             ->add('admin', UserType::class, [])
         ;
+
+        if (self::ADMIN_CONTEXT == $context) {
+            $builder
+                ->add('phone')
+                ->add('email')
+                ->add('slogan')
+                ->add('website')
+                ->add('mayor', PersonType::class)
+                ->remove('admin')
+                ->remove('allLocationAccess')
+            ;
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver)

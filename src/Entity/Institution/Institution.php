@@ -40,6 +40,38 @@ class Institution
     private $name;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"show"})
+     */
+    private $phone;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"show"})
+     */
+    private $slogan;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"show"})
+     */
+    private $email;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"show"})
+     */
+    private $website;
+
+    /**
      * @Assert\NotBlank()
      * @ORM\Column(type="integer")
      */
@@ -54,6 +86,17 @@ class Institution
      * @ORM\Column(type="boolean")
      */
     private $allLocationAccess;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="Person", cascade={"persist", "remove"})
+     */
+    private $mayor;
+    
+    /**
+     * @Assert\NotBlank()
+     * @ORM\OneToOne(targetEntity="App\Entity\Location\Location", cascade={"persist", "remove"})
+     */
+    private $address;
     
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Location\Location", mappedBy="institution", orphanRemoval=true, cascade={"persist", "remove"})
@@ -278,5 +321,77 @@ class Institution
             default:
                 return 'Gouvernementale';
         }
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(string $phone): self
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function getSlogan(): ?string
+    {
+        return $this->slogan;
+    }
+
+    public function setSlogan(string $slogan): self
+    {
+        $this->slogan = $slogan;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getWebsite(): ?string
+    {
+        return $this->website;
+    }
+
+    public function setWebsite(string $website): self
+    {
+        $this->website = $website;
+
+        return $this;
+    }
+
+    public function getMayor(): ?Person
+    {
+        return $this->mayor;
+    }
+
+    public function setMayor(?Person $mayor): self
+    {
+        $this->mayor = $mayor;
+
+        return $this;
+    }
+
+    public function getAddress(): ?Location
+    {
+        return $this->address;
+    }
+
+    public function setAddress(?Location $address): self
+    {
+        $this->address = $address;
+
+        return $this;
     }
 }
