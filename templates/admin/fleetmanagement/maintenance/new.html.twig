@@ -5,17 +5,17 @@
 {% set notifType = "" %}
 
 {% set routes = {
-	index: 'admin_fleetmanagement_fuel_index',
-	new: 'admin_fleetmanagement_fuel_new',
-	edit: 'admin_fleetmanagement_fuel_edit',
-	show: 'admin_fleetmanagement_fuel_show',
-	delete: 'admin_fleetmanagement_fuel_delete'
+	index: 'admin_user',
+	new: 'fleet_management_vehicle_new',
+	edit: 'admin_user_edit',
+	show: 'admin_user_show',
+	delete: 'admin_user_delete'
 } %}
 
 {# Title #}
 {% block title %}
     {{ parent() }} - 
-    {{ "Lister véhicules"|trans }}
+    {{ "Nouvelle maintenace"|trans }}
 {% endblock title %}
 
 {# Heading #}
@@ -25,18 +25,18 @@
 	    <nav aria-label="breadcrumb">
 	        <ol class="breadcrumb bg-transparent small mb-2 p-0">
 	            <li class="breadcrumb-item active" aria-current="page">{{ app.user.username|title }}</li>
-	            <li class="breadcrumb-item active" aria-current="page">{{ "Utilisateur"|trans }}</li>
+	            <li class="breadcrumb-item active" aria-current="page">{{ "Maintenace"|trans }}</li>
 	            <li class="breadcrumb-item active" aria-current="page">{{ "Nouveau"|trans }}</li>
 	        </ol>
 	    </nav>
 
 	    <div class="d-flex align-items-center">
-			<h1 class="h2 text-light-black">{{ "Modifier Fuel"|trans|title }}</h1>
+			<h1 class="h2 text-light-black">{{ "Nouvelle maintenace"|trans|title }}</h1>
 	    </div>
 	</div>
 </div>
 {% endblock %}
 {% block layout_container %}
 
-    {{ include('admin/fleetmanagement/fuel/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('admin/fleetmanagement/maintenance/_form.html.twig') }}
 {% endblock %}

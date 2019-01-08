@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 /**
  * @Route("/fleet/management/fuel")
@@ -29,7 +30,7 @@ class FuelController extends AbstractController
     public function new(Request $request): Response
     {
         $fuel = new Fuel();
-        $form = $this->createForm(FuelType::class, $fuel);
+        $form = $this->createForm(FuelType::class, $fuel)->add('saveAndCreateNew', SubmitType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -37,7 +38,11 @@ class FuelController extends AbstractController
             $em->persist($fuel);
             $em->flush();
 
-            return $this->redirectToRoute('fleet_management_fuel_index');
+            if ($form->get('saveAndCreateNew')->isClicked()) {
+                return $this->redirectToRoute("admin_fleetmanagement_fuel_new");
+            }
+
+            return $this->redirectToRoute('admin_fleetmanagement_fuel_index');
         }
 
         return $this->render('admin/fleetmanagement/fuel/new.html.twig', [

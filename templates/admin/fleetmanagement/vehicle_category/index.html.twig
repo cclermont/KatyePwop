@@ -5,7 +5,7 @@
 {% set notifType = "" %}
 
 {% set routes = {
-	index: 'admin_fleetmanagement_vehicle_category_user',
+	index: 'admin_fleetmanagement_vehicle_category_index',
 	new: 'admin_fleetmanagement_vehicle_category_new',
 	edit: 'admin_fleetmanagement_vehicle_category_edit',
 	show: 'admin_fleetmanagement_vehicle_category_show',
@@ -16,7 +16,7 @@
 {# Title #}
 {% block title %}
     {{ parent() }} - 
-    {{ "Lister types de vehicule"|trans }}
+    {{ "Lister types de véhicule"|trans }}
 {% endblock title %}
 
 {# Heading #}
@@ -26,14 +26,14 @@
     <nav aria-label="breadcrumb" data-notify="{{ notifMsg }}" data-notify-type="{{ notifType }}">
         <ol class="breadcrumb bg-transparent small mb-2 p-0">
             <li class="breadcrumb-item active" aria-current="page">{{ app.user.username|title }}</li>
-            <li class="breadcrumb-item active" aria-current="page">{{ "Types de vehicule"|trans }}</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ "Types de véhicule"|trans }}</li>
         </ol>
     </nav>
 
     {# Page header #}
     <div class="row d-flex align-items-center">
     	<div class="col-12 col-lg mb-3 mb-lg-0">
-			<h1 class="h2 text-light-black">{{ "Lister types de vehicule"|trans|title }}</h1>
+			<h1 class="h2 text-light-black">{{ "Lister types de véhicule"|trans|title }}</h1>
     	</div>
 		<div class="col-12 col-lg text-lg-right">
 			<a href="{{ path(routes.new) }}" class="btn btn-danger">
@@ -56,7 +56,7 @@
 					<thead>
 						<tr>
 							<th scope="col" width="10px">#</th>
-							<th scope="col">{{ "Libelle"|trans }}</th>
+							<th scope="col">{{ "Libellé"|trans }}</th>
 							<th scope="col">{{ "Actions"|trans }}</th>
 						</tr>
 					</thead>

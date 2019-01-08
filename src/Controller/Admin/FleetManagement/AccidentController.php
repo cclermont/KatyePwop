@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 /**
  * @Route("/fleet/management/accident")
@@ -29,13 +30,18 @@ class AccidentController extends AbstractController
     public function new(Request $request): Response
     {
         $accident = new Accident();
-        $form = $this->createForm(AccidentType::class, $accident);
+        $form = $this->createForm(AccidentType::class, $accident)
+                ->add('saveAndCreateNew', SubmitType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($accident);
             $em->flush();
+
+            if ($form->get('saveAndCreateNew')->isClicked()) {
+                return $this->redirectToRoute("admin_fleetmanagement_accident_new");
+            }
 
             return $this->redirectToRoute('admin_fleetmanagement_accident_index');
         }

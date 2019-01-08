@@ -26,7 +26,7 @@
 {# Title #}
 {% block title %}
     {{ parent() }} - 
-    {{ "Afficher vehicule"|trans }}
+    {{ "Afficher véhicule"|trans }}
 {% endblock title %}
 
 {# Heading #}
@@ -41,7 +41,7 @@
 		    <nav aria-label="breadcrumb">
 		        <ol class="breadcrumb bg-transparent small mb-2 p-0">
 		            <li class="breadcrumb-item active" aria-current="page">{{ app.user.username|title }}</li>
-		            <li class="breadcrumb-item active" aria-current="page">{{ "Utilisateur"|trans }}</li>
+		            <li class="breadcrumb-item active" aria-current="page">{{ "Accidents"|trans }}</li>
 		            <li class="breadcrumb-item active" aria-current="page">{{ "Afficher"|trans }}</li>
 		        </ol>
 		    </nav>
@@ -55,7 +55,7 @@
 		{# Body #}
 		<div class="center-container mt-3 mb-5">
 			
-			<p class="lead small text-muted mb-4">{{ "Fiche detaillée d'un vehicule"|trans }}</p>
+			<p class="lead small text-muted mb-4">{{ "Fiche detaillée de l'accident"|trans }}</p>
 
 			<div class="d-flex align-items-center">
 				<h2 class="display-5 mb-0 text-dark-gray">{{ "Info basique"|trans }}</h2>
@@ -92,7 +92,7 @@
 
 
             <div class="d-flex align-items-center">
-				<h2 class="display-5 mb-0 text-dark-gray">{{ "Vehicule"|trans }}</h2>
+				<h2 class="display-5 mb-0 text-dark-gray">{{ "Véhicule"|trans }}</h2>
 				<a data-toggle="collapse" href="#collapse1" role="button" aria-expanded="true" 
 					aria-controls="collapse1" class="btn btn-link text-gray-dark ml-auto text-danger">
 					<i class="fas fa-fw fa-sort"></i>
@@ -102,15 +102,15 @@
 			<div id="collapse1" class="collapse show mt-4">
 				<div class="row mb-4">
 					<div class="col">
-						<h5 class="h6 text-dark-gray">{{ "Numero de la plaque"|title }}</h5>
+						<h5 class="h6 text-dark-gray">{{ "Numéro de la plaque"|title }}</h5>
 						<span class="d-block text-gray-dark">{{ entity.vehicle.regNo|title|default("N/A") }}</span>
 					</div>
 					<div class="col">
-						<h5 class="h6 text-dark-gray">{{ "Make"|title }}</h5>
+						<h5 class="h6 text-dark-gray">{{ "Marque"|title }}</h5>
 						<span class="d-block text-gray-dark">{{ entity.vehicle.make|title|default("N/A") }}</span>
 					</div>
 					<div class="col">
-						<h5 class="h6 text-dark-gray">{{ "Modele"|title }}</h5>
+						<h5 class="h6 text-dark-gray">{{ "Modèle"|title }}</h5>
 						<span class="d-block text-gray-dark">{{ entity.vehicle.model|title|default("N/A") }}</span>
 					</div>
 				</div>
@@ -168,54 +168,17 @@
 				<div class="row mb-3">
 					<div class="col col-lg-6">
 						<span class="d-block text-dark-gray small font-weight-bold">{{ "Créé"|trans }}</span>
-						<span class="d-block text-gray-dark small">{{ entity.id }}</span>
+						<!--<span class="d-block text-gray-dark small">{{ entity.id }}</span>-->
 					</div>
 				</div>
 				<div class="row">
 					<div class="col col-lg-6">
 						<span class="d-block text-dark-gray small font-weight-bold">{{ "Modifié"|trans }}</span>
-						<span class="d-block text-gray-dark small">{{ entity.id }}</span>
+						<!--<span class="d-block text-gray-dark small">{{ entity.id }}</span>-->
 					</div>
 				</div>
 			</div>
 		</div>
 
 	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ accident.id }}</td>
-            </tr>
-            <tr>
-                <th>Details</th>
-                <td>{{ accident.details }}</td>
-            </tr>
-            <tr>
-                <th>Location</th>
-                <td>{{ accident.location }}</td>
-            </tr>
-            <tr>
-                <th>Deaths</th>
-                <td>{{ accident.deaths }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ accident.date ? accident.date|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
 {% endblock %}

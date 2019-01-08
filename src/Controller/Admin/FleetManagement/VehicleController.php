@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\FleetManagement\VehicleManager;
 use App\Service\Institution\InstitutionManager;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 /**
  * @Route("/vehicle")
@@ -43,7 +44,8 @@ class VehicleController extends AbstractController
     public function new(Request $request): Response
     {
         $vehicle = new Vehicle();
-        $form = $this->createForm(VehicleType::class, $vehicle);
+        $form = $this->createForm(VehicleType::class, $vehicle)
+                ->add('saveAndCreateNew', SubmitType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -53,7 +55,9 @@ class VehicleController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($vehicle);
             $em->flush();
-
+            if ($form->get('saveAndCreateNew')->isClicked()) {
+                return $this->redirectToRoute("admin_fleetmanagement_vehicle_new");
+            }
             return $this->redirectToRoute('admin_fleetmanagement_vehicle_index');
         }
 

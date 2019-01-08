@@ -68,9 +68,15 @@ class Vehicle
      */
     private $fuels;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\FleetManagement\Maintenance", mappedBy="vehicle")
+     */
+    private $maintenances;
+
     public function __construct()
     {
         $this->fuels = new ArrayCollection();
+        $this->maintenances = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -211,6 +217,37 @@ class Vehicle
             // set the owning side to null (unless already changed)
             if ($fuel->getVehicle() === $this) {
                 $fuel->setVehicle(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Maintenance[]
+     */
+    public function getMaintenances(): Collection
+    {
+        return $this->maintenances;
+    }
+
+    public function addMaintenance(Maintenance $maintenance): self
+    {
+        if (!$this->maintenances->contains($maintenance)) {
+            $this->maintenances[] = $maintenance;
+            $maintenance->setVehicle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMaintenance(Maintenance $maintenance): self
+    {
+        if ($this->maintenances->contains($maintenance)) {
+            $this->maintenances->removeElement($maintenance);
+            // set the owning side to null (unless already changed)
+            if ($maintenance->getVehicle() === $this) {
+                $maintenance->setVehicle(null);
             }
         }
 

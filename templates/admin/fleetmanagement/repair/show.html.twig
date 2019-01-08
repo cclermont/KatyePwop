@@ -16,11 +16,11 @@
 
 {# Set routes #}
 {% set routes = {
-	index: 'admin_fleetmanagement_vehicle_index',
-	new: 'admin_fleetmanagement_vehicle_new',
-	edit: 'admin_fleetmanagement_vehicle_edit',
-	show: 'admin_fleetmanagement_vehicle_show',
-	delete: 'admin_fleetmanagement_vehicle_delete',
+	index: 'admin_fleetmanagement_repair_index',
+	new: 'admin_fleetmanagement_repair_new',
+	edit: 'admin_fleetmanagement_repair_edit',
+	show: 'admin_fleetmanagement_repair_show',
+	delete: 'admin_fleetmanagement_repair_delete'
 } %}
 
 {# Title #}
@@ -33,8 +33,7 @@
 
 
 {% block layout_body_container %}
-
-	<div class="col bg-white px-5 py-4" data-notify="{{ notifMsg }}" data-notify-type="{{ notifType }}">
+    <div class="col bg-white px-5 py-4" data-notify="{{ notifMsg }}" data-notify-type="{{ notifType }}">
 
 		{# Header #}
 
@@ -42,13 +41,13 @@
 		    <nav aria-label="breadcrumb">
 		        <ol class="breadcrumb bg-transparent small mb-2 p-0">
 		            <li class="breadcrumb-item active" aria-current="page">{{ app.user.username|title }}</li>
-		            <li class="breadcrumb-item active" aria-current="page">{{ "Véhicules"|trans }}</li>
+		            <li class="breadcrumb-item active" aria-current="page">{{ "Réparations"|trans }}</li>
 		            <li class="breadcrumb-item active" aria-current="page">{{ "Afficher"|trans }}</li>
 		        </ol>
 		    </nav>
 
 		    <div class="d-flex align-items-center">
-				<h1 class="h2 text-light-black">{{ "Afficher véhicule"|trans|title }}</h1>
+				<h1 class="h2 text-light-black">{{ "Afficher réparation"|trans|title }}</h1>
 		    </div>
 		</header>
 		
@@ -56,7 +55,7 @@
 		{# Body #}
 		<div class="center-container mt-3 mb-5">
 			
-			<p class="lead small text-muted mb-4">{{ "Fiche detaillée d'un véhicule"|trans }}</p>
+			<p class="lead small text-muted mb-4">{{ "Fiche detaillée de la réparation"|trans }}</p>
 
 			<div class="d-flex align-items-center">
 				<h2 class="display-5 mb-0 text-dark-gray">{{ "Info basique"|trans }}</h2>
@@ -69,33 +68,57 @@
 			<div id="collapse1" class="collapse show mt-4">
 				<div class="row mb-4">
 					<div class="col">
-						<h5 class="h6 text-dark-gray">{{ "Numéro de la plaque"|title }}</h5>
-						<span class="d-block text-gray-dark">{{ entity.regNo|title|default("N/A") }}</span>
+						<h5 class="h6 text-dark-gray">{{ "Date"|title }}</h5>
+						<span class="d-block text-gray-dark">{{ entity.date|date }}</span>
 					</div>
 					<div class="col">
-						<h5 class="h6 text-dark-gray">{{ "Type"|title }}</h5>
-						<span class="d-block text-gray-dark">{{ entity.category.name|title|default("N/A") }}</span>
+						<h5 class="h6 text-dark-gray">{{ "Remarques"|title }}</h5>
+						<span class="d-block text-gray-dark">{{ entity.remarks|title|default("N/A") }}</span>
 					</div>
 					<div class="col">
-						<h5 class="h6 text-dark-gray">{{ "Date d'enregistrement"|title }}</h5>
-						<span class="d-block text-gray-dark">{{ entity.regDate|date }}</span>
+						<h5 class="h6 text-dark-gray">{{ "Fournisseur"|title }}</h5>
+						<span class="d-block text-gray-dark">{{ entity.supplier }}</span>
 					</div>
 				</div>
 				<div class="row mb-4">
 					<div class="col">
-						<h5 class="h6 text-dark-gray">{{ "Coût"|title }}</h5>
-						<span class="d-block text-gray-dark">{{ entity.cost|default("N/A") }}</span>
-					</div>
-					<div class="col">
-						<h5 class="h6 text-dark-gray">{{ "Marque"|title }}</h5>
-						<span class="d-block text-gray-dark">{{ entity.make|default("N/A") }}</span>
-					</div>
-					<div class="col">
-                        <h5 class="h6 text-dark-gray">{{ "Modèle"|title }}</h5>
-						<span class="d-block text-gray-dark">{{ entity.model|default("N/A") }}</span>
+						<h5 class="h6 text-dark-gray">{{ "Référence de paiement"|title }}</h5>
+						<span class="d-block text-gray-dark">{{ entity.paymentRef }}</span>
 					</div>
 				</div>
 			</div>
+
+
+
+
+            <div class="d-flex align-items-center">
+				<h2 class="display-5 mb-0 text-dark-gray">{{ "Véhicule"|trans }}</h2>
+				<a data-toggle="collapse" href="#collapse1" role="button" aria-expanded="true" 
+					aria-controls="collapse1" class="btn btn-link text-gray-dark ml-auto text-danger">
+					<i class="fas fa-fw fa-sort"></i>
+				</a>
+			</div>
+			<hr class="my-2">
+			<div id="collapse1" class="collapse show mt-4">
+				<div class="row mb-4">
+					<div class="col">
+						<h5 class="h6 text-dark-gray">{{ "Numéro de la plaque"|title }}</h5>
+						<span class="d-block text-gray-dark">{{ entity.vehicle.regNo|title|default("N/A") }}</span>
+					</div>
+					<div class="col">
+						<h5 class="h6 text-dark-gray">{{ "Marque"|title }}</h5>
+						<span class="d-block text-gray-dark">{{ entity.vehicle.make|title|default("N/A") }}</span>
+					</div>
+					<div class="col">
+						<h5 class="h6 text-dark-gray">{{ "Modèle"|title }}</h5>
+						<span class="d-block text-gray-dark">{{ entity.vehicle.model|title|default("N/A") }}</span>
+					</div>
+				</div>
+			</div>
+
+
+
+
 		</div>
 
 		{# Footer #}
@@ -145,13 +168,13 @@
 				<div class="row mb-3">
 					<div class="col col-lg-6">
 						<span class="d-block text-dark-gray small font-weight-bold">{{ "Créé"|trans }}</span>
-						<!--<span class="d-block text-gray-dark small">{{ entity.make }}</span>-->
+						<!--<span class="d-block text-gray-dark small">{{ entity.id }}</span>-->
 					</div>
 				</div>
 				<div class="row">
 					<div class="col col-lg-6">
 						<span class="d-block text-dark-gray small font-weight-bold">{{ "Modifié"|trans }}</span>
-						<!--<span class="d-block text-gray-dark small">{{ entity.make }}</span>-->
+						<!--<span class="d-block text-gray-dark small">{{ entity.id }}</span>-->
 					</div>
 				</div>
 			</div>

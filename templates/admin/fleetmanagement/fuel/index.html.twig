@@ -16,7 +16,7 @@
 {# Title #}
 {% block title %}
     {{ parent() }} - 
-    {{ "Lister vehicules"|trans }}
+    {{ "Lister véhicules"|trans }}
 {% endblock title %}
 
 {# Heading #}
@@ -24,18 +24,18 @@
     <nav aria-label="breadcrumb" data-notify="{{ notifMsg }}" data-notify-type="{{ notifType }}">
         <ol class="breadcrumb bg-transparent small mb-2 p-0">
             <li class="breadcrumb-item active" aria-current="page">{{ app.user.username|title }}</li>
-            <li class="breadcrumb-item active" aria-current="page">{{ "Utilisateur"|trans }}</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ "Caburant"|trans }}</li>
         </ol>
     </nav>
 
     {# Page header #}
     <div class="row d-flex align-items-center">
     	<div class="col-12 col-lg mb-3 mb-lg-0">
-			<h1 class="h2 text-light-black">{{ "Lister ..."|trans|title }}</h1>
+			<h1 class="h2 text-light-black">{{ "Lister Caburant"|trans|title }}</h1>
     	</div>
 		<div class="col-12 col-lg text-lg-right">
 			<a href="{{ path(routes.new) }}" class="btn btn-danger">
-				<i class="fa fa-plus mr-2"></i>{{ "Nouveau ..."|trans|title }}
+				<i class="fa fa-plus mr-2"></i>{{ "Nouveau Caburant"|trans|title }}
 			</a>
 		</div>
     </div>
@@ -49,7 +49,6 @@
                 <th>Id</th>
                 <th>Pumped_at</th>
                 <th>Qty_pumped</th>
-                <th>Driver_id</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -59,7 +58,6 @@
                 <td>{{ fuel.id }}</td>
                 <td>{{ fuel.pumpedAt ? fuel.pumpedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ fuel.qtyPumped }}</td>
-                <td>{{ fuel.driverId }}</td>
                 <td>
                     <a href="{{ path(routes.show, {id: fuel.id}) }}" 
                         class="btn btn-info btn-sm mb-1 mb-lg-0">

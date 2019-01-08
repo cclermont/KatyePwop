@@ -7,6 +7,14 @@
 {% set notifMsg = "" %}
 {% set notifType = "" %}
 
+{% set routes = {
+	index: 'admin_fleetmanagement_vehicle_category_index',
+	new: 'admin_fleetmanagement_vehicle_category_new',
+	edit: 'admin_fleetmanagement_vehicle_category_edit',
+	show: 'admin_fleetmanagement_vehicle_category_show',
+	delete: 'admin_fleetmanagement_vehicle_category_delete'
+} %}
+
 {% for type, messages in app.flashes %}
     {% for message in messages %}
 		{% set notifMsg = message %}
@@ -28,13 +36,13 @@
 	    <nav aria-label="breadcrumb">
 	        <ol class="breadcrumb bg-transparent small mb-2 p-0">
 	            <li class="breadcrumb-item active" aria-current="page">{{ app.user.username|title }}</li>
-	            <li class="breadcrumb-item active" aria-current="page">{{ "Utilisateur"|trans }}</li>
+	            <li class="breadcrumb-item active" aria-current="page">{{ "Type de véhicule"|trans }}</li>
 	            <li class="breadcrumb-item active" aria-current="page">{{ "Nouveau"|trans }}</li>
 	        </ol>
 	    </nav>
 
 	    <div class="d-flex align-items-center">
-			<h1 class="h2 text-light-black">{{ "Nouvel categorie"|trans|title }}</h1>
+			<h1 class="h2 text-light-black">{{ "Nouveau type de véhicule"|trans|title }}</h1>
 	    </div>
 	</div>
 </div>

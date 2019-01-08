@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\Institution\InstitutionManager;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 /**
  * @Route("/vehicle/category")
@@ -40,7 +41,9 @@ class VehicleCategoryController extends AbstractController
     {
         $institution = $this->institutionManager->findByUser($this->getUser());
         $vehicleCategory = new VehicleCategory();
-        $form = $this->createForm(VehicleCategoryType::class, $vehicleCategory);
+        $form = $this->createForm(VehicleCategoryType::class, $vehicleCategory)
+                ->add('saveAndCreateNew', SubmitType::class);
+        //$form;
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -48,6 +51,10 @@ class VehicleCategoryController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($vehicleCategory);
             $em->flush();
+
+            if ($form->get('saveAndCreateNew')->isClicked()) {
+                return $this->redirectToRoute("admin_fleetmanagement_vehicle_category_new");
+            }
 
             return $this->redirectToRoute('admin_fleetmanagement_vehicle_category_index');
         }

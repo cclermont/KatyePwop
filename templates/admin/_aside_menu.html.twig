@@ -63,14 +63,42 @@
 					<a href="{{ path("admin_fleetmanagement_vehicle_index") }}" class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
 					{% if currentModule is defined and currentModule == "flotte" %}selected{% endif %}">
 						<!--<i class="fas fa-truck mr-lg-3 fa-fw"></i>-->
-						<span class="small d-none d-lg-inline">{{ "Vehicules"|trans }}</span>
+						<span class="small d-none d-lg-inline">{{ "Véhicules"|trans }}</span>
 					</a>
 				</li>
 				<li>
 					<a href="{{ path("admin_fleetmanagement_vehicle_category_index") }}" class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
 					{% if currentModule is defined and currentModule == "flotte" %}selected{% endif %}">
 						<!--<i class="fas fa-truck mr-lg-3 fa-fw"></i>-->
-						<span class="small d-none d-lg-inline">{{ "Types de Vehicule"|trans }}</span>
+						<span class="small d-none d-lg-inline">{{ "Types de Véhicule"|trans }}</span>
+					</a>
+				</li>
+				<li>
+					<a href="{{ path("admin_fleetmanagement_fuel_index") }}" class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
+					{% if currentModule is defined and currentModule == "flotte" %}selected{% endif %}">
+						<!--<i class="fas fa-truck mr-lg-3 fa-fw"></i>-->
+						<span class="small d-none d-lg-inline">{{ "Caburants"|trans }}</span>
+					</a>
+				</li>
+				<li>
+					<a href="{{ path("admin_fleetmanagement_accident_index") }}" class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
+					{% if currentModule is defined and currentModule == "flotte" %}selected{% endif %}">
+						<!--<i class="fas fa-truck mr-lg-3 fa-fw"></i>-->
+						<span class="small d-none d-lg-inline">{{ "Accidents"|trans }}</span>
+					</a>
+				</li>
+				<li>
+					<a href="{{ path("admin_fleetmanagement_repair_index") }}" class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
+					{% if currentModule is defined and currentModule == "flotte" %}selected{% endif %}">
+						<!--<i class="fas fa-truck mr-lg-3 fa-fw"></i>-->
+						<span class="small d-none d-lg-inline">{{ "Réparations"|trans }}</span>
+					</a>
+				</li>
+				<li>
+					<a href="{{ path("admin_fleetmanagement_maintenance_index") }}" class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
+					{% if currentModule is defined and currentModule == "flotte" %}selected{% endif %}">
+						<!--<i class="fas fa-truck mr-lg-3 fa-fw"></i>-->
+						<span class="small d-none d-lg-inline">{{ "Maintenances"|trans }}</span>
 					</a>
 				</li>
 			</ul>

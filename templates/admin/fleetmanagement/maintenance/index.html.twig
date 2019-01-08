@@ -5,11 +5,11 @@
 {% set notifType = "" %}
 
 {% set routes = {
-	index: 'admin_user',
-	new: 'admin_fleetmanagement_vehicle_new',
-	edit: 'admin_fleetmanagement_vehicle_edit',
-	show: 'admin_fleetmanagement_vehicle_show',
-	delete: 'admin_fleetmanagement_vehicle_delete'
+	index: 'admin_fleetmanagement_maintenance_index',
+	new: 'admin_fleetmanagement_maintenance_new',
+	edit: 'admin_fleetmanagement_maintenance_edit',
+	show: 'admin_fleetmanagement_maintenance_show',
+	delete: 'admin_fleetmanagement_maintenance_delete'
 } %}
 
 
@@ -21,23 +21,21 @@
 
 {# Heading #}
 {% block layout_header %}
-
-	{# Site map #}
     <nav aria-label="breadcrumb" data-notify="{{ notifMsg }}" data-notify-type="{{ notifType }}">
         <ol class="breadcrumb bg-transparent small mb-2 p-0">
             <li class="breadcrumb-item active" aria-current="page">{{ app.user.username|title }}</li>
-            <li class="breadcrumb-item active" aria-current="page">{{ "Véhicules"|trans }}</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ "Maintenances"|trans }}</li>
         </ol>
     </nav>
 
     {# Page header #}
     <div class="row d-flex align-items-center">
     	<div class="col-12 col-lg mb-3 mb-lg-0">
-			<h1 class="h2 text-light-black">{{ "Lister véhicules"|trans|title }}</h1>
+			<h1 class="h2 text-light-black">{{ "Lister maintenances"|trans|title }}</h1>
     	</div>
 		<div class="col-12 col-lg text-lg-right">
 			<a href="{{ path(routes.new) }}" class="btn btn-danger">
-				<i class="fa fa-plus mr-2"></i>{{ "Nouveau véhicule"|trans|title }}
+				<i class="fa fa-plus mr-2"></i>{{ "Nouvelle maintenance"|trans|title }}
 			</a>
 		</div>
     </div>
@@ -48,30 +46,28 @@
     <table id="contentList" class="table custum-table">
         <thead>
             <tr>
-                <th>#</th>
-                <th>Numéro</th>
-                <th>Type</th>
-                <th>Marque</th>
-                <th>Modèle</th>
-                <th>Chauffeur</th>
+                <th>Date</th>
+                <th>Fournisseur</th>
+                <th>Coût</th>
+                <th>Référence de paiement</th>
+                <th>Remarques</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for vehicle in vehicles %}
+        {% for maintenance in maintenances %}
             <tr>
-                <td>{{ vehicle.id }}</td>
-                <td>{{ vehicle.regNo }}</td>
-                <td>{{ vehicle.category.name }}</td>
-                <td>{{ vehicle.make }}</td>
-                <td>{{ vehicle.model }}</td>
-                <td>{{ vehicle.assignedDriverId }}</td>
+                <td>{{ maintenance.date ? maintenance.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ maintenance.supplier }}</td>
+                <td>{{ maintenance.cost }}</td>
+                <td>{{ maintenance.payRef }}</td>
+                <td>{{ maintenance.remarks }}</td>
                 <td>
-                    <a href="{{ path(routes.show, {id: vehicle.id}) }}" 
+                    <a href="{{ path(routes.show, {id: maintenance.id}) }}" 
                         class="btn btn-info btn-sm mb-1 mb-lg-0">
                         <i class="far fa-eye mr-1"></i><span>{{ "Voir"|trans }}</span>
                     </a>
-                    <a href="{{ path(routes.edit, {id: vehicle.id}) }}" 
+                    <a href="{{ path(routes.edit, {id: maintenance.id}) }}" 
                         class="btn btn-dark btn-sm">
                         <i class="fas fa-edit mr-1"></i><span>{{ "Modifier"|trans }}</span>
                     </a>
@@ -79,7 +75,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="10">no records found</td>
+                <td colspan="7">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

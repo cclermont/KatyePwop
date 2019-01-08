@@ -20,7 +20,7 @@ class VehicleCategoryRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return VehicleCategory[] Returns an array of VehiculeCategory objects
+//     * @return VehicleCategory[] Returns an array of VehicleCategory objects
 //     */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class VehicleCategoryRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?VehiculeCategory
+    public function findOneBySomeField($value): ?VehicleCategory
     {
         return $this->createQueryBuilder('v')
             ->andWhere('v.exampleField = :val')

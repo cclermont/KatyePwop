@@ -1,29 +1,28 @@
 <div class="row mt-3">
 	<div class="col col-lg-6 offset-lg-3">
         <p class="lead small text-muted mb-3">
-            {{ "Utiliser ce formulaire pour ajouter des accidents"|trans }}
+            {{ "Utiliser ce formulaire pour ajouter des réparations"|trans }}
         </p>
 		<div>
             {{ form_start(form) }}
+                {{ form_row(form.vehicle, {
+                    label: "Véhicule",
+	  				attr: {class: "border-light-lg", placeholder: ""}}) }}
                 {{ form_row(form.date, {
                     label: "Date",
 	  				attr: {class: "border-light-lg", placeholder: ""}}) }}
-                {{ form_row(form.location, {
-                    label: "Lieu",
+                {{ form_row(form.remarks, {
+                    label: "Remarques",
 	  				attr: {class: "border-light-lg", placeholder: ""}}) }}
-                {{ form_row(form.vehicle, {
-                    label: "Véhicules",
+                {{ form_row(form.supplier, {
+                    label: "Fournisseur",
 	  				attr: {class: "border-light-lg", placeholder: ""}}) }}
-                {{ form_row(form.driver_id, {
-                    label: "Chauffeur",
+                {{ form_row(form.payment_ref, {
+                    label: "Référence de paiement",
 	  				attr: {class: "border-light-lg", placeholder: ""}}) }}
-                {{ form_row(form.details, {
-                    label: "Details",
+                {{ form_row(form.cost, {
+                    label: "Coût",
 	  				attr: {class: "border-light-lg", placeholder: ""}}) }}
-                {{ form_row(form.deaths, {
-                    label: "Nombres de morts",
-	  				attr: {class: "border-light-lg", placeholder: ""}}) }}
-
                 <div class="row mt-4">
 		  			{% if form.saveAndCreateNew is defined %}
 		  				<div class="col">

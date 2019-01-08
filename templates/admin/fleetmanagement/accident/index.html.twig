@@ -16,7 +16,7 @@
 {# Title #}
 {% block title %}
     {{ parent() }} - 
-    {{ "Lister vehicules"|trans }}
+    {{ "Lister accidents"|trans }}
 {% endblock title %}
 
 {# Heading #}
@@ -24,18 +24,18 @@
     <nav aria-label="breadcrumb" data-notify="{{ notifMsg }}" data-notify-type="{{ notifType }}">
         <ol class="breadcrumb bg-transparent small mb-2 p-0">
             <li class="breadcrumb-item active" aria-current="page">{{ app.user.username|title }}</li>
-            <li class="breadcrumb-item active" aria-current="page">{{ "Utilisateur"|trans }}</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ "Accident"|trans }}</li>
         </ol>
     </nav>
 
     {# Page header #}
     <div class="row d-flex align-items-center">
     	<div class="col-12 col-lg mb-3 mb-lg-0">
-			<h1 class="h2 text-light-black">{{ "Lister ..."|trans|title }}</h1>
+			<h1 class="h2 text-light-black">{{ "Lister  accidents"|trans|title }}</h1>
     	</div>
 		<div class="col-12 col-lg text-lg-right">
 			<a href="{{ path(routes.new) }}" class="btn btn-danger">
-				<i class="fa fa-plus mr-2"></i>{{ "Nouveau ..."|trans|title }}
+				<i class="fa fa-plus mr-2"></i>{{ "Nouvel accident"|trans|title }}
 			</a>
 		</div>
     </div>
@@ -46,25 +46,29 @@
     <table id="contentList" class="table custum-table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Details</th>
-                <th>Location</th>
-                <th>Deaths</th>
                 <th>Date</th>
+                <th>Lieu</th>
+                <th>Nombre de morts</th>
+                <th>Details</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for accident in accidents %}
             <tr>
-                <td>{{ accident.id }}</td>
-                <td>{{ accident.details }}</td>
+                <td>{{ accident.date ? accident.date|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ accident.location }}</td>
                 <td>{{ accident.deaths }}</td>
-                <td>{{ accident.date ? accident.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ accident.details }}</td>
                 <td>
-                    <a href="{{ path('admin_fleetmanagement_accident_show', {'id': accident.id}) }}">show</a>
-                    <a href="{{ path('admin_fleetmanagement_accident_edit', {'id': accident.id}) }}">edit</a>
+                    <a href="{{ path(routes.show, {id: accident.id}) }}" 
+                        class="btn btn-info btn-sm mb-1 mb-lg-0">
+                        <i class="far fa-eye mr-1"></i><span>{{ "Voir"|trans }}</span>
+                    </a>
+                    <a href="{{ path(routes.edit, {id: accident.id}) }}" 
+                        class="btn btn-dark btn-sm">
+                        <i class="fas fa-edit mr-1"></i><span>{{ "Modifier"|trans }}</span>
+                    </a>
                 </td>
             </tr>
         {% else %}

@@ -5,8 +5,40 @@
         </p>
 		<div>
             {{ form_start(form) }}
-                {{ form_widget(form) }}
-                <button class="btn">{{ button_label|default('Save') }}</button>
+                {{ form_row(form.vehicle, {
+                    label: "Véhicule",
+	  				attr: {class: "border-light-lg", placeholder: ""}}) }}
+                {{ form_row(form.pumped_at, {
+                    label: "Date",
+	  				attr: {class: "border-light-lg", placeholder: ""}}) }}
+                {{ form_row(form.merter_reading, {
+	  				attr: {class: "border-light-lg", placeholder: ""}}) }}
+                {{ form_row(form.qty_pumped, {
+	  				attr: {class: "border-light-lg", placeholder: ""}}) }}
+                {{ form_row(form.price_per_gallon, {
+	  				attr: {class: "border-light-lg", placeholder: ""}}) }}
+                {{ form_row(form.last_mileage, {
+	  				attr: {class: "border-light-lg", placeholder: ""}}) }}
+                <div class="row mt-4">
+		  			{% if form.saveAndCreateNew is defined %}
+		  				<div class="col">
+		  					<button type="submit" class="btn btn-block btn-dark mb-3">{{ "Creer"|trans }}</button>
+		  				</div>
+		  				<div class="col">
+			  				{{ form_widget(form.saveAndCreateNew, 
+			  					{label: "Créer et nouveau", attr: {class: "btn-block btn btn-secondary mb-3"}}) }}
+		  				</div>
+		  			{% else %}
+		  				<div class="col">
+		  					<button type="submit" class="btn btn-block btn-dark mb-3">{{ "Modifier"|trans }}</button>
+		  				</div>
+		  			{% endif %}
+		  			<div class="col">
+		  				<a href="{{ path(routes.index) }}" class="btn btn-block btn-light mb-3">
+		  					{{ "Annuler"|trans }}
+		  				</a>
+		  			</div>
+		  		</div>
             {{ form_end(form) }}
         </div>
     </div>

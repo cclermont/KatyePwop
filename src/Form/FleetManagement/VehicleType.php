@@ -40,7 +40,6 @@ class VehicleType extends AbstractType
             ->add('cost')
             ->add('make')
             ->add('model')
-            ->add('assigned_driver_id')
         ;
     }
 
