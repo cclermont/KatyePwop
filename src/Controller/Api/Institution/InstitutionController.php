@@ -13,6 +13,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 use App\Entity\Institution\Institution;
+use App\Service\Location\LocationManager;
 use App\Service\Institution\InstitutionManager;
 use App\Controller\Api\ControllerResponseDataTrait;
 
@@ -27,10 +28,12 @@ class InstitutionController extends FOSRestController
     * Entity manager
     */
     private $em;
+    private $locationManager;
 
-    public function __construct(InstitutionManager $entityManager)
+    public function __construct(InstitutionManager $entityManager, LocationManager $locationManager)
     {
         $this->em = $entityManager;
+        $this->locationManager = $locationManager;
     }
 
     // Response data trait
@@ -78,6 +81,39 @@ class InstitutionController extends FOSRestController
     {
         // Find entity by id
         $entity = $this->em->find($id);
+        
+        // Test if entity was found
+        if (!$entity) {
+            throw $this->createNotFoundException("No entity found for id($id)");
+        }
+
+        // Get response data
+        $resData = $this->getResponseData();
+
+        // Add form to response data
+        $resData->set('total', 1);
+        $resData->set('data', $entity);
+
+        // Set serialization context
+        $context = (new Context())->addGroup('show');
+
+        //Create view
+        $view = $this->view($resData, Response::HTTP_OK);
+        
+        // Render view
+        return $view->setContext($context);
+    }
+
+    /**
+     * Single get
+     * @Security("has_role('ROLE_USER_SIMPLE')")
+     * @Route("/location/{id<\d+>}", name="api_institution_institution_show_by_location", defaults={"_format": "json"}, methods={"GET"})
+     */
+    public function sgetByLocation(Request $request, $id)
+    {
+        // Find entity by id
+        $location = $this->locationManager->find($id);
+        $entity = $this->em->findByLocation($location);
         
         // Test if entity was found
         if (!$entity) {

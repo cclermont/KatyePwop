@@ -68,11 +68,26 @@
 			  			</div>
 			  			<div class="row">
 			  				<div class="col-12 col-lg">
+					  			{{ form_row(form.address.fullname, {label: "Adresse complete", 
+					  				help: "Veuillez indiquer l'adresse complete", 
+					  				attr: {class: "border-light-lg", placeholder: "Entrer l'adresse"}}) }}
+			  				</div>
+			  				<div class="col-12 col-lg">
+			  					{{ form_row(form.address.city, {label: "Ville", 
+					  				help: "Veuillez indiquer votre ville", 
+					  				attr: {class: "border-light-lg", placeholder: "Entrer la ville"}}) }}
+			  				</div>
+			  			</div>
+			  			<div class="row">
+			  				<div class="col-12 col-lg">
+			  					{{ form_row(form.address.country, {label: "Pays", 
+					  				help: "Veuillez indiquer votre pays", 
+					  				attr: {class: "border-light-lg", placeholder: "Entrer le pays"}}) }}
+			  				</div>
+			  				<div class="col-12 col-lg">
 								{{ form_row(form.enabled, {label: "Active", 
 									help: "Veuillez indiquer si l'institution est active ou pas.", 
 									label_attr: {class: 'checkbox-custom'}}) }}
-			  				</div>
-			  				<div class="col-12 col-lg">
 			  				</div>
 			  			</div>
 

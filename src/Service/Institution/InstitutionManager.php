@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 
 use App\Entity\User\User;
+use App\Entity\Location\Location;
 use App\Service\Core\AbstractManager;
 use App\Entity\Institution\Institution;
 use App\Form\Institution\InstitutionType;
@@ -39,6 +40,13 @@ class InstitutionManager extends AbstractManager
      */
     public function findByUser(User $user): ?Institution {
         return $this->getRepository()->findByUser($user);
+    }
+    
+    /**
+     * Find institution by location
+     */
+    public function findByLocation(Location $location): ?Institution {
+        return $this->getRepository()->findByLocation($location);
     }
     
     /**

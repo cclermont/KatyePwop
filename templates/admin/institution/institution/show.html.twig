@@ -92,15 +92,35 @@
 						</div>
 						<div class="row mb-4">
 							<div class="col">
+								<h5 class="h6 text-dark-gray">{{ "Phone"|title }}</h5>
+								<span class="d-block text-gray-dark">{{ entity.phone|default("N/A") }}</span>
+							</div>
+							<div class="col">
+								<h5 class="h6 text-dark-gray">{{ "Email"|title }}</h5>
+								<span class="d-block text-gray-dark">{{ entity.email|default("N/A") }}</span>
+							</div>
+						</div>
+						<div class="row mb-4">
+							<div class="col">
+								<h5 class="h6 text-dark-gray">{{ "Slogan"|title }}</h5>
+								<span class="d-block text-gray-dark">{{ entity.slogan|default("N/A") }}</span>
+							</div>
+							<div class="col">
+								<h5 class="h6 text-dark-gray">{{ "Website"|title }}</h5>
+								<span class="d-block text-gray-dark">{{ entity.website|default("N/A") }}</span>
+							</div>
+						</div>
+						<div class="row mb-4">
+							<div class="col">
 								<h5 class="h6 text-dark-gray">{{ "Admin"|title }}</h5>
 								<span class="d-block text-gray-dark">{{ entity.admin|default("N/A") }}</span>
 							</div>
 							<div class="col">
-								<h5 class="h6 text-dark-gray">{{ "Locations"|title }}</h5>
-								<span class="d-block text-gray-dark">{{ entity.locations|join(', ')|default("N/A") }}</span>
+								<h5 class="h6 text-dark-gray">{{ "Adresse"|title }}</h5>
+								<span class="d-block text-gray-dark">{{ entity.address.fullname|default("N/A") }}</span>
 							</div>
 						</div>
-						<div class="row">
+						<div class="row mb-4">
 							<div class="col">
 								<h5 class="h6 text-dark-gray">{{ "Membres"|title }}</h5>
 								<span class="d-block text-gray-dark">{{ entity.members|join(', ')|default("N/A") }}</span>
@@ -110,6 +130,14 @@
 								<span class="d-block text-gray-dark">
 									{% if entity.enabled %}{{ "Oui"|trans }}{% else %}{{ "Non"|trans }}{% endif %}
 								</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<h5 class="h6 text-dark-gray">{{ "Locations"|title }}</h5>
+								<span class="d-block text-gray-dark">{{ entity.locations|join(', ')|default("N/A") }}</span>
+							</div>
+							<div class="col">
 							</div>
 						</div>
 					</div>

@@ -5,6 +5,7 @@ namespace App\Repository\Institution;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 use App\Entity\User\User;
+use App\Entity\Location\Location;
 use App\Entity\Institution\Institution;
 use App\Repository\Core\AbstractRepository;
 /**
@@ -43,6 +44,21 @@ class InstitutionRepository extends AbstractRepository
             ->innerJoin('e.members', 'm')
             ->where(':member MEMBER OF e.members')
             ->setParameter('member', $user)
+        ;
+
+        return $qb->getQuery()->getOneOrNullResult();
+    }
+    
+    /**
+     * Find institution by location
+     */
+    public function findByLocation(Location $location): ?Institution {
+        
+        $qb = $this->createQueryBuilder('e');
+
+           $qb
+            ->where(':location MEMBER OF e.locations')
+            ->setParameter('location', $location)
         ;
 
         return $qb->getQuery()->getOneOrNullResult();

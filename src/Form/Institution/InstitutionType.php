@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use App\Entity\User\User;
 use App\Form\User\UserType;
 use App\Entity\Location\Location;
+use App\Form\Location\LocationMinType;
 use App\Entity\Institution\Institution;
 use App\Repository\User\UserRepository;
 use App\Repository\Location\LocationRepository;
@@ -57,6 +58,7 @@ class InstitutionType extends AbstractType
                 ->add('email')
                 ->add('slogan')
                 ->add('website')
+                ->add('address', LocationMinType::class)
                 ->add('mayor', PersonType::class)
                 ->remove('admin')
                 ->remove('allLocationAccess')

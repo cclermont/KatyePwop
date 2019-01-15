@@ -109,6 +109,10 @@ class Institution
     
     /**
      * @ORM\OneToOne(targetEntity="Image", cascade={"persist", "remove"})
+     *
+     * @JMS\Expose
+     * @JMS\MaxDepth(3)
+     * @JMS\Groups({"show"})
      */
     private $image;
     
