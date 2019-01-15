@@ -1,0 +1,52 @@
+<div class="row mt-3">
+	<div class="col col-lg-6 offset-lg-3">
+        <p class="lead small text-muted mb-3">
+            {{ "Utiliser ce formulaire pour ajouter des véhicules"|trans }}
+        </p>
+		<div>
+            {{ form_start(form) }}
+                {{ form_errors(form) }}
+                {{ form_row(form.reg_no, {
+                    label: "Numéro de la plaque",
+	  				help: "Veuillez indiquer le numéro de la plaque.", 
+	  				attr: {class: "border-light-lg", placeholder: "Entrer le numéro de la plaque"}}) }}
+                {{ form_row(form.category, {
+                    label: "Type", 
+	  				help: "Veuillez choisir le type.", 
+	  				attr: {class: "border-light-lg"}}) }}
+                {{ form_row(form.reg_date, {
+                    label: "Date d'enregistrement", 
+	  				attr: {class: "border-light-lg"}}) }}
+                {{ form_row(form.cost, {
+                    label: "Coût", 
+	  				attr: {class: "border-light-lg"}}) }}
+                {{ form_row(form.make, {
+                    label: "Marque", 
+	  				attr: {class: "border-light-lg"}}) }}
+                {{ form_row(form.model, {
+                    label: "Modèle", 
+	  				attr: {class: "border-light-lg"}}) }}
+                <div class="row mt-4">
+		  			{% if form.saveAndCreateNew is defined %}
+		  				<div class="col">
+		  					<button type="submit" class="btn btn-block btn-dark mb-3">{{ "Creer"|trans }}</button>
+		  				</div>
+		  				<div class="col">
+			  				{{ form_widget(form.saveAndCreateNew, 
+			  					{label: "Créer et nouveau", attr: {class: "btn-block btn btn-secondary mb-3"}}) }}
+		  				</div>
+		  			{% else %}
+		  				<div class="col">
+		  					<button type="submit" class="btn btn-block btn-dark mb-3">{{ "Modifier"|trans }}</button>
+		  				</div>
+		  			{% endif %}
+		  			<div class="col">
+		  				<a href="{{ path(routes.index) }}" class="btn btn-block btn-light mb-3">
+		  					{{ "Annuler"|trans }}
+		  				</a>
+		  			</div>
+		  		</div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>

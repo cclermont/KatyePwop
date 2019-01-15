@@ -1,0 +1,83 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% set currentModule = "user" %}
+{% set notifMsg = "" %}
+{% set notifType = "" %}
+
+{% set routes = {
+	index: 'admin_fleetmanagement_repair_index',
+	new: 'admin_fleetmanagement_repair_new',
+	edit: 'admin_fleetmanagement_repair_edit',
+	show: 'admin_fleetmanagement_repair_show',
+	delete: 'admin_fleetmanagement_repair_delete'
+} %}
+
+
+{# Title #}
+{% block title %}
+    {{ parent() }} - 
+    {{ "Lister véhicules"|trans }}
+{% endblock title %}
+
+{# Heading #}
+{% block layout_header %}
+    <nav aria-label="breadcrumb" data-notify="{{ notifMsg }}" data-notify-type="{{ notifType }}">
+        <ol class="breadcrumb bg-transparent small mb-2 p-0">
+            <li class="breadcrumb-item active" aria-current="page">{{ app.user.username|title }}</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ "Réparation"|trans }}</li>
+        </ol>
+    </nav>
+
+    {# Page header #}
+    <div class="row d-flex align-items-center">
+    	<div class="col-12 col-lg mb-3 mb-lg-0">
+			<h1 class="h2 text-light-black">{{ "Lister réparations"|trans|title }}</h1>
+    	</div>
+		<div class="col-12 col-lg text-lg-right">
+			<a href="{{ path(routes.new) }}" class="btn btn-danger">
+				<i class="fa fa-plus mr-2"></i>{{ "Nouvelle réparation"|trans|title }}
+			</a>
+		</div>
+    </div>
+{% endblock %}
+
+{% block layout_container %}
+
+    <table id="contentList" class="table custum-table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Fournisseur</th>
+                <th>Référence de paiement</th>
+                <th>Coût</th>
+                <th>Remarques</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for repair in repairs %}
+            <tr>
+                <td>{{ repair.date ? repair.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ repair.supplier }}</td>
+                <td>{{ repair.paymentRef }}</td>
+                <td>{{ repair.cost }}</td>
+                <td>{{ repair.remarks }}</td>
+                <td>
+                    <a href="{{ path(routes.show, {id: repair.id}) }}" 
+                        class="btn btn-info btn-sm mb-1 mb-lg-0">
+                        <i class="far fa-eye mr-1"></i><span>{{ "Voir"|trans }}</span>
+                    </a>
+                    <a href="{{ path(routes.edit, {id: repair.id}) }}" 
+                        class="btn btn-dark btn-sm">
+                        <i class="fas fa-edit mr-1"></i><span>{{ "Modifier"|trans }}</span>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

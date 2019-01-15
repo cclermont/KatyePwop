@@ -1,0 +1,95 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% set currentModule = "user" %}
+{% set notifMsg = "" %}
+{% set notifType = "" %}
+
+{% set routes = {
+	index: 'admin_fleetmanagement_vehicle_category_index',
+	new: 'admin_fleetmanagement_vehicle_category_new',
+	edit: 'admin_fleetmanagement_vehicle_category_edit',
+	show: 'admin_fleetmanagement_vehicle_category_show',
+	delete: 'admin_fleetmanagement_vehicle_category_delete'
+} %}
+
+
+{# Title #}
+{% block title %}
+    {{ parent() }} - 
+    {{ "Lister types de véhicule"|trans }}
+{% endblock title %}
+
+{# Heading #}
+{% block layout_header %}
+
+	{# Site map #}
+    <nav aria-label="breadcrumb" data-notify="{{ notifMsg }}" data-notify-type="{{ notifType }}">
+        <ol class="breadcrumb bg-transparent small mb-2 p-0">
+            <li class="breadcrumb-item active" aria-current="page">{{ app.user.username|title }}</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ "Types de véhicule"|trans }}</li>
+        </ol>
+    </nav>
+
+    {# Page header #}
+    <div class="row d-flex align-items-center">
+    	<div class="col-12 col-lg mb-3 mb-lg-0">
+			<h1 class="h2 text-light-black">{{ "Lister types de véhicule"|trans|title }}</h1>
+    	</div>
+		<div class="col-12 col-lg text-lg-right">
+			<a href="{{ path(routes.new) }}" class="btn btn-danger">
+				<i class="fa fa-plus mr-2"></i>{{ "Nouveau type"|trans|title }}
+			</a>
+		</div>
+    </div>
+{% endblock %}
+
+{# Body #}
+{% block layout_container %}
+
+	
+
+	{# Page body #}
+	<section class="row">
+		<div class="col">
+			<div class="table-responsive">
+				<table id="contentList" class="table custum-table">
+					<thead>
+						<tr>
+							<th scope="col" width="10px">#</th>
+							<th scope="col">{{ "Libellé"|trans }}</th>
+							<th scope="col">{{ "Actions"|trans }}</th>
+						</tr>
+					</thead>
+					{% if vehicle_categories|length > 0 %}
+						<tbody>
+							{% for cat in vehicle_categories %}
+								<tr>
+									<th class="align-middle" scope="row" width="10px">{{ loop.index }}</th>
+									<td class="align-middle">{{ cat.name|title }}</td>
+									<td class="align-middle">
+										<!--<a href="{{ path(routes.show, {id: cat.id}) }}" 
+											class="btn btn-info btn-sm mb-1 mb-lg-0">
+											<i class="far fa-eye mr-1"></i><span>{{ "Voir"|trans }}</span>
+										</a>-->
+										<a href="{{ path(routes.edit, {id: cat.id}) }}" 
+											class="btn btn-dark btn-sm">
+											<i class="fas fa-edit mr-1"></i><span>{{ "Modifier"|trans }}</span>
+										</a>
+										<a href="{{ path(routes.delete, {id: cat.id}) }}" 
+											class="btn btn-danger btn-sm">
+											<i class="fas fa-edit mr-1"></i><span>{{ "Supprimer"|trans }}</span>
+										</a>
+									</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					{% endif %}
+				</table>
+			</div>
+			<p id="emptyMsg" class="mt-5 small lead text-center text-muted {% if vehicle_categories|length > 0 %}d-none{% endif %}">
+				{{ "Aucun element à afficher..."|trans }}
+			</p>			
+		</div>
+	</section>
+
+{% endblock %}

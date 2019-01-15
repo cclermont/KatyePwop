@@ -1,0 +1,81 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% set currentModule = "user" %}
+{% set notifMsg = "" %}
+{% set notifType = "" %}
+
+{% set routes = {
+	index: 'admin_fleetmanagement_accident_index',
+	new: 'admin_fleetmanagement_accident_new',
+	edit: 'admin_fleetmanagement_accident_edit',
+	show: 'admin_fleetmanagement_accident_show',
+	delete: 'admin_fleetmanagement_accident_delete'
+} %}
+
+
+{# Title #}
+{% block title %}
+    {{ parent() }} - 
+    {{ "Lister accidents"|trans }}
+{% endblock title %}
+
+{# Heading #}
+{% block layout_header %}
+    <nav aria-label="breadcrumb" data-notify="{{ notifMsg }}" data-notify-type="{{ notifType }}">
+        <ol class="breadcrumb bg-transparent small mb-2 p-0">
+            <li class="breadcrumb-item active" aria-current="page">{{ app.user.username|title }}</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ "Accident"|trans }}</li>
+        </ol>
+    </nav>
+
+    {# Page header #}
+    <div class="row d-flex align-items-center">
+    	<div class="col-12 col-lg mb-3 mb-lg-0">
+			<h1 class="h2 text-light-black">{{ "Lister  accidents"|trans|title }}</h1>
+    	</div>
+		<div class="col-12 col-lg text-lg-right">
+			<a href="{{ path(routes.new) }}" class="btn btn-danger">
+				<i class="fa fa-plus mr-2"></i>{{ "Nouvel accident"|trans|title }}
+			</a>
+		</div>
+    </div>
+{% endblock %}
+
+{% block layout_container %}
+
+    <table id="contentList" class="table custum-table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Lieu</th>
+                <th>Nombre de morts</th>
+                <th>Details</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for accident in accidents %}
+            <tr>
+                <td>{{ accident.date ? accident.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ accident.location }}</td>
+                <td>{{ accident.deaths }}</td>
+                <td>{{ accident.details }}</td>
+                <td>
+                    <a href="{{ path(routes.show, {id: accident.id}) }}" 
+                        class="btn btn-info btn-sm mb-1 mb-lg-0">
+                        <i class="far fa-eye mr-1"></i><span>{{ "Voir"|trans }}</span>
+                    </a>
+                    <a href="{{ path(routes.edit, {id: accident.id}) }}" 
+                        class="btn btn-dark btn-sm">
+                        <i class="fas fa-edit mr-1"></i><span>{{ "Modifier"|trans }}</span>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
