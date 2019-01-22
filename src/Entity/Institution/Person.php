@@ -26,7 +26,7 @@ class Person
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string", length=128, nullable=true)
      *
      * @JMS\Expose
      * @JMS\Groups({"list", "show"})
@@ -34,7 +34,7 @@ class Person
     private $firstname;
 
     /**
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string", length=128, nullable=true)
      *
      * @JMS\Expose
      * @JMS\Groups({"list", "show"})

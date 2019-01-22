@@ -40,7 +40,7 @@ class Institution
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @JMS\Expose
      * @JMS\Groups({"show"})
@@ -48,7 +48,7 @@ class Institution
     private $phone;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @JMS\Expose
      * @JMS\Groups({"show"})
@@ -56,7 +56,7 @@ class Institution
     private $slogan;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @JMS\Expose
      * @JMS\Groups({"show"})
@@ -64,7 +64,7 @@ class Institution
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @JMS\Expose
      * @JMS\Groups({"show"})
@@ -89,12 +89,19 @@ class Institution
     
     /**
      * @ORM\OneToOne(targetEntity="Person", cascade={"persist", "remove"})
+     *
+     * @JMS\Expose
+     * @JMS\MaxDepth(3)
+     * @JMS\Groups({"show"})
      */
     private $mayor;
     
     /**
-     * @Assert\NotBlank()
      * @ORM\OneToOne(targetEntity="App\Entity\Location\Location", cascade={"persist", "remove"})
+     *
+     * @JMS\Expose
+     * @JMS\MaxDepth(3)
+     * @JMS\Groups({"show"})
      */
     private $address;
     

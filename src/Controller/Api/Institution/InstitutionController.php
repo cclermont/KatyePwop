@@ -113,6 +113,12 @@ class InstitutionController extends FOSRestController
     {
         // Find entity by id
         $location = $this->locationManager->find($id);
+        
+        // Test if entity was found
+        if (!$location) {
+            throw $this->createNotFoundException("No location found for id($id)");
+        }
+        
         $entity = $this->em->findByLocation($location);
         
         // Test if entity was found
