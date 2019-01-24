@@ -30,16 +30,30 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-image: url("../images/banner_bg.jpg");
+            // background-attachment: fixed;
+            background-image: url("../images/banner.gif");
         }
 
         .newletter{
+            background-color: #8fb92b;
+        }
+
+        .trash{
+            height: 500px;
             background-size: cover;
             background-position: right top;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            background-image: url("../images/newsletter_bg.png");
+            background-image: url("../images/katye1.jpg");
+        }
+
+        .truck{
+            height: 500px;
+            background-size: cover;
+            background-position: right top;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-image: url("../images/katye2.jpg");
         }
     }
 }
