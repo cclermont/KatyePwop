@@ -53,12 +53,13 @@
 	    	</a>
 	    </li>
 	    <li class="mt-1">
-	    	<a href="{{ path("admin_user") }}" class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
-	    	{% if currentModule is defined and currentModule == "flotte" %}selected{% endif %}">
+	    	<a data-toggle="collapse" href="#fleet" role="button" aria-expanded="false" aria-controls="fleet"
+	    		class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
+	    	{% if currentModule is defined and currentModule == "fleet" %}selected{% endif %}">
 	    		<i class="fas fa-truck mr-lg-3 fa-fw"></i>
 	    		<span class="small d-none d-lg-inline">{{ "Flotte"|trans }}</span>
 	    	</a>
-			<ul>
+			<ul id="fleet" class="collapse {% if currentModule is defined and currentModule == "fleet" %}show{% endif %}">
 				<li>
 					<a href="{{ path("admin_fleetmanagement_vehicle_index") }}" class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
 					{% if currentModule is defined and currentModule == "flotte" %}selected{% endif %}">

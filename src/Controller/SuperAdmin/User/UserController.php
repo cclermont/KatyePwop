@@ -47,7 +47,8 @@ class UserController extends AbstractController
         $sort    = $request->query->get('sort', array('created' => 'DESC'));
 
         // Get entities
-        $entities = $this->em->findAndPaginate($pattern, $sort, $page, $limit);
+        // $entities = $this->em->findAndPaginate($pattern, $sort, $page, $limit);
+        $entities = $this->em->findByRole(User::ROLE_SUPER_ADMIN);
 
         // Render view
         return $this->render("{$this->em->getBaseTemplateName()}/user/index.html.twig", [
