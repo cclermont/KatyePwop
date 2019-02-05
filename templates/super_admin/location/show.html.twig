@@ -26,7 +26,7 @@
 {# Title #}
 {% block title %}
     {{ parent() }} - 
-    {{ "Afficher location"|trans }}
+    {{ "Afficher localité"|trans }}
 {% endblock title %}
 
 {# Heading #}
@@ -40,13 +40,13 @@
 		    <nav aria-label="breadcrumb">
 		        <ol class="breadcrumb bg-transparent small mb-2 p-0">
 		            <li class="breadcrumb-item active" aria-current="page">{{ app.user.username|title }}</li>
-		            <li class="breadcrumb-item active" aria-current="page">{{ "Location"|trans }}</li>
+		            <li class="breadcrumb-item active" aria-current="page">{{ "Localité"|trans }}</li>
 		            <li class="breadcrumb-item active" aria-current="page">{{ "Afficher"|trans }}</li>
 		        </ol>
 		    </nav>
 
 		    <div class="d-flex align-items-center">
-				<h1 class="h2 text-light-black">{{ "Afficher location"|trans|title }}</h1>
+				<h1 class="h2 text-light-black">{{ "Afficher localité"|trans|title }}</h1>
 		    </div>
 		</header>
 		
@@ -54,7 +54,7 @@
 		{# Body #}
 		<div class="center-container mt-3 mb-5">
 			
-			<p class="lead small text-muted mb-4">{{ "Fiche detaillée d'une location"|trans }}</p>
+			<p class="lead small text-muted mb-4">{{ "Fiche detaillée d'une localité"|trans }}</p>
 
 			<div class="d-flex align-items-center">
 				<h2 class="display-5 mb-0 text-dark-gray">{{ "Info basique"|trans }}</h2>

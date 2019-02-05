@@ -27,12 +27,16 @@ class UserType extends AbstractType
             ->add('username')
             ->add('email', EmailType::class)
             ->add('enabled')
-            ->add('roles', ChoiceType:: class, [
-                'multiple' => true,
-                'placeholder' => 'Choisissez un sexe',
-                'choices' => $this->getRolesChoices(),
-            ])
         ;
+
+        if (!$this->security->isGranted(User::ROLE_SUPER_ADMIN) && 
+            $this->security->isGranted(User::ROLE_ADMIN)) {
+            $builder->add('roles', ChoiceType:: class, [
+                'multiple' => true,
+                'placeholder' => 'Choisissez un role',
+                'choices' => $this->getRolesChoices(),
+            ]);
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -46,11 +50,7 @@ class UserType extends AbstractType
     {
         if ($this->security->isGranted(User::ROLE_SUPER_ADMIN)) {
            return [
-                'Super admin' => User::ROLE_SUPER_ADMIN,
-                'Admin' => User::ROLE_ADMIN,
-                'Operateur' => User::ROLE_OPERATOR,
-                'Agent voirie' => User::ROLE_ROAD_AGENT,
-                'Particulier' => User::ROLE_USER,
+                'Super admin' => User::ROLE_SUPER_ADMIN
             ];
         } else if ($this->security->isGranted(User::ROLE_ADMIN)) {
            return [

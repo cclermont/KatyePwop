@@ -6,10 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
 use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 use App\Traits\Core\Entity\CreatedModifiedTrait;
 
 /**
+ * @UniqueEntity("email")
+ * @UniqueEntity("username")
  * @JMS\ExclusionPolicy("all")
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="user_user")

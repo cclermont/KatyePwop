@@ -6,7 +6,7 @@
 <div class="row mt-3">
 	<div class="col col-lg-6 offset-lg-3">
 			<p class="lead small text-muted mb-3">
-				{{ "Utiliser ce formulaire pour ajouter des locations"|trans }}
+				{{ "Utiliser ce formulaire pour ajouter des localités"|trans }}
 			</p>
 		<div>
 			{{ form_start(form) }}
@@ -18,9 +18,6 @@
 	  			{{ form_row(form.email, {label: "Email", 
 	  				help: "Veuillez indiquer votre email.", 
 	  				attr: {class: "border-light-lg", placeholder: "Entrer l'email"}}) }}
-	  			{{ form_row(form.roles, {label: "Roles", 
-	  				help: "Veuillez indiquer les roles.", 
-	  				attr: {class: "border-light-lg", placeholder: "Entrer le role"}}) }}
 	  			{{ form_row(form.enabled, {label: "Active", 
 	  				help: "Veuillez indiquer si l'utilisateur est actif ou pas.", 
 	  				label_attr: {class: 'checkbox-custom'}}) }}

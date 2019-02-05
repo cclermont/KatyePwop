@@ -31,7 +31,7 @@
 {# Title #}
 {% block title %}
     {{ parent() }} - 
-    {{ "Lister locations"|trans }}
+    {{ "Lister localités"|trans }}
 {% endblock title %}
 
 {# Heading #}
@@ -41,18 +41,18 @@
     <nav aria-label="breadcrumb" data-notify="{{ notifMsg }}" data-notify-type="{{ notifType }}">
         <ol class="breadcrumb bg-transparent small mb-2 p-0">
             <li class="breadcrumb-item active" aria-current="page">{{ app.user.username|title }}</li>
-            <li class="breadcrumb-item active" aria-current="page">{{ "Location"|trans }}</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ "Localité"|trans }}</li>
         </ol>
     </nav>
 
     {# Page header #}
     <div class="row d-flex align-items-center">
     	<div class="col-12 col-lg mb-3 mb-lg-0">
-			<h1 class="h2 text-light-black">{{ "Lister locations"|trans|title }}</h1>
+			<h1 class="h2 text-light-black">{{ "Lister localités"|trans|title }}</h1>
     	</div>
 		<div class="col-12 col-lg text-lg-right">
 			<a href="{{ path(routes.new) }}" class="btn btn-danger">
-				<i class="fa fa-plus mr-2"></i>{{ "Nouvelle location"|trans|title }}
+				<i class="fa fa-plus mr-2"></i>{{ "Nouvelle localité"|trans|title }}
 			</a>
 		</div>
     </div>
@@ -65,7 +65,7 @@
 	<section class="row mt-4 mb-3">
 		<div class="col">
 			
-			<p class="lead small text-muted mb-4">{{ "La liste de locations"|trans }}</p>
+			<p class="lead small text-muted mb-4">{{ "La liste de localités"|trans }}</p>
 			
 			{# Sort #}
 			<div class="row mb-4">
@@ -107,7 +107,7 @@
 					    	</span>
 					  	</div>
 					  	<input id="contentFilterInput" type="search" class="form-control border-light-lg border-left-0"
-							placeholder="{{ "Filter les locations"|trans }}...">
+							placeholder="{{ "Filter les localités"|trans }}...">
 					</div>
 				</div>
 
@@ -146,7 +146,7 @@
 							<th scope="col">{{ "Commune"|trans }}</th>
 							<th scope="col">{{ "Ville"|trans }}</th>
 							<th scope="col">{{ "Departement"|trans }}</th>
-							<th scope="col"><i class="fas fa-calendar-alt mr-2"></i>{{ "Created"|trans }}</th>
+							<th scope="col"><i class="fas fa-calendar-alt mr-2"></i>{{ "Créé"|trans }}</th>
 							<th scope="col" width="20%" class="text-center">
 								<i class="fas fa-cogs mr-2"></i>{{ "Actions"|trans }}
 							</th>

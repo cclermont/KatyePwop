@@ -80,6 +80,9 @@ class UserController extends AbstractController
             // Set default password
             $entity->setPlainPassword(md5(rand()));
 
+            // Add role
+            $entity->addRole(User::ROLE_SUPER_ADMIN);
+
             // Set confirmation token
             if (null === $entity->getConfirmationToken()) {
                 $entity->setConfirmationToken($this->tokenGenerator->generateToken());

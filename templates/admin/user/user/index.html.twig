@@ -51,9 +51,11 @@
 			<h1 class="h2 text-light-black">{{ "Lister utilisateurs"|trans|title }}</h1>
     	</div>
 		<div class="col-12 col-lg text-lg-right">
-			<a href="{{ path(routes.new) }}" class="btn btn-danger">
-				<i class="fa fa-plus mr-2"></i>{{ "Nouvel utilisateur"|trans|title }}
-			</a>
+			{% if is_granted('ROLE_ADMIN') %}
+				<a href="{{ path(routes.new) }}" class="btn btn-danger">
+					<i class="fa fa-plus mr-2"></i>{{ "Nouvel utilisateur"|trans|title }}
+				</a>
+			{% endif %}
 		</div>
     </div>
 {% endblock %}
@@ -105,7 +107,7 @@
 					    	</span>
 					  	</div>
 					  	<input id="contentFilterInput" type="search" class="form-control border-light-lg border-left-0"
-							placeholder="{{ "Filter les locations"|trans }}...">
+							placeholder="{{ "Filter les localités"|trans }}...">
 					</div>
 				</div>
 
@@ -140,10 +142,10 @@
 					<thead>
 						<tr>
 							<th scope="col" width="10px">#</th>
-							<th scope="col">{{ "Username"|trans }}</th>
+							<th scope="col">{{ "Nom utilisateur"|trans }}</th>
 							<th scope="col">{{ "Email"|trans }}</th>
 							<th scope="col">{{ "Roles"|trans }}</th>
-							<th scope="col"><i class="fas fa-calendar-alt mr-2"></i>{{ "Created"|trans }}</th>
+							<th scope="col"><i class="fas fa-calendar-alt mr-2"></i>{{ "Créé"|trans }}</th>
 							<th scope="col" width="20%" class="text-center">
 								<i class="fas fa-cogs mr-2"></i>{{ "Actions"|trans }}
 							</th>
@@ -164,10 +166,12 @@
 											class="btn btn-info btn-sm mb-1 mb-lg-0">
 											<i class="far fa-eye mr-1"></i><span>{{ "Voir"|trans }}</span>
 										</a>
-										<a href="{{ path(routes.edit, {id: entity.id}) }}" 
-											class="btn btn-dark btn-sm">
-											<i class="fas fa-edit mr-1"></i><span>{{ "Modifier"|trans }}</span>
-										</a>
+										{% if is_granted('ROLE_ADMIN') %}
+											<a href="{{ path(routes.edit, {id: entity.id}) }}" 
+												class="btn btn-dark btn-sm">
+												<i class="fas fa-edit mr-1"></i><span>{{ "Modifier"|trans }}</span>
+											</a>
+										{% endif %}
 									</td>
 								</tr>
 							{% endfor %}

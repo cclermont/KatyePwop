@@ -13,7 +13,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-transparent small mb-2 p-0">
             <li class="breadcrumb-item active" aria-current="page">{{ app.user.username|title }}</li>
-            <li class="breadcrumb-item active" aria-current="page">{{ "Dashboard"|trans }}</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ "Tableau de bord"|trans }}</li>
         </ol>
     </nav>
 
@@ -93,7 +93,7 @@
                         </div>
                         <div class="col text-center text-lg-right mt-3 mt-lg-0">
                             <span class="h3 d-block">{{ location_count }}</span>
-                            <small class="d-block text-muted">{{ "Locations"|trans }}</small>
+                            <small class="d-block text-muted">{{ "Localités"|trans }}</small>
                         </div>
                     </div>
                 </div>
@@ -142,7 +142,7 @@
                 <div class="border p-3">
                     <canvas data-type="pie-chart" 
                             data-values="{{ user_role_count|json_encode }}" 
-                            data-labels="{{ ["Super admin", "Admin", "Operateur", "Particulier"]|json_encode }}">
+                            data-labels="{{ ["Super admin", "Administrateur", "Operateur", "Particulier"]|json_encode }}">
                     </canvas>
                 </div>
             </div>

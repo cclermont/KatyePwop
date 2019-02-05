@@ -19,7 +19,7 @@
 	    	class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left 
 	    	{% if currentModule is defined and currentModule == "dashboard" %}selected{% endif %}">
 	    		<i class="fas fa-tachometer-alt mr-lg-3 fa-fw"></i>
-	    		<span class="small d-none d-lg-inline">{{ "Dashboard"|trans }}</span>
+	    		<span class="small d-none d-lg-inline">{{ "Tableau de bord"|trans }}</span>
 	    	</a>
 	    </li>
 	    <li class="mt-1">
@@ -36,7 +36,7 @@
 	    		<span class="small d-none d-lg-inline">{{ "Institution"|trans }}</span>
 	    	</a>
 	    </li>
-	    <li class="mt-1">
+	   {#  <li class="mt-1">
 	    	<a href="{{ path("super_admin_message_message") }}" 
 	    		class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
 	    	{% if currentModule is defined and currentModule == "message" %}selected{% endif %}">
@@ -49,16 +49,16 @@
 	    		class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
 	    	{% if currentModule is defined and currentModule == "location" %}selected{% endif %}">
 	    		<i class="fas fa-map-marker-alt mr-lg-3 fa-fw"></i>
-	    		<span class="small d-none d-lg-inline">{{ "Location"|trans }}</span>
+	    		<span class="small d-none d-lg-inline">{{ "Localité"|trans }}</span>
 	    	</a>
-	    </li>
-	    <li class="mt-1">
+	    </li> #}
+	    {# <li class="mt-1">
 	    	<a href="{{ path("super_admin_user") }}" class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
 	    	{% if currentModule is defined and currentModule == "flotte" %}selected{% endif %}">
 	    		<i class="fas fa-truck mr-lg-3 fa-fw"></i>
 	    		<span class="small d-none d-lg-inline">{{ "Flotte"|trans }}</span>
 	    	</a>
-	    </li>
+	    </li> #}
 	</ul>
 
 	<div class="bottom-helper">
