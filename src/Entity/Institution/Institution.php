@@ -124,7 +124,8 @@ class Institution
     private $image;
     
     /**
-     * @Assert\NotBlank()
+     * @Assert\NotBlank
+     * @Assert\Valid
      * @ORM\OneToOne(targetEntity="App\Entity\User\User", cascade={"persist", "remove"})
      */
     private $admin;

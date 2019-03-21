@@ -37,7 +37,7 @@ class InstitutionRepository extends AbstractRepository
         
         $qb = $this->createQueryBuilder('e');
 
-           $qb
+        $qb
             ->addSelect('a')
             ->addSelect('m')
             ->innerJoin('e.admin', 'a')
@@ -56,9 +56,16 @@ class InstitutionRepository extends AbstractRepository
         
         $qb = $this->createQueryBuilder('e');
 
-           $qb
-            ->where(':location MEMBER OF e.locations')
-            ->setParameter('location', $location)
+        // $qb
+        //     ->where(':location MEMBER OF e.locations')
+        //     ->setParameter('location', $location)
+        // ;
+
+        $qb
+            ->addSelect('l')
+            ->innerJoin('e.locations', 'l')
+            ->where($qb->expr()->eq('l.city', ':city'))
+            ->setParameter('city', $location->getCity())
         ;
 
         return $qb->getQuery()->getOneOrNullResult();

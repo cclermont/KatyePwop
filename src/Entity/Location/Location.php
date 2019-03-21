@@ -38,6 +38,9 @@ class Location
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"list", "show"})
      */
     private $street;
 
@@ -49,6 +52,9 @@ class Location
     /**
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=128)
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"list", "show"})
      */
     private $city;
 

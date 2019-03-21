@@ -67,4 +67,17 @@ class FormErrorNormalizer implements NormalizerInterface
         return $form;
     }
 
+    public static function normalizeErrors(FormInterface $form)
+    {
+        $form = $form['errors'] ?? $form;
+        $data['errors'] = [];
+        
+        foreach ($form->getErrors(true, true) as $error) {
+            $path = $error->getCause()->getPropertyPath();
+            $data['errors'][$path] = $error->getMessage();
+        }
+
+        return $data['errors'];
+    }
+
 }
