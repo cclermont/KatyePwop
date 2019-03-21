@@ -11,8 +11,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use App\Traits\Core\Entity\CreatedModifiedTrait;
 
 /**
- * @UniqueEntity("email")
- * @UniqueEntity("username")
+ * @UniqueEntity("email", message="L'email choisi est deja utitlisé")
+ * @UniqueEntity("username", message="Le nom d'utilisateur choisi est deja utitlisé")
  * @JMS\ExclusionPolicy("all")
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="user_user")
@@ -33,9 +33,9 @@ class User extends BaseUser
     /**
      * @var string
      * 
-     * @Assert\Regex(pattern="/\s+/", match=false, message="user.username.invalid.space")
-     * @Assert\Regex(pattern="/^[^a-zA-z]/", match=false, message="user.username.invalid.number")
-     * @Assert\Regex(pattern="/[\# \! \^ \$ \( \) \[ \] \{ \} \? \+ \* \. \\ \/ \|]/", match=false, message="user.username.invalid.special_characters")
+     * @Assert\Regex(pattern="/\s+/", match=false, message="Le nom d'utilisateur ne doit pas avoir d'espace")
+     * @Assert\Regex(pattern="/^[^a-zA-z]/", match=false, message="Le nom d'utilisateur ne doit pas avoir uniquement des chiffres")
+     * @Assert\Regex(pattern="/[\# \! \^ \$ \( \) \[ \] \{ \} \? \+ \* \. \\ \/ \|]/", match=false, message="Le nom d'utilisateur ne doit pas avoir de caractères speciaux")
      *
      * @JMS\Expose
      * @JMS\Groups({"list", "show"})
@@ -53,9 +53,9 @@ class User extends BaseUser
     /**
      * @var string
      * 
-     * @Assert\Regex(pattern="/(\W|\w){6,}/", match=true, message="user.password.secure.length")
-     * @Assert\Regex(pattern="/[A-Z]+/", match=true, message="user.password.secure.capitalize")
-     * @Assert\Regex(pattern="/[0-9]+/", match=true, message="user.password.secure.number")
+     * @Assert\Regex(pattern="/(\W|\w){6,}/", match=true, message="Le mot de passe doit avoir 6 caractères au minimum")
+     * @Assert\Regex(pattern="/[A-Z]+/", match=true, message="Le mot de passe doit avoir une majuscule au minimum")
+     * @Assert\Regex(pattern="/[0-9]+/", match=true, message="Le mot de passe doit avoir un chiffre au minimum")
      */
     protected $plainPassword;
     

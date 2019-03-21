@@ -40,7 +40,7 @@ class Message
     private $title;
 
     /**
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Le contenu ne peut pas être vide")
      * @ORM\Column(type="text")
      *
      * @JMS\Expose
@@ -97,7 +97,7 @@ class Message
     private $locations;
     
     /**
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="L'expediteur ne peut pas être vide")
      * @ORM\ManyToOne(targetEntity="App\Entity\User\User")
      *
      * @JMS\Expose
