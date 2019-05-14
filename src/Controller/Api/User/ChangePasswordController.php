@@ -82,7 +82,8 @@ class ChangePasswordController extends FOSRestController
 
         // Add form to response data
         $resData->set('error', true);
-        $resData->set('errors', \App\Normalizer\FormErrorNormalizer::normalizeErrors($form));
+        $resData->set('errors', $form->getErrors(true));
+        // $resData->set('errors', \App\Normalizer\FormErrorNormalizer::normalizeErrors($form));
 
         // Return view
         return $this->view($resData, Response::HTTP_BAD_REQUEST);
