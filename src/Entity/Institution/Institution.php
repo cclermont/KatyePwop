@@ -72,6 +72,14 @@ class Institution
     private $website;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"show"})
+     */
+    private $brandingColor;
+
+    /**
      * @Assert\NotBlank()
      * @ORM\Column(type="integer")
      */
@@ -403,6 +411,18 @@ class Institution
     public function setAddress(?Location $address): self
     {
         $this->address = $address;
+
+        return $this;
+    }
+
+    public function getBrandingColor(): ?string
+    {
+        return $this->brandingColor;
+    }
+
+    public function setBrandingColor(string $brandingColor): self
+    {
+        $this->brandingColor = $brandingColor;
 
         return $this;
     }

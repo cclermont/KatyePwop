@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="{{ asset('build/admin.css') }}" />
 {% endblock %}
 
+{% set brandingColor = brandingColor() %}
+{% set brandingStyle = "" %}
+{% if brandingColor is not null %}
+	{% set brandingStyle = "background-color:"~brandingColor~";" %}
+{% endif %}
+
 {# Body tag class name #}
 {% block body_class %}admin{% endblock body_class %}
 
@@ -29,7 +35,8 @@
 				<div class="col-9 col-lg-10 bg-white px-5 py-4" style="min-height:600px;">
 
 					<!-- header content -->
-					<header id="header" class="header mt-2">
+					<header id="header" class="header mt-2 text-white px-4 pt-4 pb-3 rounded 
+						{% if brandingColor is not null %}custom-text-white{% endif %}" style="{{ brandingStyle }}">
 	    				{% block layout_header %}{% endblock %}
 					</header>
 					<!-- /header content -->

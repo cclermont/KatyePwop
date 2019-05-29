@@ -2,6 +2,7 @@
 
 {# Set vars #}
 {% set currentModule = "dashboard" %}
+    {% set institutionBrand = currentInstitutionBrand() %}
 
 {# Title #}
 {% block title %}
@@ -10,14 +11,25 @@
 
 {# Heading #}
 {% block layout_header %}
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb bg-transparent small mb-2 p-0">
-            <li class="breadcrumb-item active" aria-current="page">{{ app.user.username|title }}</li>
-            <li class="breadcrumb-item active" aria-current="page">{{ "Tableau de bord"|trans }}</li>
-        </ol>
-    </nav>
 
-    <h1 class="h2 text-light-black">{{ "Tableau de bord"|trans }}</h1>
+    <div class="row">
+        {% if institutionBrand is not null and false == institutionBrand.isEmpty %}
+            <div class="col-1">
+                <img class="card-img-top" alt="..." 
+                src="{{ vich_uploader_asset(institutionBrand, 'file') | imagine_filter('thumb_256x256') }}">
+            </div>
+        {% endif %}
+        <div class="col">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-transparent small mb-2 p-0">
+                    <li class="breadcrumb-item active" aria-current="page">{{ app.user.username|title }}</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ "Tableau de bord"|trans }}</li>
+                </ol>
+            </nav>
+
+            <h1 class="h2 text-light-black">{{ "Tableau de bord"|trans }}</h1>
+        </div>
+    </div>
 {% endblock %}
 
 {# Body #}

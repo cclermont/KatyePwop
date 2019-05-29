@@ -113,3 +113,9 @@ services:
         public: false
         tags:
             - { name: serializer.normalizer, priority: 1 }
+
+    # Twig app extensions
+    # App\Twig\AppExtension:
+    #     public: false
+    #     tags:
+    #         - { name: twig.extension }

@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 use App\Entity\User\User;
@@ -51,6 +52,12 @@ class InstitutionType extends AbstractType
             ])
             ->add('admin', UserType::class, [])
         ;
+
+        if (self::SUPER_ADMIN_CONTEXT == $context) {
+            $builder
+                ->add('brandingColor', ColorType::class)
+            ;
+        }
 
         if (self::ADMIN_CONTEXT == $context) {
             $builder

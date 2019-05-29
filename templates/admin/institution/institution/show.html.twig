@@ -80,64 +80,101 @@
 						<p class="lead small text-center font-italic text-muted">{{ "Logo de l'institution..."|trans }}</p>
 					</div>
 					<div class="col-12 col-lg-8 offset-lg-1">
-						<div class="row mb-4">
-							<div class="col">
-								<h5 class="h6 text-dark-gray">{{ "Nom"|title }}</h5>
-								<span class="d-block text-gray-dark">{{ entity.name|default("N/A") }}</span>
+						<div>
+							<div class="row mb-4">
+								<div class="col">
+									<h5 class="h6 text-dark-gray">{{ "Nom"|title }}</h5>
+									<span class="d-block text-gray-dark">{{ entity.name|default("N/A") }}</span>
+								</div>
+								<div class="col">
+									<h5 class="h6 text-dark-gray">{{ "Type"|title }}</h5>
+									<span class="d-block text-gray-dark">{{ entity.typeName }}</span>
+								</div>
 							</div>
-							<div class="col">
-								<h5 class="h6 text-dark-gray">{{ "Type"|title }}</h5>
-								<span class="d-block text-gray-dark">{{ entity.typeName }}</span>
+							<div class="row mb-4">
+								<div class="col">
+									<h5 class="h6 text-dark-gray">{{ "Phone"|title }}</h5>
+									<span class="d-block text-gray-dark">{{ entity.phone|default("N/A") }}</span>
+								</div>
+								<div class="col">
+									<h5 class="h6 text-dark-gray">{{ "Email"|title }}</h5>
+									<span class="d-block text-gray-dark">{{ entity.email|default("N/A") }}</span>
+								</div>
+							</div>
+							<div class="row mb-4">
+								<div class="col">
+									<h5 class="h6 text-dark-gray">{{ "Slogan"|title }}</h5>
+									<span class="d-block text-gray-dark">{{ entity.slogan|default("N/A") }}</span>
+								</div>
+								<div class="col">
+									<h5 class="h6 text-dark-gray">{{ "Website"|title }}</h5>
+									<span class="d-block text-gray-dark">{{ entity.website|default("N/A") }}</span>
+								</div>
+							</div>
+							<div class="row mb-4">
+								<div class="col">
+									<h5 class="h6 text-dark-gray">{{ "Administrateur"|title }}</h5>
+									<span class="d-block text-gray-dark">{{ entity.admin|default("N/A") }}</span>
+								</div>
+								<div class="col">
+									<h5 class="h6 text-dark-gray">{{ "Adresse"|title }}</h5>
+									<span class="d-block text-gray-dark">{{ entity.address.fullname|default("N/A") }}</span>
+								</div>
+							</div>
+							<div class="row mb-4">
+								<div class="col">
+									<h5 class="h6 text-dark-gray">{{ "Membres"|title }}</h5>
+									<span class="d-block text-gray-dark">{{ entity.members|join(', ')|default("N/A") }}</span>
+								</div>
+								<div class="col">
+									<h5 class="h6 text-dark-gray">{{ "Active"|title }}</h5>
+									<span class="d-block text-gray-dark">
+										{% if entity.enabled %}{{ "Oui"|trans }}{% else %}{{ "Non"|trans }}{% endif %}
+									</span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col">
+									<h5 class="h6 text-dark-gray">{{ "Locations"|title }}</h5>
+									<span class="d-block text-gray-dark">{{ entity.locations|join(', ')|default("N/A") }}</span>
+								</div>
+								<div class="col">
+									<h5 class="h6 text-dark-gray">{{ "Couleur de l'institution"|title }}</h5>
+									<div class="p-2 border rounded">
+										<div class="rounded" 
+										style="height:15px;background-color:{{ brandingColor()|default("#000") }};"></div>
+									</div>
+								</div>
 							</div>
 						</div>
-						<div class="row mb-4">
-							<div class="col">
-								<h5 class="h6 text-dark-gray">{{ "Phone"|title }}</h5>
-								<span class="d-block text-gray-dark">{{ entity.phone|default("N/A") }}</span>
+						<div class="mt-5">
+							<h3 class="h5">Informations sur le maire</h3>
+							<hr style="border:1px solid rgba(0, 0, 0, 0.1);">
+							<div class="row mb-4 mt-4">
+								<div class="col">
+									<h5 class="h6 text-dark-gray">{{ "Nom"|title }}</h5>
+									<span class="d-block text-gray-dark">{{ entity.mayor.firstname|default("N/A") }}</span>
+								</div>
+								<div class="col">
+									<h5 class="h6 text-dark-gray">{{ "Prénom"|title }}</h5>
+									<span class="d-block text-gray-dark">{{ entity.mayor.lastname|default("N/A") }}</span>
+								</div>
 							</div>
-							<div class="col">
-								<h5 class="h6 text-dark-gray">{{ "Email"|title }}</h5>
-								<span class="d-block text-gray-dark">{{ entity.email|default("N/A") }}</span>
+							<div class="row mb-4">
+								<div class="col">
+									<h5 class="h6 text-dark-gray">{{ "Téléphone"|title }}</h5>
+									<span class="d-block text-gray-dark">{{ entity.mayor.phone|default("N/A") }}</span>
+								</div>
+								<div class="col">
+									<h5 class="h6 text-dark-gray">{{ "Email"|title }}</h5>
+									<span class="d-block text-gray-dark">{{ entity.mayor.email|default("N/A") }}</span>
+								</div>
 							</div>
-						</div>
-						<div class="row mb-4">
-							<div class="col">
-								<h5 class="h6 text-dark-gray">{{ "Slogan"|title }}</h5>
-								<span class="d-block text-gray-dark">{{ entity.slogan|default("N/A") }}</span>
-							</div>
-							<div class="col">
-								<h5 class="h6 text-dark-gray">{{ "Website"|title }}</h5>
-								<span class="d-block text-gray-dark">{{ entity.website|default("N/A") }}</span>
-							</div>
-						</div>
-						<div class="row mb-4">
-							<div class="col">
-								<h5 class="h6 text-dark-gray">{{ "Administrateur"|title }}</h5>
-								<span class="d-block text-gray-dark">{{ entity.admin|default("N/A") }}</span>
-							</div>
-							<div class="col">
-								<h5 class="h6 text-dark-gray">{{ "Adresse"|title }}</h5>
-								<span class="d-block text-gray-dark">{{ entity.address.fullname|default("N/A") }}</span>
-							</div>
-						</div>
-						<div class="row mb-4">
-							<div class="col">
-								<h5 class="h6 text-dark-gray">{{ "Membres"|title }}</h5>
-								<span class="d-block text-gray-dark">{{ entity.members|join(', ')|default("N/A") }}</span>
-							</div>
-							<div class="col">
-								<h5 class="h6 text-dark-gray">{{ "Active"|title }}</h5>
-								<span class="d-block text-gray-dark">
-									{% if entity.enabled %}{{ "Oui"|trans }}{% else %}{{ "Non"|trans }}{% endif %}
-								</span>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col">
-								<h5 class="h6 text-dark-gray">{{ "Locations"|title }}</h5>
-								<span class="d-block text-gray-dark">{{ entity.locations|join(', ')|default("N/A") }}</span>
-							</div>
-							<div class="col">
+							<div class="row">
+								<div class="col">
+									<h5 class="h6 text-dark-gray">{{ "Bio"|title }}</h5>
+									<span class="d-block text-gray-dark">{{ entity.mayor.bio|default("N/A") }}</span>
+								</div>
 							</div>
 						</div>
 					</div>
