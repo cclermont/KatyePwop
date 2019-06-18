@@ -64,8 +64,17 @@ class MessageController extends FOSRestController
         // Set total
         $resData->set('total', $entities->getNbResults());
 
+        // Filter data
+        $filteredData = array();
+
+        foreach ($entities->getCurrentPageResults()->getArrayCopy() as $entity) {
+            if ($entity->isSendingDateOver()) {
+                $filteredData[] = $entity;
+            }
+        }
+
         // Add form to response data
-        $resData->set('data', $entities->getCurrentPageResults()->getArrayCopy());
+        $resData->set('data', $filteredData);
 
         // Set serialization context
         $context = (new Context())->addGroup('list');

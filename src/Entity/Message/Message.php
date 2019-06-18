@@ -63,6 +63,19 @@ class Message
      * @JMS\Groups({"show"})
      */
     private $broadcasted;
+
+    /**
+     * @ORM\Column(type="boolean")
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"show"})
+     */
+    private $regular;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $sendingDate;
     
     /**
      * @ORM\OneToMany(targetEntity="Image", mappedBy="message", orphanRemoval=true, cascade={"persist", "remove"})
@@ -134,7 +147,9 @@ class Message
     public function __construct()
     {
         $this->status = "";
+        $this->regular = false;
         $this->broadcasted = false;
+        $this->sendingDate = New \Datetime();
         $this->images = new ArrayCollection();
         $this->videos = new ArrayCollection();
         $this->receivers = new ArrayCollection();
@@ -329,6 +344,35 @@ class Message
         if ($this->locations->contains($location)) {
             $this->locations->removeElement($location);
         }
+
+        return $this;
+    }
+
+    public function getRegular(): ?bool
+    {
+        return $this->regular;
+    }
+
+    public function setRegular(bool $regular): self
+    {
+        $this->regular = $regular;
+
+        return $this;
+    }
+
+    public function isSendingDateOver(): ?bool
+    {
+        return $this->sendingDate <= Datetime();
+    }
+
+    public function getSendingDate(): ?\DateTimeInterface
+    {
+        return $this->sendingDate;
+    }
+
+    public function setSendingDate(\DateTimeInterface $sendingDate): self
+    {
+        $this->sendingDate = $sendingDate;
 
         return $this;
     }

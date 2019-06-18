@@ -93,6 +93,16 @@
 								<p class="d-block text-gray-dark">{{ entity.locations|join(', ')|default("N/A") }}</p>
 							</div>
 						</div>
+						<div class="row mb-4">
+							<div class="col">
+								<h5 class="h6 text-dark-gray">{{ "Date d'envoie"|title }}</h5>
+								<p class="d-block text-gray-dark">{{ entity.sendingDate|date }}</p>
+							</div>
+							<div class="col">
+								<h5 class="h6 text-dark-gray">{{ "Regularier"|title }}</h5>
+									{% if entity.regular %}{{ "Oui"|trans }}{% else %}{{ "Non"|trans }}{% endif %}
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

@@ -7,6 +7,7 @@
 
 // any CSS you require will output into a single css file (app.css in this case)
 import '../../scss/admin/app.scss';
+import "tui-calendar/dist/tui-calendar.css";
 
 // Jquery
 import $ from 'jquery';
@@ -19,6 +20,17 @@ import Chart from 'chart.js';
 
 // Import Ekko light box
 import 'ekko-lightbox'
+
+// Import Full calendar component
+// import listPlugin from '@fullcalendar/list';
+// import { Calendar } from '@fullcalendar/core';
+// import dayGridPlugin from '@fullcalendar/daygrid';
+// import timeGridPlugin from '@fullcalendar/timegrid';
+// import timelinePlugin from '@fullcalendar/timeline';
+// import interactionPlugin from '@fullcalendar/interaction';
+
+// TUI Calendar
+import Calendar from 'tui-calendar';
 
 // Import video js
 import Videojs from '../../../node_modules/video.js/dist/video.min'
@@ -184,4 +196,105 @@ $(() => {
 	    }
 	});
 
+	// TUI Calendar
+	// register templates
+  const templates = {
+	    popupIsAllDay: function() {
+	      return 'Tous les jours';
+	    },
+	    popupStateFree: function() {
+	      return 'Libre';
+	    },
+	    popupStateBusy: function() {
+	      return 'Occupé';
+	    },
+	    titlePlaceholder: function() {
+	      return 'Sujet';
+	    },
+	    locationPlaceholder: function() {
+	      return 'Localité';
+	    },
+	    startDatePlaceholder: function() {
+	      return 'Date de début';
+	    },
+	    endDatePlaceholder: function() {
+	      return 'Date de fin';
+	    },
+	    popupSave: function() {
+	      return 'Enregistrer';
+	    },
+	    popupUpdate: function() {
+	      return 'Modifier';
+	    },
+	    popupDetailDate: function(isAllDay, start, end) {
+	      var isSameDate = moment(start).isSame(end);
+	      var endFormat = (isSameDate ? '' : 'YYYY.MM.DD ') + 'hh:mm a';
+
+	      if (isAllDay) {
+	        return moment(start).format('YYYY.MM.DD') + (isSameDate ? '' : ' - ' + moment(end).format('YYYY.MM.DD'));
+	      }
+
+	      return (moment(start).format('YYYY.MM.DD hh:mm a') + ' - ' + moment(end).format(endFormat));
+	    },
+	    popupDetailLocation: function(schedule) {
+	      return 'Location : ' + schedule.location;
+	    },
+	    popupDetailUser: function(schedule) {
+	      return 'User : ' + (schedule.attendees || []).join(', ');
+	    },
+	    popupDetailState: function(schedule) {
+	      return 'State : ' + schedule.state || 'Busy';
+	    },
+	    popupDetailRepeat: function(schedule) {
+	      return 'Repeat : ' + schedule.recurrenceRule;
+	    },
+	    popupDetailBody: function(schedule) {
+	      return 'Body : ' + schedule.body;
+	    },
+	    popupEdit: function() {
+	      return 'Edit';
+	    },
+	    popupDelete: function() {
+	      return 'Delete';
+	    }
+  	};
+
+	if ($('[data-type="fullcalendar"]').length > 0) {
+		var calendar = new Calendar('[data-type="fullcalendar"]', {
+	  		defaultView: 'month',
+	  		taskView: true,
+	  		template: templates,
+		    useCreationPopup: true,
+		    useDetailPopup: true
+		});
+		calendar.on('beforeCreateSchedule', function(event) {
+			alert("Create schedule")
+		});
+	}
+
+	// Full Calendar
+	// if ($('[data-type="fullcalendar"]').length > 0) {
+		
+	// 	var calendarEl = $('[data-type="fullcalendar"]').get(0);
+
+	// 	var calendar = new Calendar(calendarEl, {
+	// 		editable: true,
+	// 		selectable: true,
+	// 		defaultView: 'timelineWeek',
+ //    		plugins: [ dayGridPlugin, timeGridPlugin, listPlugin, timelinePlugin, interactionPlugin ],
+ //    		header: {
+ //      			left: 'prev,next today',
+ //      			center: 'title',
+ //      			right: 'dayGridMonth, timeGridWeek, timeGridDay, list'
+ //    		},
+ //    		dateClick: function(info) {
+ //    			alert(info.dateStr);
+ //    		},
+ //    		select: function(info) {
+ //    			alert(info.dateStr);
+ //    		}
+ //  		});
+
+ //  		calendar.render();
+	// }
 });

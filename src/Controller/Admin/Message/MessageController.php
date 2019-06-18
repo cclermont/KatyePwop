@@ -99,8 +99,10 @@ class MessageController extends AbstractController
             // Create entity
             $this->em->create($entity);
 
-            // Send topic notifications
-            $this->sendTopicNotifications($entity);
+            if ($entity->isSendingDateOver()) {
+                // Send topic notifications
+                $this->sendTopicNotifications($entity);
+            }
 
             // Flash messages are used to notify the user about the result
             $this->addFlash('success', 'Element ajouté avec succès');

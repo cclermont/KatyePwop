@@ -74,6 +74,8 @@ class MessageType extends AbstractType
                             ->orderBy('u.fullname', 'ASC');
                     },
                 ])
+                ->add('regular')
+                ->add('sendingDate')
             ;
         }
 
