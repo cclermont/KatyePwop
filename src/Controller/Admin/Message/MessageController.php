@@ -141,7 +141,7 @@ class MessageController extends AbstractController
     {
         // Create form
         $form = $this->createForm($this->em->getFormType(), $entity, 
-            ['context' => MessageType::ADMIN_CONTEXT, 'institution' => $institution]);
+            ['context' => MessageType::ADMIN_CONTEXT, 'institution' => $entity->getSenderInstitution()]);
 
         // Handle request
         $form->handleRequest($request);

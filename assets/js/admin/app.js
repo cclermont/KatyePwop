@@ -260,6 +260,7 @@ $(() => {
   	};
 
 	if ($('[data-type="fullcalendar"]').length > 0) {
+		
 		var calendar = new Calendar('[data-type="fullcalendar"]', {
 	  		defaultView: 'month',
 	  		taskView: true,
@@ -267,34 +268,69 @@ $(() => {
 		    useCreationPopup: true,
 		    useDetailPopup: true
 		});
+
 		calendar.on('beforeCreateSchedule', function(event) {
-			alert("Create schedule")
+			alert("Create schedule");
+			console.log("Event calendar");
+			console.log(event);
+			calendar.createSchedules([event]);
+			calendar.render()
 		});
 	}
 
-	// Full Calendar
-	// if ($('[data-type="fullcalendar"]').length > 0) {
+	// Message form
+	$(document).on('click', 'input[data-type="posponed"]', function (event) {
+		$('div[data-type="send-date-wrapper"]').toggleClass('d-none');
+	});
+
+	$(document).on('click', 'input[data-type="repeat"]', function (event) {
+		$('div[data-type="repeat-wrapper"]').toggleClass('d-none');
+	});
+
+	$(document).on('click', 'input[data-type="customRepeated"]', function (event) {
+		$('div[data-type="repeat-default"]').toggleClass('d-none');
+		$('div[data-type="customRepeated-frequency-wrapper"]').toggleClass('d-none');
+	});
+
+	$('select[data-type="customRepeated-frequency"]').change(function (event) {
 		
-	// 	var calendarEl = $('[data-type="fullcalendar"]').get(0);
+		$('div[data-type="customRepeated-every-wrapper"]').removeClass('d-none');
+		$('div[data-type="customRepeated-week-wrapper"]').addClass('d-none');
+		$('div[data-type="customRepeated-month-wrapper"]').addClass('d-none');
+		$('div[data-type="customRepeated-year-wrapper"]').addClass('d-none');
+		
+		var every = '__n__ ';
 
-	// 	var calendar = new Calendar(calendarEl, {
-	// 		editable: true,
-	// 		selectable: true,
-	// 		defaultView: 'timelineWeek',
- //    		plugins: [ dayGridPlugin, timeGridPlugin, listPlugin, timelinePlugin, interactionPlugin ],
- //    		header: {
- //      			left: 'prev,next today',
- //      			center: 'title',
- //      			right: 'dayGridMonth, timeGridWeek, timeGridDay, list'
- //    		},
- //    		dateClick: function(info) {
- //    			alert(info.dateStr);
- //    		},
- //    		select: function(info) {
- //    			alert(info.dateStr);
- //    		}
- //  		});
+		switch($(this).val()) {
+			case 'weekly':
+				every += 'semaine';
+				$('div[data-type="customRepeated-week-wrapper"]').removeClass('d-none');
+			break;
+			case 'monthly':
+				every += 'mois';
+				$('div[data-type="customRepeated-month-wrapper"]').removeClass('d-none');
+			break;
+			case 'yearly':
+				every += 'année';
+				$('div[data-type="customRepeated-year-wrapper"]').removeClass('d-none');
+			break;
+			case 'daily':
+				every += 'jour';
+			break;
+			default:
+				$('div[data-type="customRepeated-every-wrapper"]').addClass('d-none');
+		}
 
- //  		calendar.render();
-	// }
+		$('[data-type="customRepeated-every"]').find('option').each(function(index, el) {
+			var val = $(el).attr('value');
+			if ($.trim(val).length > 0) {
+				var text = every;
+				text = text.replace('__n__', val);
+				if ((text.indexOf('jour') > -1 || text.indexOf('année') > -1 || text.indexOf('semaine') > -1) && val > 1) {
+					text += 's';
+				}
+				$(el).text(text);
+			}
+		});
+	});
 });

@@ -18,12 +18,71 @@
 	  			{{ form_row(form.content, {label: "Contenu", 
 	  				help: "Veuillez indiquer un contenu pour votre message.", 
 	  				attr: {class: "border-light-lg", placeholder: "Entrer le contenu..."}}) }}
-	  			{{ form_row(form.sendingDate, {label: "Date d'envoie", 
-	  				help: "Veuillez indiquer la date d'envoie de votre message.", 
-	  				attr: {class: "border-light-lg", placeholder: "La date..."}}) }}
-	  			{{ form_row(form.regular, {label: "Regularité", 
+
+
+	  			{{ form_row(form.posponed, {label: "Différé", 
+	  				help: "Veuillez cocher la case si votre message doit etre differé.", 
+	  				attr: {class: "border-light-lg", "data-type": "posponed"}}) }}
+
+	  			<div class="row {% if entity.posponed == false %}d-none{% endif %}" data-type="send-date-wrapper">
+	  				<div class="col-8 offset-1">
+			  			{{ form_row(form.sendingDate, {label: "Premier envoie", 
+			  				help: "Veuillez indiquer la date d'envoie de votre message.", 
+			  				attr: {class: "border-light-lg", placeholder: "La date..."}}) }}
+	  				</div>
+	  			</div>
+
+	  			{{ form_row(form.regular, {label: "Répéter", 
 	  				help: "Veuillez indiquer si oui votre message doit etre envoyer de manière regulière.", 
-	  				attr: {class: "border-light-lg"}}) }}
+	  				attr: {class: "border-light-lg", "data-type": "repeat"}}) }}
+
+	  			<div class="row {% if entity.regular == false %}d-none{% endif %}" data-type="repeat-wrapper">
+	  				<div class="col-8 offset-1 {% if entity.customRepeated %}d-none{% endif %}" data-type="repeat-default">
+			  			{{ form_row(form.repeat, {label: "Répéter chaque", 
+			  				help: "Veuillez indiquer comment votre message doit être répété.", 
+			  				attr: {class: "border-light-lg", placeholder: "La période"}}) }}
+	  				</div>
+	  				<div class="col-8 offset-1">
+	  					{{ form_row(form.customRepeated, {label: "Personnaliser", 
+	  						help: "Vous pouvez personnaliser votre frequence de répétition en cochant cette case", 
+	  						attr: {class: "border-light-lg", "data-type": "customRepeated"}}) }}
+	  				</div>
+	  				<div class="col-8 offset-2 {% if entity.customRepeated == false %}d-none{% endif %}" 
+	  					data-type="customRepeated-frequency-wrapper">
+		  				<div class="row">
+		  					<div class="col-12">
+					  			{{ form_row(form.customRepeat.frequency, {label: "Fréquence", 
+					  				help: "Veuillez indiquer la fréquence.", 
+					  				attr: {class: "border-light-lg", "data-type": "customRepeated-frequency"}}) }}
+			  				</div>
+			  				<div class="col-12 {% if entity.customRepeat.every == 0 %}d-none{% endif %}" 
+			  					data-type="customRepeated-every-wrapper">
+			  					{{ form_row(form.customRepeat.every, {label: "Répéter chaque", 
+					  				help: "Veuillez indiquer le nombre de répétition par (jour, semaine, mois ou année)", 
+					  				attr: {class: "border-light-lg", "data-type": "customRepeated-every"}}) }}
+			  				</div>
+			  				<div class="col-12 {% if entity.customRepeat.frequency != 'weekly' %}d-none{% endif %}" 
+			  					data-type="customRepeated-week-wrapper">
+			  					{{ form_row(form.customRepeat.weekDays, {label: "Jour de la semaine", 
+					  				help: "Veuillez indiquer les jours de répétition", 
+					  				attr: {class: "border-light-lg"}}) }}
+			  				</div>
+			  				<div class="col-12  {% if entity.customRepeat.frequency != 'monthly' %}d-none{% endif %}" 
+			  					data-type="customRepeated-month-wrapper">
+			  					{{ form_row(form.customRepeat.monthDays, {label: "Jours du mois", 
+					  				help: "Veuillez indiquer les jours de répétition", 
+					  				attr: {class: "border-light-lg"}}) }}
+			  				</div>
+			  				<div class="col-12  {% if entity.customRepeat.frequency != 'yearly' %}d-none{% endif %}" 
+			  					data-type="customRepeated-year-wrapper">
+			  					{{ form_row(form.customRepeat.yearMonths, {label: "Mois de l'année", 
+					  				help: "Veuillez indiquer les mois de répétition", 
+					  				attr: {class: "border-light-lg"}}) }}
+			  				</div>
+		  				</div>
+		  			</div>
+	  			</div>
+
 	  			{{ form_row(form.locations, {label: "Locations", 
 	  				help: "Veuillez indiquer les localités pour votre message.", 
 	  				attr: {class: "border-light-lg", placeholder: "Entrer les localités..."}}) }}

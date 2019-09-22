@@ -70,7 +70,7 @@ class MessageVoter extends Voter
         }
 
         // Test for super admin
-        if ($this->decisionManager->decide($token, [User::ROLE_SUPER_ADMIN])) {
+        if ($this->decisionManager->decide($token, [User::ROLE_SUPER_ADMIN, User::ROLE_ADMIN])) {
             return true;
         }
 

@@ -70,7 +70,23 @@ class Message
      * @JMS\Expose
      * @JMS\Groups({"show"})
      */
-    private $regular;
+    private $regular; // Should repeat or not
+
+    /**
+     * @ORM\Column(type="boolean")
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"show"})
+     */
+    private $posponed;
+
+    /**
+     * @ORM\Column(type="boolean")
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"show"})
+     */
+    private $customRepeated;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -85,6 +101,24 @@ class Message
      * @JMS\Groups({"show"})
      */
     private $images;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="Repeat", cascade={"persist", "remove"})
+     *
+     * @JMS\Expose
+     * @JMS\MaxDepth(3)
+     * @JMS\Groups({"show"})
+     */
+    private $repeat;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="Repeat", cascade={"persist", "remove"})
+     *
+     * @JMS\Expose
+     * @JMS\MaxDepth(3)
+     * @JMS\Groups({"show"})
+     */
+    private $customRepeat;
     
     /**
      * @ORM\OneToMany(targetEntity="Video", mappedBy="message", orphanRemoval=true, cascade={"persist", "remove"})
@@ -148,7 +182,9 @@ class Message
     {
         $this->status = "";
         $this->regular = false;
+        $this->posponed = false;
         $this->broadcasted = false;
+        $this->customRepeated = false;
         $this->sendingDate = New \Datetime();
         $this->images = new ArrayCollection();
         $this->videos = new ArrayCollection();
@@ -362,7 +398,7 @@ class Message
 
     public function isSendingDateOver(): ?bool
     {
-        return $this->sendingDate <= Datetime();
+        return $this->sendingDate <= new \Datetime();
     }
 
     public function getSendingDate(): ?\DateTimeInterface
@@ -373,6 +409,54 @@ class Message
     public function setSendingDate(\DateTimeInterface $sendingDate): self
     {
         $this->sendingDate = $sendingDate;
+
+        return $this;
+    }
+
+    public function getPosponed(): ?bool
+    {
+        return $this->posponed;
+    }
+
+    public function setPosponed(bool $posponed): self
+    {
+        $this->posponed = $posponed;
+
+        return $this;
+    }
+
+    public function getCustomRepeated(): ?bool
+    {
+        return $this->customRepeated;
+    }
+
+    public function setCustomRepeated(bool $customRepeated): self
+    {
+        $this->customRepeated = $customRepeated;
+
+        return $this;
+    }
+
+    public function getRepeat(): ?Repeat
+    {
+        return $this->repeat;
+    }
+
+    public function setRepeat(?Repeat $repeat): self
+    {
+        $this->repeat = $repeat;
+
+        return $this;
+    }
+
+    public function getCustomRepeat(): ?Repeat
+    {
+        return $this->customRepeat;
+    }
+
+    public function setCustomRepeat(?Repeat $customRepeat): self
+    {
+        $this->customRepeat = $customRepeat;
 
         return $this;
     }

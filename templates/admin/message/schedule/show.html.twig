@@ -84,79 +84,25 @@
 							</div>
 						</div>
 						<div class="row mb-4">
-							<div class="col-8">
+							<div class="col">
 								<h5 class="h6 text-dark-gray">{{ "Contenu"|title }}</h5>
 								<p class="d-block text-gray-dark">{{ entity.content }}</p>
 							</div>
-							<div class="col-4">
+							<div class="col">
 								<h5 class="h6 text-dark-gray">{{ "Locations"|title }}</h5>
 								<p class="d-block text-gray-dark">{{ entity.locations|join(', ')|default("N/A") }}</p>
 							</div>
 						</div>
 						<div class="row mb-4">
 							<div class="col">
-								<h5 class="h6 text-dark-gray">{{ "Répété"|title }}</h5>
+								<h5 class="h6 text-dark-gray">{{ "Date d'envoie"|title }}</h5>
+								<p class="d-block text-gray-dark">{{ entity.sendingDate|date }}</p>
+							</div>
+							<div class="col">
+								<h5 class="h6 text-dark-gray">{{ "Regularier"|title }}</h5>
 									{% if entity.regular %}{{ "Oui"|trans }}{% else %}{{ "Non"|trans }}{% endif %}
 							</div>
-							<div class="col">
-								<h5 class="h6 text-dark-gray">{{ "Différé"|title }}</h5>
-									{% if entity.posponed %}{{ "Oui"|trans }}{% else %}{{ "Non"|trans }}{% endif %}
-							</div>
-							<div class="col">
-								<h5 class="h6 text-dark-gray">{{ "Date d'envoie"|title }}</h5>
-								{% if entity.posponed %}
-									<p class="d-block text-gray-dark">{{ entity.sendingDate|date }}</p>
-								{% else %}
-									<p class="d-block text-gray-dark">{{ entity.created|date }}</p>
-								{% endif %}
-							</div>
 						</div>
-						{% if entity.regular %}
-							{% if entity.customRepeated %}
-								{% set repeat = entity.customRepeat %}
-							{% else %}
-							    {% set repeat = entity.repeat %}
-							{% endif %}
-							
-							{% if repeat is not null %}
-								<div class="row mb-4">
-									<div class="col">
-										<h5 class="h6 text-dark-gray">{{ "Frequence"|title }}</h5>
-										<p class="d-block text-gray-dark">{{ repeat.frequency|trans|title }}</p>
-									</div>
-									<div class="col">
-										<h5 class="h6 text-dark-gray">{{ "Répétition"|title }}</h5>
-										<p class="d-block text-gray-dark">{{ repeat.every }} Fois</p>
-									</div>
-									{% if repeat.frequency == 'weekly' %}
-										<div class="col">
-											<h5 class="h6 text-dark-gray">{{ "Jour de la semaine"|title }}</h5>
-											<p class="d-block text-gray-dark">
-												{% for item in repeat.weekDays %}
-												    {{ item|trans|title }}, 
-												{% endfor %}
-											</p>
-										</div>
-									{% endif %}
-									{% if repeat.frequency == 'monthly' %}
-										<div class="col">
-											<h5 class="h6 text-dark-gray">{{ "Jours du mois"|title }}</h5>
-											<p class="d-block text-gray-dark">{{ repeat.monthDays|join(', ') }}</p>
-										</div>
-									{% endif %}
-									{% if repeat.frequency == 'yearly' %}
-										<div class="col">
-											<h5 class="h6 text-dark-gray">{{ "Mois de l'année"|title }}</h5>
-											<p class="d-block text-gray-dark">
-												{% for item in repeat.yearMonths %}
-												    {{ item|trans|title }}, 
-												{% endfor %}
-											</p>
-										</div>
-									{% endif %}
-								</div>
-							{% endif %}
-						{% endif %}
 					</div>
 				</div>
 			</div>

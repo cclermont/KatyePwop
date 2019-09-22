@@ -45,64 +45,20 @@
 	    	</a>
 	    </li>
 	    <li class="mt-1">
+	    	<a href="{{ path("admin_message_schedule") }}" 
+	    		class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
+	    	{% if currentModule is defined and currentModule == "schedule" %}selected{% endif %}">
+	    		<i class="fas fa-calendar mr-lg-3 fa-fw"></i>
+	    		<span class="small d-none d-lg-inline">{{ "Horaire"|trans }}</span>
+	    	</a>
+	    </li>
+	    <li class="mt-1">
 	    	<a href="{{ path("admin_location") }}" 
 	    		class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
 	    	{% if currentModule is defined and currentModule == "location" %}selected{% endif %}">
 	    		<i class="fas fa-map-marker-alt mr-lg-3 fa-fw"></i>
 	    		<span class="small d-none d-lg-inline">{{ "Localité"|trans }}</span>
 	    	</a>
-	    </li>
-	    <li class="mt-1">
-	    	<a data-toggle="collapse" href="#fleet" role="button" aria-expanded="false" aria-controls="fleet"
-	    		class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
-	    	{% if currentModule is defined and currentModule == "fleet" %}selected{% endif %}">
-	    		<i class="fas fa-truck mr-lg-3 fa-fw"></i>
-	    		<span class="small d-none d-lg-inline">{{ "Flotte"|trans }}</span>
-	    	</a>
-			<ul id="fleet" class="collapse {% if currentModule is defined and currentModule == "fleet" %}show{% endif %}">
-				<li>
-					<a href="{{ path("admin_fleetmanagement_vehicle_index") }}" class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
-					{% if currentModule is defined and currentModule == "flotte" %}selected{% endif %}">
-						<!--<i class="fas fa-truck mr-lg-3 fa-fw"></i>-->
-						<span class="small d-none d-lg-inline">{{ "Véhicules"|trans }}</span>
-					</a>
-				</li>
-				<li>
-					<a href="{{ path("admin_fleetmanagement_vehicle_category_index") }}" class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
-					{% if currentModule is defined and currentModule == "flotte" %}selected{% endif %}">
-						<!--<i class="fas fa-truck mr-lg-3 fa-fw"></i>-->
-						<span class="small d-none d-lg-inline">{{ "Types de Véhicule"|trans }}</span>
-					</a>
-				</li>
-				<li>
-					<a href="{{ path("admin_fleetmanagement_fuel_index") }}" class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
-					{% if currentModule is defined and currentModule == "flotte" %}selected{% endif %}">
-						<!--<i class="fas fa-truck mr-lg-3 fa-fw"></i>-->
-						<span class="small d-none d-lg-inline">{{ "Caburants"|trans }}</span>
-					</a>
-				</li>
-				<li>
-					<a href="{{ path("admin_fleetmanagement_accident_index") }}" class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
-					{% if currentModule is defined and currentModule == "flotte" %}selected{% endif %}">
-						<!--<i class="fas fa-truck mr-lg-3 fa-fw"></i>-->
-						<span class="small d-none d-lg-inline">{{ "Accidents"|trans }}</span>
-					</a>
-				</li>
-				<li>
-					<a href="{{ path("admin_fleetmanagement_repair_index") }}" class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
-					{% if currentModule is defined and currentModule == "flotte" %}selected{% endif %}">
-						<!--<i class="fas fa-truck mr-lg-3 fa-fw"></i>-->
-						<span class="small d-none d-lg-inline">{{ "Réparations"|trans }}</span>
-					</a>
-				</li>
-				<li>
-					<a href="{{ path("admin_fleetmanagement_maintenance_index") }}" class="btn btn-block border-0 btn-light btn-lg text-center text-lg-left  
-					{% if currentModule is defined and currentModule == "flotte" %}selected{% endif %}">
-						<!--<i class="fas fa-truck mr-lg-3 fa-fw"></i>-->
-						<span class="small d-none d-lg-inline">{{ "Maintenances"|trans }}</span>
-					</a>
-				</li>
-			</ul>
 	    </li>
 	</ul>
 

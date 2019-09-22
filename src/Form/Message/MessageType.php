@@ -10,9 +10,11 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 use App\Entity\User\User;
+use App\Entity\Message\Repeat;
 use App\Entity\Message\Message;
 use App\Entity\Location\Location;
 use App\Repository\User\UserRepository;
+use App\Repository\Message\RepeatRepository;
 use App\Repository\Location\LocationRepository;
 
 class MessageType extends AbstractType
@@ -74,8 +76,21 @@ class MessageType extends AbstractType
                             ->orderBy('u.fullname', 'ASC');
                     },
                 ])
-                ->add('regular')
-                ->add('sendingDate')
+                ->add('regular', null, ['required' => false])
+                ->add('posponed', null, ['required' => false])
+                ->add('customRepeated', null, ['required' => false])
+                ->add('sendingDate', null, ['required' => false])
+                ->add('customRepeat', RepeatType::class, ['required' => false])
+                ->add('repeat', EntityType::class, [
+                    'multiple' => false,
+                    'required' => false,
+                    'class' => Repeat::class,
+                    'choice_label' => 'Répéter',
+                    'placeholder' => 'Choisissez une option',
+                    'query_builder' => function (RepeatRepository $er) {
+                        return $er->createQueryBuilder('u')->where('u.custom = false')->orderBy('u.frequency', 'ASC');
+                    },
+                ])
             ;
         }
 
