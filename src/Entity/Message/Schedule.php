@@ -23,25 +23,36 @@ class Schedule
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"list", "show"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=16)
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"list", "show"})
      */
     private $day;
 
     /**
      * @ORM\Column(type="time", nullable=true)
+     *
+     * @JMS\Expose
+     * @JMS\Type("DateTime<'h:i A'>")
+     * @JMS\Groups({"list", "show"})
      */
     private $time;
     
     /**
      * @Assert\NotBlank(message="La localité ne peut pas être vide")
-     * @ORM\OneToOne(targetEntity="App\Entity\Location\Location")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Location\Location")
      *
      * @JMS\Expose
-     * @JMS\Groups({"list", "show"})
+     * @JMS\MaxDepth(3)
+     * @JMS\Groups({"show"})
      */
     private $location;
 

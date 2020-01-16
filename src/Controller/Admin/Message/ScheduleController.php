@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 use App\Entity\Message\Schedule;
 use App\Service\Message\ScheduleManager;
+use App\Service\Institution\InstitutionManager;
 
 /**
  * ScheduleController 
@@ -22,10 +23,12 @@ class ScheduleController extends AbstractController
     * Entity manager
     */
     private $em;
+    private $institutionManager;
 
-    public function __construct(ScheduleManager $entityManager)
+    public function __construct(ScheduleManager $entityManager, InstitutionManager $institutionManager)
     {
         $this->em = $entityManager;
+        $this->institutionManager = $institutionManager;
     }
 
 
@@ -57,9 +60,12 @@ class ScheduleController extends AbstractController
     {	
     	// Create entity
         $entity = $this->em->createEntity();
+            
+        // Get institution
+        $institution = $this->institutionManager->findByUser($this->getUser());
 
         // Create form
-        $form = $this->createForm($this->em->getFormType(), $entity)
+        $form = $this->createForm($this->em->getFormType(), $entity, ['institution' => $institution])
             		->add('saveAndCreateNew', SubmitType::class);
 
         // Handle request

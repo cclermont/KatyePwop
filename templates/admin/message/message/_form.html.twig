@@ -55,25 +55,25 @@
 					  				help: "Veuillez indiquer la fréquence.", 
 					  				attr: {class: "border-light-lg", "data-type": "customRepeated-frequency"}}) }}
 			  				</div>
-			  				<div class="col-12 {% if entity.customRepeat.every == 0 %}d-none{% endif %}" 
+			  				<div class="col-12 {% if entity.customRepeat is not null and entity.customRepeat.every == 0 %}d-none{% endif %}" 
 			  					data-type="customRepeated-every-wrapper">
 			  					{{ form_row(form.customRepeat.every, {label: "Répéter chaque", 
 					  				help: "Veuillez indiquer le nombre de répétition par (jour, semaine, mois ou année)", 
 					  				attr: {class: "border-light-lg", "data-type": "customRepeated-every"}}) }}
 			  				</div>
-			  				<div class="col-12 {% if entity.customRepeat.frequency != 'weekly' %}d-none{% endif %}" 
+			  				<div class="col-12 {% if entity.customRepeat is not null and entity.customRepeat.frequency != 'weekly' %}d-none{% endif %}" 
 			  					data-type="customRepeated-week-wrapper">
 			  					{{ form_row(form.customRepeat.weekDays, {label: "Jour de la semaine", 
 					  				help: "Veuillez indiquer les jours de répétition", 
 					  				attr: {class: "border-light-lg"}}) }}
 			  				</div>
-			  				<div class="col-12  {% if entity.customRepeat.frequency != 'monthly' %}d-none{% endif %}" 
+			  				<div class="col-12  {% if entity.customRepeat is not null and entity.customRepeat.frequency != 'monthly' %}d-none{% endif %}" 
 			  					data-type="customRepeated-month-wrapper">
 			  					{{ form_row(form.customRepeat.monthDays, {label: "Jours du mois", 
 					  				help: "Veuillez indiquer les jours de répétition", 
 					  				attr: {class: "border-light-lg"}}) }}
 			  				</div>
-			  				<div class="col-12  {% if entity.customRepeat.frequency != 'yearly' %}d-none{% endif %}" 
+			  				<div class="col-12  {% if entity.customRepeat is not null and entity.customRepeat.frequency != 'yearly' %}d-none{% endif %}" 
 			  					data-type="customRepeated-year-wrapper">
 			  					{{ form_row(form.customRepeat.yearMonths, {label: "Mois de l'année", 
 					  				help: "Veuillez indiquer les mois de répétition", 

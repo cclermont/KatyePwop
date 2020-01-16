@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 
 use App\Entity\Message\Schedule;
+use App\Entity\Location\Location;
 use App\Form\Message\ScheduleType;
 use App\Service\Core\AbstractManager;
 
@@ -20,6 +21,13 @@ class ScheduleManager extends AbstractManager
      */
     public function getRepository(): EntityRepository{
         return $this->em->getRepository(Schedule::class);
+    }
+    
+    /**
+     * Find institution by location
+     */
+    public function findByLocation(Location $location) {
+        return $this->getRepository()->findByLocation($location);
     }
     
     /**

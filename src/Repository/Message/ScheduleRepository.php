@@ -8,6 +8,7 @@ use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 use App\Entity\Message\Schedule;
+use App\Entity\Location\Location;
 use App\Repository\Core\AbstractRepository;
 
 /**
@@ -30,5 +31,24 @@ class ScheduleRepository extends AbstractRepository
      */
     protected function addParentToAndXPattern($qb, $andX, $parent){
         return $andX;
+    }
+    
+    /**
+     * Find schedule by location
+     */
+    public function findByLocation(Location $location) {
+        
+        $qb = $this->createQueryBuilder('e');
+
+        $qb
+            ->addSelect('l')
+            ->innerJoin('e.location', 'l')
+            ->where($qb->expr()->eq('l.id', ':id'))
+            ->setParameter('id', $location->getId())
+        ;
+
+        $paginator = new Pagerfanta(new DoctrineORMAdapter($qb->getQuery(), false));
+
+        return $paginator;
     }
 }

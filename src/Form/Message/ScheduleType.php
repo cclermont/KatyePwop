@@ -16,6 +16,8 @@ class ScheduleType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $institution = $options['institution'];
+        
         $builder
             ->add('time')
             ->add('day', ChoiceType::class, [
@@ -38,9 +40,14 @@ class ScheduleType extends AbstractType
                 'class' => Location::class,
                 'choice_label' => 'fullname',
                 'placeholder' => 'Choisissez une location',
-                'query_builder' => function (LocationRepository $er) {
-                    return $er->createQueryBuilder('u')->orderBy('u.fullname', 'ASC');
-                },
+                'query_builder' => function (LocationRepository $er) use ($institution) {
+                        return $er->createQueryBuilder('u')
+                            ->innerJoin('u.institution', 'i')
+                            ->addSelect('i')
+                            ->where('i.id = :id')
+                            ->setParameter('id', $institution->getId())
+                            ->orderBy('u.fullname', 'ASC');
+                    },
             ])
         ;
     }
@@ -49,6 +56,7 @@ class ScheduleType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Schedule::class,
+            'institution' => null,
         ]);
     }
 }
