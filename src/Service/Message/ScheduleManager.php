@@ -26,8 +26,8 @@ class ScheduleManager extends AbstractManager
     /**
      * Find institution by location
      */
-    public function findByLocation(Location $location) {
-        return $this->getRepository()->findByLocation($location);
+    public function findByLocation(Location $location, $posted = true) {
+        return $this->getRepository()->findByLocation($location, $posted);
     }
     
     /**

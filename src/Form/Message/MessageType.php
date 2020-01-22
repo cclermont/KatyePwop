@@ -78,19 +78,19 @@ class MessageType extends AbstractType
                 ])
                 ->add('regular', null, ['required' => false])
                 ->add('posponed', null, ['required' => false])
-                ->add('customRepeated', null, ['required' => false])
+                // ->add('customRepeated', null, ['required' => false])
                 ->add('sendingDate', null, ['required' => false])
                 ->add('customRepeat', RepeatType::class, ['required' => false])
-                ->add('repeat', EntityType::class, [
-                    'multiple' => false,
-                    'required' => false,
-                    'class' => Repeat::class,
-                    'choice_label' => 'Répéter',
-                    'placeholder' => 'Choisissez une option',
-                    'query_builder' => function (RepeatRepository $er) {
-                        return $er->createQueryBuilder('u')->where('u.custom = false')->orderBy('u.frequency', 'ASC');
-                    },
-                ])
+                // ->add('repeat', EntityType::class, [
+                //     'multiple' => false,
+                //     'required' => false,
+                //     'class' => Repeat::class,
+                //     'choice_label' => 'Répéter',
+                //     'placeholder' => 'Choisissez une option',
+                //     'query_builder' => function (RepeatRepository $er) {
+                //         return $er->createQueryBuilder('u')->where('u.custom = false')->orderBy('u.frequency', 'ASC');
+                //     },
+                // ])
             ;
         }
 

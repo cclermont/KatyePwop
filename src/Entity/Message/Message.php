@@ -184,7 +184,7 @@ class Message
         $this->regular = false;
         $this->posponed = false;
         $this->broadcasted = false;
-        $this->customRepeated = false;
+        $this->customRepeated = true;
         $this->sendingDate = New \Datetime();
         $this->images = new ArrayCollection();
         $this->videos = new ArrayCollection();

@@ -36,7 +36,7 @@ class ScheduleRepository extends AbstractRepository
     /**
      * Find schedule by location
      */
-    public function findByLocation(Location $location) {
+    public function findByLocation(Location $location, $posted = true) {
         
         $qb = $this->createQueryBuilder('e');
 
@@ -44,7 +44,10 @@ class ScheduleRepository extends AbstractRepository
             ->addSelect('l')
             ->innerJoin('e.location', 'l')
             ->where($qb->expr()->eq('l.id', ':id'))
+            ->andWhere($qb->expr()->eq('e.posted', ':posted'))
             ->setParameter('id', $location->getId())
+            ->setParameter('posted', $posted)
+            ->orderBy('e.time', 'ASC')
         ;
 
         $paginator = new Pagerfanta(new DoctrineORMAdapter($qb->getQuery(), false));

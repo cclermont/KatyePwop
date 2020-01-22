@@ -37,7 +37,7 @@
 	  				attr: {class: "border-light-lg", "data-type": "repeat"}}) }}
 
 	  			<div class="row {% if entity.regular == false %}d-none{% endif %}" data-type="repeat-wrapper">
-	  				<div class="col-8 offset-1 {% if entity.customRepeated %}d-none{% endif %}" data-type="repeat-default">
+	  				{# <div class="col-8 offset-1 {% if entity.customRepeated %}d-none{% endif %}" data-type="repeat-default">
 			  			{{ form_row(form.repeat, {label: "Répéter chaque", 
 			  				help: "Veuillez indiquer comment votre message doit être répété.", 
 			  				attr: {class: "border-light-lg", placeholder: "La période"}}) }}
@@ -46,8 +46,8 @@
 	  					{{ form_row(form.customRepeated, {label: "Personnaliser", 
 	  						help: "Vous pouvez personnaliser votre frequence de répétition en cochant cette case", 
 	  						attr: {class: "border-light-lg", "data-type": "customRepeated"}}) }}
-	  				</div>
-	  				<div class="col-8 offset-2 {% if entity.customRepeated == false %}d-none{% endif %}" 
+	  				</div> #}
+	  				<div class="col-8 offset-1 {# {% if entity.customRepeated == false %}d-none{% endif %} #}" 
 	  					data-type="customRepeated-frequency-wrapper">
 		  				<div class="row">
 		  					<div class="col-12">
