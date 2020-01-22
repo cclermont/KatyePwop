@@ -97,9 +97,12 @@ class ScheduleController extends AbstractController
      * @Route("/{id<\d+>}/edit", name="admin_message_schedule_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Schedule $entity): Response
-    {
+    {  
+        // Get institution
+        $institution = $this->institutionManager->findByUser($this->getUser());
+
         // Create form
-        $form = $this->createForm($this->em->getFormType(), $entity);
+        $form = $this->createForm($this->em->getFormType(), $entity, ['institution' => $institution]);
 
         // Handle request
         $form->handleRequest($request);
@@ -131,7 +134,7 @@ class ScheduleController extends AbstractController
             return $this->redirectToRoute($this->em->getBaseRouteName('admin'));
         }
 
-        // Create entity
+        // Delete entity
         $this->em->delete($entity);
 
         $this->addFlash('success', 'Element effacé avec succès');

@@ -45,6 +45,15 @@ class Schedule
      * @JMS\Groups({"list", "show"})
      */
     private $time;
+
+    /**
+     * @var bool
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"list", "show"})
+     * @ORM\Column(name="posted", type="boolean")
+     */
+    protected $posted;
     
     /**
      * @Assert\NotBlank(message="La localité ne peut pas être vide")
@@ -65,6 +74,7 @@ class Schedule
     public function __construct()
     {
         $this->time = new \Datetime;
+        $this->posted = false;
     }
 
     public function getId(): ?int
@@ -95,6 +105,28 @@ class Schedule
 
         return $this;
     }
+    
+    /**
+     * @JMS\Expose
+     * @JMS\VirtualProperty
+     * @JMS\Type("DateTime<'h'>")
+     * @JMS\Groups({"list", "show"})
+     */
+    public function getHour()
+    {
+        return $this->time;
+    }
+
+    /**
+     * @JMS\Expose
+     * @JMS\VirtualProperty
+     * @JMS\Type("DateTime<'i'>")
+     * @JMS\Groups({"list", "show"})
+     */
+    public function getMinute()
+    {
+        return $this->time;
+    }
 
     public function getLocation(): ?Location
     {
@@ -106,5 +138,17 @@ class Schedule
         $this->location = $location;
 
         return $this;
+    }
+
+    public function setPosted($posted)
+    {
+        $this->posted = $posted;
+
+        return $this;
+    }
+
+    public function getPosted()
+    {
+        return $this->posted;
     }
 }

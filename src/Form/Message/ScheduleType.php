@@ -20,12 +20,13 @@ class ScheduleType extends AbstractType
         
         $builder
             ->add('time')
+            ->add('posted')
             ->add('day', ChoiceType::class, [
                 'multiple' => false,
                 'choices' => [
                     'Dimanche' => 'sunday',
                     'Lundi' => 'monday',
-                    'Mardi' => 'thusday',
+                    'Mardi' => 'tuesday',
                     'Mercredi' => 'wednersday',
                     'Jeudi' => 'thursday',
                     'Vendredi' => 'friday',

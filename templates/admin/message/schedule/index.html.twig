@@ -142,6 +142,7 @@
 							<th scope="col" width="10px">#</th>
 							<th scope="col">{{ "Jour"|trans }}</th>
 							<th scope="col">{{ "Heure"|trans }}</th>
+							<th scope="col">{{ "Publié"|trans }}</th>
 							<th scope="col">{{ "Localité"|trans }}</th>
 							<th scope="col"><i class="fas fa-calendar-alt mr-2"></i>{{ "Créé"|trans }}</th>
 							<th scope="col" width="20%" class="text-center">
@@ -156,6 +157,7 @@
 									<th class="align-middle" scope="row" width="10px">{{ loop.index }}</th>
 									<td class="align-middle">{{ entity.day|title }}</td>
 									<td class="align-middle">{{ entity.time|date('h:i') }}</td>
+									<td class="align-middle">{{ entity.posted ? "Oui" : "Non" }}</td>
 									<td class="align-middle">
 										{{ entity.location.fullname|title }}
 									</td>
@@ -165,6 +167,17 @@
 											class="btn btn-dark btn-sm">
 											<i class="fas fa-edit mr-1"></i><span>{{ "Modifier"|trans }}</span>
 										</a>
+										<a href="#" class="btn btn-danger btn-sm"
+	                                        data-toggle="modal" data-target="#appModal{{ entity.id }}">
+	                                        <i class="fa fa-trash m-0 p-0"></i>
+	                                    </a>
+	                                    {{ include('admin/_modal.html.twig', {
+	                                    	id: entity.id, 
+	                                    	title: "Effacer",
+	                                    	type: "delete",
+	                                    	action: "Effacer",
+	                                    	link: path('admin_message_schedule_delete', {'id':entity.id}),
+	                                    	message: "Voulez vous vraiment effacer cet élément?"}) }}
 									</td>
 								</tr>
 							{% endfor %}

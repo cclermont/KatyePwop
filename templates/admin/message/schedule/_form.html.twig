@@ -25,6 +25,14 @@
 					</div>
 				</div>
 
+				<div class="row">
+					<div class="col-6">
+			  			{{ form_row(form.posted, {label: "Publié", 
+			  				help: "Veuillez indiquer si elle doit être ou pas", 
+			  				attr: {class: "border-light-lg", placeholder: "Publier"}}) }}
+					</div>
+				</div>
+
 	  			{{ form_row(form.location, {label: "Location", 
 	  				help: "Veuillez indiquer la localité.", 
 	  				attr: {class: "border-light-lg", placeholder: "Entrer la localité..."}}) }}
