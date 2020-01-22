@@ -2,6 +2,7 @@
 
 namespace App\Entity\Message;
 
+use App\Entity\Institution\Institution;
 use App\Entity\Location\Location;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
@@ -64,6 +65,11 @@ class Schedule
      * @JMS\Groups({"show"})
      */
     private $location;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Institution\Institution")
+     */
+    private $institution;
 
     /**
      * Use Created modified trait
@@ -150,5 +156,17 @@ class Schedule
     public function getPosted()
     {
         return $this->posted;
+    }
+
+    public function getInstitution(): ?Institution
+    {
+        return $this->institution;
+    }
+
+    public function setInstitution(?Institution $institution): self
+    {
+        $this->institution = $institution;
+
+        return $this;
     }
 }

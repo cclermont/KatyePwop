@@ -41,6 +41,9 @@ class ScheduleController extends AbstractController
         $pattern = $request->query->get('pattern', array());
         $sort 	 = $request->query->get('sort', array('created' => 'DESC'));
 
+        // Get institution
+        $pattern['institution'] = $this->institutionManager->findByUser($this->getUser());
+
         // Get entities
          $entities = $this->em->findAndPaginate($pattern, $sort, $page, $limit);
 
@@ -73,6 +76,9 @@ class ScheduleController extends AbstractController
 
         // Test isSubmitted()
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // Set institution
+            $entity->setInstitution($institution);
 
             // Create entity
             $this->em->create($entity);
